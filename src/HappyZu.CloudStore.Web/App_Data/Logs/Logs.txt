@@ -1,0 +1,327 @@
+DEBUG 2016-08-18 23:37:17,180 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-18 23:37:17,190 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-18 23:37:17,193 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,195 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,195 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,196 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,196 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,196 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,196 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,197 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,197 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,197 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,197 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,197 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,197 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,197 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,197 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:17,199 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-18 23:37:17,314 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-18 23:37:17,314 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-18 23:37:17,314 [1    ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-18 23:37:17,314 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-18 23:37:17,570 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:37:18,830 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-18 23:37:18,835 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-18 23:37:18,837 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-18 23:37:18,838 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-18 23:37:18,839 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-18 23:37:18,932 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-18 23:37:18,945 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-18 23:37:18,945 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-18 23:37:19,040 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-18 23:37:19,041 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-18 23:37:19,046 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-18 23:37:19,071 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-18 23:37:19,072 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-18 23:37:19,075 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-18 23:37:20,894 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-18 23:37:20,895 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-18 23:37:20,896 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-18 23:37:20,896 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+ERROR 2016-08-18 23:37:33,207 [6    ] loudStore.Web.Controllers.HomeController - No language defined!
+System.ApplicationException: No language defined!
+   在 Abp.Localization.MultiTenantLocalizationDictionaryProvider.GetDefaultDictionary() 位置 D:\Halil\GitHub\module-zero\src\Abp.Zero\Localization\MultiTenantLocalizationDictionaryProvider.cs:行号 71
+   在 Abp.Localization.MultiTenantLocalizationDictionaryProvider.get_DefaultDictionary() 位置 D:\Halil\GitHub\module-zero\src\Abp.Zero\Localization\MultiTenantLocalizationDictionaryProvider.cs:行号 20
+   在 Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource.GetStringOrNull(String name, CultureInfo culture, Boolean tryDefaults) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Localization\Dictionaries\DictionaryBasedLocalizationSource.cs:行号 110
+   在 Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource.GetString(String name, CultureInfo culture) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Localization\Dictionaries\DictionaryBasedLocalizationSource.cs:行号 67
+   在 Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource.GetString(String name) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Localization\Dictionaries\DictionaryBasedLocalizationSource.cs:行号 61
+   在 Abp.Localization.LocalizationManagerExtensions.GetString(ILocalizationManager localizationManager, String sourceName, String name) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Localization\LocalizationManagerExtensions.cs:行号 34
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 37
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 85
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 52
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException(Task task)
+   在 Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   在 System.Threading.Tasks.ContinuationTaskFromTask.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException(Task task)
+   在 Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   在 Abp.Threading.AsyncHelper.RunSync(Func`1 action) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\AsyncHelper.cs:行号 42
+   在 Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:行号 27
+   在 Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:行号 35
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+DEBUG 2016-08-18 23:45:09,128 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-18 23:45:09,139 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-18 23:45:09,142 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,144 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,144 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,144 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,144 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,145 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,146 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,146 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,146 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:09,147 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-18 23:45:09,261 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-18 23:45:09,261 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-18 23:45:09,261 [1    ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-18 23:45:09,261 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-18 23:45:09,530 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-18 23:45:10,794 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-18 23:45:10,800 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-18 23:45:10,801 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-18 23:45:10,802 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-18 23:45:10,803 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-18 23:45:10,900 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-18 23:45:10,913 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-18 23:45:10,913 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-18 23:45:11,010 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-18 23:45:11,010 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-18 23:45:11,014 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-18 23:45:11,036 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-18 23:45:11,037 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-18 23:45:11,040 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-18 23:45:12,465 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-18 23:45:12,466 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-18 23:45:12,468 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-18 23:45:12,469 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+WARN  2016-08-18 23:45:15,563 [6    ] Abp.Logging.LogHelper                    - Abp.Authorization.AbpAuthorizationException: Current user did not login to the application!
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 34
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 85
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 52
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException(Task task)
+   在 Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   在 System.Threading.Tasks.ContinuationTaskFromTask.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException(Task task)
+   在 Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   在 Abp.Threading.AsyncHelper.RunSync(Func`1 action) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\AsyncHelper.cs:行号 42
+   在 Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:行号 27
+   在 Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:行号 35
+Abp.Authorization.AbpAuthorizationException: Current user did not login to the application!
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 34
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 85
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 52
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException(Task task)
+   在 Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   在 System.Threading.Tasks.ContinuationTaskFromTask.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException(Task task)
+   在 Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   在 Abp.Threading.AsyncHelper.RunSync(Func`1 action) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\AsyncHelper.cs:行号 42
+   在 Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:行号 27
+   在 Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:行号 35
+DEBUG 2016-08-18 23:45:22,086 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"d69e7318-d09a-4a95-a643-518641118d1c","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2016-08-18T23:45:22.0789781+08:00","Properties":{}}
+DEBUG 2016-08-18 23:45:22,202 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: d69e7318-d09a-4a95-a643-518641118d1c
+WARN  2016-08-18 23:45:33,525 [6    ] dStore.Web.Controllers.AccountController - 登录失败!
+Abp.UI.UserFriendlyException: 登录失败!
+   在 HappyZu.CloudStore.Web.Controllers.AccountController.<GetLoginResultAsync>d__10.MoveNext() 位置 D:\workspace\abpCommerce\src\HappyZu.CloudStore.Web\Controllers\AccountController.cs:行号 112
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   在 HappyZu.CloudStore.Web.Controllers.AccountController.<Login>d__9.MoveNext() 位置 D:\workspace\abpCommerce\src\HappyZu.CloudStore.Web\Controllers\AccountController.cs:行号 82
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 System.Threading.Tasks.TaskHelpersExtensions.ThrowIfFaulted(Task task)
+   在 System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeAsynchronousActionMethod>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+WARN  2016-08-18 23:45:38,758 [6    ] dStore.Web.Controllers.AccountController - 登录失败!
+Abp.UI.UserFriendlyException: 登录失败!
+   在 HappyZu.CloudStore.Web.Controllers.AccountController.<GetLoginResultAsync>d__10.MoveNext() 位置 D:\workspace\abpCommerce\src\HappyZu.CloudStore.Web\Controllers\AccountController.cs:行号 112
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   在 HappyZu.CloudStore.Web.Controllers.AccountController.<Login>d__9.MoveNext() 位置 D:\workspace\abpCommerce\src\HappyZu.CloudStore.Web\Controllers\AccountController.cs:行号 82
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   在 System.Threading.Tasks.TaskHelpersExtensions.ThrowIfFaulted(Task task)
+   在 System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeAsynchronousActionMethod>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DEBUG 2016-08-18 23:45:44,808 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"e3d03d44-c1f9-44b5-bd66-e803a8d3af03","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-08-18T23:45:44.807993+08:00","Properties":{}}
+DEBUG 2016-08-18 23:45:44,845 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: e3d03d44-c1f9-44b5-bd66-e803a8d3af03
+DEBUG 2016-08-18 23:45:49,686 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: e3d03d44-c1f9-44b5-bd66-e803a8d3af03
+DEBUG 2016-08-18 23:45:50,981 [10   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"06781362-c998-4b8b-91c7-64bcd219bb19","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-08-18T23:45:50.9804765+08:00","Properties":{}}
+DEBUG 2016-08-18 23:45:51,014 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 06781362-c998-4b8b-91c7-64bcd219bb19
+DEBUG 2016-08-18 23:45:53,842 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 06781362-c998-4b8b-91c7-64bcd219bb19
+DEBUG 2016-08-18 23:45:54,948 [10   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"14c005e1-725b-4922-82dc-ebc2ee7e5d83","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-08-18T23:45:54.9481328+08:00","Properties":{}}
+DEBUG 2016-08-18 23:45:54,958 [10   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 14c005e1-725b-4922-82dc-ebc2ee7e5d83
+DEBUG 2016-08-18 23:45:59,340 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 14c005e1-725b-4922-82dc-ebc2ee7e5d83
+DEBUG 2016-08-18 23:45:59,890 [10   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"183cfc30-8533-4f43-9605-9dd61b38d4a3","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-08-18T23:45:59.8905425+08:00","Properties":{}}
+DEBUG 2016-08-18 23:45:59,894 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 183cfc30-8533-4f43-9605-9dd61b38d4a3
+DEBUG 2016-08-18 23:46:00,538 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 183cfc30-8533-4f43-9605-9dd61b38d4a3
+DEBUG 2016-08-18 23:46:01,082 [10   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"5ba875d0-1a21-4139-ac7f-c10258c958d6","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2016-08-18T23:46:01.0815432+08:00","Properties":{}}
+DEBUG 2016-08-18 23:46:01,088 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 5ba875d0-1a21-4139-ac7f-c10258c958d6
+DEBUG 2016-08-18 23:46:05,458 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 5ba875d0-1a21-4139-ac7f-c10258c958d6
+DEBUG 2016-08-18 23:46:06,045 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"c056d2f1-27c3-4c58-b834-a6e7c423ae37","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2016-08-18T23:46:06.0457899+08:00","Properties":{}}
+DEBUG 2016-08-18 23:46:06,056 [15   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: c056d2f1-27c3-4c58-b834-a6e7c423ae37
+DEBUG 2016-08-18 23:46:15,544 [18   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"dfade8fb-ca6f-4915-adb0-5a52512af93c","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-18T23:46:15.5439864+08:00","Properties":{}}
+DEBUG 2016-08-18 23:46:15,548 [18   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: dfade8fb-ca6f-4915-adb0-5a52512af93c
+DEBUG 2016-08-18 23:46:17,012 [20   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: d69e7318-d09a-4a95-a643-518641118d1c
+WARN  2016-08-18 23:46:17,087 [20   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Abp.RealTime.OnlineClientManagerExtensions.<>c__DisplayClass2_0.<GetAllByUserId>b__0(IOnlineClient c) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 34
+   在 System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Collections.Immutable.ImmutableExtensions.FallbackWrapper`1.get_Count()
+   在 System.Collections.Immutable.ImmutableList`1.FillFromEmpty(IEnumerable`1 items)
+   在 System.Collections.Immutable.ImmutableList`1.AddRange(IEnumerable`1 items)
+   在 System.Collections.Immutable.ImmutableList.ToImmutableList[TSource](IEnumerable`1 source)
+   在 Abp.RealTime.OnlineClientManagerExtensions.GetAllByUserId(IOnlineClientManager onlineClientManager, IUserIdentifier user) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 33
+   在 Abp.RealTime.OnlineClientManagerExtensions.IsOnline(IOnlineClientManager onlineClientManager, UserIdentifier user) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 20
+   在 Abp.RealTime.OnlineClientManager.Remove(String connectionId) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManager.cs:行号 64
+   在 Abp.Web.SignalR.Hubs.AbpCommonHub.<OnDisconnected>d__12.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.SignalR\Web\SignalR\Hubs\AbpCommonHub.cs:行号 68
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Abp.RealTime.OnlineClientManagerExtensions.<>c__DisplayClass2_0.<GetAllByUserId>b__0(IOnlineClient c) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 34
+   在 System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Collections.Immutable.ImmutableExtensions.FallbackWrapper`1.get_Count()
+   在 System.Collections.Immutable.ImmutableList`1.FillFromEmpty(IEnumerable`1 items)
+   在 System.Collections.Immutable.ImmutableList`1.AddRange(IEnumerable`1 items)
+   在 System.Collections.Immutable.ImmutableList.ToImmutableList[TSource](IEnumerable`1 source)
+   在 Abp.RealTime.OnlineClientManagerExtensions.GetAllByUserId(IOnlineClientManager onlineClientManager, IUserIdentifier user) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 33
+   在 Abp.RealTime.OnlineClientManagerExtensions.IsOnline(IOnlineClientManager onlineClientManager, UserIdentifier user) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 20
+   在 Abp.RealTime.OnlineClientManager.Remove(String connectionId) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManager.cs:行号 64
+   在 Abp.Web.SignalR.Hubs.AbpCommonHub.<OnDisconnected>d__12.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.SignalR\Web\SignalR\Hubs\AbpCommonHub.cs:行号 68
+DEBUG 2016-08-18 23:46:19,812 [18   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: dfade8fb-ca6f-4915-adb0-5a52512af93c
+DEBUG 2016-08-18 23:46:20,430 [10   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"bea01d01-ec52-4dc3-a13e-7741677693b0","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-18T23:46:20.4305421+08:00","Properties":{}}
+DEBUG 2016-08-18 23:46:20,444 [18   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: bea01d01-ec52-4dc3-a13e-7741677693b0
+DEBUG 2016-08-18 23:46:24,075 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: bea01d01-ec52-4dc3-a13e-7741677693b0
+DEBUG 2016-08-18 23:46:25,603 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"a06cfe2e-06d5-41a0-964d-f6e641cd9645","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-18T23:46:25.6034705+08:00","Properties":{}}
+DEBUG 2016-08-18 23:46:25,608 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: a06cfe2e-06d5-41a0-964d-f6e641cd9645
+DEBUG 2016-08-18 23:46:36,306 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: a06cfe2e-06d5-41a0-964d-f6e641cd9645
+DEBUG 2016-08-18 23:46:36,932 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"a75b964f-a228-459e-aef4-58d6ba53e45c","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-18T23:46:36.9327295+08:00","Properties":{}}
+DEBUG 2016-08-18 23:46:36,948 [15   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: a75b964f-a228-459e-aef4-58d6ba53e45c
+DEBUG 2016-08-18 23:46:37,548 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: a75b964f-a228-459e-aef4-58d6ba53e45c
+DEBUG 2016-08-18 23:46:38,064 [19   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"12ea9022-703e-4108-9406-ca30ef519163","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-18T23:46:38.0649181+08:00","Properties":{}}
+DEBUG 2016-08-18 23:46:38,064 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 12ea9022-703e-4108-9406-ca30ef519163
+DEBUG 2016-08-18 23:46:47,087 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: c056d2f1-27c3-4c58-b834-a6e7c423ae37
+WARN  2016-08-18 23:46:47,109 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Abp.RealTime.OnlineClientManagerExtensions.<>c__DisplayClass2_0.<GetAllByUserId>b__0(IOnlineClient c) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 34
+   在 System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Collections.Immutable.ImmutableExtensions.FallbackWrapper`1.get_Count()
+   在 System.Collections.Immutable.ImmutableList`1.FillFromEmpty(IEnumerable`1 items)
+   在 System.Collections.Immutable.ImmutableList`1.AddRange(IEnumerable`1 items)
+   在 System.Collections.Immutable.ImmutableList.ToImmutableList[TSource](IEnumerable`1 source)
+   在 Abp.RealTime.OnlineClientManagerExtensions.GetAllByUserId(IOnlineClientManager onlineClientManager, IUserIdentifier user) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 33
+   在 Abp.RealTime.OnlineClientManagerExtensions.IsOnline(IOnlineClientManager onlineClientManager, UserIdentifier user) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 20
+   在 Abp.RealTime.OnlineClientManager.Remove(String connectionId) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManager.cs:行号 64
+   在 Abp.Web.SignalR.Hubs.AbpCommonHub.<OnDisconnected>d__12.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.SignalR\Web\SignalR\Hubs\AbpCommonHub.cs:行号 68
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Abp.RealTime.OnlineClientManagerExtensions.<>c__DisplayClass2_0.<GetAllByUserId>b__0(IOnlineClient c) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 34
+   在 System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Collections.Immutable.ImmutableExtensions.FallbackWrapper`1.get_Count()
+   在 System.Collections.Immutable.ImmutableList`1.FillFromEmpty(IEnumerable`1 items)
+   在 System.Collections.Immutable.ImmutableList`1.AddRange(IEnumerable`1 items)
+   在 System.Collections.Immutable.ImmutableList.ToImmutableList[TSource](IEnumerable`1 source)
+   在 Abp.RealTime.OnlineClientManagerExtensions.GetAllByUserId(IOnlineClientManager onlineClientManager, IUserIdentifier user) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 33
+   在 Abp.RealTime.OnlineClientManagerExtensions.IsOnline(IOnlineClientManager onlineClientManager, UserIdentifier user) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:行号 20
+   在 Abp.RealTime.OnlineClientManager.Remove(String connectionId) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManager.cs:行号 64
+   在 Abp.Web.SignalR.Hubs.AbpCommonHub.<OnDisconnected>d__12.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.SignalR\Web\SignalR\Hubs\AbpCommonHub.cs:行号 68
