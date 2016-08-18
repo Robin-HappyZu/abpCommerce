@@ -10,6 +10,7 @@ using Abp.Web.Mvc;
 using Abp.Web.SignalR;
 using HappyZu.CloudStore.Api;
 using Hangfire;
+using Happyzu.CloudStore.Common.Areas;
 
 namespace HappyZu.CloudStore.Web
 {
@@ -41,8 +42,14 @@ namespace HappyZu.CloudStore.Web
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
 
-            AreaRegistration.RegisterAllAreas();
+            RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            RouteTable.Routes.IgnoreRoute("Areas/");
+
+            //AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            AreaRegistrationBase.RegisterAllAreasOrder();
+
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
