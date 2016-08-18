@@ -491,6 +491,10 @@
       <Project>{edf5d964-4c0f-4f19-b674-58a38a5e5401}</Project>
       <Name>HappyZu.CloudStore.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Happyzu.CloudStore.Common\Happyzu.CloudStore.Common.csproj">
+      <Project>{08318810-cdc5-47e3-a749-7dba3560da83}</Project>
+      <Name>Happyzu.CloudStore.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HappyZu.CloudStore.Core\HappyZu.CloudStore.Core.csproj">
       <Project>{17298ea0-af73-4f30-b6f1-2066100d7d74}</Project>
       <Name>HappyZu.CloudStore.Core</Name>
