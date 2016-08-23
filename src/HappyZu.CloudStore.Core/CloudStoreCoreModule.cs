@@ -24,7 +24,7 @@ namespace HappyZu.CloudStore
             Configuration.Modules.Zero().EntityTypes.User = typeof(User);
 
             //Remove the following line to disable multi-tenancy.
-            Configuration.MultiTenancy.IsEnabled = true;
+            //Configuration.MultiTenancy.IsEnabled = false;
 
             //Add/remove localization sources here
             Configuration.Localization.Sources.Add(

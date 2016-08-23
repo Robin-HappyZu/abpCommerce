@@ -45,7 +45,7 @@ namespace HappyZu.CloudStore.Web
             {
                 app.UseGoogleAuthentication(CreateGoogleAuthOptions());
             }
-
+            
             app.MapSignalR();
         }
 

@@ -387,6 +387,10 @@
     <Content Include="Areas\Mobile\Views\Home\Index.cshtml" />
     <Content Include="Areas\Web\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\BadgeOfHonor.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout_Account.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -447,6 +451,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminControllerBase.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
@@ -494,6 +500,9 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Areas\Web\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Mobile\Views\Shared\_Layout.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\web.config" />
+    <Content Include="Themes\Default\Web\Views\web.config" />
+    <Content Include="Themes\Default\Web\Views\Shared\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -529,7 +538,6 @@
     <Folder Include="Areas\Mobile\Models\" />
     <Folder Include="Areas\Web\Models\" />
     <Folder Include="Themes\Default\Mobile\Views\Shared\" />
-    <Folder Include="Themes\Default\Web\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -771,3 +771,505 @@ DEBUG 2016-08-19 01:12:58,222 [90   ] Abp.Modules.AbpModuleManager             -
 DEBUG 2016-08-19 01:12:58,222 [90   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
 DEBUG 2016-08-19 01:12:58,222 [90   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
 DEBUG 2016-08-19 01:12:58,222 [90   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 23:18:55,502 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:18:55,522 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-23 23:18:55,534 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,546 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,546 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,546 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,546 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,546 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,546 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,550 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,550 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,550 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,550 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,550 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,550 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,550 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,550 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:55,558 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-23 23:18:56,134 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:18:56,134 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:18:56,134 [1    ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:18:56,134 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:18:56,534 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:18:58,059 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:18:58,071 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:18:58,071 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:18:58,075 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-23 23:18:58,075 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:18:58,123 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:18:58,131 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-23 23:18:58,131 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-23 23:18:58,271 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-23 23:18:58,271 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-23 23:18:58,275 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-23 23:18:58,295 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-23 23:18:58,299 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-23 23:18:58,299 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-23 23:18:59,022 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:18:59,022 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:18:59,022 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:18:59,022 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:26:58,498 [61   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-23 23:26:58,499 [61   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:26:58,500 [61   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:26:58,500 [61   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 23:31:50,494 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:31:50,526 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-23 23:31:50,533 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,536 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,537 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,537 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,537 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,537 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,539 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:50,542 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-23 23:31:50,679 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:31:50,679 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:31:50,679 [1    ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:31:50,679 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:31:51,240 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:31:53,008 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:31:53,024 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:31:53,032 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:31:53,037 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-23 23:31:53,040 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:31:53,149 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:31:53,181 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-23 23:31:53,181 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-23 23:31:53,369 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-23 23:31:53,373 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-23 23:31:53,377 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-23 23:31:53,425 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-23 23:31:53,430 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-23 23:31:53,441 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-23 23:31:54,625 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:31:54,625 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:31:54,630 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:31:54,632 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+WARN  2016-08-23 23:32:01,962 [43   ] Abp.Logging.LogHelper                    - Abp.Authorization.AbpAuthorizationException: Current user did not login to the application!
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 34
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 85
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 52
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   在 System.Threading.Tasks.Task.Execute()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   在 Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:行号 28
+   在 Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:行号 35
+Abp.Authorization.AbpAuthorizationException: Current user did not login to the application!
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 34
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 85
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 52
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   在 System.Threading.Tasks.Task.Execute()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   在 Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:行号 28
+   在 Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:行号 35
+ERROR 2016-08-23 23:32:05,145 [48   ] reas.Admin.Controllers.AccountController - 未将对象引用设置到对象的实例。
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ASP._Page_Views_Account_Login_cshtml.Execute() 位置 c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\7cafb405\e91181ae\App_Web_zu0utrns.3.cs:行号 0
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+ERROR 2016-08-23 23:32:32,095 [37   ] reas.Admin.Controllers.AccountController - 未将对象引用设置到对象的实例。
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ASP._Page_Views_Account_Login_cshtml.Execute() 位置 c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\7cafb405\e91181ae\App_Web_zu0utrns.3.cs:行号 0
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DEBUG 2016-08-23 23:33:19,530 [33   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-23 23:33:19,530 [33   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:33:19,546 [33   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:33:19,546 [33   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 23:33:22,171 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:33:22,192 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-23 23:33:22,196 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,198 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,199 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,199 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,199 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,200 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,200 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,200 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,200 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,200 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,201 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,201 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,201 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,201 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,201 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,203 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-23 23:33:22,341 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:33:22,341 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:33:22,341 [1    ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:33:22,341 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:33:22,538 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:33:22,998 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:33:23,003 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:33:23,005 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:33:23,006 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-23 23:33:23,007 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:33:23,045 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:33:23,056 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-23 23:33:23,056 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-23 23:33:23,144 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-23 23:33:23,145 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-23 23:33:23,148 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-23 23:33:23,166 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-23 23:33:23,167 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-23 23:33:23,169 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-23 23:33:23,881 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:33:23,883 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:33:23,884 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:33:23,885 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+ERROR 2016-08-23 23:33:29,035 [7    ] reas.Admin.Controllers.AccountController - 未将对象引用设置到对象的实例。
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ASP._Page_Views_Account_Login_cshtml.Execute() 位置 c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\7cafb405\e91181ae\App_Web_zu0utrns.3.cs:行号 0
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DEBUG 2016-08-23 23:36:38,996 [15   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-23 23:36:38,996 [15   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:36:38,996 [15   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:36:38,996 [15   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 23:37:43,383 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:37:43,396 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-23 23:37:43,399 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,399 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,399 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,399 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,399 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:43,407 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-23 23:37:43,732 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:37:43,732 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:37:43,732 [1    ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:37:43,732 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:37:44,240 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:37:44,857 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:37:44,861 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:37:44,865 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:37:44,869 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-23 23:37:44,873 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:37:44,973 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:37:45,017 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-23 23:37:45,017 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-23 23:37:45,181 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-23 23:37:45,181 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-23 23:37:45,188 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-23 23:37:45,213 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-23 23:37:45,213 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-23 23:37:45,217 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-23 23:37:46,738 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:37:46,742 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:37:46,746 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:37:46,746 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:40:54,591 [47   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-23 23:40:54,591 [47   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:40:54,591 [47   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:40:54,591 [47   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 23:41:36,636 [72   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:41:36,676 [72   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-23 23:41:36,693 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,700 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,704 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,704 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,704 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,704 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,704 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,704 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,708 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,708 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,708 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,708 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,708 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,708 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,708 [72   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:36,716 [72   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-23 23:41:37,068 [72   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:41:37,068 [72   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:41:37,068 [72   ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:41:37,068 [72   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:41:37,696 [72   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:41:38,761 [72   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:41:38,777 [72   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:41:38,777 [72   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:41:38,783 [72   ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-23 23:41:38,784 [72   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:41:38,929 [72   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:41:38,973 [72   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-23 23:41:38,973 [72   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-23 23:41:39,102 [72   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-23 23:41:39,102 [72   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-23 23:41:39,106 [72   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-23 23:41:39,130 [72   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-23 23:41:39,130 [72   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-23 23:41:39,134 [72   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-23 23:41:40,775 [72   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:41:40,779 [72   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:41:40,783 [72   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:41:40,787 [72   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+WARN  2016-08-23 23:41:46,151 [47   ] Abp.Logging.LogHelper                    - Abp.Authorization.AbpAuthorizationException: Current user did not login to the application!
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 34
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 85
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 52
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   在 System.Threading.Tasks.Task.Execute()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   在 Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:行号 28
+   在 Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:行号 35
+Abp.Authorization.AbpAuthorizationException: Current user did not login to the application!
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 34
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 85
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:行号 52
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   在 System.Threading.Tasks.Task.Execute()
+--- 引发异常的上一位置中堆栈跟踪的末尾 ---
+   在 System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   在 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   在 Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   在 Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:行号 28
+   在 Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:行号 35
+DEBUG 2016-08-23 23:46:40,779 [8    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-23 23:46:40,780 [8    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:46:40,781 [8    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:46:40,781 [8    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 23:52:27,155 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:52:27,175 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-23 23:52:27,179 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,186 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-23 23:52:27,328 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:52:27,328 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:52:27,328 [1    ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:52:27,328 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:52:27,540 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:52:27,912 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:52:27,917 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:52:27,918 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:52:27,919 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-23 23:52:27,919 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:52:27,958 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:52:27,970 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-23 23:52:27,970 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-23 23:52:28,020 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-23 23:52:28,021 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-23 23:52:28,024 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-23 23:52:28,040 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-23 23:52:28,041 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-23 23:52:28,042 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-23 23:52:28,685 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:52:28,686 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:52:28,687 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:52:28,688 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 00:13:19,488 [208  ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 00:13:19,489 [208  ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 00:13:19,489 [208  ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 00:13:19,489 [208  ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 00:21:07,521 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 00:21:07,534 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 00:21:07,538 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,540 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,540 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,540 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,540 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,541 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,542 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:07,544 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 00:21:07,717 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 00:21:07,717 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 00:21:07,717 [1    ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 00:21:07,717 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 00:21:07,987 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:21:09,016 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-24 00:21:09,022 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 00:21:09,024 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 00:21:09,025 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-24 00:21:09,026 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 00:21:09,066 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 00:21:09,077 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-24 00:21:09,077 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 00:21:09,203 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 00:21:09,204 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 00:21:09,208 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 00:21:09,245 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-24 00:21:09,247 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 00:21:09,251 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 00:21:09,970 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 00:21:09,971 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 00:21:09,972 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 00:21:09,973 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 00:23:47,313 [16   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 00:23:47,313 [16   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 00:23:47,313 [16   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 00:23:47,313 [16   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 00:25:32,162 [32   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 00:25:32,183 [32   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 00:25:32,188 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Web.CloudStoreWebModule, HappyZu.CloudStore.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,190 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreDataModule, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,190 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,190 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,191 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,191 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,191 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreCoreModule, HappyZu.CloudStore.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,191 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.CloudStoreApplicationModule, HappyZu.CloudStore.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,191 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,192 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: HappyZu.CloudStore.Api.CloudStoreWebApiModule, HappyZu.CloudStore.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,192 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,192 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,192 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,192 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,192 [32   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:32,194 [32   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 00:25:32,334 [32   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 00:25:32,334 [32   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 00:25:32,334 [32   ] o.Configuration.LanguageManagementConfig - Converted CloudStore (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 00:25:32,334 [32   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 00:25:32,570 [32   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: HappyZu.CloudStore.EntityFramework.CloudStoreDbContext, HappyZu.CloudStore.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 00:25:33,094 [32   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-24 00:25:33,111 [32   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 00:25:33,115 [32   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 00:25:33,118 [32   ] Abp.Localization.LocalizationManager     - Initialized localization source: CloudStore
+DEBUG 2016-08-24 00:25:33,120 [32   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 00:25:33,194 [32   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 00:25:33,206 [32   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 7 classes defines auto mapping attributes
+DEBUG 2016-08-24 00:25:33,206 [32   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 00:25:33,259 [32   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 00:25:33,260 [32   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 00:25:33,262 [32   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 00:25:33,280 [32   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.Users.Dto.UserListDto
+DEBUG 2016-08-24 00:25:33,280 [32   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 00:25:33,283 [32   ] Abp.AutoMapper.AbpAutoMapperModule       - HappyZu.CloudStore.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 00:25:33,956 [32   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 00:25:33,957 [32   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 00:25:33,957 [32   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 00:25:33,958 [32   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'HappyZu.CloudStore.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+WARN  2016-08-24 00:28:23,161 [40   ] reas.Admin.Controllers.AccountController - Method arguments are not valid! See ValidationErrors for details.
+Abp.Runtime.Validation.AbpValidationException: Method arguments are not valid! See ValidationErrors for details.
+   在 Abp.Runtime.Validation.Interception.MethodInvocationValidator.Validate() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Runtime\Validation\Interception\MethodInvocationValidator.cs:行号 92
+   在 Abp.Web.Mvc.Validation.AbpMvcValidationFilter.OnActionExecuting(ActionExecutingContext filterContext) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Validation\AbpMvcValidationFilter.cs:行号 35
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__31(AsyncCallback asyncCallback, Object asyncState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+WARN  2016-08-24 00:28:23,172 [40   ] reas.Admin.Controllers.AccountController - There are 1 validation errors:
+WARN  2016-08-24 00:28:23,172 [40   ] reas.Admin.Controllers.AccountController - UsernameOrEmailAddress 字段是必需的。 (UsernameOrEmailAddress)
+WARN  2016-08-24 00:28:39,152 [43   ] reas.Admin.Controllers.AccountController - Method arguments are not valid! See ValidationErrors for details.
+Abp.Runtime.Validation.AbpValidationException: Method arguments are not valid! See ValidationErrors for details.
+   在 Abp.Runtime.Validation.Interception.MethodInvocationValidator.Validate() 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp\Runtime\Validation\Interception\MethodInvocationValidator.cs:行号 92
+   在 Abp.Web.Mvc.Validation.AbpMvcValidationFilter.OnActionExecuting(ActionExecutingContext filterContext) 位置 D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Validation\AbpMvcValidationFilter.cs:行号 35
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.InvokeActionMethodFilterAsynchronouslyRecursive(Int32 filterIndex)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__31(AsyncCallback asyncCallback, Object asyncState)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeActionMethodWithFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor, IDictionary`2 parameters, AsyncCallback callback, Object state)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+WARN  2016-08-24 00:28:39,152 [43   ] reas.Admin.Controllers.AccountController - There are 1 validation errors:
+WARN  2016-08-24 00:28:39,152 [43   ] reas.Admin.Controllers.AccountController - UsernameOrEmailAddress 字段是必需的。 (UsernameOrEmailAddress)
