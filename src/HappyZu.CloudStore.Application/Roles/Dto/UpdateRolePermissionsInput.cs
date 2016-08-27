@@ -4,7 +4,7 @@ using Abp.Application.Services.Dto;
 
 namespace HappyZu.CloudStore.Roles.Dto
 {
-    public class UpdateRolePermissionsInput : IInputDto
+    public class UpdateRolePermissionsInput 
     {
         [Range(1, int.MaxValue)]
         public int RoleId { get; set; }

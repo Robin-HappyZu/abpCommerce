@@ -1,0 +1,218 @@
+﻿@model HappyZu.CloudStore.Web.Areas.Admin.Models.PermissionViewModel
+@{
+    ViewBag.Title = "用户组权限";
+}
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","Dashboard",new {area="Admin"},true)">控制面板</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h3 class="page-title">
+    @ViewBag.Title
+    <small>管理用户角色权限</small>
+</h3>
+
+<div class="todo-container">
+    <div class="row">
+        <div class="col-md-5">
+            <ul class="todo-projects-container">
+                <li class="todo-padding-b-0">
+                    <div class="todo-head">
+                        <a class="btn btn-square btn-sm blue todo-bold pull-right" href="@Url.Action("RoleAdd", "SystemUserRole", new {area = "Admin"}, true)">添加用户组</a>
+                        <h3>用户组</h3>
+                    </div>
+                </li>
+            </ul>
+            <ul class="todo-projects-container role-list" data-bind="foreach:Roles">
+                @*@foreach (var item in Model.Roles)
+            {
+                <li class="todo-projects-item">
+                    <h3>@item.Name</h3>
+                    <p>@item.DisplayName</p>
+                </li>
+                if (Model.Roles.Last() != item)
+                {
+                    <div class="todo-projects-divider"></div>
+                }
+            }*@
+
+                <li class="todo-projects-item" data-bind="click:$parent.checkedRole">
+                    <h3 data-bind="text:name"></h3>
+                    <p data-bind="text:displayName"></p>
+                </li>
+                <div class="todo-projects-divider"></div>
+            </ul>
+        </div>
+        <div class="col-md-7">
+            <div class="todo-tasks-container">
+                <div class="todo-head">
+                    <button class="btn btn-square btn-sm green todo-bold" data-toggle="modal" href="#todo-task-modal">新增权限</button>
+                    <h3>
+                        <span class="todo-grey">权限列表:</span> <span data-bind="text:CurrRole().displayName"></span>
+                    </h3>
+                </div>
+                <div data-bind="visible:RolePermission().length>0">
+                    <ul class="todo-tasks-content" data-bind="foreach:RolePermission">
+                        <li class="todo-tasks-item">
+                            <h4 class="todo-inline">
+                                <a data-toggle="modal" href="javascript:;" data-bind="text:name"></a>
+                            </h4>
+                            <p class="todo-inline todo-float-r">
+                                <a href="javascript:;" data-bind="click:$parent.removePermission" class="btn btn-danger">移除</a>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="todo-task-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel10" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content scroller" style="height: 100%;" data-always-visible="1" data-rail-visible="0">
+            <div class="modal-body todo-task-modal-body">
+                <h3 class="todo-task-modal-bg">给用户组 <span data-bind="text:CurrRole().name"></span> 添加权限</h3>
+                <div class="list-group new-permissions" data-bind="foreach:NewPermissions,visible:NewPermissions().length>0">
+                    <a class="list-group-item" href="javascript:;" data-bind="click:$parent.selectNewPermission">
+                        <h4 class="list-group-item-heading" data-bind="text:name"></h4>
+                        <p class="list-group-item-text" data-bind="text:description"> </p>
+                    </a>
+                </div>
+            </div>
+            <!-- END PORTLET-->
+            <div class="modal-footer">
+                <button class="btn default" data-dismiss="modal" aria-hidden="true">取消</button>
+                <button class="btn green" data-bind="click:submitSetPermission">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section styles{
+    <link href="~/Areas/Admin/content/apps/css/todo.css" rel="stylesheet" />
+}
+@section script_plugins{
+
+}
+@section scripts{
+    <script>
+
+        var url = "@Url.Action("GetRolePermissions", "SystemUserRole", new {area = "Admin"}, true)";
+        var setPermissionUrl = "@Url.Action("SetRolePermissions", "SystemUserRole", new {area = "Admin" }, true)";
+        var removePermissionUrl = "@Url.Action("RemoveRolePermission", "SystemUserRole", new {area = "Admin" }, true)";
+        var ViewModel = function() {
+            var _this = this;
+            this.Roles = ko.observableArray();
+            this.CurrRole = ko.observable({ displayName: "" });
+            this.RolePermission = ko.observableArray();
+            this.Permissions = ko.observableArray();
+            this.NewPermissions = ko.observableArray();
+            this.SelectedPermissions = ko.observableArray();
+            this.checkedRole = function(data, event) {
+                var $li = $(event.currentTarget);
+                $('.role-list li').removeClass("todo-active");
+                $li.addClass("todo-active");
+                _this.CurrRole(data);
+
+                $.post(url, { id: data.id }, function(data) {
+                    if (data.success) {
+                        _this.RolePermission.removeAll();
+                        _this.SelectedPermissions.removeAll();
+                        _this.NewPermissions.removeAll();
+                        _this.NewPermissions(_this.Permissions.slice(0));
+
+                        for (var i = 0; i < data.result.length; i++) {
+                            var item = data.result[i];
+                            _this.RolePermission.push(item);
+                            _this.NewPermissions.remove(function(i) {
+                                return i.name === item.name;
+                            });
+                        }
+                    }
+                }, 'json');
+            };
+            this.selectNewPermission = function(data, event) {
+                var $btn = $(event.currentTarget);
+                if ($btn.hasClass("active")) {
+                    $btn.removeClass("active");
+                    _this.SelectedPermissions.remove(data);
+                } else {
+                    $btn.addClass("active");
+                    _this.SelectedPermissions.push(data);
+                }
+            };
+            this.removePermission = function($data, event) {
+                var $btn = $(event.currentTarget);
+                var id = _this.CurrRole().id;
+                var params = { id: id, permissionName: $data.name };
+                //alert(data.name);
+
+                $.post(removePermissionUrl, params, function(data) {
+                    if (data.success) {
+                        _this.RolePermission.remove(function(i) {
+                            return i.name === $data.name;
+                        });
+                        _this.NewPermissions.push($data);
+                    }
+                }, 'json');
+            };
+            this.submitSetPermission = function(data, event) {
+                var permissions = _this.SelectedPermissions();
+                //var rolePermissions = _this.RolePermission();
+                var id = _this.CurrRole().id;
+                var permissionName = [];
+                for (var i = 0; i < permissions.length; i++) {
+                    permissionName.push(permissions[i].name);
+                }
+                //for (var i = 0; i < rolePermissions.length; i++) {
+                //    permissionName.push(rolePermissions[i].name);
+                //}
+                var params = { roleId: id, PermissionNames: permissionName };
+                $.post(setPermissionUrl, params, function(data) {
+                    if (data.success) {
+                        for (var i = 0; i < permissions.length; i++) {
+                            _this.RolePermission.push(permissions[i]);
+                            _this.NewPermissions.remove(function(item) {
+                                return item.name === permissions[i].name;
+                            });
+                        }
+                        _this.SelectedPermissions.removeAll();
+                        $('#todo-task-modal').modal('hide');
+                    }
+                }, 'json');
+                //alert(data.name);
+            }
+        }
+
+        var vm = new ViewModel();
+
+        @foreach (var item in Model.Roles)
+        {<text>
+        vm.Roles.push({
+            id:@item.Id,
+            name: "@item.Name",
+            displayName:"@item.DisplayName"
+        });
+         </text>
+        }
+
+        @foreach (var item in Model.Permissions)
+        {<text>
+        vm.Permissions.push({
+            name: "@item.Name",
+            displayName:"@item.DisplayName",
+            description:"@item.Description"
+        });
+            </text>
+        }
+        ko.applyBindings(vm);
+    </script>
+}

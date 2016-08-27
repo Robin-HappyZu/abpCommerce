@@ -11,7 +11,7 @@ var App = function() {
 
     var resizeHandlers = [];
 
-    var assetsPath = '/content/PlatformAdmin/';
+    var assetsPath = '/Areas/Admin/content/';
 
     var globalImgPath = 'global/img/';
 

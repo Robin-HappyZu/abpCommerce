@@ -391,6 +391,20 @@
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout_Account.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\User\AccountSetting.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Address.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Grades.cshtml" />
+    <Content Include="Areas\Admin\Views\User\List.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Points.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Profile.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Relation.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Spreads.cshtml" />
+    <Content Include="Areas\Admin\Views\User\UpgradeLogs.cshtml" />
+    <Content Include="Areas\Admin\Views\User\UserBanks.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUserRole\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUserRole\PermissionSetting.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUserRole\RoleAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUserRole\RoleEdit.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -454,6 +468,14 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminControllerBase.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SystemUserRoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\DataTableJsonViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DataTableOptionViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\GetRolesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\SetRolePermissionsViewModel.cs" />
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Web\Controllers\HomeController.cs" />
@@ -534,7 +556,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Mobile\Models\" />
     <Folder Include="Areas\Web\Models\" />
     <Folder Include="Themes\Default\Mobile\Views\Shared\" />

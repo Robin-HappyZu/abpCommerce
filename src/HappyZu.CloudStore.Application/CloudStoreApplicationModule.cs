@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Abp.AutoMapper;
 using Abp.Modules;
+using HappyZu.CloudStore.Authorization;
 
 namespace HappyZu.CloudStore
 {
@@ -10,6 +11,7 @@ namespace HappyZu.CloudStore
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+            Configuration.Authorization.Providers.Add<CloudStoreAppAuthorizationProvider>();
         }
     }
 }

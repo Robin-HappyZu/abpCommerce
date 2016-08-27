@@ -7,7 +7,7 @@
 <!-- END SIDEBAR TOGGLER BUTTON -->
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <a href="@Url.Action("Index","Dashboard",new {area="PlatformAdmin"})">
+    <a href="@Url.Action("Index","Dashboard",new {area="Admin"})">
         <img src="~/Areas/Admin/content/pages/img/logo-big.png" alt="" />
     </a>
 </div>
@@ -15,26 +15,38 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    <form class="login-form" action="@Url.Action("Login","Account",new {area="PlatformAdmin"})" method="post">
+    <form class="login-form" action="@Url.Action("Login","Account",new {area="Admin"})" method="post">
         <h3 class="form-title font-green">进入系统</h3>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
             <span> 请输入正确的用户名和密码。 </span>
         </div>
+        @if (Model.IsMultiTenancyEnabled)
+        {
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">@L("CanBeEmptyToLoginAsHost")</label>
+                <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="租户名" name="TenancyName" required maxlength="@HappyZu.CloudStore.MultiTenancy.Tenant.MaxTenancyNameLength"/>
+            </div>
+        }
+        else
+        {
+            <input type="hidden" id="TenancyName" name="TenancyName" value="">
+        }
+        <input id="ReturnUrlHash" type="hidden" name="returnUrlHash" />
         <div class="form-group">
             <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
             <label class="control-label visible-ie8 visible-ie9">用户</label>
-            <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名/邮箱/手机号码" name="usernameoremailormobile" />
+            <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名/邮箱/手机号码" name="UsernameOrEmailAddress" />
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">密码</label>
-            <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" />
+            <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="Password" />
         </div>
         <div class="form-actions">
             <button type="submit" class="btn green uppercase" data-loading-text="正在登录...">登录</button>
             <label class="rememberme check">
-                <input type="checkbox" name="Remember" value="True" />记住登录
-                <input type="hidden" name="returnUrl" value="" />
+                <input type="checkbox" name="RememberMe" value="True" />记住登录
+                <input type="hidden" name="returnUrl" value="@(Model.ReturnUrl)" />
             </label>
             <a href="javascript:;" id="forget-password" class="forget-password">忘记密码?</a>
         </div>

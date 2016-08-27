@@ -7,7 +7,7 @@ using Abp.AutoMapper;
 namespace HappyZu.CloudStore.Users.Dto
 {
     [AutoMap(typeof(User))]
-    public class CreateUserInput : IInputDto
+    public class CreateUserInput 
     {
         [Required]
         [StringLength(AbpUserBase.MaxUserNameLength)]
