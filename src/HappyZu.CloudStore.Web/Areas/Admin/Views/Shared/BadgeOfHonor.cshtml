@@ -28,26 +28,20 @@
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-basket"></i>
-                <span class="title">商品管理</span>
+                <span class="title">商品目录</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
                 <li class="nav-item  ">
                     <a href="@Url.Action("Index", new {controller = "Product"})" class="nav-link ">
                         <i class="icon-social-dropbox"></i>
-                        <span class="title">商品列表</span>
+                        <span class="title">商品管理</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
                     <a href="@Url.Action("CategoryList", new {controller = "Product"})" class="nav-link ">
                         <i class="icon-list"></i>
-                        <span class="title">分类管理</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="@Url.Action("CategoryList", new {controller = "Product"})" class="nav-link ">
-                        <i class="icon-list"></i>
-                        <span class="title">类型管理</span>
+                        <span class="title">商品分类</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
@@ -59,13 +53,25 @@
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link ">
                         <i class="icon-tag"></i>
-                        <span class="title">评论管理</span>
+                        <span class="title">商品评论</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link ">
                         <i class="icon-tag"></i>
                         <span class="title">商品标签</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link ">
+                        <i class="icon-tag"></i>
+                        <span class="title">低库存报告</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link ">
+                        <i class="icon-tag"></i>
+                        <span class="title">低库存报告</span>
                     </a>
                 </li>
             </ul>
@@ -494,48 +500,6 @@
         </li>
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-envelope-open "></i>
-                <span class="title">短信</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="ecommerce_index.html" class="nav-link ">
-                        <i class="icon-envelope"></i>
-                        <span class="title">短信记录</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ecommerce_orders.html" class="nav-link ">
-                        <i class="icon-settings"></i>
-                        <span class="title">短信接口配置</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-picture"></i>
-                <span class="title">多媒体</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="ecommerce_index.html" class="nav-link ">
-                        <i class="icon-globe"></i>
-                        <span class="title">CDN设置</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ecommerce_orders.html" class="nav-link ">
-                        <i class="icon-folder-alt"></i>
-                        <span class="title">文件管理</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-user"></i>
                 <span class="title">用户</span>
                 <span class="arrow"></span>
@@ -557,27 +521,6 @@
         </li>
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-compass"></i>
-                <span class="title">导航</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="page_user_profile_1.html" class="nav-link ">
-                        <i class="icon-note"></i>
-                        <span class="title">新增菜单</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="page_user_profile_1_account.html" class="nav-link ">
-                        <i class="icon-layers"></i>
-                        <span class="title">菜单管理</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-settings"></i>
                 <span class="title">设置</span>
                 <span class="arrow"></span>
@@ -590,10 +533,25 @@
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ecommerce_orders.html" class="nav-link ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-picture"></i>
-                        <span class="title">媒体设置</span>
+                        <span class="title">多媒体</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="ecommerce_index.html" class="nav-link ">
+                                <i class="icon-globe"></i>
+                                <span class="title">CDN设置</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="ecommerce_orders.html" class="nav-link ">
+                                <i class="icon-folder-alt"></i>
+                                <span class="title">文件管理</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item  ">
                     <a href="ecommerce_orders_view.html" class="nav-link ">
@@ -614,28 +572,52 @@
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="ecommerce_index.html" class="nav-link ">
-                        <i class="icon-pie-chart "></i>
-                        <span class="title">返利比例</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ecommerce_orders.html" class="nav-link ">
-                        <i class="icon-drop"></i>
-                        <span class="title">余额设置</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ecommerce_orders.html" class="nav-link ">
-                        <i class="icon-compass "></i>
-                        <span class="title">分红设置</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
                     <a href="ecommerce_orders.html" class="nav-link ">
                         <i class="icon-loop"></i>
                         <span class="title">订单设置</span>
                     </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-compass"></i>
+                        <span class="title">导航</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="page_user_profile_1.html" class="nav-link ">
+                                <i class="icon-note"></i>
+                                <span class="title">新增菜单</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="page_user_profile_1_account.html" class="nav-link ">
+                                <i class="icon-layers"></i>
+                                <span class="title">菜单管理</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-envelope-open "></i>
+                        <span class="title">短信</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="ecommerce_index.html" class="nav-link ">
+                                <i class="icon-envelope"></i>
+                                <span class="title">短信记录</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="ecommerce_orders.html" class="nav-link ">
+                                <i class="icon-settings"></i>
+                                <span class="title">短信接口配置</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>
