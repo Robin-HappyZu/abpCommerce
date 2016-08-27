@@ -1,6 +1,9 @@
-﻿using System.Data.Common;
+﻿using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.Entity;
 using Abp.Zero.EntityFramework;
 using HappyZu.CloudStore.Authorization.Roles;
+using HappyZu.CloudStore.FAQ;
 using HappyZu.CloudStore.MultiTenancy;
 using HappyZu.CloudStore.Users;
 
@@ -9,7 +12,10 @@ namespace HappyZu.CloudStore.EntityFramework
     public class CloudStoreDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
         //TODO: Define an IDbSet for your Entities...
+        public virtual IDbSet<FAQCategory> FAQCategories { get; set; }
 
+        public virtual IDbSet<FAQDetail> FAQDetails { get; set; } 
+         
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.
          *   But it may cause problems when working Migrate.exe of EF. If you will apply migrations on command line, do not

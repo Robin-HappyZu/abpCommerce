@@ -176,6 +176,14 @@
     <Compile Include="Migrations\201605041151380_UserAccount_And_Notification_Changes.Designer.cs">
       <DependentUpon>201605041151380_UserAccount_And_Notification_Changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608271619413_Create_FAQ_Entities.cs" />
+    <Compile Include="Migrations\201608271619413_Create_FAQ_Entities.Designer.cs">
+      <DependentUpon>201608271619413_Create_FAQ_Entities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608271640597_Modify_FAQ_Entities_StringLength.cs" />
+    <Compile Include="Migrations\201608271640597_Modify_FAQ_Entities_StringLength.Designer.cs">
+      <DependentUpon>201608271640597_Modify_FAQ_Entities_StringLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="CloudStoreDataModule.cs" />
@@ -243,6 +251,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605041151380_UserAccount_And_Notification_Changes.resx">
       <DependentUpon>201605041151380_UserAccount_And_Notification_Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608271619413_Create_FAQ_Entities.resx">
+      <DependentUpon>201608271619413_Create_FAQ_Entities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608271640597_Modify_FAQ_Entities_StringLength.resx">
+      <DependentUpon>201608271640597_Modify_FAQ_Entities_StringLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

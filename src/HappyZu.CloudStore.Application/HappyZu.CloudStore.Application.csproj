@@ -102,6 +102,9 @@
     <Compile Include="CloudStoreApplicationModule.cs" />
     <Compile Include="CloudStoreAppServiceBase.cs" />
     <Compile Include="Common\Dto\ResultOutputDto.cs" />
+    <Compile Include="FAQ\Dto\FAQDetailDto.cs" />
+    <Compile Include="FAQ\FAQAppService.cs" />
+    <Compile Include="FAQ\IFAQAppService.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />

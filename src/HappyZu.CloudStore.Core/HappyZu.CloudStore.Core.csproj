@@ -98,6 +98,10 @@
     <Compile Include="Authorization\Roles\AppRoleConfig.cs" />
     <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
     <Compile Include="Editions\EditionManager.cs" />
+    <Compile Include="FAQ\FAQCategory.cs" />
+    <Compile Include="FAQ\FAQDetail.cs" />
+    <Compile Include="FAQ\FAQManager.cs" />
+    <Compile Include="FAQ\IFAQManager.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />
     <Compile Include="MultiTenancy\TenantManager.cs" />
