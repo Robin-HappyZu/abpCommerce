@@ -1,0 +1,159 @@
+﻿
+@using Abp.Json
+@model HappyZu.CloudStore.FAQ.Dto.CreateFAQCategoryInput
+@{
+    ViewBag.Title = "添加帮助分类";
+}
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Dashboard",new {area="Admin"},true)">控制面板</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "FAQ",new {area="Admin"},true)">帮助列表</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h3 class="page-title">
+    @ViewBag.Title
+    <small>新的用户角色</small>
+</h3>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="zone zone-content">
+            @using (Html.BeginForm("CreateCategory", "FAQ", FormMethod.Post, new { id = "uiform" }))
+            {
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-edit"></i> 编辑用户角色
+                        </div>
+                    </div>
+                    <div class="portlet-body form form-horizontal">
+                        <div class="form-body">
+
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="@Html.IdFor(m=>m.Name)">分类名词</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" id="@Html.IdFor(m => m.Name)" name="@Html.NameFor(m => m.Name)" type="text" data-bind="value:Name" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="@Html.IdFor(m=>m.Icon)">分类Icon</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" id="@Html.IdFor(m => m.Icon)" name="@Html.NameFor(m => m.Icon)" type="text" data-bind="value:Icon" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="@Html.IdFor(m=>m.FontIcon)">分类FontIcon</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" id="@Html.IdFor(m => m.FontIcon)" name="@Html.NameFor(m => m.FontIcon)" type="text" data-bind="value:FontIcon" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="@Html.IdFor(m=>m.Sort)">排序</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" id="@Html.IdFor(m => m.Sort)" name="@Html.NameFor(m => m.Sort)" type="text" data-bind="value:Sort" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="@Html.IdFor(m=>m.IsEnable)">启用分类</label>
+                                            <div class="col-md-9">
+                                                <div class="form-control-static">
+                                                    <label>
+                                                        <input class="form-control" id="@Html.IdFor(m => m.IsEnable)" name="@Html.NameFor(m => m.IsEnable)" type="checkbox" data-bind="checked:IsEnable" value="True" />
+                                                        启用
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions fluid">
+                            <div class="col-md-8">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button data-loading-text="正在保存..." data-bind="click:submit" class="btn green" type="button" name="submit.Save" value="submit.Save">保存</button>
+                                    <a id="button-cancel" data-bind="visible:ReturnUrl().length>0" href="@Request["ReturnUrl"]" class="btn default">取消</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <input id="returnUrl" name="returnUrl" type="hidden" data-bind="value:ReturnUrl" />
+            }
+        </div>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+
+@section scripts{
+    <script>
+
+        var ViewModel = function(name, icon,fontIcon,srot, isEnable, returnUrl) {
+            var _this = this;
+            this.Name = ko.observable(name);
+            this.Icon = ko.observable(icon);
+            this.FontIcon = ko.observable(fontIcon);
+            this.IsEnable = ko.observable(isEnable);
+            this.Sort = ko.observable(srot);
+            this.ReturnUrl = ko.observable(returnUrl);
+
+            this.submit = function(data, event) {
+                var url = $('#uiform').attr("action");
+                var params = [];
+                params.push({ name: "Name", value: _this.Name() });
+                params.push({ name: "Icon", value: _this.Icon() });
+                params.push({ name: "FontIcon", value: _this.FontIcon() });
+                params.push({ name: "Sort", value: _this.Sort() });
+                params.push({ name: "IsEnable", value: _this.IsEnable() });
+                params.push({ name: "ReturnUrl", value: _this.ReturnUrl() });
+                App.startPageLoading({animate: true});
+                var $btn=$(event.target);
+                $btn.button("loading");
+                $.post(url, params, function(data) {
+                    App.stopPageLoading();
+                    $btn.button('reset');
+                    if (data.success) {
+                        window.location = data.targetUrl;
+                    } else {
+                        App.alert({
+                            container: '',
+                            place: 'append', // append or prepent in container
+                            type: 'danger',  // alert's type
+                            message: data.error.message,  // alert's message
+                            close: true, // make alert closable
+                            reset: true, // close all previouse alerts first
+                            focus: true, // auto scroll to the alert after shown
+                            icon: 'warning' // put icon before the message
+                        });
+                    }
+                }, 'json');
+
+            }
+        };
+
+        var vm = new ViewModel("@Model.Name", "@Model.Icon", "@Model.FontIcon",@Model.Sort, @Model.IsEnable.ToJsonString(), "@Request["ReturnUrl"]");
+
+        ko.applyBindings(vm);
+
+
+    </script>
+}

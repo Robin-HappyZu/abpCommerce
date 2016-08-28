@@ -405,6 +405,9 @@
     <Content Include="Areas\Admin\Views\SystemUserRole\PermissionSetting.cshtml" />
     <Content Include="Areas\Admin\Views\SystemUserRole\RoleAdd.cshtml" />
     <Content Include="Areas\Admin\Views\SystemUserRole\RoleEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\FAQ\Category.cshtml" />
+    <Content Include="Areas\Admin\Views\FAQ\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FAQ\CreateCategory.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -468,6 +471,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminControllerBase.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FAQController.cs" />
     <Compile Include="Areas\Admin\Controllers\SystemUserRoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\DataTableJsonViewModel.cs" />

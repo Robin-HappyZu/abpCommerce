@@ -30,5 +30,19 @@ namespace HappyZu.CloudStore.FAQ
         {
             IsDeleted = true;
         }
+
+        public static FAQDetail Create(string title,int categoryId,string discription,int sort=0,bool isDelete=false)
+        {
+            var @detail=new FAQDetail()
+            {
+                Title = title,
+                CategoryId = categoryId,
+                Discription = discription,
+                Sort = sort,
+                IsDeleted = isDelete
+            };
+
+            return @detail;
+        }
     }
 }
