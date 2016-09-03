@@ -408,6 +408,9 @@
     <Content Include="Areas\Admin\Views\FAQ\Category.cshtml" />
     <Content Include="Areas\Admin\Views\FAQ\Index.cshtml" />
     <Content Include="Areas\Admin\Views\FAQ\CreateCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\FAQ\CreateDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\FAQ\EditDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\FAQ\_CreateOrEditFAQDetail.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HappyZu.CloudStore.FAQ.Dto
+namespace HappyZu.CloudStore.Trip
 {
-    public class GetDetailListInput
+    /// <summary>
+    /// 旅游线路
+    /// </summary>
+    public class Travel
     {
-        public int CategoryId { get; set; }
-
-        
     }
 }

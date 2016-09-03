@@ -50,7 +50,7 @@ namespace HappyZu.CloudStore.FAQ
             {
                 throw new UserFriendlyException("Could not found the category, maybe it's deleted!");
             }
-            return category.Details.Where(detail=>!detail.IsDeleted).ToList();
+            return await _repositoryDetail.GetAllListAsync(detail => !detail.IsDeleted);
         }
 
         public async Task CreateCategoryAsync(FAQCategory @category)

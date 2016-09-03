@@ -25,6 +25,56 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return View();
         }
 
+        #region 获取所有帮助
+
+        [HttpPost]
+        [WrapResult(WrapOnSuccess = false, WrapOnError = false)]
+        public async Task<JsonResult> GetAll(DataTableOptionViewModel option)
+        {
+            var input=new GetDetailListInput()
+            {
+                CategoryId = 1
+            };
+            var output = await _faqAppService.GetDetailListAsync(input);
+            var vm = new DataTableJsonViewModel()
+            {
+                draw = option.draw,
+                recordsTotal = 0,
+                recordsFiltered = 0,
+                customActionMessage = "",
+                customActionStatus = "OK"
+            };
+
+            try
+            {
+
+                vm.recordsFiltered = vm.recordsTotal = output.Items.Count;
+
+                vm.data = output.Items.Select(x => new
+                {
+                    Title = x.Title,
+                    CategoryId = x.CategoryId,
+                    CategoryName = x.CategoryName,
+                    IsDeleted = x.IsDeleted,
+                    Sort = x.Sort,
+                    Id = x.Id
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                vm.customActionMessage = ex.Message;
+                vm.customActionStatus = "";
+            }
+
+            if (vm.data == null)
+            {
+                vm.data = new List<object>();
+            }
+
+            return Json(vm, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
         public ActionResult Category()
         {
             return View();
@@ -77,6 +127,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 
         #endregion
 
+        #region 添加帮助分类
         public ActionResult CreateCategory(CreateFAQCategoryInput input)
         {
             return View(input);
@@ -89,5 +140,40 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 
             return Json(new { success = output.Status });
         }
+
+        #endregion
+
+        #region 编辑帮助分类
+
+        #endregion
+
+        #region 添加帮助
+
+        public ActionResult CreateDetail(CreateDetailInput input)
+        {
+            return View(input);
+        }
+
+        [HttpPost,ActionName("CreateDetail")]
+        public async Task<JsonResult> CreateDetailPost(CreateDetailInput input)
+        {
+            var output = await _faqAppService.CreateAsync(input);
+            return Json(new { success = output.Status });
+        }
+        #endregion
+
+        #region 编辑帮助
+
+        public ActionResult EditDetail(CreateDetailInput input)
+        {
+            return View(input);
+        }
+
+        [HttpPost, ActionName("EditDetail")]
+        public JsonResult EditDetailPost()
+        {
+            return Json(new {});
+        }
+        #endregion
     }
 }

@@ -13,7 +13,7 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="@Url.Action("Index", "FAQ",new {area="Admin"},true)">帮助列表</a>
+            <a href="@Url.Action("Category", "FAQ",new {area="Admin"},true)">帮助分类列表</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
@@ -132,7 +132,7 @@
                     App.stopPageLoading();
                     $btn.button('reset');
                     if (data.success) {
-                        window.location = data.targetUrl;
+                        window.location = ReturnUrl();
                     } else {
                         App.alert({
                             container: '',

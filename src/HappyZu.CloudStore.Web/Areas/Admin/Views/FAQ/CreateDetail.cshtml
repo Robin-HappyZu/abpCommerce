@@ -1,0 +1,95 @@
+﻿
+@using Abp.Json
+@model HappyZu.CloudStore.FAQ.Dto.CreateDetailInput
+@{
+    ViewBag.Title = "添加帮助";
+}
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Dashboard",new {area="Admin"},true)">控制面板</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "FAQ",new {area="Admin"},true)">帮助列表</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h3 class="page-title">
+    @ViewBag.Title
+    <small>新的用户角色</small>
+</h3>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="zone zone-content">
+            @using (Html.BeginForm("CreateDetail", "FAQ", FormMethod.Post, new { id = "uiform" }))
+            {
+                @Html.Partial("_CreateOrEditFAQDetail", Model)
+            }
+        </div>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+
+@section scripts{
+    <script>
+
+        var ViewModel = function(title, discription,categoryId,srot, returnUrl) {
+            var _this = this;
+            this.Title = ko.observable(title);
+            this.Discription = ko.observable(discription);
+            this.CategoryId = ko.observable(categoryId);
+            this.Sort = ko.observable(srot);
+            this.ReturnUrl = ko.observable(returnUrl);
+
+            this.submit = function(data, event) {
+                var url = $('#uiform').attr("action");
+                var params = [];
+                params.push({ name: "Title", value: _this.Title() });
+                params.push({ name: "Discription", value: _this.Discription() });
+                params.push({ name: "CategoryId", value: _this.CategoryId() });
+                params.push({ name: "Sort", value: _this.Sort() });
+                params.push({ name: "ReturnUrl", value: _this.ReturnUrl() });
+                App.startPageLoading({animate: true});
+                var $btn=$(event.target);
+                $btn.button("loading");
+                $.post(url, params, function(data) {
+                    App.stopPageLoading();
+                    $btn.button('reset');
+                    if (data.success) {
+                        window.location = _this.ReturnUrl();
+                    } else {
+                        App.alert({
+                            container: '',
+                            place: 'append', // append or prepent in container
+                            type: 'danger',  // alert's type
+                            message: data.error.message,  // alert's message
+                            close: true, // make alert closable
+                            reset: true, // close all previouse alerts first
+                            focus: true, // auto scroll to the alert after shown
+                            icon: 'warning' // put icon before the message
+                        });
+                    }
+                }, 'json');
+
+            }
+        };
+
+        var vm = new ViewModel("@Model.Title", "@Model.Discription", @Model.CategoryId,@Model.Sort, "@Request["ReturnUrl"]");
+
+        ko.applyBindings(vm);
+
+
+    </script>
+}
