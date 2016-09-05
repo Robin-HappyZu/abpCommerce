@@ -1,15 +1,172 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Domain.Entities;
+using HappyZu.CloudStore.Entities;
 
 namespace HappyZu.CloudStore.Trip
 {
     /// <summary>
     /// 旅游线路
     /// </summary>
-    public class Travel
+    [Table("Trip_Travel")]
+    public class Travel:ISoftDelete,ISEO
     {
+        /// <summary>
+        /// 推广标题
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// 景点名称
+        /// </summary>
+        public string Subject { get; set; }
+
+        /// <summary>
+        /// 景点特点
+        /// </summary>
+        public string Feature { get; set; }
+
+        /// <summary>
+        /// 国内国外
+        /// </summary>
+        public DestType DestType { get; set; }
+
+        /// <summary>
+        /// 所属省份Id
+        /// </summary>
+        public int ProvinceId { get; set; }
+
+        /// <summary>
+        /// 所属省份、区域
+        /// </summary>
+        [ForeignKey("ProvinceId")]
+        public DestProvince Province { get; set; }
+
+        /// <summary>
+        /// 所属城市Id
+        /// </summary>
+        public int CityId { get; set; }
+        /// <summary>
+        /// 所属城市
+        /// </summary>
+        [ForeignKey("CityId")]
+        public DestCity City { get; set; }
+
+        /// <summary>
+        /// 出发地所属省份Id
+        /// </summary>
+        public int DepartureProvinceId { get; set; }
+
+        /// <summary>
+        /// 出发地所属省份、区域
+        /// </summary>
+        [ForeignKey("DepartureProvinceId")]
+        public DestProvince DepartureProvince { get; set; }
+
+        /// <summary>
+        /// 出发地所属城市Id
+        /// </summary>
+        public int DepartureCityId { get; set; }
+        /// <summary>
+        /// 出发地所属城市
+        /// </summary>
+        [ForeignKey("DepartureCityId")]
+        public DestCity DepartureCity { get; set; }
+        
+        /// <summary>
+        /// 供应商
+        /// </summary>
+        [StringLength(255)]
+        public string Supplier { get; set; }
+
+        /// <summary>
+        /// 供应商Id(备用)
+        /// </summary>
+        public int SupplierId { get; set; }
+
+        /// <summary>
+        /// 旅游天数
+        /// </summary>
+        public int Days { get; set; }
+
+        /// <summary>
+        /// 旅游夜晚数
+        /// </summary>
+        public int Nights { get; set; }
+
+        /// <summary>
+        /// 提前预定天数
+        /// </summary>
+        public int AdvancedBookingDays { get; set; }
+
+        /// <summary>
+        /// 截止时间
+        /// </summary>
+        public TimeSpan EndTime { get; set; }
+
+
+        /// <summary>
+        /// 预定须知
+        /// </summary>
+        public string BookingNotice { get; set; }
+
+        /// <summary>
+        /// 游玩协议
+        /// </summary>
+        public string Agreement { get; set; }
+
+        /// <summary>
+        /// 景点介绍
+        /// </summary>
+        public string Introduce { get; set; }
+
+        /// <summary>
+        /// 封面图片
+        /// </summary>
+        [StringLength(255)]
+        public string CoverImage { get; set; }
+
+        /// <summary>
+        /// 已发布
+        /// </summary>
+        public bool IsPublished { get; set; }
+
+        /// <summary>
+        /// 发布时间
+        /// </summary>
+        public DateTime PublishDateTime { get; set; }
+        
+        /// <summary>
+        /// 显示顺序
+        /// </summary>
+        public int DisplayOrder { get; set; }
+
+        /// <summary>
+        /// 已删除
+        /// </summary>
+        public bool IsDeleted { get; set; }
+
+        /// <summary>
+        /// Seo标题
+        /// </summary>
+        [StringLength(255)]
+        public string MetaTitle { get; set; }
+
+        /// <summary>
+        /// Seo关键词
+        /// </summary>
+        [StringLength(127)]
+        public string MetaKeywords { get; set; }
+
+        /// <summary>
+        /// Seo描述
+        /// </summary>
+        [StringLength(255)]
+        public string MetaDescription { get; set; }
     }
 }

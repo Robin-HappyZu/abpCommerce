@@ -110,6 +110,7 @@
     <Compile Include="Authorization\Roles\Role.cs" />
     <Compile Include="Authorization\Roles\RoleManager.cs" />
     <Compile Include="Authorization\Roles\RoleStore.cs" />
+    <Compile Include="Trip\Quote.cs" />
     <Compile Include="Trip\TicketCollectingPerson.cs" />
     <Compile Include="Trip\Dest.cs" />
     <Compile Include="Trip\DestCity.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Trip\IDType.cs" />
     <Compile Include="Trip\Ticket.cs" />
     <Compile Include="Trip\TicketOrder.cs" />
+    <Compile Include="Trip\TicketQuotes.cs" />
     <Compile Include="Trip\TicketType.cs" />
     <Compile Include="Trip\Travel.cs" />
     <Compile Include="Trip\DestType.cs" />

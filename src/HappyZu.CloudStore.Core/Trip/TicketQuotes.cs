@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 namespace HappyZu.CloudStore.Trip
 {
     /// <summary>
-    /// 线路报价单
+    /// 门票报价
     /// </summary>
-    [Table("Trip_TravelQuotes")]
-    public class TravelQuotes
+    [Table("Trip_TicketQuotes")]
+    public class TicketQuotes
     {
-        public int TravelId { get; set; }
         /// <summary>
-        /// 旅游线路
+        /// 门票Id
         /// </summary>
-        [ForeignKey("TravelId")]
-        public Travel Travel { get; set; }
+        public int TicketId { get; set; }
+
+        [ForeignKey("TicketId")]
+        public Ticket Ticket { get; set; }
+
         /// <summary>
         /// 日
         /// </summary>
@@ -37,19 +39,9 @@ namespace HappyZu.CloudStore.Trip
         public int Week { get; set; }
 
         /// <summary>
-        /// 成人报价
+        /// 报价
         /// </summary>
         public Quote Quote { get; set; }
-
-        /// <summary>
-        /// 儿童报价
-        /// </summary>
-        public Quote ChildQuote { get; set; }
-
-        /// <summary>
-        /// 老人报价
-        /// </summary>
-        public Quote OldManQuote { get; set; }
 
         /// <summary>
         /// 销售量

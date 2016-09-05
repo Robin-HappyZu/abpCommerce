@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace HappyZu.CloudStore.Trip
     /// <summary>
     /// 出行人
     /// </summary>
+    [Table("Trip_Traveler")]
     public class Traveler
     {
         /// <summary>

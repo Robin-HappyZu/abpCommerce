@@ -13,6 +13,7 @@ namespace HappyZu.CloudStore.Trip
     /// <summary>
     /// 景点
     /// </summary>
+    [Table("Trip_Dest")]
     public class Dest:ISoftDelete,ISEO
     {
         /// <summary>
@@ -133,6 +134,7 @@ namespace HappyZu.CloudStore.Trip
 
         public DateTime PublishDateTime { get; set; }
 
+        public bool HasTicket { get; set; }
         /// <summary>
         /// 显示顺序
         /// </summary>
