@@ -34,7 +34,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 国内国外
         /// </summary>
-        public DestType DestType { get; set; }
+        public CountryType DestType { get; set; }
 
         /// <summary>
         /// 所属省份Id
@@ -98,17 +98,7 @@ namespace HappyZu.CloudStore.Trip
         /// 最高价格
         /// </summary>
         public double MaxPrice { get; set; }
-
-        ///// <summary>
-        ///// 提前天数
-        ///// </summary>
-        //public int AdvanceDays { get; set; }
-
-        ///// <summary>
-        ///// 截止时间
-        ///// </summary>
-        //public TimeSpan EndTime { get; set; }
-
+        
         /// <summary>
         /// 预定须知
         /// </summary>

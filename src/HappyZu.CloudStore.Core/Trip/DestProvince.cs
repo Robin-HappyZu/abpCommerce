@@ -15,7 +15,7 @@ namespace HappyZu.CloudStore.Trip
         [StringLength(255)]
         public string Name { get; set; }
 
-        public DestType DestType { get; set; }
+        public CountryType DestType { get; set; }
 
         public bool IsDeleted { get; set; }
     }

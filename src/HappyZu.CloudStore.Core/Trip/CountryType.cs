@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HappyZu.CloudStore.Trip
 {
-    public enum DestType
+    public enum CountryType
     {
         /// <summary>
         /// 国内

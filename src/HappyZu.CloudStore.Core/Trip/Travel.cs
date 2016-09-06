@@ -34,7 +34,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 国内国外
         /// </summary>
-        public DestType DestType { get; set; }
+        public CountryType DestType { get; set; }
 
         /// <summary>
         /// 所属省份Id
@@ -109,6 +109,31 @@ namespace HappyZu.CloudStore.Trip
         /// </summary>
         public TimeSpan EndTime { get; set; }
 
+
+        /// <summary>
+        /// 可以支付预付款
+        /// </summary>
+        public bool CanPayFrontMoney { get; set; }
+
+        /// <summary>
+        /// 预付款金额
+        /// </summary>
+        public bool FrontMoneyPrice { get; set; }
+
+        /// <summary>
+        /// 可以使用积分
+        /// </summary>
+        public bool CanUsePoint { get; set; }
+
+        /// <summary>
+        /// 使用积分数量
+        /// </summary>
+        public int UsePoints { get; set; }
+
+        /// <summary>
+        /// 积分
+        /// </summary>
+        public int Points { get; set; }
 
         /// <summary>
         /// 预定须知

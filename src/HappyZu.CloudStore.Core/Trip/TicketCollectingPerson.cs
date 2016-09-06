@@ -28,7 +28,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 电话号码归属
         /// </summary>
-        public DestType PhoneDestType { get; set; }
+        public CountryType PhoneDestType { get; set; }
 
         /// <summary>
         /// 国家代码

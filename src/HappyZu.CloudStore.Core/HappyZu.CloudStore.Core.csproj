@@ -121,7 +121,7 @@
     <Compile Include="Trip\TicketQuotes.cs" />
     <Compile Include="Trip\TicketType.cs" />
     <Compile Include="Trip\Travel.cs" />
-    <Compile Include="Trip\DestType.cs" />
+    <Compile Include="Trip\CountryType.cs" />
     <Compile Include="Trip\Traveler.cs" />
     <Compile Include="Trip\TravelOrder.cs" />
     <Compile Include="Trip\TravelQuotes.cs" />
