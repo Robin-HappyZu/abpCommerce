@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Domain.Entities;
 
 namespace HappyZu.CloudStore.Trip
 {
@@ -11,7 +12,7 @@ namespace HappyZu.CloudStore.Trip
     /// 线路报价单
     /// </summary>
     [Table("Trip_TravelQuotes")]
-    public class TravelQuotes
+    public class TravelQuotes:Entity
     {
         public int TravelId { get; set; }
         /// <summary>
@@ -50,6 +51,11 @@ namespace HappyZu.CloudStore.Trip
         /// 老人报价
         /// </summary>
         public Quote OldManQuote { get; set; }
+
+        /// <summary>
+        /// 单房差
+        /// </summary>
+        public double SingleSupplement { get; set; }
 
         /// <summary>
         /// 销售量

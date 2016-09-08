@@ -10,7 +10,7 @@ using Abp.Domain.Entities;
 namespace HappyZu.CloudStore.Trip
 {
     [Table("Trip_TicketType")]
-    public class TicketType:ISoftDelete
+    public class TicketType:Entity,ISoftDelete
     {
         /// <summary>
         /// 景点Id

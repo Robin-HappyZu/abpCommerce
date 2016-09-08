@@ -99,6 +99,7 @@
     <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="Entities\ISEO.cs" />
+    <Compile Include="Entities\OrderStatus.cs" />
     <Compile Include="FAQ\FAQCategory.cs" />
     <Compile Include="FAQ\FAQDetail.cs" />
     <Compile Include="FAQ\FAQManager.cs" />

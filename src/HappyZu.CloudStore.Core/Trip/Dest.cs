@@ -14,21 +14,24 @@ namespace HappyZu.CloudStore.Trip
     /// 景点
     /// </summary>
     [Table("Trip_Dest")]
-    public class Dest:ISoftDelete,ISEO
+    public class Dest:Entity,ISoftDelete,ISEO
     {
         /// <summary>
         /// 推广标题
         /// </summary>
+        [StringLength(255)]
         public string Title { get;set; }
 
         /// <summary>
         /// 景点名称
         /// </summary>
+        [StringLength(255)]
         public string Subject { get; set; }
 
         /// <summary>
         /// 景点特点
         /// </summary>
+        [StringLength(255)]
         public string Feature { get; set; }
 
         /// <summary>
@@ -60,16 +63,19 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 景点地址
         /// </summary>
+        [StringLength(255)]
         public string Address { get; set; }
 
         /// <summary>
         /// 经度
         /// </summary>
+        [StringLength(127)]
         public string Lng { get; set; }
 
         /// <summary>
         /// 纬度
         /// </summary>
+        [StringLength(127)]
         public string Lat { get; set; }
 
         /// <summary>

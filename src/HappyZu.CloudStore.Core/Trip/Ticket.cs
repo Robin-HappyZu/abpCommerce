@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Domain.Entities;
 
 namespace HappyZu.CloudStore.Trip
 {
@@ -11,7 +13,7 @@ namespace HappyZu.CloudStore.Trip
     /// 门票
     /// </summary>
     [Table("Trip_Ticket")]
-    public class Ticket
+    public class Ticket:Entity
     {
         /// <summary>
         /// 景点Id
@@ -82,6 +84,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 门票描述
         /// </summary>
+        [StringLength(255)]
         public string Description { get; set; }
         
         /// <summary>

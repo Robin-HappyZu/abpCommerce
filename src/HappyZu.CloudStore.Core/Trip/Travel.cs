@@ -14,22 +14,20 @@ namespace HappyZu.CloudStore.Trip
     /// 旅游线路
     /// </summary>
     [Table("Trip_Travel")]
-    public class Travel:ISoftDelete,ISEO
+    public class Travel:Entity,ISoftDelete,ISEO
     {
         /// <summary>
         /// 推广标题
         /// </summary>
+        [StringLength(255)]
         public string Title { get; set; }
 
         /// <summary>
-        /// 景点名称
+        /// 线路名称
         /// </summary>
+        [StringLength(255)]
         public string Subject { get; set; }
-
-        /// <summary>
-        /// 景点特点
-        /// </summary>
-        public string Feature { get; set; }
+        
 
         /// <summary>
         /// 国内国外
@@ -146,9 +144,19 @@ namespace HappyZu.CloudStore.Trip
         public string Agreement { get; set; }
 
         /// <summary>
-        /// 景点介绍
+        /// 行程简要
         /// </summary>
         public string Introduce { get; set; }
+
+        /// <summary>
+        /// 线路特点
+        /// </summary>
+        public string Feature { get; set; }
+
+        /// <summary>
+        /// 行程安排
+        /// </summary>
+        public string Schedule { get; set; }
 
         /// <summary>
         /// 封面图片
