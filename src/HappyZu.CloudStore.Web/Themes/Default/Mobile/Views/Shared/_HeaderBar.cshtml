@@ -1,0 +1,4 @@
+﻿@if (ViewBag.HeaderBar != null)
+{
+    @Html.Action("HeaderBar","Layout",new {vm=ViewBag.HeaderBar})
+}

@@ -411,6 +411,10 @@
     <Content Include="Areas\Admin\Views\FAQ\CreateDetail.cshtml" />
     <Content Include="Areas\Admin\Views\FAQ\EditDetail.cshtml" />
     <Content Include="Areas\Admin\Views\FAQ\_CreateOrEditFAQDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Travel\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Travel\Travelers.cshtml" />
+    <Content Include="Areas\Admin\Views\Travel\TravelOrders.cshtml" />
+    <Content Include="Areas\Admin\Views\Travel\EditTravel.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -447,6 +451,48 @@
     <Content Include="Scripts\sweetalert\sweet-alert.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Themes\Default\Mobile\content\custom.css" />
+    <Content Include="Themes\Default\Mobile\content\images\1.png" />
+    <Content Include="Themes\Default\Mobile\content\images\2.png" />
+    <Content Include="Themes\Default\Mobile\content\images\3.png" />
+    <Content Include="Themes\Default\Mobile\content\images\4.png" />
+    <Content Include="Themes\Default\Mobile\content\images\account-bg-1.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\account-bg.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\grid-0.png" />
+    <Content Include="Themes\Default\Mobile\content\images\grid-01.png" />
+    <Content Include="Themes\Default\Mobile\content\images\grid-1.png" />
+    <Content Include="Themes\Default\Mobile\content\images\grid-2.png" />
+    <Content Include="Themes\Default\Mobile\content\images\grid-3.png" />
+    <Content Include="Themes\Default\Mobile\content\images\grid-4.png" />
+    <Content Include="Themes\Default\Mobile\content\images\head.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\orders-btn.png" />
+    <Content Include="Themes\Default\Mobile\content\images\p10_130x150.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p1_175x170.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p1_300x300.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p2_175x170.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p2_300x300.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p3_130x150.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p3_300x300.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p4_175x170.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p5_175x170.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p6_175x170.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p7_175x170.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p8_300x300.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\p9_130x150.jpg" />
+    <Content Include="Themes\Default\Mobile\content\images\shoppingcart_empty.png" />
+    <Content Include="Themes\Default\Mobile\content\plugins\iconfont\iconfont.css" />
+    <Content Include="Themes\Default\Mobile\content\plugins\iconfont\iconfont.svg" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\css\sm-extend.css" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\css\sm-extend.min.css" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\css\sm.css" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\css\sm.min.css" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\js\sm-city-picker.js" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\js\sm-city-picker.min.js" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\js\sm-extend.js" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\js\sm-extend.min.js" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\js\sm.js" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\js\sm.min.js" />
+    <Content Include="Themes\Default\Mobile\content\plugins\sui\js\zepto.min.js" />
     <Content Include="Views\Account\Login.css">
       <DependentUpon>Login.less</DependentUpon>
     </Content>
@@ -476,6 +522,7 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\FAQController.cs" />
     <Compile Include="Areas\Admin\Controllers\SystemUserRoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Trip\TravelController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\DataTableJsonViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DataTableOptionViewModel.cs" />
@@ -484,7 +531,10 @@
     <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SetRolePermissionsViewModel.cs" />
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\LayoutController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Areas\Mobile\Models\Layout\FootMenuViewModel.cs" />
+    <Compile Include="Areas\Mobile\Models\Layout\HeaderViewModel.cs" />
     <Compile Include="Areas\Web\Controllers\HomeController.cs" />
     <Compile Include="Areas\Web\WebAreaRegistration.cs" />
     <Compile Include="Controllers\AboutController.cs" />
@@ -532,6 +582,18 @@
     <Content Include="Themes\Default\Mobile\Views\web.config" />
     <Content Include="Themes\Default\Web\Views\web.config" />
     <Content Include="Themes\Default\Web\Views\Shared\_Layout.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Account\Index.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Account\Settings.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Home\Index.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Layout\FootMenu.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Layout\HeaderBar.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Order\Confirm.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Shared\_FootBar.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Shared\_HeaderBar.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Shared\_Layout.cshtml" />
+    <Content Include="Themes\Default\Mobile\content\plugins\iconfont\iconfont.eot" />
+    <Content Include="Themes\Default\Mobile\content\plugins\iconfont\iconfont.ttf" />
+    <Content Include="Themes\Default\Mobile\content\plugins\iconfont\iconfont.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -563,9 +625,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Mobile\Models\" />
+    <Folder Include="Areas\Mobile\Views\Layout\" />
     <Folder Include="Areas\Web\Models\" />
-    <Folder Include="Themes\Default\Mobile\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

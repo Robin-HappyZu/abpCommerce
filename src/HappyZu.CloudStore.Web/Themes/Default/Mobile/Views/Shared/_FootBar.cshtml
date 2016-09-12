@@ -1,0 +1,6 @@
+﻿@if (ViewBag.HideFootBar==null || !ViewBag.HideFootBar)
+{
+    <nav class="bar bar-tab">
+        @Html.Action("FootMenu", "Layout", new {activeMenu = ViewBag.ActiveMenu})
+    </nav>
+}

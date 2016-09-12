@@ -84,16 +84,82 @@
                     </ul>
                 </li>*@
                 <li class="nav-item  ">
-                    <a href="@Url.Action("CategoryList", new {controller = "Product"})" class="nav-link ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-list"></i>
-                        <span class="title">旅游线路</span>
+                        <span class="title">线路中心</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index","Travel", new {area = "Admin"},true)" class="nav-link ">
+                                <i class="icon-social-dropbox"></i>
+                                <span class="title">旅游线路</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("CategoryList", new {controller = "Product"})" class="nav-link ">
+                                <i class="icon-list"></i>
+                                <span class="title">目的地</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">线路评论</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">线路标签</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">低库存报告</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item  ">
-                    <a href="@Url.Action("Brands", new {controller = "Product"})" class="nav-link ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-star"></i>
                         <span class="title">景点门票</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index","Travel", new {area = "Admin"},true)" class="nav-link ">
+                                <i class="icon-social-dropbox"></i>
+                                <span class="title">景点管理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("CategoryList", new {controller = "Product"})" class="nav-link ">
+                                <i class="icon-list"></i>
+                                <span class="title">目的地</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">景点评论</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">景点标签</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">低库存报告</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 @*<li class="nav-item  ">
                     <a href="javascript:;" class="nav-link ">

@@ -1,0 +1,43 @@
+﻿@model HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout.HeaderViewModel
+
+<header class="bar bar-nav header-nav">
+    @foreach (var item in Model.LeftButtonItems)
+    {
+        <a id="@item.Name" class="button button-link button-nav pull-left" href="@(item.Url??"javascript:;")">
+            @if (!string.IsNullOrWhiteSpace(item.Icon)&& item.Name!="Location")
+            {
+                <span class="@item.Icon"></span>
+            }
+            @if (!string.IsNullOrWhiteSpace(item.DisplayName))
+            {
+                @item.DisplayName
+            }
+        </a>
+    }
+    @foreach (var item in Model.RightButtonItems)
+    {
+        <a id="@item.Name" class="button button-link button-nav pull-right" href="@(item.Url??"javascript:;")">
+            @if (!string.IsNullOrWhiteSpace(item.Icon))
+            {
+                <span class="@item.Icon"></span>
+            }
+            @if (!string.IsNullOrWhiteSpace(item.DisplayName))
+            {
+                @item.DisplayName
+            }
+        </a>
+    }
+    @if (Model.ShowSearchBar)
+    {
+        <div class="searchbar header-search">
+            <div class="search-input">
+                <label class="icon icon-search" for="search"></label>
+                <input type="search" id='search' placeholder='景点名称/目的地/游玩主题'/>
+            </div>
+        </div>
+    }
+    @if (Model.ShowTitle)
+    {
+        <h1 class="title">@Model.Title</h1>
+    }
+</header>
