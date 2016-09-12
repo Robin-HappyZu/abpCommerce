@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
+using HappyZu.CloudStore.Entities;
 
 namespace HappyZu.CloudStore.Trip
 {
@@ -13,7 +15,7 @@ namespace HappyZu.CloudStore.Trip
     /// 门票
     /// </summary>
     [Table("Trip_Ticket")]
-    public class Ticket:Entity
+    public class Ticket:Entity, ISoftDelete, ISEO, IAudited
     {
         /// <summary>
         /// 景点Id
@@ -24,12 +26,6 @@ namespace HappyZu.CloudStore.Trip
         /// 门票类型Id
         /// </summary>
         public int TypeId { get; set; }
-
-        /// <summary>
-        /// 门票类型
-        /// </summary>
-        [ForeignKey("TypeId")]
-        public TicketType TicketType { get; set; }
 
         /// <summary>
         /// 市场价
@@ -111,6 +107,15 @@ namespace HappyZu.CloudStore.Trip
         /// 报价类型
         /// </summary>
         public QuotesType QuotesType { get; set; }
+
+        public bool IsDeleted { get; set; }
+        public string MetaTitle { get; set; }
+        public string MetaKeywords { get; set; }
+        public string MetaDescription { get; set; }
+        public DateTime CreationTime { get; set; }
+        public long? CreatorUserId { get; set; }
+        public DateTime? LastModificationTime { get; set; }
+        public long? LastModifierUserId { get; set; }
     }
 
     public enum QuotesType

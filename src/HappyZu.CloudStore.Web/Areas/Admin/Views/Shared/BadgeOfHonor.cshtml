@@ -23,57 +23,90 @@
             </a>
         </li>
         <li class="heading">
-            <h3 class="uppercase">商城中心</h3>
+            <h3 class="uppercase">电商中心</h3>
         </li>
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-basket"></i>
-                <span class="title">商品目录</span>
+                <span class="title">产品目录</span>
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="@Url.Action("Index", new {controller = "Product"})" class="nav-link ">
-                        <i class="icon-social-dropbox"></i>
-                        <span class="title">商品管理</span>
+                @*<li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-basket"></i>
+                        <span class="title">商品目录</span>
+                        <span class="arrow"></span>
                     </a>
-                </li>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index", new {controller = "Product"})" class="nav-link ">
+                                <i class="icon-social-dropbox"></i>
+                                <span class="title">商品管理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("CategoryList", new {controller = "Product"})" class="nav-link ">
+                                <i class="icon-list"></i>
+                                <span class="title">商品分类</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Brands", new {controller = "Product"})" class="nav-link ">
+                                <i class="icon-star"></i>
+                                <span class="title">品牌管理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">商品评论</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">商品标签</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">低库存报告</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link ">
+                                <i class="icon-tag"></i>
+                                <span class="title">低库存报告</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>*@
                 <li class="nav-item  ">
                     <a href="@Url.Action("CategoryList", new {controller = "Product"})" class="nav-link ">
                         <i class="icon-list"></i>
-                        <span class="title">商品分类</span>
+                        <span class="title">旅游线路</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
                     <a href="@Url.Action("Brands", new {controller = "Product"})" class="nav-link ">
                         <i class="icon-star"></i>
-                        <span class="title">品牌管理</span>
+                        <span class="title">景点门票</span>
+                    </a>
+                </li>
+                @*<li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link ">
+                        <i class="icon-tag"></i>
+                        <span class="title">酒店</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link ">
                         <i class="icon-tag"></i>
-                        <span class="title">商品评论</span>
+                        <span class="title">机票</span>
                     </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link ">
-                        <i class="icon-tag"></i>
-                        <span class="title">商品标签</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link ">
-                        <i class="icon-tag"></i>
-                        <span class="title">低库存报告</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link ">
-                        <i class="icon-tag"></i>
-                        <span class="title">低库存报告</span>
-                    </a>
-                </li>
+                </li>*@
             </ul>
         </li>
         <li class="nav-item  ">
@@ -83,46 +116,239 @@
                 <span class="arrow"></span>
             </a>
             <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="@Url.Action("Index", new {controller = "Order"})" class="nav-link ">
-                        <i class="icon-basket-loaded"></i>
-                        <span class="title">订单管理</span>
-                        <span class="badge badge-danger">2</span>
+                @*<li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-handbag"></i>
+                        <span class="title">商品订单</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-basket-loaded"></i>
+                                <span class="title">订单管理</span>
+                                <span class="badge badge-danger">2</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单查询</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退款处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退货处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单评价</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单投诉</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>*@
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-handbag"></i>
+                        <span class="title">线路订单</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-basket-loaded"></i>
+                                <span class="title">订单管理</span>
+                                <span class="badge badge-danger">2</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单查询</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退款处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退货处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单评价</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单投诉</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item  ">
-                    <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
-                        <i class="icon-magnifier"></i>
-                        <span class="title">订单查询</span>
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-handbag"></i>
+                        <span class="title">门票订单</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-basket-loaded"></i>
+                                <span class="title">订单管理</span>
+                                <span class="badge badge-danger">2</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单查询</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退款处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退货处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单评价</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单投诉</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @*<li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-handbag"></i>
+                        <span class="title">酒店订单</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-basket-loaded"></i>
+                                <span class="title">订单管理</span>
+                                <span class="badge badge-danger">2</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单查询</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退款处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退货处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单评价</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单投诉</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item  ">
-                    <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
-                        <i class="icon-magnifier"></i>
-                        <span class="title">退款处理</span>
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-handbag"></i>
+                        <span class="title">机票订单</span>
+                        <span class="arrow"></span>
                     </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
-                        <i class="icon-magnifier"></i>
-                        <span class="title">退货处理</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
-                        <i class="icon-magnifier"></i>
-                        <span class="title">订单评价</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
-                        <i class="icon-magnifier"></i>
-                        <span class="title">订单投诉</span>
-                    </a>
-                </li>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("Index", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-basket-loaded"></i>
+                                <span class="title">订单管理</span>
+                                <span class="badge badge-danger">2</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单查询</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退款处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">退货处理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单评价</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
+                                <i class="icon-magnifier"></i>
+                                <span class="title">订单投诉</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>*@
             </ul>
         </li>
-        <li class="nav-item  ">
+        @*<li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-handbag"></i>
                 <span class="title">交易中心</span>
@@ -138,7 +364,7 @@
                 <li class="nav-item  ">
                     <a href="@Url.Action("Transfer", new {controller = "Transaction"})" class="nav-link ">
                         <i class="icon-shuffle"></i>
-                        <span class="title">转让管理</span>
+                        <span class="title">转赠管理</span>
                     </a>
                 </li>
                 <li class="nav-item  ">
@@ -245,7 +471,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li>*@
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-pie-chart"></i>
@@ -259,58 +485,16 @@
                         <span class="title">会员统计</span>
                     </a>
                 </li>
-                <li class="nav-item  ">
+                @*<li class="nav-item  ">
                     <a href="form_controls_md.html" class="nav-link ">
                         <i class="icon-mouse"></i>
                         <span class="title">店铺统计</span>
                     </a>
-                </li>
+                </li>*@
                 <li class="nav-item  ">
                     <a href="form_controls_md.html" class="nav-link ">
                         <i class="icon-mouse"></i>
                         <span class="title">销量统计</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-plane"></i>
-                <span class="title">物流配送</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="elements_steps.html" class="nav-link ">
-                        <i class="icon-share "></i>
-                        <span class="title">配送方式</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="elements_lists.html" class="nav-link ">
-                        <i class="icon-flag "></i>
-                        <span class="title">物流公司</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-wallet"></i>
-                <span class="title">支付中心</span>
-                <span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link ">
-                        <i class="icon-umbrella "></i>
-                        <span class="title">支付方式</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link ">
-                        <i class="icon-clock "></i>
-                        <span class="title">支付日志</span>
                     </a>
                 </li>
             </ul>
@@ -444,7 +628,7 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item  ">
+        @*<li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-social-dribbble"></i>
                 <span class="title">活动管理</span>
@@ -462,7 +646,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li>*@
         <li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-volume-1"></i>
@@ -482,7 +666,7 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item  ">
+        @*<li class="nav-item  ">
             <a href="javascript:;" class="nav-link nav-toggle">
                 <i class="icon-volume-1"></i>
                 <span class="title">广告管理</span>
@@ -500,111 +684,168 @@
                     </a>
                 </li>
             </ul>
-        </li>
-        <li class="heading">
-            <h3 class="uppercase">系统中心</h3>
-        </li>
+        </li>*@
+    <li class="heading">
+        <h3 class="uppercase">系统中心</h3>
+    </li>
+    <li class="nav-item">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="icon-settings"></i>
+            <span class="title">商城配置</span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-plane"></i>
+                    <span class="title">物流配送</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="elements_steps.html" class="nav-link ">
+                            <i class="icon-share "></i>
+                            <span class="title">配送方式</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="elements_lists.html" class="nav-link ">
+                            <i class="icon-flag "></i>
+                            <span class="title">物流公司</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-wallet"></i>
+                    <span class="title">支付中心</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link ">
+                            <i class="icon-umbrella "></i>
+                            <span class="title">支付方式</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link ">
+                            <i class="icon-clock "></i>
+                            <span class="title">支付日志</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item  ">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <i class="icon-settings"></i>
+            <span class="title">设置</span>
+            <span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+            <li class="nav-item  ">
+                <a href="ecommerce_index.html" class="nav-link ">
+                    <i class="icon-screen-desktop"></i>
+                    <span class="title">系统设置</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-picture"></i>
+                    <span class="title">多媒体</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="ecommerce_index.html" class="nav-link ">
+                            <i class="icon-globe"></i>
+                            <span class="title">CDN设置</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="ecommerce_orders.html" class="nav-link ">
+                            <i class="icon-folder-alt"></i>
+                            <span class="title">文件管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item  ">
+                <a href="ecommerce_orders_view.html" class="nav-link ">
+                    <i class="icon-user"></i>
+                    <span class="title">用户设置</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="ecommerce_products.html" class="nav-link ">
+                    <i class="icon-cloud-download"></i>
+                    <span class="title">缓存设置</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="ecommerce_orders.html" class="nav-link ">
+                    <i class="icon-bubbles"></i>
+                    <span class="title">绑定微信</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="ecommerce_orders.html" class="nav-link ">
+                    <i class="icon-loop"></i>
+                    <span class="title">订单设置</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-compass"></i>
+                    <span class="title">导航</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="page_user_profile_1.html" class="nav-link ">
+                            <i class="icon-note"></i>
+                            <span class="title">新增菜单</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="page_user_profile_1_account.html" class="nav-link ">
+                            <i class="icon-layers"></i>
+                            <span class="title">菜单管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-envelope-open "></i>
+                    <span class="title">短信</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="ecommerce_index.html" class="nav-link ">
+                            <i class="icon-envelope"></i>
+                            <span class="title">短信记录</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="ecommerce_orders.html" class="nav-link ">
+                            <i class="icon-settings"></i>
+                            <span class="title">短信接口配置</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
         <li class="nav-item  ">
-            <a href="javascript:;" class="nav-link nav-toggle">
-                <i class="icon-settings"></i>
-                <span class="title">设置</span>
-                <span class="arrow"></span>
+            <a href="layout_blank_page.html" class="nav-link ">
+                <i class="icon-doc"></i>
+                <span class="title">系统信息</span>
             </a>
-            <ul class="sub-menu">
-                <li class="nav-item  ">
-                    <a href="ecommerce_index.html" class="nav-link ">
-                        <i class="icon-screen-desktop"></i>
-                        <span class="title">系统设置</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="icon-picture"></i>
-                        <span class="title">多媒体</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item  ">
-                            <a href="ecommerce_index.html" class="nav-link ">
-                                <i class="icon-globe"></i>
-                                <span class="title">CDN设置</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="ecommerce_orders.html" class="nav-link ">
-                                <i class="icon-folder-alt"></i>
-                                <span class="title">文件管理</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ecommerce_orders_view.html" class="nav-link ">
-                        <i class="icon-user"></i>
-                        <span class="title">用户设置</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ecommerce_products.html" class="nav-link ">
-                        <i class="icon-cloud-download"></i>
-                        <span class="title">缓存设置</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ecommerce_orders.html" class="nav-link ">
-                        <i class="icon-bubbles"></i>
-                        <span class="title">绑定微信</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="ecommerce_orders.html" class="nav-link ">
-                        <i class="icon-loop"></i>
-                        <span class="title">订单设置</span>
-                    </a>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="icon-compass"></i>
-                        <span class="title">导航</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item  ">
-                            <a href="page_user_profile_1.html" class="nav-link ">
-                                <i class="icon-note"></i>
-                                <span class="title">新增菜单</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="page_user_profile_1_account.html" class="nav-link ">
-                                <i class="icon-layers"></i>
-                                <span class="title">菜单管理</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="icon-envelope-open "></i>
-                        <span class="title">短信</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item  ">
-                            <a href="ecommerce_index.html" class="nav-link ">
-                                <i class="icon-envelope"></i>
-                                <span class="title">短信记录</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="ecommerce_orders.html" class="nav-link ">
-                                <i class="icon-settings"></i>
-                                <span class="title">短信接口配置</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
         </li>
     </ul>
     <!-- END SIDEBAR MENU -->

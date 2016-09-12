@@ -5,6 +5,7 @@ using Abp.Zero.EntityFramework;
 using HappyZu.CloudStore.Authorization.Roles;
 using HappyZu.CloudStore.FAQ;
 using HappyZu.CloudStore.MultiTenancy;
+using HappyZu.CloudStore.Trip;
 using HappyZu.CloudStore.Users;
 
 namespace HappyZu.CloudStore.EntityFramework
@@ -12,10 +13,28 @@ namespace HappyZu.CloudStore.EntityFramework
     public class CloudStoreDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
         //TODO: Define an IDbSet for your Entities...
+
+        #region FAQ
         public virtual IDbSet<FAQCategory> FAQCategories { get; set; }
 
-        public virtual IDbSet<FAQDetail> FAQDetails { get; set; } 
-         
+        public virtual IDbSet<FAQDetail> FAQDetails { get; set; }
+        #endregion
+
+        #region Trip
+        public virtual IDbSet<Dest> Dests { get; set; }
+        public virtual IDbSet<DestCity> DestCities { get; set; }
+        public virtual IDbSet<DestProvince> DestProvinces { get; set; }
+        public virtual IDbSet<Ticket> Tickets { get; set; }
+        public virtual IDbSet<TicketCollectingPerson> TicketCollectingPersons { get; set; }
+        public virtual IDbSet<TicketOrder> TicketOrders { get; set; }
+        public virtual IDbSet<TicketQuotes> TicketQuotes { get; set; }
+        public virtual IDbSet<TicketType> TicketTypes { get; set; }
+        public virtual IDbSet<Travel> Travels { get; set; }
+        public virtual IDbSet<Traveler> Travelers { get; set; }
+        public virtual IDbSet<TravelOrder> TravelOrders { get; set; }
+        public virtual IDbSet<TravelQuotes> TravelQuotes { get; set; }
+
+        #endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.
          *   But it may cause problems when working Migrate.exe of EF. If you will apply migrations on command line, do not

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 
 namespace HappyZu.CloudStore.Trip
 {
@@ -13,8 +14,14 @@ namespace HappyZu.CloudStore.Trip
     /// 取票人
     /// </summary>
     [Table("Trip_TicketCollectingPerson")]
-    public class TicketCollectingPerson:Entity
+    public class TicketCollectingPerson:Entity, ICreationAudited
     {
+
+        /// <summary>
+        /// 订单Id
+        /// </summary>
+        public int OrderId { get; set; }
+
         /// <summary>
         /// 订单编号
         /// </summary>
@@ -84,5 +91,8 @@ namespace HappyZu.CloudStore.Trip
         /// 是取票人
         /// </summary>
         public bool IsCollectingTicketsPerson { get; set; }
+
+        public DateTime CreationTime { get; set; }
+        public long? CreatorUserId { get; set; }
     }
 }

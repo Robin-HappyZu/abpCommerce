@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 
 namespace HappyZu.CloudStore.Trip
 {
@@ -12,14 +13,13 @@ namespace HappyZu.CloudStore.Trip
     /// 线路报价单
     /// </summary>
     [Table("Trip_TravelQuotes")]
-    public class TravelQuotes:Entity
+    public class TravelQuotes:Entity, ISoftDelete, IAudited
     {
-        public int TravelId { get; set; }
         /// <summary>
-        /// 旅游线路
+        /// 旅游线路Id
         /// </summary>
-        [ForeignKey("TravelId")]
-        public Travel Travel { get; set; }
+        public int TravelId { get; set; }
+
         /// <summary>
         /// 日
         /// </summary>
@@ -66,5 +66,11 @@ namespace HappyZu.CloudStore.Trip
         /// 显示
         /// </summary>
         public bool IsDisplay { get; set; }
+
+        public bool IsDeleted { get; set; }
+        public DateTime CreationTime { get; set; }
+        public long? CreatorUserId { get; set; }
+        public DateTime? LastModificationTime { get; set; }
+        public long? LastModifierUserId { get; set; }
     }
 }

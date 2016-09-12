@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using HappyZu.CloudStore.Entities;
 
 namespace HappyZu.CloudStore.Trip
@@ -14,7 +15,7 @@ namespace HappyZu.CloudStore.Trip
     /// 景点
     /// </summary>
     [Table("Trip_Dest")]
-    public class Dest:Entity,ISoftDelete,ISEO
+    public class Dest:Entity,ISoftDelete,ISEO,IAudited
     {
         /// <summary>
         /// 推广标题
@@ -45,20 +46,9 @@ namespace HappyZu.CloudStore.Trip
         public int ProvinceId { get; set; }
 
         /// <summary>
-        /// 所属省份、区域
-        /// </summary>
-        [ForeignKey("ProvinceId")]
-        public DestProvince Province { get; set; }
-
-        /// <summary>
         /// 所属城市Id
         /// </summary>
         public int CityId { get; set; }
-        /// <summary>
-        /// 所属城市
-        /// </summary>
-        [ForeignKey("CityId")]
-        public DestCity City { get; set; }
 
         /// <summary>
         /// 景点地址
@@ -146,6 +136,11 @@ namespace HappyZu.CloudStore.Trip
 
         [StringLength(255)]
         public string MetaDescription { get; set; }
+
+        public DateTime CreationTime { get; set; }
+        public long? CreatorUserId { get; set; }
+        public DateTime? LastModificationTime { get; set; }
+        public long? LastModifierUserId { get; set; }
     }
     
 }

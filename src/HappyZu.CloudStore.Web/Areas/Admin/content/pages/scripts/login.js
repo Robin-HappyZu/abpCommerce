@@ -7,12 +7,18 @@
             var $form = $(".login-form");
             var params = $form.serializeArray();
             var url = $form.attr("action");
+            App.blockUI({
+                cenrerY: true,
+                animate: true
+            });
             $.post(url, params, function (data) {
                 $btn.button("reset");
                 if (data.success) {
                     $form.find("input:not(:checkbox)").val('');
                     window.location = data.targetUrl;
+                    return;
                 }
+                App.unblockUI();
             }, 'json');
 
         };

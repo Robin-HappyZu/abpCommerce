@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using HappyZu.CloudStore.Entities;
 
 namespace HappyZu.CloudStore.Trip
@@ -14,13 +15,19 @@ namespace HappyZu.CloudStore.Trip
     /// 旅游订单
     /// </summary>
     [Table("Trip_TravelOrder")]
-    public class TravelOrder:Entity,ISoftDelete
+    public class TravelOrder:Entity,ISoftDelete,ICreationAudited
     {
         /// <summary>
         /// 出发日期
         /// </summary>
         public DateTime StartDate { get; set; }
-        
+
+        /// <summary>
+        /// 订单编号
+        /// </summary>
+        [StringLength(128)]
+        public string OrderNo { get; set; }
+
         public int UsedPoint { get; set; }
 
         /// <summary>
@@ -106,6 +113,16 @@ namespace HappyZu.CloudStore.Trip
         /// 逻辑删除
         /// </summary>
         public bool IsDeleted { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreationTime { get; set; }
+
+        /// <summary>
+        /// 用户ID
+        /// </summary>
+        public long? CreatorUserId { get; set; }
     }
 
     

@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 
 namespace HappyZu.CloudStore.Trip
 {
     [Table("Trip_TicketType")]
-    public class TicketType:Entity,ISoftDelete
+    public class TicketType:Entity, ISoftDelete, IAudited
     {
         /// <summary>
         /// 景点Id
@@ -32,5 +33,10 @@ namespace HappyZu.CloudStore.Trip
         /// 是否删除
         /// </summary>
         public bool IsDeleted { get; set; }
+
+        public DateTime CreationTime { get; set; }
+        public long? CreatorUserId { get; set; }
+        public DateTime? LastModificationTime { get; set; }
+        public long? LastModifierUserId { get; set; }
     }
 }

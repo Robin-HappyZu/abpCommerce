@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using HappyZu.CloudStore.Entities;
 
 namespace HappyZu.CloudStore.Trip
@@ -14,7 +15,7 @@ namespace HappyZu.CloudStore.Trip
     /// 旅游线路
     /// </summary>
     [Table("Trip_Travel")]
-    public class Travel:Entity,ISoftDelete,ISEO
+    public class Travel:Entity,ISoftDelete, ISEO, IAudited
     {
         /// <summary>
         /// 推广标题
@@ -40,20 +41,9 @@ namespace HappyZu.CloudStore.Trip
         public int ProvinceId { get; set; }
 
         /// <summary>
-        /// 所属省份、区域
-        /// </summary>
-        [ForeignKey("ProvinceId")]
-        public DestProvince Province { get; set; }
-
-        /// <summary>
         /// 所属城市Id
         /// </summary>
         public int CityId { get; set; }
-        /// <summary>
-        /// 所属城市
-        /// </summary>
-        [ForeignKey("CityId")]
-        public DestCity City { get; set; }
 
         /// <summary>
         /// 出发地所属省份Id
@@ -61,21 +51,10 @@ namespace HappyZu.CloudStore.Trip
         public int DepartureProvinceId { get; set; }
 
         /// <summary>
-        /// 出发地所属省份、区域
-        /// </summary>
-        [ForeignKey("DepartureProvinceId")]
-        public DestProvince DepartureProvince { get; set; }
-
-        /// <summary>
         /// 出发地所属城市Id
         /// </summary>
         public int DepartureCityId { get; set; }
-        /// <summary>
-        /// 出发地所属城市
-        /// </summary>
-        [ForeignKey("DepartureCityId")]
-        public DestCity DepartureCity { get; set; }
-        
+
         /// <summary>
         /// 供应商
         /// </summary>
@@ -201,5 +180,10 @@ namespace HappyZu.CloudStore.Trip
         /// </summary>
         [StringLength(255)]
         public string MetaDescription { get; set; }
+
+        public DateTime CreationTime { get; set; }
+        public long? CreatorUserId { get; set; }
+        public DateTime? LastModificationTime { get; set; }
+        public long? LastModifierUserId { get; set; }
     }
 }
