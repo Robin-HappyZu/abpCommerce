@@ -33,15 +33,15 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 {
                     new BarButtonItem()
                     {
-                        Name = "ShoppingCart",
-                        //DisplayName = "购物车",
-                        Icon = "icon icon-cart",
-                        Url = Url.Action("Index","ShoppingCart", new {area="Mobile",type="empty"},true)
+                        Name = "Account",
+                        //DisplayName = "个人中心",
+                        Icon = "icon icon-me",
+                        Url = Url.Action("Index","Account", new {area="Mobile",type="empty"},true)
                     }
                 }
             };
             //隐藏底部
-            //ViewBag.HideFootBar = true;
+            ViewBag.HideFootBar = true;
             return View();
         }
     }

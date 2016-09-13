@@ -6,16 +6,16 @@
 </a>
 <a href="@Url.Action("Index","Catalog",new {area="Mobile"},true)" class="tab-item @(Model.ActiveMenuItemName == "Catalog" ? "active" : "")">
     <span class="icon icon-app"></span>
-    <span class="tab-label">分类</span>
+    <span class="tab-label">收藏</span>
 </a>
-<a href="@Url.Action("Index","ShoppingCart",new {area="Mobile"},true)" class="tab-item @(Model.ActiveMenuItemName == "ShoppingCart" ? "active" : "")">
+@*<a href="@Url.Action("Index","ShoppingCart",new {area="Mobile"},true)" class="tab-item @(Model.ActiveMenuItemName == "ShoppingCart" ? "active" : "")">
     <span class="icon icon-cart"></span>
     <span class="tab-label">购物车</span>
     @if (Model.ShoppingCartItemCount > 0 && Model.ActiveMenuItemName != "ShoppingCart")
     {
         <span class="badge">@Model.ShoppingCartItemCount</span>
     }
-</a>
+</a>*@
 <a href="@Url.Action("Index","Account",new {area="Mobile"},true)" class="tab-item @(Model.ActiveMenuItemName == "Me" ? "active" : "")">
     <span class="icon icon-me"></span>
     <span class="tab-label">个人中心</span>
