@@ -1,11 +1,12 @@
-﻿
-@font-face {font-family: "iconfont";
-  src: url('plugins/iconfont/iconfont.eot?t=1469178583'); /* IE9*/
-  src: url('plugins/iconfont/iconfont.eot?t=1469178583#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('plugins/iconfont/iconfont.woff?t=1469178583') format('woff'), /* chrome, firefox */
-  url('plugins/iconfont/iconfont.ttf?t=1469178583') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('plugins/iconfont/iconfont.svg?t=1469178583#iconfont') format('svg'); /* iOS 4.1- */
+﻿@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1473755605_2406368.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1473755605_2406368.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1473755605_2406368.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1473755605_2406368.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1473755605_2406368.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
+                    
 
 .iconfont {
   font-family:"iconfont" !important;
@@ -14,6 +15,7 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-menpiao:before { content: "\e623"; }
 .icon-check:before { content: "\e600"; }
 .icon-close:before { content: "\e601"; }
 .icon-favorfill:before { content: "\e602"; }
@@ -30,7 +32,7 @@
 .icon-settings:before { content: "\e60d"; }
 .icon-question:before { content: "\e60e"; }
 .icon-right:before { content: "\e60f"; }
-.icon-cart1:before { content: "\e610"; }
+.icon-cart:before { content: "\e610"; }
 .icon-qrcode:before { content: "\e611"; }
 .icon-delete:before { content: "\e612"; }
 .icon-message:before { content: "\e613"; }
@@ -42,16 +44,34 @@
 .icon-focus:before { content: "\e619"; }
 .icon-browser:before { content: "\e61a"; }
 .icon-service1:before { content: "\e61b"; }
+.icon-wodelvyouv3:before { content: "\e627"; }
+.icon-gentuanyou:before { content: "\e628"; }
+.icon-jingwaiyou:before { content: "\e629"; }
+.icon-travel:before { content: "\e62a"; }
 .icon-mac:before { content: "\e61c"; }
 .icon-windows:before { content: "\e61d"; }
 .icon-android:before { content: "\e61e"; }
+.icon-travel1:before { content: "\e62b"; }
+.icon-youshanwanshui:before { content: "\e62c"; }
 .icon-add:before { content: "\e61f"; }
 .icon-move:before { content: "\e620"; }
+.icon-lvyoujiang:before { content: "\e62d"; }
+.icon-travelno:before { content: "\e62e"; }
+.icon-iconsirenmoshi:before { content: "\e62f"; }
 .icon-p-return:before { content: "\e624"; }
 .icon-wuliu:before { content: "\e626"; }
 .icon-my-tuikuantuihuo:before { content: "\e625"; }
 .icon-coupon:before { content: "\e622"; }
+.icon-travel2:before { content: "\e630"; }
 .icon-pingjia:before { content: "\e609"; }
+.icon-daoyoufuwu:before { content: "\e631"; }
+.icon-sirendingzhi-copy:before { content: "\e632"; }
+.icon-china:before { content: "\e633"; }
+.icon-guojiyou:before { content: "\e634"; }
+.icon-travel3:before { content: "\e635"; }
+.icon-lvyouxianlu:before { content: "\e636"; }
+.icon-guoneiyou:before { content: "\e637"; }
+.icon-tubulvyou:before { content: "\e638"; }
 
 .top50{ padding-top: 50px;}
 .bar{ z-index: 999;}
@@ -401,6 +421,13 @@ input, button, select, textarea {
 .quick-link .cart a{ background-color: #00ccff; }
 .quick-link .favorites a{ background-color: #cc9933;}
 .quick-link .coupon a{ background-color: #cc3333;}
+
+.nav-link{ text-align: center;padding-top: 10px;background-color: #ffffff;color: #666666; font-size: 12px; line-height: 32px;}
+.nav-link a{color: #ffffff;display: block;width: 40px;margin: auto;height: 40px;line-height: 34px;font-size: 26px;border-radius: 50%; }
+.nav-link .cart a{ background-color: #00ccff; }
+.nav-link .favorites a{ background-color: #cc9933;}
+.nav-link .coupon a{ background-color: #cc3333;}
+
 
 .list-block .item-content:after {
     content: '';
