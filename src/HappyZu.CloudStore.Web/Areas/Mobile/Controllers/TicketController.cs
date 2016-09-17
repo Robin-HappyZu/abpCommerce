@@ -15,6 +15,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
     public class TicketController : MobileControllerBase
     {
         // GET: Mobile/Ticket
+        #region 门票列表
         public ActionResult Index()
         {
             ViewBag.Title = "长沙";
@@ -47,5 +48,42 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
             return View();
         }
+
+        #endregion
+
+        #region 门票详情
+
+        public ActionResult Detail()
+        {
+            ViewBag.Title = "飞行家室内飞行体验馆";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "Tickets",
+                        //DisplayName = "长沙",
+                        Icon = "icon icon-left",
+                        Url = Url.Action("Index","Ticket", new {area="Mobile"},true)
+                    }
+                },
+                RightButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "Favorites",
+                        //DisplayName = "个人中心",
+                        Icon = "icon icon-star",
+                        Url = Url.Action("Index","Account", new {area="Mobile",type="empty"},true)
+                    }
+                }
+            };
+            return View();
+        }
+        #endregion
     }
 }

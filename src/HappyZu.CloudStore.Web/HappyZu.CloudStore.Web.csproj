@@ -415,7 +415,6 @@
     <Content Include="Areas\Admin\Views\Travel\Travelers.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\TravelOrders.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\EditTravel.cshtml" />
-    <Content Include="Themes\Default\Mobile\content\plugins\zepto.winscrolled.js" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -601,6 +600,7 @@
     <Content Include="Themes\Default\Mobile\content\plugins\iconfont\iconfont.eot" />
     <Content Include="Themes\Default\Mobile\content\plugins\iconfont\iconfont.ttf" />
     <Content Include="Themes\Default\Mobile\content\plugins\iconfont\iconfont.woff" />
+    <Content Include="Themes\Default\Mobile\Views\Ticket\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

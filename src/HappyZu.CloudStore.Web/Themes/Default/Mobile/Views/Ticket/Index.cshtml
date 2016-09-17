@@ -270,23 +270,29 @@
 
 @section scripts{
     <script>
-        $(function () {
-            var $win = $(window), lastScrollPos = 0;
+        var $win = $(window), lastScrollPos = 0;
+        var lastScrollPos = 0;
 
-            var checkScrollPosition = function () {
-                var $this = $(this);
-                var scrollTop = $this.scrollTop();
-                if (lastScrollPos !== scrollTop) {
-                    if (lastScrollPos > scrollTop) {
-                        $win.trigger('scrollUp', lastScrollPos);
-                    } else {
-                        $win.trigger('scrollDown', lastScrollPos);
-                    }
-                    lastScrollPos = scrollTop;
+        var checkScrollPosition = function (domain) {
+            var $this = $(domain);
+            var scrollTop = $this.scrollTop();
+            if (lastScrollPos !== scrollTop) {
+                if (lastScrollPos > scrollTop) {
+                    $win.trigger('scrollUp', lastScrollPos);
+                } else {
+                    $win.trigger('scrollDown', lastScrollPos);
                 }
+                lastScrollPos = scrollTop;
+            }
+            console.debug(lastScrollPos);
+        };
 
-            };
-            $('.native-scroll').on('touchstart', checkScrollPosition);
+        $(function () {
+            $('.native-scroll').on('touchstart', function() {
+                checkScrollPosition('.native-scroll');
+
+                setTimeout("checkScrollPosition('.native-scroll')", 500);
+            });
 
             $(window).on('scrollUp', function () {
                 if ($('.h-choose').hasClass('hide')) {
