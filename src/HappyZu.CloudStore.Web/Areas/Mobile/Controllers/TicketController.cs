@@ -5,27 +5,31 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
+using HappyZu.CloudStore.Web.Controllers;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 {
-    public class HomeController : MobileControllerBase
+    /// <summary>
+    /// 门票
+    /// </summary>
+    public class TicketController : MobileControllerBase
     {
-        // GET: Mobile/Home
+        // GET: Mobile/Ticket
         public ActionResult Index()
         {
-            ViewBag.Title = "首页";
+            ViewBag.Title = "长沙";
             ViewBag.HeaderBar = new HeaderViewModel()
             {
-                ShowTitle = false,
+                ShowTitle = true,
                 Title = ViewBag.Title,
-                ShowSearchBar = true,
-                LeftButtonItems = new []
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
                 {
                     new BarButtonItem()
                     {
-                        Name = "Location",
-                        DisplayName = "长沙",
-                        Icon = "icon icon-location",
+                        Name = "Home",
+                        //DisplayName = "长沙",
+                        Icon = "icon icon-left",
                         Url = Url.Action("Index","Home", new {area="Mobile"},true)
                     }
                 },
@@ -33,13 +37,14 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 {
                     new BarButtonItem()
                     {
-                        Name = "Account",
+                        Name = "Search",
                         //DisplayName = "个人中心",
-                        Icon = "icon icon-me",
+                        Icon = "icon icon-search",
                         Url = Url.Action("Index","Account", new {area="Mobile",type="empty"},true)
                     }
                 }
             };
+
             return View();
         }
     }

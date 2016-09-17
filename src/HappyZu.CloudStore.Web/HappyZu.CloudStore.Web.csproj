@@ -415,6 +415,8 @@
     <Content Include="Areas\Admin\Views\Travel\Travelers.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\TravelOrders.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\EditTravel.cshtml" />
+    <Content Include="Themes\Default\Mobile\content\plugins\zepto.winscrolled.js" />
+    <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -530,8 +532,13 @@
     <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SetRolePermissionsViewModel.cs" />
+    <Compile Include="Areas\Mobile\Controllers\ActivityController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\CustomizeController.cs" />
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mobile\Controllers\LayoutController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\MobileControllerBase.cs" />
+    <Compile Include="Areas\Mobile\Controllers\TicketController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\ToursController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\FootMenuViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\HeaderViewModel.cs" />
@@ -625,7 +632,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Mobile\Views\Activity\" />
+    <Folder Include="Areas\Mobile\Views\Customize\" />
     <Folder Include="Areas\Mobile\Views\Layout\" />
+    <Folder Include="Areas\Mobile\Views\Tours\" />
     <Folder Include="Areas\Web\Models\" />
   </ItemGroup>
   <PropertyGroup>

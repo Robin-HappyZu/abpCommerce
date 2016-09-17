@@ -1,81 +1,15 @@
-﻿@section styles{
-    <link href="~/Themes/Default/Mobile/content/plugins/sui/css/sm-extend.min.css" rel="stylesheet" />
-}
+﻿
+<div class="bar bar-header-secondary h-choose">
+    <div class="searchbar">
+        <a class="searchbar-cancel">搜索</a>
+        <div class="search-input">
+            <label class="icon icon-search" for="search"></label>
+            <input type="search" id="search" placeholder="景点名称/游玩主题">
+        </div>
+    </div>
+</div>
+<div class="content native-scroll transactions">
 
-<div class="content native-scroll">
-    <!-- Slider -->
-    <div class="swiper-container my-swiper" data-space-between='10'>
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="~/Themes/Default/Mobile/content/images/1.jpg" class="img-responsive" alt="">
-            </div>
-            <div class="swiper-slide"><img src="~/Themes/Default/Mobile/content/images/2.jpg" class="img-responsive" alt="">
-            </div>
-            <div class="swiper-slide"><img src="~/Themes/Default/Mobile/content/images/3.jpg" class="img-responsive" alt="">
-            </div>
-            <div class="swiper-slide"><img src="~/Themes/Default/Mobile/content/images/4.jpg" class="img-responsive" alt="">
-            </div>
-            <div class="swiper-slide">
-                <img src="~/Themes/Default/Mobile/content/images/5.jpg" class="img-responsive" alt="">
-            </div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
-    <div class="space-line"></div>
-
-    <div class="row no-gutter nav-link">
-        <div class="col-25 item">
-            <a href="@Url.Action("Index","Tours",new {area="Mobile"},true)"><span class="icon iconfont icon-guojiyou"></span></a>
-            境外游
-        </div>
-        <div class="col-25 item">
-            <a href="@Url.Action("Index","Activity",new {area="Mobile"},true)"><span class="icon iconfont icon-youshanwanshui"></span></a>
-            当地玩乐
-        </div>
-        <div class="col-25 item">
-            <a href="@Url.Action("Index","Ticket",new {area="Mobile"},true)"><span class="icon iconfont icon-menpiao"></span></a>
-            景点门票
-        </div>
-        <div class="col-25 item">
-            <a href="@Url.Action("Index","Customize",new {area="Mobile"},true)"><span class="icon iconfont icon-iconsirenmoshi"></span></a>
-            私人定制
-        </div>
-    </div>
-    <div class="space-line"></div>
-    <div class="row grid-box grid-box1">
-        <div class="col-40 ">
-            <h4 class="purple">中秋去赏月</h4>
-            <p>优惠伴手礼7折起</p>
-            <div class="img-box">
-                <img src="~/Themes/Default/Mobile/content/images/p10_130x150.jpg"/>
-            </div>
-        </div>
-        <div class="col-60 col-line-left">
-            <div class="row">
-                <div class="col-100">
-                    <div class="pull-left">
-                        <h4 class="red">当季首选</h4>
-                        <p>早秋早约</p>
-                    </div>
-                    <div class="img-box img-w-50">
-                        <img src="~/Themes/Default/Mobile/content/images/p1_175x170.jpg"/>
-                    </div>
-                </div>
-                <div class="col-100">
-                    <div class="pull-left">
-                        <h4 class="blue">会员特权</h4>
-                        <p>一日游sale</p>
-                    </div>
-                    <div class="img-box img-w-50">
-                        <img src="~/Themes/Default/Mobile/content/images/p2_175x170.jpg"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="grid-box-line-title">
-        <div class="grid-title">长沙精选</div>
-        <div class="back-line"></div>
-    </div>
     <div class="list-block media-list">
         <ul>
             <li>
@@ -84,7 +18,8 @@
                         <div class="tip-label">
                             经典必玩
                         </div>
-                    <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" width="80"></div>
+                        <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" width="80">
+                    </div>
                     <div class="item-inner">
                         <div class="item-title">【神奇隐水洞 十里水画廊】咸宁隐水洞+大汉皇族村（明清古居）一日游【移步换景溶洞奇观 武汉出发】</div>
                         <div class="item-tags-box">
@@ -307,15 +242,68 @@
         </ul>
     </div>
 </div>
-
+<div class="bar bar-footer data-choose">
+    <nav class="bar bar-tab">
+        <a class="tab-item external active" href="#">
+            <span class="icon icon-home"></span>
+            <span class="tab-label">Label</span>
+        </a>
+        <a class="tab-item external" href="#">
+            <span class="icon icon-me"></span>
+            <span class="tab-label">Label</span>
+            <span class="badge">2</span>
+        </a>
+        <a class="tab-item external" href="#">
+            <span class="icon icon-star"></span>
+            <span class="tab-label">Label</span>
+        </a>
+        <a class="tab-item external" href="#">
+            <span class="icon icon-cart"></span>
+            <span class="tab-label">Label</span>
+        </a>
+        <a class="tab-item external" href="#">
+            <span class="icon icon-settings"></span>
+            <span class="tab-label">Label</span>
+        </a>
+    </nav>
+</div>
 
 @section scripts{
-    <script src="~/Themes/Default/Mobile/content/plugins/sui/js/sm-extend.min.js"></script>
     <script>
         $(function () {
-            $(".swiper-container").swiper({
-                autoplay: 5000,
-                resistance: true
+            var $win = $(window), lastScrollPos = 0;
+
+            var checkScrollPosition = function () {
+                var $this = $(this);
+                var scrollTop = $this.scrollTop();
+                if (lastScrollPos !== scrollTop) {
+                    if (lastScrollPos > scrollTop) {
+                        $win.trigger('scrollUp', lastScrollPos);
+                    } else {
+                        $win.trigger('scrollDown', lastScrollPos);
+                    }
+                    lastScrollPos = scrollTop;
+                }
+
+            };
+            $('.native-scroll').on('touchstart', checkScrollPosition);
+
+            $(window).on('scrollUp', function () {
+                if ($('.h-choose').hasClass('hide')) {
+                    $('.h-choose').removeClass('hide');
+                }
+                if ($('.data-choose').hasClass('hide')) {
+                    $('.data-choose').removeClass('hide');
+                }
+            });
+
+            $(window).on('scrollDown', function () {
+                if (!$('.h-choose').hasClass('hide')) {
+                    $('.h-choose').addClass('hide');
+                }
+                if (!$('.data-choose').hasClass('hide')) {
+                    $('.data-choose').addClass('hide');
+                }
             });
         });
     </script>

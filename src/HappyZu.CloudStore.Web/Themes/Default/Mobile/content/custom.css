@@ -142,7 +142,7 @@
 .item-travel .item-media .tip-label {
     position: absolute;
     color: #ffffff;
-    top: 2px;
+    top: 5px;
     right: -5px;
     z-index: 2;
     width: 52px;
@@ -207,7 +207,7 @@
   display: -webkit-flex;
   display: flex;
   max-height: 1.2rem;
-    line-height: 1.4rem;
+    line-height: 1.2rem;
     overflow: hidden;
 }
 
@@ -709,3 +709,27 @@ input, button, select, textarea {
 .infomation span.iconfont{ color: #ff0000;}
 .product-tools .pull-left{ line-height: 44px;font-size: 16px;color: #FF0000;}
 .product-tools .button{ height: 30px;line-height: 30px;border-radius: 0;padding: 0 1rem;}
+
+.h-choose.hide {
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    display: block !important;
+}
+.data-choose.hide {
+    transform: translateY(110%);
+    -webkit-transform: translateY(110%);
+    display: block !important;
+}
+.data-choose, .h-choose {
+    -webkit-transition: all 0.3s ease;
+    z-index: 998;
+    transition: all 0.3s ease;
+}
+.h-choose.hide.bar-header-secondary~.content {
+    top: 2.2rem;
+}
+
+.transactions {
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
