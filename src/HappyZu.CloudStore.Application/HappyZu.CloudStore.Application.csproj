@@ -125,6 +125,22 @@
     <Compile Include="Roles\Dto\RolePermissionOutputDto.cs" />
     <Compile Include="Roles\IRoleAppService.cs" />
     <Compile Include="Roles\Dto\UpdateRolePermissionsInput.cs" />
+    <Compile Include="Trip\DestAppService.cs" />
+    <Compile Include="Trip\Dto\AddDestCityInput.cs" />
+    <Compile Include="Trip\Dto\AddDestInput.cs" />
+    <Compile Include="Trip\Dto\AddDestProvinceInput.cs" />
+    <Compile Include="Trip\Dto\DestCityDto.cs" />
+    <Compile Include="Trip\Dto\DestDto.cs" />
+    <Compile Include="Trip\Dto\DestProvinceDto.cs" />
+    <Compile Include="Trip\Dto\GetDestsInput.cs" />
+    <Compile Include="Trip\Dto\TicketDto.cs" />
+    <Compile Include="Trip\Dto\TicketOrderDto.cs" />
+    <Compile Include="Trip\Dto\TicketQuoteDto.cs" />
+    <Compile Include="Trip\Dto\UpdateDestCityInput.cs" />
+    <Compile Include="Trip\Dto\UpdateDestInput.cs" />
+    <Compile Include="Trip\Dto\UpdateDestProvinceInput.cs" />
+    <Compile Include="Trip\IDestAppService.cs" />
+    <Compile Include="Trip\TicketDto.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\IUserAppService.cs" />
     <Compile Include="Roles\RoleAppService.cs" />
@@ -149,6 +165,7 @@
       <Name>HappyZu.CloudStore.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
