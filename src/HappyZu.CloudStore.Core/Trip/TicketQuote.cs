@@ -13,7 +13,7 @@ namespace HappyZu.CloudStore.Trip
     /// 门票报价
     /// </summary>
     [Table("Trip_TicketQuotes")]
-    public class TicketQuotes:Entity, ISoftDelete, IAudited
+    public class TicketQuote:Entity, ISoftDelete, IAudited
     {
         /// <summary>
         /// 门票Id

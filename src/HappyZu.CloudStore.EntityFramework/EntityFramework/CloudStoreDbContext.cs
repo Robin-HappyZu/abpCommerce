@@ -27,7 +27,7 @@ namespace HappyZu.CloudStore.EntityFramework
         public virtual IDbSet<Ticket> Tickets { get; set; }
         public virtual IDbSet<TicketCollectingPerson> TicketCollectingPersons { get; set; }
         public virtual IDbSet<TicketOrder> TicketOrders { get; set; }
-        public virtual IDbSet<TicketQuotes> TicketQuotes { get; set; }
+        public virtual IDbSet<TicketQuote> TicketQuotes { get; set; }
         public virtual IDbSet<TicketType> TicketTypes { get; set; }
         public virtual IDbSet<Travel> Travels { get; set; }
         public virtual IDbSet<Traveler> Travelers { get; set; }
