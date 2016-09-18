@@ -532,6 +532,7 @@
     <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SetRolePermissionsViewModel.cs" />
+    <Compile Include="Areas\Mobile\Controllers\AccountController.cs" />
     <Compile Include="Areas\Mobile\Controllers\ActivityController.cs" />
     <Compile Include="Areas\Mobile\Controllers\CustomizeController.cs" />
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
@@ -603,6 +604,8 @@
     <Content Include="Themes\Default\Mobile\content\plugins\iconfont\iconfont.woff" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Detail.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\TicketOrder.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Ticket\ChoosePayment.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Ticket\PaymentSuccess.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -634,6 +637,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Mobile\Views\Account\" />
     <Folder Include="Areas\Mobile\Views\Activity\" />
     <Folder Include="Areas\Mobile\Views\Customize\" />
     <Folder Include="Areas\Mobile\Views\Layout\" />

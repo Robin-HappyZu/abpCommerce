@@ -123,6 +123,23 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         public ActionResult ChoosePayment()
         {
+            ViewBag.Title = "支付方式";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "TicketOrder",
+                        //DisplayName = "长沙",
+                        Icon = "icon icon-left",
+                        Url = Url.Action("TicketOrder","Ticket", new {area="Mobile"},true)
+                    }
+                }
+            };
             return View();
         }
         #endregion
@@ -139,6 +156,23 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         public ActionResult PaymentSuccess()
         {
+            ViewBag.Title = "支付成功";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                RightButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "Account",
+                        //DisplayName = "长沙",
+                        Icon = "icon icon-me",
+                        Url = Url.Action("Index","Account", new {area="Mobile"},true)
+                    }
+                }
+            };
             return View();
         }
         #endregion

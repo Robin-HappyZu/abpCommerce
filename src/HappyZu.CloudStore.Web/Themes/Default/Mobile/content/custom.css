@@ -1,11 +1,12 @@
 ﻿@font-face {
   font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1474184225_0167265.eot'); /* IE9*/
-  src: url('//at.alicdn.com/t/font_1474184225_0167265.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_1474184225_0167265.woff') format('woff'), /* chrome、firefox */
-  url('//at.alicdn.com/t/font_1474184225_0167265.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('//at.alicdn.com/t/font_1474184225_0167265.svg#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('//at.alicdn.com/t/font_1474204508_2966132.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1474204508_2966132.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1474204508_2966132.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1474204508_2966132.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1474204508_2966132.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
+                                
          
 body {
     font-size: 14px;
@@ -33,7 +34,7 @@ body {
 .icon-send:before { content: "\e60a"; }
 .icon-list:before { content: "\e60b"; }
 .icon-scan:before { content: "\e60c"; }
-.icon-settings:before { content: "\e60d"; }
+.icon-settings1:before { content: "\e60d"; }
 .icon-question:before { content: "\e60e"; }
 .icon-right:before { content: "\e60f"; }
 .icon-cart:before { content: "\e610"; }
@@ -65,6 +66,7 @@ body {
 .icon-youshanwanshui:before { content: "\e62c"; }
 .icon-add1:before { content: "\e61f"; }
 .icon-move:before { content: "\e620"; }
+.icon-up:before { content: "\e647"; }
 .icon-lvyoujiang:before { content: "\e62d"; }
 .icon-travelno:before { content: "\e62e"; }
 .icon-iconsirenmoshi:before { content: "\e62f"; }
@@ -77,6 +79,9 @@ body {
 .icon-my-tuikuantuihuo:before { content: "\e625"; }
 .icon-coupon:before { content: "\e622"; }
 .icon-travel2:before { content: "\e630"; }
+.icon-arrow-left:before { content: "\e648"; }
+.icon-arrow-down:before { content: "\e649"; }
+.icon-arrow-up:before { content: "\e64a"; }
 .icon-gantanhao:before { content: "\e645"; }
 .icon-pingjia:before { content: "\e609"; }
 .icon-dazheyouhui1:before { content: "\e63d"; }
@@ -85,6 +90,7 @@ body {
 .icon-sirendingzhi-copy:before { content: "\e632"; }
 .icon-china:before { content: "\e633"; }
 .icon-guojiyou:before { content: "\e634"; }
+.icon-arrow:before { content: "\e64b"; }
 .icon-travel3:before { content: "\e635"; }
 .icon-dazhe:before { content: "\e63f"; }
 .icon-lvyouxianlu:before { content: "\e636"; }
@@ -478,7 +484,7 @@ body {
     color: #555;
     display: block;
     font-size: 14px;
-    height: 27px;
+    height: 28px;
     padding: 6px 6px;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     vertical-align: middle;
@@ -496,6 +502,7 @@ body {
     margin-bottom: 0;
     padding: 1px 8px;
     line-height: 23px;
+    height: 28px;
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
@@ -1058,13 +1065,36 @@ input, button, select, textarea {
 
 .bootstrap-touchspin .input-group-btn-vertical{position:relative;white-space:nowrap;width:1%;vertical-align:middle;display:table-cell}.bootstrap-touchspin .input-group-btn-vertical>.btn{display:block;float:none;width:100%;max-width:100%;padding:8px 10px;margin-left:-1px;position:relative}.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-up{border-radius:0;border-top-right-radius:4px}.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down{margin-top:-2px;border-radius:0;border-bottom-right-radius:4px}.bootstrap-touchspin .input-group-btn-vertical i{position:absolute;top:3px;left:5px;font-size:9px;font-weight:400}
 
-.confirm-order .card .card-header{
+.confirm-order .card .card-header {
+    position: relative;
+}
+
+.confirm-order .card .card-header .header-active{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    line-height: 1rem;
+    margin-top: -0.5rem;
+}
+ .header-active .ticket-description {
+    font-size: 12px;
+     color: #999999;
+     border: 1px #999999 solid;
+     border-radius: 0.2rem;
+     padding: .1rem .3rem;
+}
+ .header-active .remove-ticket {
+     color: #999999;
+     padding: 5px 8px;
+ }
+.confirm-order .card .card-header .header-title {
     font-size: 15px;
-    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp: 2;
-    white-space: pre-wrap;
+    display:-webkit-inline-box;
+    -webkit-box-orient:vertical;-webkit-line-clamp: 2;
     overflow: hidden;
-    max-height: 58px;
-    -webkit-box-align:start;
+    max-height: 40px;
+    line-height: 1rem;
+    padding-right: 85px;
 }
 
 .form-row {
@@ -1164,7 +1194,6 @@ input, button, select, textarea {
 }
 .choose-date .choose-item .price dfn {
     font-style: normal;
-
 }
 .choose-date .choose-item.more {
     position: relative;
@@ -1196,26 +1225,108 @@ input, button, select, textarea {
 
 .sublist a span{ display: inline-block;}
 
-.sublist a span.icon-right {
-    transform:rotate(90deg);
-    -ms-transform:rotate(90deg); 	/* IE 9 */
-    -moz-transform:rotate(90deg); 	/* Firefox */
-    -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
-    -o-transform:rotate(90deg); 	/* Opera */
-}
-.sublist a.selected span.icon-right {
-    transform:rotate(-90deg);
-    -ms-transform:rotate(-90deg); 	/* IE 9 */
-    -moz-transform:rotate(-90deg); 	/* Firefox */
-    -webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
-    -o-transform:rotate(-90deg); 	/* Opera */
-}
-
-.payment-box {
-    
+.sublist a.selected span.icon-arrow-down {
+    transform:rotate(-180deg);
+    -ms-transform:rotate(-180deg); 	/* IE 9 */
+    -moz-transform:rotate(-180deg); 	/* Firefox */
+    -webkit-transform:rotate(-180deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-180deg); 	/* Opera */
+    transform-origin: 47% 48%;
+    -ms-transform-origin: 47% 48%; 	/* IE 9 */
+    -moz-transform-origin: 47% 48%; 	/* Firefox */
+    -webkit-transform-origin: 47% 48%; /* Safari 和 Chrome */
+    -o-transform-origin: 47% 48%;	/* Opera */
 }
 
 .payment-box .payment-subtotal{
+    position: relative;
+    line-height: 2.2rem;
+}
 
+.payment-box .payment-subtotal .subtotal{
+    padding-right: 60px;
+    font-size: 12px;
+    color: #999999;
+}
 
+.payment-box .payment-subtotal .subtotal{
+    padding-right: 60px;
+    font-size: 12px;
+    color: #ff7d13;
+}
+.payment-box .payment-subtotal .subtotal label{
+    color: #999999;
+}
+.payment-box .payment-subtotal .subtotal dfn {
+    font-style: normal;
+    font-size: 14px;
+}
+.payment-box .payment-subtotal .subtotal span {
+    font-size: 16px;
+}
+
+.payment-box .sublist{
+    position: absolute;
+    right: 15px;
+    top: 0px;
+}
+.payment-box .sublist a.order-details-btn{
+    color: #666666;
+    font-size: 12px;
+}
+
+.confirm-order-btn .button-fill.button-big {
+    height: 32px;line-height: 32px;
+    border-radius: .1rem;
+    -webkit-border-radius: .1rem;
+    -moz-border-radius: .1rem;
+}
+
+/*选择支付方式*/
+.order-info {
+    background-color: #ffffff;
+    padding: 15px;
+}
+
+.order-info .info-body {
+    display:-webkit-box;
+    -webkit-box-orient:vertical;-webkit-line-clamp: 2;
+    overflow: hidden;
+    max-height: 40px;
+    line-height: 1rem;
+    font-size: 16px;
+}
+
+.order-info .order-total {
+    margin-top: 1rem;
+    color: #ff7d13;
+    font-size: 14px;
+}
+.order-info .order-total dfn {
+    font-style: normal;
+    font-size: 16px;
+}
+.order-info .order-total span {
+    font-size: 20px;
+}
+.order-info .order-total label {
+    color: #999999;
+}
+
+.payment-success {
+    color: #7bcb25;
+    font-size: 24px;
+    text-align: center;
+    background-color: #ffffff;
+    margin-top: 1rem;
+    padding: 2rem 0;
+}
+
+.payment-fail {
+    color: #ff7d13;
+    font-size: 24px;
+    text-align: center;
+    background-color: #ffffff;
+    margin-top: 1rem;
+    padding: 2rem 0;
 }

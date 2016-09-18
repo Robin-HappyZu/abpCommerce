@@ -1,6 +1,14 @@
 ﻿<div class="content native-scroll confirm-order">
     <div class="card">
-        <div class="card-header">“室内跳伞飞行体验”单项行体验”单项行体验”单项行体验”单项行体验”单项行体验”单项</div>
+        <div class="card-header">
+            <div class="header-title">
+                “室内跳伞飞行体验”单项行体验”单项行体验”单项行体验”单项行体验”单项行体验”单项    
+            </div>
+            <div class="header-active">
+                <a href="javascript:;" class="ticket-description">购买须知</a>
+                <a href="javascript:;" class="remove-ticket"><span class="iconfont icon-delete"></span></a>
+            </div>
+        </div>
         <div class="card-content">
             <div class="card-content-inner form-row">
                 <div class="row-text">使用日期</div>
@@ -83,16 +91,16 @@
         <div class="col-75">
             <div class="payment-subtotal">
                 <div class="subtotal">
-                    总额：<label><dfn>$</dfn><span>200</span></label>
+                    <label>总额：</label><dfn>$</dfn><span>200</span>
                 </div>
                 <div class="sublist">
-                    <a href="javascript:;" class="order-details-btn">明细 <span class="iconfont icon-right transactions"></span></a>
+                    <a href="javascript:;" class="order-details-btn">明细 <span class="iconfont icon-arrow-down transactions"></span></a>
                 </div>
             </div>
         </div>
         <div class="col-25">
             <div class="confirm-order-btn">
-                <button class="button button-big button-fill button-warning">去支付</button>
+                <a href="@Url.Action("ChoosePayment","Ticket",new {area="Mobile"},true)" class="button button-big button-fill button-warning">去支付</a>
             </div>
         </div>
     </div>
@@ -114,6 +122,12 @@
                 } else {
                     $this.removeClass('selected');
                 }
+            });
+
+            $(document).on('click', '.remove-ticket', function () {
+                $.confirm('确定要删除吗?', function () {
+                    $.alert('You clicked Ok button');
+                });
             });
         })
     </script>
