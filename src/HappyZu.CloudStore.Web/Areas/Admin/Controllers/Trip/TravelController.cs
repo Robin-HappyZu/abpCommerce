@@ -2,7 +2,7 @@
 
 namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 {
-    public class TravelController : Controller
+    public class TravelController : AdminControllerBase
     {
         // GET: Admin/Travel
         public ActionResult Index()

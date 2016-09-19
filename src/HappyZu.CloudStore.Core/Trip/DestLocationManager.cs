@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
+using Abp.Linq.Extensions;
 
 namespace HappyZu.CloudStore.Trip
 {
@@ -23,6 +25,12 @@ namespace HappyZu.CloudStore.Trip
         public async Task<IList<DestProvince>> GetAllDestProvicesAsync(CountryType countryType)
         {
             return await _destProviceRepository.GetAllListAsync(province => province.DestType == countryType);
+        }
+
+        public Task<IList<DestProvince>> GetDestProvicesAsync(CountryType countryType,IPagedResultRequest page)
+        {
+            var list =  _destProviceRepository.GetAll().Where(province => province.DestType == countryType).OrderBy(province=>province.CreationTime).PageBy(page).ToList();
+            return Task.FromResult((IList<DestProvince>)list);
         }
 
         public async Task<IList<DestCity>> GetDestCitiesByProvinceIdAsync(int provinceId)

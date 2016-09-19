@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using HappyZu.CloudStore.Common.Dto;
 using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
@@ -15,31 +16,34 @@ namespace HappyZu.CloudStore.Trip
         /// <param name="countryType"></param>
         /// <returns></returns>
         Task<IListResult<DestProvinceDto>> GetAllDestProvincesAsync(CountryType countryType = CountryType.Domestic);
+        Task<IListResult<DestProvinceDto>> GetDestProvincesAsync(GetDestProvincesInput input);
+
+        Task<DestProvinceDto> GetDestProvinceByIdAsync(int id);
 
         Task<IListResult<DestCityDto>> GetDestCitiesByDestProvinceIdAsync(int destProviceId);
 
-        Task AddDestProvinceAsync(AddDestProvinceInput input);
+        Task<ResultOutputDto> AddDestProvinceAsync(AddDestProvinceInput input);
 
-        Task UpdateDestProvinceAsync(UpdateDestProvinceInput input);
+        Task<ResultOutputDto> UpdateDestProvinceAsync(UpdateDestProvinceInput input);
 
-        Task RemoveDestProvinceAsync(int provinceId);
+        Task<ResultOutputDto> RemoveDestProvinceAsync(int provinceId);
 
-        Task AddDestCityAsync(AddDestCityInput input);
+        Task<ResultOutputDto> AddDestCityAsync(AddDestCityInput input);
 
-        Task UpdateDestCityAsync(UpdateDestCityInput input);
+        Task<ResultOutputDto> UpdateDestCityAsync(UpdateDestCityInput input);
 
-        Task RemoveDestCityAsync(int cityId);
+        Task<ResultOutputDto> RemoveDestCityAsync(int cityId);
         #endregion
             
         #region 景点
 
         Task<IPagedResult<DestDto>> GetDestsByLocationAsync(GetDestsInput input);
 
-        Task AddDestAsync(AddDestInput input);
+        Task<ResultOutputDto> AddDestAsync(AddDestInput input);
 
-        Task RemoveDestAsync(int destId);
+        Task<ResultOutputDto> RemoveDestAsync(int destId);
 
-        Task UpdateDestAsync(UpdateDestInput input);
+        Task<ResultOutputDto> UpdateDestAsync(UpdateDestInput input);
 
         #endregion
     }

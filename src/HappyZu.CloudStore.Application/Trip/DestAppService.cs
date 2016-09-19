@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using HappyZu.CloudStore.Common.Dto;
 using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
@@ -32,13 +33,37 @@ namespace HappyZu.CloudStore.Trip
             return new ListResultDto<DestProvinceDto>(provinces.MapTo<List<DestProvinceDto>>());
         }
 
+        public async Task<IListResult<DestProvinceDto>> GetDestProvincesAsync(GetDestProvincesInput input)
+        {
+            var countryType = CountryType.Domestic;
+            try
+            {
+                countryType = (CountryType) input.CountryType;
+            }
+            catch
+            {
+                // ignored
+            }
+
+            var provinces = await _destLocationManager.GetDestProvicesAsync(countryType, input );
+
+            return new ListResultDto<DestProvinceDto>(provinces.MapTo<List<DestProvinceDto>>());
+        }
+
+        public async Task<DestProvinceDto> GetDestProvinceByIdAsync(int id)
+        {
+            var province = await _destLocationManager.GetDestProvinceByIdAsync(id);
+
+            return province.MapTo<DestProvinceDto>();
+        }
+
         public async Task<IListResult<DestCityDto>> GetDestCitiesByDestProvinceIdAsync(int destProviceId)
         {
             var cities = await _destLocationManager.GetDestCitiesByProvinceIdAsync(destProviceId);
             return new ListResultDto<DestCityDto>(cities.MapTo<List<DestCityDto>>());
         }
 
-        public async Task AddDestProvinceAsync(AddDestProvinceInput input)
+        public async Task<ResultOutputDto> AddDestProvinceAsync(AddDestProvinceInput input)
         {
             var provice = new DestProvince()
             {
@@ -48,23 +73,26 @@ namespace HappyZu.CloudStore.Trip
             };
 
             await _destLocationManager.InsertDestProvinceAsync(provice);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task UpdateDestProvinceAsync(UpdateDestProvinceInput input)
+        public async Task<ResultOutputDto> UpdateDestProvinceAsync(UpdateDestProvinceInput input)
         {
-            var provice = await _destLocationManager.GetDestProvinceByIdAsync(input.Province.Id);
+            var provice = await _destLocationManager.GetDestProvinceByIdAsync(input.Id);
             provice.Name = input.Province.Name;
             provice.DestType = input.Province.DestType;
 
             await _destLocationManager.UpdateDestProvinceAsync(provice);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task RemoveDestProvinceAsync(int provinceId)
+        public async Task<ResultOutputDto> RemoveDestProvinceAsync(int provinceId)
         {
             await _destLocationManager.RemoveDestProvinceAsync(provinceId);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task AddDestCityAsync(AddDestCityInput input)
+        public async Task<ResultOutputDto> AddDestCityAsync(AddDestCityInput input)
         {
             var city = new DestCity()
             {
@@ -74,9 +102,10 @@ namespace HappyZu.CloudStore.Trip
             };
 
             await _destLocationManager.InsertDestCityAsync(city);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task UpdateDestCityAsync(UpdateDestCityInput input)
+        public async Task<ResultOutputDto> UpdateDestCityAsync(UpdateDestCityInput input)
         {
             var city = await _destLocationManager.GetDestCityByIdAsync(input.City.Id);
             city.Name = input.City.Name;
@@ -84,11 +113,13 @@ namespace HappyZu.CloudStore.Trip
             city.DestCount = input.City.DestCount;
 
             await _destLocationManager.UpdateDestCityAsync(city);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task RemoveDestCityAsync(int cityId)
+        public async Task<ResultOutputDto> RemoveDestCityAsync(int cityId)
         {
             await _destLocationManager.RemoveDestCityAsync(cityId);
+            return ResultOutputDto.Successed;
         }
 
         public async Task<IPagedResult<DestDto>> GetDestsByLocationAsync(GetDestsInput input)
@@ -102,23 +133,26 @@ namespace HappyZu.CloudStore.Trip
             };
         }
 
-        public async Task AddDestAsync(AddDestInput input)
+        public async Task<ResultOutputDto> AddDestAsync(AddDestInput input)
         {
             var dest = input.Dest.MapTo<Dest>();
 
             await _destMananger.AddDestAsync(dest);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task RemoveDestAsync(int destId)
+        public async Task<ResultOutputDto> RemoveDestAsync(int destId)
         {
             await _destMananger.RemoveDestAsync(destId);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task UpdateDestAsync(UpdateDestInput input)
+        public async Task<ResultOutputDto> UpdateDestAsync(UpdateDestInput input)
         {
             var dest = await _destMananger.GetDestByIdAsync(input.Dest.Id);
 
             await _destMananger.UpdateDestAsync(dest);
+            return ResultOutputDto.Successed;
         }
     }
 }
