@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using HappyZu.CloudStore.Common.Dto;
 using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
@@ -23,21 +24,24 @@ namespace HappyZu.CloudStore.Trip
             _ticketQuoteManager = ticketQuoteManager;
         }
 
-        public async Task AddTicketAsync(AddTicketInput input)
+        public async Task<ResultOutputDto> AddTicketAsync(AddTicketInput input)
         {
             var ticket = input.Ticket.MapTo<Ticket>();
             await _ticketManager.AddTicketAsync(ticket);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task UpdateTicketAsync(UpdateTicketInput input)
+        public async Task<ResultOutputDto> UpdateTicketAsync(UpdateTicketInput input)
         {
             var ticket = input.Ticket.MapTo<Ticket>();
             await _ticketManager.UpdateTicketAysnc(ticket);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task RemoveTicketAsync(int ticketId)
+        public async Task<ResultOutputDto> RemoveTicketAsync(int ticketId)
         {
             await _ticketManager.RemoveTicketAsync(ticketId);
+            return ResultOutputDto.Successed;
         }
 
         public async Task<TicketDto> GetTicketByIdAsync(int ticketId)
@@ -58,21 +62,24 @@ namespace HappyZu.CloudStore.Trip
             };
         }
 
-        public async Task AddTicketQuoteAsync(AddTicketQuoteInput input)
+        public async Task<ResultOutputDto> AddTicketQuoteAsync(AddTicketQuoteInput input)
         {
             var quote = input.TicketQuote.MapTo<TicketQuote>();
             await _ticketQuoteManager.AddTicketQuoteAsync(quote);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task UpdateTicketQuoteAsync(UpdateTicketQuoteInput input)
+        public async Task<ResultOutputDto> UpdateTicketQuoteAsync(UpdateTicketQuoteInput input)
         {
             var quote = input.TicketQuote.MapTo<TicketQuote>();
             await _ticketQuoteManager.UpdateTicketQuoteAsync(quote);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task RemoveTicketQuoteAsync(int ticketQuoteId)
+        public async Task<ResultOutputDto> RemoveTicketQuoteAsync(int ticketQuoteId)
         {
             await _ticketQuoteManager.RemoveTicketQuoteAsync(ticketQuoteId);
+            return ResultOutputDto.Successed;
         }
 
         public async Task<TicketQuoteDto> GetTicketQuoteByIdAsync(int ticektQuoteId)
@@ -93,21 +100,24 @@ namespace HappyZu.CloudStore.Trip
             };
         }
 
-        public async Task AddTicketOrderAsync(AddTicketOrderInput input)
+        public async Task<ResultOutputDto> AddTicketOrderAsync(AddTicketOrderInput input)
         {
             var order = input.TicketOrder.MapTo<TicketOrder>();
             await _ticketOrderManager.AddTicketOrderAsync(order);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task UpdateTicketOrderAsync(UpdateTicketOrderInput input)
+        public async Task<ResultOutputDto> UpdateTicketOrderAsync(UpdateTicketOrderInput input)
         {
             var order = input.TicketOrder.MapTo<TicketOrder>();
             await _ticketOrderManager.UpdateTicketOrderAsync(order);
+            return ResultOutputDto.Successed;
         }
 
-        public async Task RemoveTicketOrderAsync(int ticketOrderId)
+        public async Task<ResultOutputDto> RemoveTicketOrderAsync(int ticketOrderId)
         {
             await _ticketOrderManager.RemoveTicketOrderAsync(ticketOrderId);
+            return ResultOutputDto.Successed;
         }
 
         public async Task<TicketOrderDto> GetTicketOrderByIdAsync(int ticektOrderId)
