@@ -427,6 +427,11 @@
                 var parent = link.parent().parent().parent();
                 parent.addClass('active open');
                 parent.find('a span.arrow').addClass('open');
+                if (parent.parent().hasClass('sub-menu')) {
+                    var top = parent.parent().parent();
+                    top.addClass('active open');
+                    top.find('a span.arrow').addClass('open');
+                }
             }
             App.runResizeHandlers();
         })

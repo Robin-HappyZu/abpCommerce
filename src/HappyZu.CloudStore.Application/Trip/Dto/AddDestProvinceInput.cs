@@ -8,6 +8,10 @@ namespace HappyZu.CloudStore.Trip.Dto
 {
     public class AddDestProvinceInput
     {
+        public AddDestProvinceInput()
+        {
+            Province=new DestProvinceDto();
+        }
         public DestProvinceDto Province { get; set; }
     }
 }

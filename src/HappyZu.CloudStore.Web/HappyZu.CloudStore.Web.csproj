@@ -417,6 +417,12 @@
     <Content Include="Areas\Admin\Views\Travel\EditTravel.cshtml" />
     <Content Include="Themes\Default\Mobile\content\jquery.bootstrap-touchspin.min.js" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\Provinces.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\Cities.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\ProvinceCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\ProvinceEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\_ProvinceCreateOrEdit.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -522,6 +528,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminControllerBase.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Trip\DestinationController.cs" />
     <Compile Include="Areas\Admin\Controllers\FAQController.cs" />
     <Compile Include="Areas\Admin\Controllers\SystemUserRoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\Trip\TravelController.cs" />
