@@ -20,7 +20,9 @@ namespace HappyZu.CloudStore.Trip
 
         Task<DestProvinceDto> GetDestProvinceByIdAsync(int id);
 
-        Task<IListResult<DestCityDto>> GetDestCitiesByDestProvinceIdAsync(int destProviceId);
+        Task<IListResult<DestCityDto>> GetDestCitiesByDestProvinceIdAsync(GetDestCitiesInput input);
+
+        Task<DestCityDto> GetDestCityByIdAsync(int id);
 
         Task<ResultOutputDto> AddDestProvinceAsync(AddDestProvinceInput input);
 

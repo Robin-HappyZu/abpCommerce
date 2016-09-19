@@ -29,13 +29,25 @@ namespace HappyZu.CloudStore.Trip
 
         public Task<IList<DestProvince>> GetDestProvicesAsync(CountryType countryType,IPagedResultRequest page)
         {
-            var list =  _destProviceRepository.GetAll().Where(province => province.DestType == countryType).OrderBy(province=>province.CreationTime).PageBy(page).ToList();
+            var query =  _destProviceRepository.GetAll().Where(province => province.DestType == countryType).OrderBy(province=>province.CreationTime);
+            if (page.MaxResultCount>0)
+            {
+                query.PageBy(page);
+            }
+            var list=query.ToList();
             return Task.FromResult((IList<DestProvince>)list);
         }
 
-        public async Task<IList<DestCity>> GetDestCitiesByProvinceIdAsync(int provinceId)
+        public Task<IList<DestCity>> GetDestCitiesByProvinceIdAsync(int provinceId,IPagedResultRequest page)
         {
-            return await _destCityRepository.GetAllListAsync(city => city.ProvinceId == provinceId);
+
+            var query = _destCityRepository.GetAll().Where(city => city.ProvinceId == provinceId).OrderBy(city => city.CreationTime);
+            if (page.MaxResultCount > 0)
+            {
+                query.PageBy(page);
+            }
+            var list = query.ToList();
+            return Task.FromResult((IList<DestCity>)list);
         }
 
         public async Task InsertDestProvinceAsync(DestProvince province)

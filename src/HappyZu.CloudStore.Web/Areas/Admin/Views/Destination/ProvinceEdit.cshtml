@@ -3,7 +3,7 @@
 @using Abp.Json
 @model HappyZu.CloudStore.Trip.Dto.UpdateDestProvinceInput
 @{
-    ViewBag.Title = "添加省份或地区";
+    ViewBag.Title = "编辑省份或地区";
 }
 
 <!-- BEGIN PAGE BAR -->
@@ -14,7 +14,7 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="@Url.Action("Index", "Destination",new {area="Admin"},true)">帮助列表</a>
+            <a href="@Url.Action("Provinces", "Destination",new {area="Admin"},true)">省份和地区</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
