@@ -113,6 +113,4 @@ namespace HappyZu.CloudStore.Trip
         /// </summary>
         public long? CreatorUserId { get; set; }
     }
-
-
 }

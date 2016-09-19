@@ -120,8 +120,11 @@
     <Compile Include="Trip\DestProvince.cs" />
     <Compile Include="Trip\IDType.cs" />
     <Compile Include="Trip\Ticket.cs" />
+    <Compile Include="Trip\TicketManager.cs" />
     <Compile Include="Trip\TicketOrder.cs" />
+    <Compile Include="Trip\TicketOrderManager.cs" />
     <Compile Include="Trip\TicketQuote.cs" />
+    <Compile Include="Trip\TicketQuoteManager.cs" />
     <Compile Include="Trip\TicketType.cs" />
     <Compile Include="Trip\Travel.cs" />
     <Compile Include="Trip\CountryType.cs" />
