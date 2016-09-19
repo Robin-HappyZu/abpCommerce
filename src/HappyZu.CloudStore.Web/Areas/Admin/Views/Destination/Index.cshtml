@@ -29,7 +29,7 @@
                 <p> NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only. </p>
             </div>*@
         <!-- Begin: life time stats -->
-        <div class="portlet light portlet-fit portlet-datatable bordered">
+        <div class="portlet light portlet-fit portlet-datatable bordered portlet-search">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-filter font-dark"></i>
@@ -37,8 +37,8 @@
                 </div>
                 <div class="actions">
                     <div class="btn-group btn-group-devided">
-                        <a class="btn btn-transparent green btn-outline btn-circle btn-sm active" href="javascript:;"><i class="fa fa-search"></i> 高级搜索</a>
-                        <a class="btn btn-transparent blue btn-outline btn-circle btn-sm active" href="@Url.Action("DestCreate", "Destination", new {area = "Admin", returnUrl = Request.RawUrl}, true)"><i class="fa fa-user-plus"></i> 添加景区</a>
+                        <a class="btn btn-transparent green btn-circle advanced-search" href="javascript:;"><i class="fa fa-search"></i> 高级搜索</a>
+                        <a class="btn btn-transparent blue btn-circle" href="@Url.Action("DestCreate", "Destination", new {area = "Admin", returnUrl = Request.RawUrl}, true)"><i class="fa fa-user-plus"></i> 添加景区</a>
                     </div>
                 </div>
             </div>
@@ -199,10 +199,10 @@
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script>
-        
-        var TableDatatablesAjax = function () {
 
-            var initPickers = function () {
+        var TableDatatablesAjax = function() {
+
+            var initPickers = function() {
                 //init date pickers
                 $('.date-picker').datepicker({
                     rtl: App.isRTL(),
@@ -210,31 +210,31 @@
                 });
             }
 
-            var handleRecords = function () {
+            var handleRecords = function() {
 
                 var grid = new Datatable();
 
                 grid.init({
                     src: $("#datatable_ajax"),
-                    onSuccess: function (grid, response) {
+                    onSuccess: function(grid, response) {
                         // grid:        grid object
                         // response:    json object of server side ajax response
                         // execute some code after table records loaded
                     },
-                    onError: function (grid) {
+                    onError: function(grid) {
                         // execute some code on network or other general error
                     },
-                    onDataLoad: function (grid) {
+                    onDataLoad: function(grid) {
                         // execute some code on ajax data load
                     },
                     loadingMessage: '正在加载...',
-                    dataTable: { // here you can define a typical datatable settings from http://datatables.net/usage/options
+                    dataTable: {
+// here you can define a typical datatable settings from http://datatables.net/usage/options
 
                         // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
                         // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
                         // So when dropdowns used the scrollable div should be removed.
                         //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
-
                         "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
 
                         "lengthMenu": [
@@ -243,44 +243,46 @@
                         ],
                         "pageLength": 10, // default record count per page
                         "ajax": {
-                            "url": "@Url.Action("GetProvinces", "Destination",new { area = "Admin",CountryType=0 },true)", // ajax source
+                            "url": "@Url.Action("GetProvinces", "Destination", new {area = "Admin", CountryType = 0}, true)", // ajax source
                         },
                         "columns": [
                             { "data": "Id" },
                             { "data": "Name" },
                             { "data": "IsDeleted" }
                         ],
-                        "columnDefs": [{
-                            orderable: false,//禁用排序
-                            targets: [0, 1,  2, 3]   //指定的列
+                        "columnDefs": [
+                        {
+                            orderable: false, //禁用排序
+                            targets: [0, 1, 2, 3] //指定的列
                         }, {
-                            render: function (data, type, row) {
+                            render: function(data, type, row) {
                                 return '<input type="checkbox" name="id[]" value="' + data + '">';
                             },
                             "targets": 0
                         },
                         {
-                            render: function (data, type, row) {
-                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("Cities", new { controller="Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-map-pin"></i> 城市</a> ';
+                            render: function(data, type, row) {
+                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("Cities", new {controller = "Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-map-pin"></i> 城市</a> ';
                                 return btns;
                             },
                             "targets": 2
                         },
                         {
-                            render: function (data, type, row) {
-                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("ProvinceEdit", new { controller="Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
-                                btns += '<a class="btn btn-sm btn-outline red" href="javascript:' + row.Id + ';"><i class="fa fa-trash-o"></i> 删除</a>';
-                                return btns;
-                            },
-                            "targets": 3
-                        }],
+                            render: function(data, type, row) {
+                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("ProvinceEdit", new {controller = "Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
+                                    btns += '<a class="btn btn-sm btn-outline red" href="javascript:' + row.Id + ';"><i class="fa fa-trash-o"></i> 删除</a>';
+                                    return btns;
+                                },
+                                "targets": 3
+                            }
+                        ],
                         "order": [
-                        ]// set first column as a default sort by asc
+                        ] // set first column as a default sort by asc
                     }
                 });
 
                 // handle group actionsubmit button click
-                grid.getTableWrapper().on('click', '.table-group-action-submit', function (e) {
+                grid.getTableWrapper().on('click', '.table-group-action-submit', function(e) {
                     e.preventDefault();
                     var action = $(".table-group-action-input", grid.getTableWrapper());
                     if (action.val() !== "" && grid.getSelectedRowsCount() > 0) {
@@ -317,7 +319,7 @@
             return {
 
                 //main function to initiate the module
-                init: function () {
+                init: function() {
                     initPickers();
                     handleRecords();
                 }
@@ -326,8 +328,15 @@
 
         }();
 
-        jQuery(document).ready(function () {
+        jQuery(document).ready(function() {
             TableDatatablesAjax.init();
+
+            $('.advanced-search').click(function () {
+                var searchPortletBody = $('.portlet-search .portlet-body');
+                if (searchPortletBody.hasClass('hide')) {
+                    searchPortletBody.removeClass('hide');
+                }
+            });
         });
     </script>
     <!-- END PAGE LEVEL SCRIPTS -->

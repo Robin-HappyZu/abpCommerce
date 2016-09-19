@@ -30,6 +30,24 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult DestCreate()
+        {
+            return View();
+        }
+
+        public ActionResult DestEdit()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 返回部分视图
+        /// </summary>
+        /// <returns></returns>
+        //public ActionResult HtmlView()
+        //{
+        //    return PartialView();
+        //}
         #endregion
 
         #region 目的地省份和地区

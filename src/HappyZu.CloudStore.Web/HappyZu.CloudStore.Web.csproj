@@ -426,6 +426,9 @@
     <Content Include="Areas\Admin\Views\Destination\CityCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\CityEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\_CityCreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\DestCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\DestEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\_DestCreateOrEdit.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
