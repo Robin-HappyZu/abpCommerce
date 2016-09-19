@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
+using Abp.Linq.Extensions;
 
 namespace HappyZu.CloudStore.Trip
 {
@@ -39,7 +40,17 @@ namespace HappyZu.CloudStore.Trip
         {
             return await _ticketOrderRepository.GetAsync(ticketOrderId);
         }
- 
+
+        public async Task<int> GetTicketOrdersCountAsync()
+        {
+            return await _ticketOrderRepository.CountAsync();
+        }
+
+        public IList<TicketOrder> GetPagedTicketOrders(IPagedResultRequest request)
+        {
+            return _ticketOrderRepository.GetAll().PageBy(request).ToList();
+        }
+
         #endregion
     }
 }

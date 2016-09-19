@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
+using Abp.Linq.Extensions;
 
 namespace HappyZu.CloudStore.Trip
 {
@@ -38,6 +40,28 @@ namespace HappyZu.CloudStore.Trip
         {
             return await _ticketQuoteRepository.GetAsync(ticketQuoteId);
         }
+
+        public async Task<int> GetTicketQuotesCountAsync(int ticketId)
+        {
+            if (ticketId <= 0)
+            {
+                return await _ticketQuoteRepository.CountAsync();
+            }
+
+            return await _ticketQuoteRepository.CountAsync(quote => quote.TicketId == ticketId);
+        }
+
+        public IList<TicketQuote> GetPagedTicketQuotesByTicketId(int ticketId, IPagedResultRequest request)
+        {
+            var query = _ticketQuoteRepository.GetAll();
+
+            if (ticketId > 0)
+            {
+                query = query.Where(quote => quote.TicketId == ticketId);
+            }
+
+            return query.PageBy(request).ToList();
+        } 
 
         public async Task<IList<TicketQuote>> GetTicketQuotesByTicketIdAsync(int ticketId)
         {

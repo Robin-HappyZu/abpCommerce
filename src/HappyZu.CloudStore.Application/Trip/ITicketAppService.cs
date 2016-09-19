@@ -18,7 +18,7 @@ namespace HappyZu.CloudStore.Trip
 
         Task<TicketDto> GetTicketByIdAsync(int ticketId);
 
-        Task<IPagedResult<TicketDto>> GetTicketsAsync(GetPagedTicketsInput input);
+        Task<IPagedResult<TicketDto>> GetPagedTicketsAsync(GetPagedTicketsInput input);
 
         #endregion
 
@@ -30,9 +30,9 @@ namespace HappyZu.CloudStore.Trip
 
         Task RemoveTicketQuoteAsync(int ticketQuoteId);
 
-        Task GetTicketQuoteByIdAsync(int ticektQuoteId);
+        Task<TicketQuoteDto> GetTicketQuoteByIdAsync(int ticektQuoteId);
 
-        Task<IPagedResult<TicketQuoteDto>> GetTicketQuotesByTicektId(GetPagedTicketQuotesInput input);
+        Task<IPagedResult<TicketQuoteDto>> GetPagedTicketQuotesByTicektId(GetPagedTicketQuotesInput input);
 
         #endregion
 
@@ -46,7 +46,7 @@ namespace HappyZu.CloudStore.Trip
 
         Task<TicketOrderDto> GetTicketOrderByIdAsync(int ticektOrderId);
 
-        Task<IPagedResult<TicketOrderDto>> GetTicketOrdersByTicektId(GetPagedTicketOrdersInput input);
+        Task<IPagedResult<TicketOrderDto>> GetPagedTicketOrdersByTicektId(GetPagedTicketOrdersInput input);
         #endregion
     }
 }
