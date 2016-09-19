@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using HappyZu.CloudStore.Entities;
@@ -15,7 +11,7 @@ namespace HappyZu.CloudStore.Trip
     /// 门票
     /// </summary>
     [Table("Trip_Ticket")]
-    public class Ticket:Entity, ISoftDelete, ISEO, IAudited
+    public class Ticket : Entity, ISoftDelete, ISEO, IAudited
     {
         /// <summary>
         /// 景点Id
@@ -82,7 +78,7 @@ namespace HappyZu.CloudStore.Trip
         /// </summary>
         [StringLength(255)]
         public string Description { get; set; }
-        
+
         /// <summary>
         /// 门票开始时间
         /// </summary>
@@ -92,7 +88,7 @@ namespace HappyZu.CloudStore.Trip
         /// 门票结束时间
         /// </summary>
         public DateTime EndDate { get; set; }
-        
+
         /// <summary>
         /// 提前预定天数
         /// </summary>
