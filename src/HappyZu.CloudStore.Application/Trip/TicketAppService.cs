@@ -4,85 +4,138 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+using HappyZu.CloudStore.Common.Dto;
 using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
 {
     public class TicketAppService : ITicketAppService
     {
-        public Task AddTicketAsync(AddTicketInput input)
+        private readonly TicketManager _ticketManager;
+        private readonly TicketQuoteManager _ticketQuoteManager;
+        private readonly TicketOrderManager _ticketOrderManager;
+
+        public TicketAppService(TicketManager ticketManager, TicketQuoteManager ticketQuoteManager,
+            TicketOrderManager ticketOrderManager)
         {
-            throw new NotImplementedException();
+            _ticketManager = ticketManager;
+            _ticketOrderManager = ticketOrderManager;
+            _ticketQuoteManager = ticketQuoteManager;
         }
 
-        public Task UpdateTicketAsync(UpdateTicketInput input)
+        public async Task<ResultOutputDto> AddTicketAsync(AddTicketInput input)
         {
-            throw new NotImplementedException();
+            var ticket = input.Ticket.MapTo<Ticket>();
+            await _ticketManager.AddTicketAsync(ticket);
+            return ResultOutputDto.Successed;
         }
 
-        public Task RemoveTicketAsync(int ticketId)
+        public async Task<ResultOutputDto> UpdateTicketAsync(UpdateTicketInput input)
         {
-            throw new NotImplementedException();
+            var ticket = input.Ticket.MapTo<Ticket>();
+            await _ticketManager.UpdateTicketAysnc(ticket);
+            return ResultOutputDto.Successed;
         }
 
-        public Task<TicketDto> GetTicketByIdAsync(int ticketId)
+        public async Task<ResultOutputDto> RemoveTicketAsync(int ticketId)
         {
-            throw new NotImplementedException();
+            await _ticketManager.RemoveTicketAsync(ticketId);
+            return ResultOutputDto.Successed;
         }
 
-        public Task<IPagedResult<TicketDto>> GetTicketsAsync(GetPagedTicketsInput input)
+        public async Task<TicketDto> GetTicketByIdAsync(int ticketId)
         {
-            throw new NotImplementedException();
+            var ticket = await _ticketManager.GetTicketByIdAsync(ticketId);
+            return ticket.MapTo<TicketDto>();
         }
 
-        public Task AddTicketQuoteAsync(AddTicketQuoteInput input)
+        public async Task<IPagedResult<TicketDto>> GetPagedTicketsAsync(GetPagedTicketsInput input)
         {
-            throw new NotImplementedException();
+            var count = await _ticketManager.GetDestTicketsCountAsync(input.DestId);
+            var tickets =  _ticketManager.GetPagedTickets(input.DestId, input);
+
+            return new PagedResultOutput<TicketDto>()
+            {
+                TotalCount = count,
+                Items = tickets.MapTo<List<TicketDto>>()
+            };
         }
 
-        public Task UpdateTicketQuoteAsync(UpdateTicketQuoteInput input)
+        public async Task<ResultOutputDto> AddTicketQuoteAsync(AddTicketQuoteInput input)
         {
-            throw new NotImplementedException();
+            var quote = input.TicketQuote.MapTo<TicketQuote>();
+            await _ticketQuoteManager.AddTicketQuoteAsync(quote);
+            return ResultOutputDto.Successed;
         }
 
-        public Task RemoveTicketQuoteAsync(int ticketQuoteId)
+        public async Task<ResultOutputDto> UpdateTicketQuoteAsync(UpdateTicketQuoteInput input)
         {
-            throw new NotImplementedException();
+            var quote = input.TicketQuote.MapTo<TicketQuote>();
+            await _ticketQuoteManager.UpdateTicketQuoteAsync(quote);
+            return ResultOutputDto.Successed;
         }
 
-        public Task GetTicketQuoteByIdAsync(int ticektQuoteId)
+        public async Task<ResultOutputDto> RemoveTicketQuoteAsync(int ticketQuoteId)
         {
-            throw new NotImplementedException();
+            await _ticketQuoteManager.RemoveTicketQuoteAsync(ticketQuoteId);
+            return ResultOutputDto.Successed;
         }
 
-        public Task<IPagedResult<TicketQuoteDto>> GetTicketQuotesByTicektId(GetPagedTicketQuotesInput input)
+        public async Task<TicketQuoteDto> GetTicketQuoteByIdAsync(int ticektQuoteId)
         {
-            throw new NotImplementedException();
+            var quote = await _ticketQuoteManager.GetTicketQuoteByIdAsync(ticektQuoteId);
+            return quote.MapTo<TicketQuoteDto>();
         }
 
-        public Task AddTicketOrderAsync(AddTicketOrderInput input)
+        public async Task<IPagedResult<TicketQuoteDto>> GetPagedTicketQuotesByTicektId(GetPagedTicketQuotesInput input)
         {
-            throw new NotImplementedException();
+            var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(input.TicketId);
+            var quotes = _ticketQuoteManager.GetPagedTicketQuotesByTicketId(input.TicketId, input);
+
+            return new PagedResultOutput<TicketQuoteDto>()
+            {
+                TotalCount = count,
+                Items = quotes.MapTo<List<TicketQuoteDto>>()
+            };
         }
 
-        public Task UpdateTicketOrderAsync(UpdateTicketOrderInput input)
+        public async Task<ResultOutputDto> AddTicketOrderAsync(AddTicketOrderInput input)
         {
-            throw new NotImplementedException();
+            var order = input.TicketOrder.MapTo<TicketOrder>();
+            await _ticketOrderManager.AddTicketOrderAsync(order);
+            return ResultOutputDto.Successed;
         }
 
-        public Task RemoveTicketOrderAsync(int ticketOrderId)
+        public async Task<ResultOutputDto> UpdateTicketOrderAsync(UpdateTicketOrderInput input)
         {
-            throw new NotImplementedException();
+            var order = input.TicketOrder.MapTo<TicketOrder>();
+            await _ticketOrderManager.UpdateTicketOrderAsync(order);
+            return ResultOutputDto.Successed;
         }
 
-        public Task<TicketOrderDto> GetTicketOrderByIdAsync(int ticektOrderId)
+        public async Task<ResultOutputDto> RemoveTicketOrderAsync(int ticketOrderId)
         {
-            throw new NotImplementedException();
+            await _ticketOrderManager.RemoveTicketOrderAsync(ticketOrderId);
+            return ResultOutputDto.Successed;
         }
 
-        public Task<IPagedResult<TicketOrderDto>> GetTicketOrdersByTicektId(GetPagedTicketOrdersInput input)
+        public async Task<TicketOrderDto> GetTicketOrderByIdAsync(int ticektOrderId)
         {
-            throw new NotImplementedException();
+            var order = await _ticketOrderManager.GetTicketOrderByIdAsync(ticektOrderId);
+            return order.MapTo<TicketOrderDto>();
+        }
+
+        public async Task<IPagedResult<TicketOrderDto>> GetPagedTicketOrdersByTicektId(GetPagedTicketOrdersInput input)
+        {
+            var count = await _ticketOrderManager.GetTicketOrdersCountAsync();
+            var orders = _ticketOrderManager.GetPagedTicketOrders(input);
+
+            return new PagedResultOutput<TicketOrderDto>()
+            {
+                TotalCount = count,
+                Items = orders.MapTo<List<TicketOrderDto>>()
+            };
         }
     }
 }

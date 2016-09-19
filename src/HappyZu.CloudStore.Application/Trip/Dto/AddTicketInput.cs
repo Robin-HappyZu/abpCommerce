@@ -8,5 +8,6 @@ namespace HappyZu.CloudStore.Trip.Dto
 {
     public class AddTicketInput
     {
+        public TicketDto Ticket { get; set; }
     }
 }

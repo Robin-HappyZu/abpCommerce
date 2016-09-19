@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
+using Abp.Linq.Extensions;
+using Castle.DynamicProxy.Generators.Emitters;
 
 namespace HappyZu.CloudStore.Trip
 {
@@ -35,8 +39,35 @@ namespace HappyZu.CloudStore.Trip
             return await _ticketRepository.GetAsync(ticketId);
         }
 
-        public async Task<IList<Ticket>> GetTicketsByDestId(int destId)
+        public async Task<int> GetDestTicketsCountAsync(int destId = 0)
         {
+            if (destId == 0)
+            {
+                return await _ticketRepository.CountAsync();
+            }
+
+            return await _ticketRepository.CountAsync(ticket => ticket.DestId == destId);
+        }
+
+        public IList<Ticket> GetPagedTickets(int destId, IPagedResultRequest request)
+        {
+            var query = _ticketRepository.GetAll();
+
+            if (destId > 0)
+            {
+                query = query.Where(ticket => ticket.DestId == destId);
+            }
+
+            return query.PageBy(request).ToList();
+        }
+
+        public async Task<IList<Ticket>> GetTicketsByDestIdAsync(int destId = 0)
+        {
+            if (destId == 0)
+            {
+                return await _ticketRepository.GetAllListAsync();
+            }
+
             return await _ticketRepository.GetAllListAsync(ticket => ticket.DestId == destId);
         }
 
