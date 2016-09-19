@@ -1,0 +1,134 @@
+﻿<div class="content native-scroll confirm-order">
+    <div class="card">
+        <div class="card-header">
+            <div class="header-title">
+                “室内跳伞飞行体验”单项行体验”单项行体验”单项行体验”单项行体验”单项行体验”单项    
+            </div>
+            <div class="header-active">
+                <a href="javascript:;" class="ticket-description">购买须知</a>
+                <a href="javascript:;" class="remove-ticket"><span class="iconfont icon-delete"></span></a>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-content-inner form-row">
+                <div class="row-text">使用日期</div>
+                <div class="row-value choose-date-box">
+                    <div class="choose-date selected">
+                        <div class="choose-item today">
+                            <label>今天</label>
+                            <div class="price">
+                                <dfn>$</dfn>
+                                <span>200,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choose-date">
+                        <div class="choose-item tomorrow">
+                            <label>明天</label>
+                            <div class="price">
+                                <dfn>$</dfn>
+                                <span>200,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choose-date ">
+                        <div class="choose-item more">
+                            <label>更多日期</label>
+                            <div class="price">
+                                <dfn>$</dfn>
+                                <span>200,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer form-row">
+            <div class="row-text">
+                购买份数
+            </div>
+            <div class="row-value ticket-quantity">
+                <input class="qty-input" value="1"/>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-content">
+            <div class="card-content-inner text-center">
+                <a href="javascript:;" class=""><span class="iconfont icon-add"></span> 同时购买该景区其他门票</a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">取票信息</div>
+        <div class="card-content">
+            <div class="card-content-inner form-list">
+                <div class="form-row">
+                    <div class="row-text">
+                        取票人
+                    </div>
+                    <div class="row-value no-border">
+                        <input class="qty-input" value="" placeholder="需要填写1个取票人"/>
+                    </div>
+                </div>
+            </div>
+            <div class="card-content-inner form-list">
+                <div class="form-row">
+                    <div class="row-text">
+                        联系手机
+                    </div>
+                    <div class="row-value no-border">
+                        <input class="qty-input" value="" placeholder="接收确认短信"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bar bar-footer data-choose payment-box">
+    <div class="row no-gutter">
+        <div class="col-75">
+            <div class="payment-subtotal">
+                <div class="subtotal">
+                    <label>总额：</label><dfn>$</dfn><span>200</span>
+                </div>
+                <div class="sublist">
+                    <a href="javascript:;" class="order-details-btn">明细 <span class="iconfont icon-arrow-down transactions"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-25">
+            <div class="confirm-order-btn">
+                <a href="@Url.Action("ChoosePayment","Ticket",new {area="Mobile"},true)" class="button button-big button-fill button-warning">去支付</a>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Themes/Default/Mobile/content/jquery.bootstrap-touchspin.min.js"></script>
+    <script>
+        $(function() {
+            var spin = $('.ticket-quantity .qty-input').TouchSpin({ min: 1, max: 99 });
+            
+            $(document.body).on("touchspin.on.min", function () {
+                $.toast("最少要购买1份");
+            });
+
+            $('.order-details-btn').on('click', function() {
+                var $this = $(this);
+                if (!$this.hasClass('selected')) {
+                    $this.addClass('selected');
+                } else {
+                    $this.removeClass('selected');
+                }
+            });
+
+            $(document).on('click', '.remove-ticket', function () {
+                $.confirm('确定要删除吗?', function () {
+                    $.alert('You clicked Ok button');
+                });
+            });
+        })
+    </script>
+}

@@ -1,12 +1,17 @@
 ﻿@font-face {
   font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1473755605_2406368.eot'); /* IE9*/
-  src: url('//at.alicdn.com/t/font_1473755605_2406368.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_1473755605_2406368.woff') format('woff'), /* chrome、firefox */
-  url('//at.alicdn.com/t/font_1473755605_2406368.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('//at.alicdn.com/t/font_1473755605_2406368.svg#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('//at.alicdn.com/t/font_1474204508_2966132.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1474204508_2966132.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1474204508_2966132.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1474204508_2966132.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1474204508_2966132.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
-                    
+                                
+         
+body {
+    font-size: 14px;
+    font-family: Arial,"Lucida Grande",Verdana,"Microsoft YaHei",hei;
+}  
 
 .iconfont {
   font-family:"iconfont" !important;
@@ -29,7 +34,7 @@
 .icon-send:before { content: "\e60a"; }
 .icon-list:before { content: "\e60b"; }
 .icon-scan:before { content: "\e60c"; }
-.icon-settings:before { content: "\e60d"; }
+.icon-settings1:before { content: "\e60d"; }
 .icon-question:before { content: "\e60e"; }
 .icon-right:before { content: "\e60f"; }
 .icon-cart:before { content: "\e610"; }
@@ -41,6 +46,12 @@
 .icon-info:before { content: "\e616"; }
 .icon-share:before { content: "\e617"; }
 .icon-service:before { content: "\e618"; }
+.icon-add:before { content: "\e646"; }
+.icon-tehuizhuanqu:before { content: "\e640"; }
+.icon-laorenpiao:before { content: "\e641"; }
+.icon-chengrenpiao:before { content: "\e642"; }
+.icon-xueshengpiao:before { content: "\e643"; }
+.icon-ertongpiao:before { content: "\e644"; }
 .icon-focus:before { content: "\e619"; }
 .icon-browser:before { content: "\e61a"; }
 .icon-service1:before { content: "\e61b"; }
@@ -53,25 +64,39 @@
 .icon-android:before { content: "\e61e"; }
 .icon-travel1:before { content: "\e62b"; }
 .icon-youshanwanshui:before { content: "\e62c"; }
-.icon-add:before { content: "\e61f"; }
+.icon-add1:before { content: "\e61f"; }
 .icon-move:before { content: "\e620"; }
+.icon-up:before { content: "\e647"; }
 .icon-lvyoujiang:before { content: "\e62d"; }
 .icon-travelno:before { content: "\e62e"; }
 .icon-iconsirenmoshi:before { content: "\e62f"; }
+.icon-dazheyouhui:before { content: "\e639"; }
 .icon-p-return:before { content: "\e624"; }
+.icon-sanjiaogouxuan:before { content: "\e63a"; }
 .icon-wuliu:before { content: "\e626"; }
+.icon-xinshixin:before { content: "\e63b"; }
+.icon-xin:before { content: "\e63c"; }
 .icon-my-tuikuantuihuo:before { content: "\e625"; }
 .icon-coupon:before { content: "\e622"; }
 .icon-travel2:before { content: "\e630"; }
+.icon-arrow-left:before { content: "\e648"; }
+.icon-arrow-down:before { content: "\e649"; }
+.icon-arrow-up:before { content: "\e64a"; }
+.icon-gantanhao:before { content: "\e645"; }
 .icon-pingjia:before { content: "\e609"; }
+.icon-dazheyouhui1:before { content: "\e63d"; }
+.icon-gou2-copy:before { content: "\e63e"; }
 .icon-daoyoufuwu:before { content: "\e631"; }
 .icon-sirendingzhi-copy:before { content: "\e632"; }
 .icon-china:before { content: "\e633"; }
 .icon-guojiyou:before { content: "\e634"; }
+.icon-arrow:before { content: "\e64b"; }
 .icon-travel3:before { content: "\e635"; }
+.icon-dazhe:before { content: "\e63f"; }
 .icon-lvyouxianlu:before { content: "\e636"; }
 .icon-guoneiyou:before { content: "\e637"; }
 .icon-tubulvyou:before { content: "\e638"; }
+
 
 .top50{ padding-top: 50px;}
 .bar{ z-index: 999;}
@@ -434,7 +459,6 @@
     display: table;
     position: relative;
     width: 100px;
-    margin-top: 10px;
 }
 .input-group-btn {
     position: relative;
@@ -460,7 +484,7 @@
     color: #555;
     display: block;
     font-size: 14px;
-    height: 27px;
+    height: 28px;
     padding: 6px 6px;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     vertical-align: middle;
@@ -478,6 +502,7 @@
     margin-bottom: 0;
     padding: 1px 8px;
     line-height: 23px;
+    height: 28px;
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
@@ -732,4 +757,576 @@ input, button, select, textarea {
 .transactions {
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
+}
+
+/*门票详情*/
+.dest-box {
+    padding: 0 15px;
+    background: #fff;
+    overflow: hidden;
+}
+.dest-box .dest-pictures {
+    position: relative;
+    z-index: 2;
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    background: #eef3f5;
+}
+.dest-pictures .pictures-num {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 37px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #fefefe;
+    text-align: center;
+    background: rgba(0, 0, 0, .6);
+}
+
+.dest-box .dest-content {
+    padding-right: 135px;
+}
+
+.dest-box .dest-info {
+    padding-top: 16px;
+    font-size: 18px;
+    color: #000;
+    position: relative;
+}
+
+.dest-box .dest-info a {
+    color: #000;
+    display: block;
+}
+.dest-box .dest-info:after {
+    content: "\e60f";
+    font-family: "iconfont";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -4px;
+    font-size: 14px;
+
+}
+.dest-opentime {
+    margin-top: 10px;
+}
+.dest-opentime .opentime-text{
+    font-size: 16px;
+    color: #000000;
+}
+.dest-opentime .opentime-value {
+    font-size: 12px;line-height: 1rem;
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp: 2;
+    white-space: pre-wrap;
+    color: #666;
+}
+
+.dest-location {
+    background-color: #ffffff;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.dest-location .dest-address {
+    color: #000000;
+    margin:5px 12px;
+    padding-right: 30px;
+    padding-left: 25px;
+    display: block;
+    position: relative;
+    font-size: 16px;
+}
+.dest-location .dest-address:before {
+    content: "\e604";
+    font-family: "iconfont";
+    color: #3ab2e5;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    font-size: 20px;
+    margin-top: -14px;
+}
+.dest-location .dest-address:after {
+    content: "\e60f";
+    font-family: "iconfont";
+    color: #cccccc;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    font-size: 16px;
+    margin-top: -12px;
+}
+
+.rectangle-blue {
+        display: inline-block;
+    margin-right: 7px;
+    vertical-align: -5px;
+    width: 4px;
+    height: 20px;
+    background: #099fde;
+}
+
+
+.ticket-detail-box .ticket-detail-header {
+    padding: 10px 0 10px 16px;
+    font-size: 15px;
+    line-height: 20px;
+    color: #333;
+        background: #efefef;
+}
+
+.ticket-detail-box .ticket-detail-list {
+    background-color: #ffffff;
+    margin: 0px;
+}
+.ticket-detail-box .ticket-detail-list:not(:last-child) {
+    margin-bottom: 15px;
+}
+.ticket-detail-list dd {
+    margin: 0px;
+    position: relative;
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
+.ticket-detail-list dd:not(:last-child) {
+    border-bottom: 1px #efefef solid;
+}
+
+.ticket-detail-list .ticket-title {
+    padding: 8px 15px 8px 15px/*40px*/;
+    font-size: 16px;
+    color: #000;
+    border-top-width: 1px;
+    border-bottom: 1px solid #efefef;
+}
+
+.ticket-item-info {
+    position: relative;
+    padding: 5px 102px 26px 0;
+    overflow: hidden;
+    min-height: 100px;
+}
+.ticket-item-title {
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp: 2;
+    white-space: pre-wrap;
+    overflow: hidden;
+}
+
+.ticket-item-box{
+  position: relative;
+  overflow: hidden;
+  max-height: 1.2rem;
+  text-overflow: ellipsis;
+    line-height: 1.2rem;
+  max-width: 100%;
+    color: #0894ec;
+}
+
+.ticket-item-box label.ticket-item-tag{
+    font-size: 13px;
+    white-space: nowrap;
+    margin: 0px;
+    display: inline-block;
+}
+.ticket-item-box label.ticket-item-tag:before {
+    content: "\e63e";
+    font-family: "iconfont";
+    margin-right: 2px;
+}
+.ticket-item-detailed {
+    line-height: 1.2rem;
+    position: absolute;
+    bottom: 2px;
+}
+.ticket-item-detailed a:after {
+    content: "\e60f";
+    font-family: "iconfont";
+    margin-left: 5px;
+}
+
+.ticket-item-price-box {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    right: 0;
+    width: 100px;
+    min-height: 80px;
+    border-width: 0;
+    border-left-width: 1px;
+    text-align: center;
+}
+.ticket-item-price-box dfn {
+    font-family: Arial;
+    font-style: normal;
+}
+.ticket-item-price-box .old-price {
+    font-size: 12px;
+    line-height: 12px;
+    color: #797979;
+}
+.ticket-item-price-box .old-price span {
+    position: relative;
+    padding: 0 1px;
+}
+.ticket-item-price-box .old-price span:before {
+        position: absolute;
+    content: "";
+    top: 6px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(101, 101, 101, .8);
+}
+.ticket-item-price-box .price {
+    font-size: 12px;
+    line-height: 12px;
+    color: #ff7d13;
+}
+.ticket-item-price-box .price dfn {
+    font-size: 16px;
+}
+.ticket-item-price-box .price span {
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.ticket-book-btn {
+    width: 65px;
+    display: block;
+    position: absolute;
+    bottom: 2px;
+    right: 17px;
+    text-align: center;
+}
+.ticket-book-btn span {
+    display: block;
+}
+.ticket-book-btn .online-peyment {
+    color: #ff5a00;
+    vertical-align: bottom;
+    background: #ffead2;
+    height: 16px;
+    font-size: 10px;
+    line-height: 16px;
+    border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    -webkit-border-radius: 2px 2px 0 0;
+}
+.ticket-book-btn .book-btn-text {
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    border-radius: 0 0 2px 2px;
+    background: #ff5a00;
+}
+.ticket-booking-notice {
+    background-color: #ffffff;
+    margin-top: 15px;
+    overflow: hidden;
+}
+.ticket-booking-notice .booking-notice-title{
+    padding: 8px 15px 8px 15px/*40px*/;
+    font-size: 16px;
+    color: #000;
+    border-top-width: 1px;
+    border-bottom: 1px solid #efefef;
+}
+.ticket-booking-notice .booking-notice-content {
+    margin: 15px 0;
+    padding: 0 35px 0 15px;
+    line-height: 1rem;
+    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp: 5;
+    overflow: hidden;
+    font-size: 12px;
+    position: relative;
+
+}
+.ticket-booking-notice .booking-notice-content:after {
+    content: "\e60f";
+    font-family: "iconfont";
+    color: #cccccc;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    font-size: 16px;
+    margin-top: -12px;
+}
+
+.ticket-quantity .qty-input {
+    text-align: center;
+}
+/*bootstrap-touchspin*/
+
+.bootstrap-touchspin .input-group-btn-vertical{position:relative;white-space:nowrap;width:1%;vertical-align:middle;display:table-cell}.bootstrap-touchspin .input-group-btn-vertical>.btn{display:block;float:none;width:100%;max-width:100%;padding:8px 10px;margin-left:-1px;position:relative}.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-up{border-radius:0;border-top-right-radius:4px}.bootstrap-touchspin .input-group-btn-vertical .bootstrap-touchspin-down{margin-top:-2px;border-radius:0;border-bottom-right-radius:4px}.bootstrap-touchspin .input-group-btn-vertical i{position:absolute;top:3px;left:5px;font-size:9px;font-weight:400}
+
+.confirm-order .card .card-header {
+    position: relative;
+}
+
+.confirm-order .card .card-header .header-active{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    line-height: 1rem;
+    margin-top: -0.5rem;
+}
+ .header-active .ticket-description {
+    font-size: 12px;
+     color: #999999;
+     border: 1px #999999 solid;
+     border-radius: 0.2rem;
+     padding: .1rem .3rem;
+}
+ .header-active .remove-ticket {
+     color: #999999;
+     padding: 5px 8px;
+ }
+.confirm-order .card .card-header .header-title {
+    font-size: 15px;
+    display:-webkit-inline-box;
+    -webkit-box-orient:vertical;-webkit-line-clamp: 2;
+    overflow: hidden;
+    max-height: 40px;
+    line-height: 1rem;
+    padding-right: 85px;
+}
+
+.form-row {
+     padding-right: 0.75rem;
+  position: relative;
+  width: 100%;
+  padding-top: 0.4rem;
+  padding-bottom: 0.35rem;
+  min-height: 2.2rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.form-row .row-text {
+     -webkit-flex-shrink: 1;
+  -ms-flex: 0 1 auto;
+  -webkit-flex-shrink: 1;
+          flex-shrink: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+    min-width: 70px;
+    font-size: 12px;
+}
+
+.form-row .row-value {
+      width: 100%;
+  margin-top: -0.4rem;
+  margin-bottom: -0.35rem;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  -webkit-flex-shrink: 1;
+  -ms-flex: 0 1 auto;
+  -webkit-flex-shrink: 1;
+          flex-shrink: 1;
+}
+
+.ticket-quantity .input-group{
+    float: right;
+}
+
+.choose-date-box {
+    table-layout: fixed;
+}
+
+.choose-date {
+        position: relative;
+    display: table-cell;
+    width: 1%;
+    height: 2.5rem;
+    color: #929292;
+    text-align: center;
+    vertical-align: middle;
+}
+.choose-date.selected .choose-item {
+    border: 1px #099fde solid;
+    overflow: hidden;
+    position: relative;
+}
+.choose-date.selected .choose-item:before {
+    content: "\e63a";
+    font-family: "iconfont";
+    position: absolute;
+    color: #099fde;
+    right: -2px;
+    bottom: -10px;
+    font-size: 22px;
+}
+
+.choose-date .choose-item {
+    border: 1px #cccccc solid;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    margin: 1px;
+    font-size: 12px;
+}
+
+.choose-date .choose-item label {
+    font-size: 12px;
+    color: #099fde;
+}
+.choose-date .choose-item .price {
+    color: #ff7d13;
+}
+.choose-date .choose-item .price dfn {
+    font-style: normal;
+}
+.choose-date .choose-item.more {
+    position: relative;
+    padding-right: 10px;
+}
+.choose-date .choose-item.more:after {
+    content: "\e60f";
+    font-family: "iconfont";
+    position: absolute;
+    color: #099fde;
+    right: 0px;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.form-list {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.form-list:not(:last-child) .form-row {
+    border-bottom: 1px #efefef solid;
+}
+.form-list .form-row .row-value.no-border input {
+    border: 0px;
+}
+.form-list .form-row.arrow {
+    
+}
+
+.sublist a span{ display: inline-block;}
+
+.sublist a.selected span.icon-arrow-down {
+    transform:rotate(-180deg);
+    -ms-transform:rotate(-180deg); 	/* IE 9 */
+    -moz-transform:rotate(-180deg); 	/* Firefox */
+    -webkit-transform:rotate(-180deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-180deg); 	/* Opera */
+    transform-origin: 47% 48%;
+    -ms-transform-origin: 47% 48%; 	/* IE 9 */
+    -moz-transform-origin: 47% 48%; 	/* Firefox */
+    -webkit-transform-origin: 47% 48%; /* Safari 和 Chrome */
+    -o-transform-origin: 47% 48%;	/* Opera */
+}
+
+.payment-box .payment-subtotal{
+    position: relative;
+    line-height: 2.2rem;
+}
+
+.payment-box .payment-subtotal .subtotal{
+    padding-right: 60px;
+    font-size: 12px;
+    color: #999999;
+}
+
+.payment-box .payment-subtotal .subtotal{
+    padding-right: 60px;
+    font-size: 12px;
+    color: #ff7d13;
+}
+.payment-box .payment-subtotal .subtotal label{
+    color: #999999;
+}
+.payment-box .payment-subtotal .subtotal dfn {
+    font-style: normal;
+    font-size: 14px;
+}
+.payment-box .payment-subtotal .subtotal span {
+    font-size: 16px;
+}
+
+.payment-box .sublist{
+    position: absolute;
+    right: 15px;
+    top: 0px;
+}
+.payment-box .sublist a.order-details-btn{
+    color: #666666;
+    font-size: 12px;
+}
+
+.confirm-order-btn .button-fill.button-big {
+    height: 32px;line-height: 32px;
+    border-radius: .1rem;
+    -webkit-border-radius: .1rem;
+    -moz-border-radius: .1rem;
+}
+
+/*选择支付方式*/
+.order-info {
+    background-color: #ffffff;
+    padding: 15px;
+}
+
+.order-info .info-body {
+    display:-webkit-box;
+    -webkit-box-orient:vertical;-webkit-line-clamp: 2;
+    overflow: hidden;
+    max-height: 40px;
+    line-height: 1rem;
+    font-size: 16px;
+}
+
+.order-info .order-total {
+    margin-top: 1rem;
+    color: #ff7d13;
+    font-size: 14px;
+}
+.order-info .order-total dfn {
+    font-style: normal;
+    font-size: 16px;
+}
+.order-info .order-total span {
+    font-size: 20px;
+}
+.order-info .order-total label {
+    color: #999999;
+}
+
+.payment-success {
+    color: #7bcb25;
+    font-size: 24px;
+    text-align: center;
+    background-color: #ffffff;
+    margin-top: 1rem;
+    padding: 2rem 0;
+}
+
+.payment-fail {
+    color: #ff7d13;
+    font-size: 24px;
+    text-align: center;
+    background-color: #ffffff;
+    margin-top: 1rem;
+    padding: 2rem 0;
 }
