@@ -111,9 +111,13 @@
     <Compile Include="Authorization\Roles\Role.cs" />
     <Compile Include="Authorization\Roles\RoleManager.cs" />
     <Compile Include="Authorization\Roles\RoleStore.cs" />
+    <Compile Include="Trip\DestAttribute.cs" />
+    <Compile Include="Trip\DestAttributeManager.cs" />
     <Compile Include="Trip\DestLocationManager.cs" />
     <Compile Include="Trip\DestMananger.cs" />
     <Compile Include="Trip\Quote.cs" />
+    <Compile Include="Trip\TicketAttribute.cs" />
+    <Compile Include="Trip\TicketAttributeManager.cs" />
     <Compile Include="Trip\TicketCollectingPerson.cs" />
     <Compile Include="Trip\Dest.cs" />
     <Compile Include="Trip\DestCity.cs" />
