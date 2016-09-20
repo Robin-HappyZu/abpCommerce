@@ -48,7 +48,10 @@ namespace System.Web.Mvc.Html
                         }
                         routeData.Values[item.Key] = item.Value;
                     }
-
+                    if (!routeValues.ContainsKey("Id")&& routeData.Values.ContainsKey("Id"))
+                    {
+                        routeData.Values.Remove("Id");
+                    }
                 }
 
                 if (string.IsNullOrWhiteSpace(controllerName))

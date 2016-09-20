@@ -1,6 +1,6 @@
 ﻿@using HappyZu.CloudStore.Trip
 @{
-    ViewBag.Title = "目的地管理";
+    ViewBag.Title = "景区管理";
 }
 <!-- BEGIN PAGE BAR -->
 <div class="page-bar">
@@ -18,11 +18,10 @@
 <!-- BEGIN PAGE TITLE-->
 <h3 class="page-title">
     @ViewBag.Title
-    <small>管理旅游线路和门票景点的目的地</small>
+    <small>管理旅门票景点</small>
 </h3>
 <!-- END PAGE TITLE-->
 <!-- END PAGE HEADER-->
-
 
 <div class="row">
     <div class="col-md-12">
@@ -30,94 +29,159 @@
                 <p> NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only. </p>
             </div>*@
         <!-- Begin: life time stats -->
-        <div class="portlet light portlet-fit portlet-datatable bordered">
+        <div class="portlet light portlet-fit portlet-datatable bordered portlet-search">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="icon-pointer font-dark"></i>
-                    <span class="caption-subject font-dark sbold uppercase">@ViewBag.Title</span>
+                    <i class="fa fa-filter font-dark"></i>
+                    <span class="caption-subject font-dark sbold uppercase">筛选</span>
                 </div>
                 <div class="actions">
                     <div class="btn-group btn-group-devided">
-                        <a class="btn btn-transparent blue btn-outline btn-circle btn-sm active" href="@Url.Action("ProvinceCreate","Destination",new {area="Admin",returnUrl=Request.RawUrl},true)"><i class="fa fa-user-plus"></i> 添加省份或地区</a>
+                        <a class="btn btn-transparent green btn-circle advanced-search" href="javascript:;"><i class="fa fa-search"></i> 高级搜索</a>
+                        <a class="btn btn-transparent blue btn-circle" href="@Url.Action("DestCreate", "Destination", new {area = "Admin", returnUrl = Request.RawUrl}, true)"><i class="fa fa-user-plus"></i> 添加景区</a>
                     </div>
                 </div>
             </div>
-            <div class="portlet-body">
-                <div class="tabbable-line">
-                    <ul class="nav nav-tabs ">
-                        <li class="active">
-                            <a href="#tab_15_1" data-toggle="tab" aria-expanded="true"> 境内省份 </a>
-                        </li>
-                        <li class="">
-                            <a href="#tab_15_2" data-toggle="tab" aria-expanded="false"> 境外地区 </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab_15_1">
-
-                            <div class="table-container">
-                                <div class="table-actions-wrapper">
-                                    <span> </span>
-                                    <select class="table-group-action-input form-control input-inline input-small input-sm">
-                                        <option value="">选择操作...</option>
-                                        <option value="Remove">删除</option>
-                                    </select>
-                                    <button class="btn btn-sm green table-group-action-submit">
-                                        <i class="fa fa-check"></i> 批量操作
-                                    </button>
+            <div class="portlet-body form hide">
+                <form action="#" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">所属区域</label>
+                                    <div class="col-md-9">
+                                        <select class="form-control" placeholder="Chee Kin">
+                                            <option value="0">境内</option>
+                                            <option value="1">境外</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_ajax">
-                                    <colgroup>
-                                        <col id="Col1" width="50" />
-                                        <col id="Col2" width="" />
-                                        <col id="Col5" width="200" />
-                                        <col id="Col6" width="200" />
-                                    </colgroup>
-                                    <thead>
-                                        <tr class="heading">
-                                            <th scope="col"><input class="group-checkable" type="checkbox"></th>
-                                            <th scope="col">省份</th>
-                                            <th scope="col">删除</th>
-                                            <th scope="col">操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody> </tbody>
-                                </table>
                             </div>
-                        </div>
-                        <div class="tab-pane" id="tab_15_2">
-
-                            <div class="table-container">
-                                <div class="table-actions-wrapper">
-                                    <span> </span>
-                                    <select class="table-group-action-input form-control input-inline input-small input-sm">
-                                        <option value="">选择操作...</option>
-                                        <option value="Remove">删除</option>
-                                    </select>
-                                    <button class="btn btn-sm green table-group-action-submit">
-                                        <i class="fa fa-check"></i> 批量操作
-                                    </button>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">目的地城市</label>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6">
+                                                <select class="form-control">
+                                                    <option>湖南</option>
+                                                    <option>湖北</option>
+                                                    <option>上海</option>
+                                                </select>
+                                            </div> <!-- Add the extra clearfix for only the required viewport -->
+                                            <div class="clearfix visible-xs-block"></div>
+                                            <div class="col-xs-12 col-sm-6">
+                                                <select class="form-control">
+                                                    <option value="1">长沙</option>
+                                                    <option value="2">株洲</option>
+                                                    <option value="3">湘潭</option>
+                                                    <option value="4">衡阳</option>
+                                                    <option value="5">张家界</option>
+                                                    <option value="6">岳阳</option>
+                                                    <option value="7">常德</option>
+                                                    <option value="8">郴州</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_2_ajax">
-                                    <colgroup>
-                                        <col id="Col1" width="50" />
-                                        <col id="Col2" width="" />
-                                        <col id="Col5" width="200" />
-                                        <col id="Col6" width="200" />
-                                    </colgroup>
-                                    <thead>
-                                        <tr class="heading">
-                                            <th scope="col"><input class="group-checkable" type="checkbox"></th>
-                                            <th scope="col">地区</th>
-                                            <th scope="col">删除</th>
-                                            <th scope="col">操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody> </tbody>
-                                </table>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">景区名称</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">供应商</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">标签</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">景点UUID</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group" style="text-align: left">
+                                            <input type="text" class="form-control" name="username1" id="username1_input">
+                                            <span class="input-group-btn">
+                                                <a href="javascript:;" class="btn green" id="username1_checker" data-original-title="" title="">
+                                                    <i class="fa fa-rocket"></i> 转到
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+
+                        <!--/row-->
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-5 col-md-6">
+                                <button type="submit" class="btn green">搜索</button>
+                                <button type="button" class="btn default">取消</button>
                             </div>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+        <div class="portlet light portlet-fit portlet-datatable bordered">
+            <div class="portlet-body">
+                <div class="table-container">
+                    <div class="table-actions-wrapper">
+                        <span> </span>
+                        <select class="table-group-action-input form-control input-inline input-small input-sm">
+                            <option value="">选择操作...</option>
+                            <option value="Remove">删除</option>
+                        </select>
+                        <button class="btn btn-sm green table-group-action-submit">
+                            <i class="fa fa-check"></i> 批量操作
+                        </button>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_ajax">
+                        <colgroup>
+                            <col id="Col1" width="50" />
+                            <col id="Col2" width="" />
+                            <col id="Col5" width="200" />
+                            <col id="Col6" width="200" />
+                        </colgroup>
+                        <thead>
+                            <tr class="heading">
+                                <th scope="col"><input class="group-checkable" type="checkbox"></th>
+                                <th scope="col">省份</th>
+                                <th scope="col">目的地城市</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody> </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -135,128 +199,145 @@
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script>
-    var TableDatatablesAjax = function () {
 
-        var initPickers = function () {
-            //init date pickers
-            $('.date-picker').datepicker({
-                rtl: App.isRTL(),
-                autoclose: true
-            });
-        }
+        var TableDatatablesAjax = function() {
 
-        var handleRecords = function () {
-
-            var grid = new Datatable();
-
-            grid.init({
-                src: $("#datatable_ajax"),
-                onSuccess: function (grid, response) {
-                    // grid:        grid object
-                    // response:    json object of server side ajax response
-                    // execute some code after table records loaded
-                },
-                onError: function (grid) {
-                    // execute some code on network or other general error
-                },
-                onDataLoad: function (grid) {
-                    // execute some code on ajax data load
-                },
-                loadingMessage: '正在加载...',
-                dataTable: { // here you can define a typical datatable settings from http://datatables.net/usage/options
-
-                    // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
-                    // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
-                    // So when dropdowns used the scrollable div should be removed.
-                    //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
-
-                    "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
-
-                    "lengthMenu": [
-                        [10, 20, 50, 100, 150, -1],
-                        [10, 20, 50, 100, 150, "All"] // change per page values here
-                    ],
-                    "pageLength": 10, // default record count per page
-                    "ajax": {
-                        "url": "@Url.Action("GetProvinces", "Destination",new { area = "Admin",CountryType=0 },true)", // ajax source
-                    },
-                    "columns": [
-                        { "data": "Id" },
-                        { "data": "Name" },
-                        { "data": "IsDeleted" }
-                    ],
-                    "columnDefs": [{
-                        orderable: false,//禁用排序
-                        targets: [0, 1,  2, 3]   //指定的列
-                    }, {
-                        render: function (data, type, row) {
-                            return '<input type="checkbox" name="id[]" value="' + data + '">';
-                        },
-                        "targets": 0
-                    },
-                    {
-                        render: function (data, type, row) {
-                            var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("ProvinceEdit", new { controller="Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
-                            btns += '<a class="btn btn-sm btn-outline red" href="javascript:' + row.Id + ';"><i class="fa fa-trash-o"></i> 删除</a>';
-                            return btns;
-                        },
-                        "targets": 3
-                    }],
-                    "order": [
-                    ]// set first column as a default sort by asc
-                }
-            });
-
-            // handle group actionsubmit button click
-            grid.getTableWrapper().on('click', '.table-group-action-submit', function (e) {
-                e.preventDefault();
-                var action = $(".table-group-action-input", grid.getTableWrapper());
-                if (action.val() !== "" && grid.getSelectedRowsCount() > 0) {
-                    grid.setAjaxParam("customActionType", "group_action");
-                    grid.setAjaxParam("customActionName", action.val());
-                    grid.setAjaxParam("id", grid.getSelectedRows());
-                    grid.getDataTable().ajax.reload();
-                    grid.clearAjaxParams();
-                } else if (action.val() === "") {
-                    App.alert({
-                        type: 'danger',
-                        icon: 'warning',
-                        message: '请选择操作类型',
-                        container: grid.getTableWrapper(),
-                        place: 'prepend'
-                    });
-                } else if (grid.getSelectedRowsCount() === 0) {
-                    App.alert({
-                        type: 'danger',
-                        icon: 'warning',
-                        message: '没有选择记录',
-                        container: grid.getTableWrapper(),
-                        place: 'prepend'
-                    });
-                }
-            });
-
-            grid.setAjaxParam("customActionType", "group_action");
-            grid.getDataTable().ajax.reload();
-            grid.clearAjaxParams();
-        }
-
-        return {
-
-            //main function to initiate the module
-            init: function () {
-
-                initPickers();
-                handleRecords();
+            var initPickers = function() {
+                //init date pickers
+                $('.date-picker').datepicker({
+                    rtl: App.isRTL(),
+                    autoclose: true
+                });
             }
 
-        };
+            var handleRecords = function() {
 
-    }();
+                var grid = new Datatable();
 
-    jQuery(document).ready(function () {
-        TableDatatablesAjax.init();
-    });
+                grid.init({
+                    src: $("#datatable_ajax"),
+                    onSuccess: function(grid, response) {
+                        // grid:        grid object
+                        // response:    json object of server side ajax response
+                        // execute some code after table records loaded
+                    },
+                    onError: function(grid) {
+                        // execute some code on network or other general error
+                    },
+                    onDataLoad: function(grid) {
+                        // execute some code on ajax data load
+                    },
+                    loadingMessage: '正在加载...',
+                    dataTable: {
+// here you can define a typical datatable settings from http://datatables.net/usage/options
+
+                        // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
+                        // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
+                        // So when dropdowns used the scrollable div should be removed.
+                        //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
+                        "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+
+                        "lengthMenu": [
+                            [10, 20, 50, 100, 150, -1],
+                            [10, 20, 50, 100, 150, "All"] // change per page values here
+                        ],
+                        "pageLength": 10, // default record count per page
+                        "ajax": {
+                            "url": "@Url.Action("GetProvinces", "Destination", new {area = "Admin", CountryType = 0}, true)", // ajax source
+                        },
+                        "columns": [
+                            { "data": "Id" },
+                            { "data": "Name" },
+                            { "data": "IsDeleted" }
+                        ],
+                        "columnDefs": [
+                        {
+                            orderable: false, //禁用排序
+                            targets: [0, 1, 2, 3] //指定的列
+                        }, {
+                            render: function(data, type, row) {
+                                return '<input type="checkbox" name="id[]" value="' + data + '">';
+                            },
+                            "targets": 0
+                        },
+                        {
+                            render: function(data, type, row) {
+                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("Cities", new {controller = "Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-map-pin"></i> 城市</a> ';
+                                return btns;
+                            },
+                            "targets": 2
+                        },
+                        {
+                            render: function(data, type, row) {
+                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("ProvinceEdit", new {controller = "Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
+                                    btns += '<a class="btn btn-sm btn-outline red" href="javascript:' + row.Id + ';"><i class="fa fa-trash-o"></i> 删除</a>';
+                                    return btns;
+                                },
+                                "targets": 3
+                            }
+                        ],
+                        "order": [
+                        ] // set first column as a default sort by asc
+                    }
+                });
+
+                // handle group actionsubmit button click
+                grid.getTableWrapper().on('click', '.table-group-action-submit', function(e) {
+                    e.preventDefault();
+                    var action = $(".table-group-action-input", grid.getTableWrapper());
+                    if (action.val() !== "" && grid.getSelectedRowsCount() > 0) {
+                        grid.setAjaxParam("customActionType", "group_action");
+                        grid.setAjaxParam("customActionName", action.val());
+                        grid.setAjaxParam("id", grid.getSelectedRows());
+                        grid.getDataTable().ajax.reload();
+                        grid.clearAjaxParams();
+                    } else if (action.val() === "") {
+                        App.alert({
+                            type: 'danger',
+                            icon: 'warning',
+                            message: '请选择操作类型',
+                            container: grid.getTableWrapper(),
+                            place: 'prepend'
+                        });
+                    } else if (grid.getSelectedRowsCount() === 0) {
+                        App.alert({
+                            type: 'danger',
+                            icon: 'warning',
+                            message: '没有选择记录',
+                            container: grid.getTableWrapper(),
+                            place: 'prepend'
+                        });
+                    }
+                });
+
+                grid.setAjaxParam("customActionType", "group_action");
+                grid.getDataTable().ajax.reload();
+                grid.clearAjaxParams();
+            }
+
+
+            return {
+
+                //main function to initiate the module
+                init: function() {
+                    initPickers();
+                    handleRecords();
+                }
+
+            };
+
+        }();
+
+        jQuery(document).ready(function() {
+            TableDatatablesAjax.init();
+
+            $('.advanced-search').click(function () {
+                var searchPortletBody = $('.portlet-search .portlet-body');
+                if (searchPortletBody.hasClass('hide')) {
+                    searchPortletBody.removeClass('hide');
+                }
+            });
+        });
     </script>
     <!-- END PAGE LEVEL SCRIPTS -->
 }

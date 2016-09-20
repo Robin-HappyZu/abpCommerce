@@ -139,6 +139,7 @@
     <Compile Include="Trip\Dto\DestCityDto.cs" />
     <Compile Include="Trip\Dto\DestDto.cs" />
     <Compile Include="Trip\Dto\DestProvinceDto.cs" />
+    <Compile Include="Trip\Dto\GetDestCitiesInput.cs" />
     <Compile Include="Trip\Dto\GetDestProvincesInput.cs" />
     <Compile Include="Trip\Dto\GetDestsInput.cs" />
     <Compile Include="Trip\Dto\GetPagedTicketOrdersInput.cs" />

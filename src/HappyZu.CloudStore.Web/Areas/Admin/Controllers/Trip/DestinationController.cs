@@ -19,12 +19,39 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             _destAppService = destAppService;
         }
 
+        #region 景区管理
         // GET: Admin/Destination
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult DestCreate()
+        {
+            return View();
+        }
+
+        public ActionResult DestEdit()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 返回部分视图
+        /// </summary>
+        /// <returns></returns>
+        //public ActionResult HtmlView()
+        //{
+        //    return PartialView();
+        //}
+        #endregion
+
+        #region 目的地省份和地区
+        public ActionResult Provinces()
         {
             return View();
         }
@@ -91,8 +118,8 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 
         public async Task<ActionResult> ProvinceEdit(int id)
         {
-            var output =await _destAppService.GetDestProvinceByIdAsync(id);
-            var input=new UpdateDestProvinceInput()
+            var output = await _destAppService.GetDestProvinceByIdAsync(id);
+            var input = new UpdateDestProvinceInput()
             {
                 Province = output
             };
@@ -107,10 +134,112 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return Json(new { success = output.Status });
         }
 
-        public ActionResult Cities()
+        #endregion
+
+        #region 目的地城市
+        public async Task<ActionResult> Cities(int id)
         {
-            return View();
+
+            var output = await _destAppService.GetDestProvinceByIdAsync(id);
+            var input = new DestCityViewModel()
+            {
+                Province = output
+            };
+            return View(input);
         }
-        
+
+        [HttpPost]
+        [WrapResult(WrapOnSuccess = false, WrapOnError = false)]
+        public async Task<JsonResult> GetCities(int provinceId, DataTableOptionViewModel option)
+        {
+            var output = await _destAppService.GetDestCitiesByDestProvinceIdAsync(new GetDestCitiesInput()
+            {
+                ProvinceId = provinceId,
+                MaxResultCount = option.length,
+                SkipCount = option.start
+            });
+            var vm = new DataTableJsonViewModel()
+            {
+                draw = option.draw,
+                recordsTotal = 0,
+                recordsFiltered = 0,
+                customActionMessage = "",
+                customActionStatus = "OK"
+            };
+
+            try
+            {
+
+                vm.recordsFiltered = vm.recordsTotal = output.Items.Count;
+
+                vm.data = output.Items.Select(x => new
+                {
+                    DestCount = x.DestCount,
+                    IsDeleted = x.IsDeleted,
+                    Name = x.Name,
+                    Id = x.Id
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                vm.customActionMessage = ex.Message;
+                vm.customActionStatus = "";
+            }
+
+            if (vm.data == null)
+            {
+                vm.data = new List<object>();
+            }
+
+            return Json(vm, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        public async Task<ActionResult> CityCreate(int provinceId)
+        {
+
+            var output = await _destAppService.GetDestProvinceByIdAsync(provinceId);
+            var vm = new EditDestCityViewModel()
+            {
+                Province = output,
+                ProvinceId = provinceId
+            };
+            return View(vm);
+        }
+
+        [HttpPost, ActionName("CityCreate")]
+        public async Task<JsonResult> CityCreatePost(AddDestCityInput input)
+        {
+            var output = await _destAppService.AddDestCityAsync(input);
+
+            return Json(new { success = output.Status });
+        }
+
+        public async Task<ActionResult> CityEdit(int id, int provinceId)
+        {
+
+            var output = await _destAppService.GetDestProvinceByIdAsync(provinceId);
+            var cityOutput = await _destAppService.GetDestCityByIdAsync(id);
+            var vm = new EditDestCityViewModel()
+            {
+                Province = output,
+                ProvinceId = provinceId,
+                CityId = id,
+                City = cityOutput
+            };
+            return View(vm);
+        }
+
+
+        [HttpPost, ActionName("CityEdit")]
+        public async Task<JsonResult> CityEditPost(UpdateDestCityInput input)
+        {
+            var output = await _destAppService.UpdateDestCityAsync(input);
+
+            return Json(new { success = output.Status });
+        }
+
+        #endregion
     }
 }

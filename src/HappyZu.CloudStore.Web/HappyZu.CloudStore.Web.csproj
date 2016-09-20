@@ -423,6 +423,12 @@
     <Content Include="Areas\Admin\Views\Destination\ProvinceCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\ProvinceEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\_ProvinceCreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\CityCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\CityEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\_CityCreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\DestCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\DestEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\_DestCreateOrEdit.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -535,6 +541,8 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\DataTableJsonViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DataTableOptionViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\DestCityViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\EditDestCityViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetRolesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />

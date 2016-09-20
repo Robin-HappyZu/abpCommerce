@@ -8,6 +8,7 @@ namespace HappyZu.CloudStore.Trip.Dto
 {
     public class UpdateDestCityInput
     {
+        public int Id { get; set; }
         public DestCityDto City { get; set; }
     }
 }

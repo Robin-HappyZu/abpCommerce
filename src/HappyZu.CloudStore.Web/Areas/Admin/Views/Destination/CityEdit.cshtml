@@ -1,7 +1,5 @@
-﻿
-
-@using Abp.Json
-@model HappyZu.CloudStore.Trip.Dto.AddDestProvinceInput
+﻿@using Abp.Json
+@model HappyZu.CloudStore.Web.Areas.Admin.Models.EditDestCityViewModel
 @{
     ViewBag.Title = "添加省份或地区";
 }
@@ -18,6 +16,10 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
+            <a href="@Url.Action("Cities", "Destination",new {area="Admin",Id=Model.ProvinceId},true)">@(Model.Province.Name)目的地城市</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
             <span>@ViewBag.Title</span>
         </li>
     </ul>
@@ -26,16 +28,16 @@
 <!-- BEGIN PAGE TITLE-->
 <h3 class="page-title">
     @ViewBag.Title
-    <small>新的省份或地区</small>
+    <small>编辑@(Model.Province.Name)目的地城市</small>
 </h3>
 
 
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="zone zone-content">
-            @using (Html.BeginForm("ProvinceCreate", "Destination", FormMethod.Post, new { id = "uiform" }))
+            @using (Html.BeginForm("CityEdit", "Destination", FormMethod.Post, new { id = "uiform" }))
             {
-                @Html.Partial("_ProvinceCreateOrEdit", Model.Province)
+                @Html.Partial("_CityCreateOrEdit", Model)
             }
         </div>
     </div>
@@ -46,25 +48,24 @@
 @section scripts{
     <script>
 
-        var ViewModel = function(title, destType,returnUrl) {
+        var ViewModel = function (name, returnUrl) {
             var _this = this;
-            this.Name = ko.observable(title);
-            this.DestType = ko.observable(destType);
+            this.Name = ko.observable(name);
             this.ReturnUrl = ko.observable(returnUrl);
 
             this.submit = function(data, event) {
                 var url = $('#uiform').attr("action");
                 var params = [];
-                params.push({ name: "@Html.NameFor(m=>m.Province.Name)", value: _this.Name() });
-                params.push({ name: "@Html.NameFor(m=>m.Province.DestType)", value: _this.DestType() });
+                params.push({ name: "@Html.NameFor(m=>m.City.Name)", value: _this.Name() });
+                params.push({ name: "@Html.NameFor(m=>m.City.ProvinceId)", value: '@Model.ProvinceId' });
+                params.push({ name: "@Html.NameFor(m=>m.ProvinceId)", value: '@Model.ProvinceId' });
                 App.startPageLoading({animate: true});
                 var $btn=$(event.target);
                 $btn.button("loading");
                 $.post(url, params, function(data) {
-                    App.stopPageLoading();
-                    $btn.button('reset');
                     if (data.success) {
                         window.location = _this.ReturnUrl();
+                        return;
                     } else {
                         App.alert({
                             container: '',
@@ -76,13 +77,15 @@
                             focus: true, // auto scroll to the alert after shown
                             icon: 'warning' // put icon before the message
                         });
-                    }
+                    };
+                    $btn.button('reset');
+                    App.stopPageLoading();
                 }, 'json');
 
             }
         };
 
-        var vm = new ViewModel("@Model.Province.Name", @((int)Model.Province.DestType), "@Request["ReturnUrl"]");
+        var vm = new ViewModel("@Model.City.Name",  "@Request["ReturnUrl"]");
 
         ko.applyBindings(vm);
 

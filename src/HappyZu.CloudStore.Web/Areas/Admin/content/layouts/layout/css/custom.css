@@ -1,1 +1,16 @@
 /* here you can put your own css to customize and override the theme */
+.portlet-search.portlet>.portlet-title>.caption{
+    padding:0px;line-height:30px;
+}
+.portlet-search.portlet>.portlet-title>.caption>i{
+    float:none;
+}
+.portlet-search.portlet>.portlet-title>.actions{
+    padding:0px;
+}
+.portlet-search.portlet>.portlet-title{
+    margin-bottom: 0px; 
+}
+.portlet-search.portlet>.portlet-body.form>form>.form-body{
+    padding:20px;
+}

@@ -57,10 +57,17 @@ namespace HappyZu.CloudStore.Trip
             return province.MapTo<DestProvinceDto>();
         }
 
-        public async Task<IListResult<DestCityDto>> GetDestCitiesByDestProvinceIdAsync(int destProviceId)
+        public async Task<IListResult<DestCityDto>> GetDestCitiesByDestProvinceIdAsync(GetDestCitiesInput input)
         {
-            var cities = await _destLocationManager.GetDestCitiesByProvinceIdAsync(destProviceId);
+            var cities = await _destLocationManager.GetDestCitiesByProvinceIdAsync(input.ProvinceId,input);
             return new ListResultDto<DestCityDto>(cities.MapTo<List<DestCityDto>>());
+        }
+
+        public async Task<DestCityDto> GetDestCityByIdAsync(int id)
+        {
+            var city = await _destLocationManager.GetDestCityByIdAsync(id);
+
+            return city.MapTo<DestCityDto>();
         }
 
         public async Task<ResultOutputDto> AddDestProvinceAsync(AddDestProvinceInput input)
@@ -107,7 +114,7 @@ namespace HappyZu.CloudStore.Trip
 
         public async Task<ResultOutputDto> UpdateDestCityAsync(UpdateDestCityInput input)
         {
-            var city = await _destLocationManager.GetDestCityByIdAsync(input.City.Id);
+            var city = await _destLocationManager.GetDestCityByIdAsync(input.Id);
             city.Name = input.City.Name;
             city.ProvinceId = input.City.ProvinceId;
             city.DestCount = input.City.DestCount;
