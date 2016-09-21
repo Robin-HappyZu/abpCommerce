@@ -543,6 +543,7 @@
     <Compile Include="Areas\Admin\Models\DataTableOptionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DestCityViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditDestCityViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\EditDestViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetRolesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />

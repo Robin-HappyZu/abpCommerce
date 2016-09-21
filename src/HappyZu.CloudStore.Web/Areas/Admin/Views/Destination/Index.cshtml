@@ -22,6 +22,19 @@
 </h3>
 <!-- END PAGE TITLE-->
 <!-- END PAGE HEADER-->
+<div class="row">
+    <div class="col-md-12 col-sm-12 clearfix margin-bottom-10">
+        <div class="pull-left">
+
+        </div>
+        <div class="pull-right">
+            <div class="btn-group btn-group-devided">
+                <a class="btn btn-transparent green-meadow advanced-search" href="javascript:;"><i class="fa fa-search"></i> 高级搜索</a>
+                <a class="btn btn-transparent blue" href="@Url.Action("DestCreate", "Destination", new {area = "Admin", returnUrl = Request.RawUrl}, true)"><i class="fa fa-user-plus"></i> 添加景区</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-12">
@@ -29,20 +42,14 @@
                 <p> NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only. </p>
             </div>*@
         <!-- Begin: life time stats -->
-        <div class="portlet light portlet-fit portlet-datatable bordered portlet-search">
+        <div class="portlet light portlet-fit portlet-datatable bordered portlet-search hide">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-filter font-dark"></i>
                     <span class="caption-subject font-dark sbold uppercase">筛选</span>
                 </div>
-                <div class="actions">
-                    <div class="btn-group btn-group-devided">
-                        <a class="btn btn-transparent green btn-circle advanced-search" href="javascript:;"><i class="fa fa-search"></i> 高级搜索</a>
-                        <a class="btn btn-transparent blue btn-circle" href="@Url.Action("DestCreate", "Destination", new {area = "Admin", returnUrl = Request.RawUrl}, true)"><i class="fa fa-user-plus"></i> 添加景区</a>
-                    </div>
-                </div>
             </div>
-            <div class="portlet-body form hide">
+            <div class="portlet-body form">
                 <form action="#" class="form-horizontal">
                     <div class="form-body">
                         <div class="row">
@@ -143,9 +150,8 @@
                     </div>
                     <div class="form-actions">
                         <div class="row">
-                            <div class="col-md-offset-5 col-md-6">
-                                <button type="submit" class="btn green">搜索</button>
-                                <button type="button" class="btn default">取消</button>
+                            <div class="col-md-offset-5 col-md-2 col-xs-offset-1 col-xs-10">
+                                <button type="submit" class="btn green btn-block">搜索</button>
                             </div>
                         </div>
                     </div>
@@ -332,9 +338,11 @@
             TableDatatablesAjax.init();
 
             $('.advanced-search').click(function () {
-                var searchPortletBody = $('.portlet-search .portlet-body');
+                var searchPortletBody = $('.portlet-search');
                 if (searchPortletBody.hasClass('hide')) {
                     searchPortletBody.removeClass('hide');
+                } else {
+                    searchPortletBody.addClass('hide');
                 }
             });
         });

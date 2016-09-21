@@ -55,9 +55,9 @@ namespace HappyZu.CloudStore.Trip
             return dests.PageBy(request).ToList();
         }
 
-        public async Task AddDestAsync(Dest dest)
+        public async Task<int> AddDestAsync(Dest dest)
         {
-            await _destRepository.InsertAsync(dest);
+            return await _destRepository.InsertAndGetIdAsync(dest);
         }
 
         public async Task<Dest> GetDestByIdAsync(int destId)

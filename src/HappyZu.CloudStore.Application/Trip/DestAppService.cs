@@ -144,8 +144,9 @@ namespace HappyZu.CloudStore.Trip
         {
             var dest = input.Dest.MapTo<Dest>();
 
-            await _destMananger.AddDestAsync(dest);
-            return ResultOutputDto.Successed;
+            var id=await _destMananger.AddDestAsync(dest);
+
+            return ResultOutputDto.Success(id);
         }
 
         public async Task<ResultOutputDto> RemoveDestAsync(int destId)

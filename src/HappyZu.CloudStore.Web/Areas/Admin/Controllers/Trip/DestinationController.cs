@@ -32,10 +32,24 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 
         public ActionResult DestCreate()
         {
-            return View();
+            var vm=new EditDestViewModel();
+            return View(vm);
         }
 
-        public ActionResult DestEdit()
+        [HttpPost, ActionName("DestCreate")]
+        public async Task<JsonResult> DestCreatePost(EditDestViewModel vm)
+        {
+            var input=new AddDestInput()
+            {
+                Dest = vm.Dest
+            };
+            var output = await _destAppService.AddDestAsync(input);
+
+            return Json(new { success = output.Status ,id=output.EntityId});
+        }
+
+
+        public ActionResult DestEdit(EditDestViewModel vm)
         {
             return View();
         }

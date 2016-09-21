@@ -1,9 +1,8 @@
 ﻿
 
 @using Abp.Json
-@model HappyZu.CloudStore.Web.Areas.Admin.Models.EditDestCityViewModel
 @{
-    ViewBag.Title = "添加省份或地区";
+    ViewBag.Title = "编辑景点";
 }
 
 <!-- BEGIN PAGE BAR -->
@@ -14,11 +13,7 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="@Url.Action("Provinces", "Destination",new {area="Admin"},true)">省份和地区</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-        <li>
-            <a href="@Url.Action("Cities", "Destination",new {area="Admin",Id=Model.ProvinceId},true)">@(Model.Province.Name)目的地城市</a>
+            <a href="@Url.Action("Index", "Destination",new {area="Admin"},true)">景点管理</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
@@ -28,39 +23,77 @@
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN PAGE TITLE-->
-<h3 class="page-title">
-    @ViewBag.Title
-    <small>新的@(Model.Province.Name)目的地城市</small>
-</h3>
 
 
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="zone zone-content">
-            @using (Html.BeginForm("CityCreate", "Destination", FormMethod.Post, new { id = "uiform" }))
-            {
-                @Html.Partial("_CityCreateOrEdit", Model)
-            }
+            <div class="portlet solid portlet-box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        @ViewBag.Title
+                    </div>
+                    <div class="actions content-edit-box-actions">
+                        <button type="button" onclick="javascript:OpenWindow('/flower-girl-bracelet', 800, 600, true); return false;" class="btn purple">
+                            <i class="fa fa-eye"></i>
+                            预览
+                        </button>
+                        <button type="submit" name="save" class="btn blue">
+                            <i class="fa fa-floppy-o"></i>
+                            保存
+                        </button>
+                        <button type="submit" name="save-continue" class="btn blue">
+                            <i class="fa fa-floppy-o"></i>
+                            保存并继续编辑
+                        </button>
+                        <button type="button" name="copyproduct" class="btn green-meadow" data-toggle="modal" data-target="#copyproduct-window">
+                            <i class="fa fa-clone"></i>
+                            复制景点
+                        </button>
+                        <span id="product-delete" class="btn red" data-toggle="modal" data-target="#productmodel-delete-confirmation">
+                            <i class="fa fa-trash-o"></i>
+                            删除
+                        </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    @using (Html.BeginForm("DestCreate", "Destination", FormMethod.Post, new { id = "uiform" }))
+                    {
+                        @Html.Partial("_DestCreateOrEdit")
+                    }
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 <div class="clearfix">
 </div>
-
+@section style_plugins{
+    <link href="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" />
+}
+@section script_plugins{
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.min.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js"></script>
+}
 @section scripts{
     <script>
+        $(function() {
+            $(".input-booking-notice").summernote({ height: 300, dialogsInBody : true,placeholder: '预订须知', lang: "zh-CN" });
+            $(".input-agreement").summernote({ height: 300, dialogsInBody: true, placeholder: '游玩协议', lang: "zh-CN" });
+            $(".input-description").summernote({ height: 300, dialogsInBody: true, placeholder: '景点介绍', lang: "zh-CN" });
+        });
 
-        var ViewModel = function(name, returnUrl) {
+        var ViewModel = function( returnUrl) {
             var _this = this;
-            this.Name = ko.observable(name);
             this.ReturnUrl = ko.observable(returnUrl);
 
             this.submit = function(data, event) {
                 var url = $('#uiform').attr("action");
                 var params = [];
-                params.push({ name: "@Html.NameFor(m=>m.City.Name)", value: _this.Name() });
+                @*params.push({ name: "@Html.NameFor(m=>m.City.Name)", value: _this.Name() });
                 params.push({ name: "@Html.NameFor(m=>m.City.ProvinceId)", value: '@Model.ProvinceId' });
-                params.push({ name: "@Html.NameFor(m=>m.ProvinceId)", value: '@Model.ProvinceId' });
+                params.push({ name: "@Html.NameFor(m=>m.ProvinceId)", value: '@Model.ProvinceId' });*@
                 App.startPageLoading({animate: true});
                 var $btn=$(event.target);
                 $btn.button("loading");
@@ -87,7 +120,7 @@
             }
         };
 
-        var vm = new ViewModel("@Model.City.Name",  "@Request["ReturnUrl"]");
+        var vm = new ViewModel(  "@Request["ReturnUrl"]");
 
         ko.applyBindings(vm);
 
