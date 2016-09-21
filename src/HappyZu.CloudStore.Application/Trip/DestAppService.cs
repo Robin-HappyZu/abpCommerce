@@ -233,8 +233,10 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var dest = input.Dest.MapTo<Dest>();
-                await _destMananger.AddDestAsync(dest);
-                return ResultOutputDto.Successed;
+
+                var id = await _destMananger.AddDestAsync(dest);
+
+                return ResultOutputDto.Success(id);
             }
             catch (Exception e)
             {
