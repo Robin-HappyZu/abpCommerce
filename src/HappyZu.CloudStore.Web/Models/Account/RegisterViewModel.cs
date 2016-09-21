@@ -7,7 +7,7 @@ using HappyZu.CloudStore.Users;
 
 namespace HappyZu.CloudStore.Web.Models.Account
 {
-    public class RegisterViewModel : IInputDto, IValidatableObject
+    public class RegisterViewModel : IValidatableObject
     {
         /// <summary>
         /// Not required for single-tenant applications.

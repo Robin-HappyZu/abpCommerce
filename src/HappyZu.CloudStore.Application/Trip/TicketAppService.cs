@@ -26,116 +26,276 @@ namespace HappyZu.CloudStore.Trip
 
         public async Task<ResultOutputDto> AddTicketAsync(AddTicketInput input)
         {
-            var ticket = input.Ticket.MapTo<Ticket>();
-            await _ticketManager.AddTicketAsync(ticket);
-            return ResultOutputDto.Successed;
+            try
+            {
+                var ticket = input.Ticket.MapTo<Ticket>();
+                await _ticketManager.AddTicketAsync(ticket);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
         public async Task<ResultOutputDto> UpdateTicketAsync(UpdateTicketInput input)
         {
-            var ticket = input.Ticket.MapTo<Ticket>();
-            await _ticketManager.UpdateTicketAysnc(ticket);
-            return ResultOutputDto.Successed;
+            try
+            {
+                var ticket = input.Ticket.MapTo<Ticket>();
+                await _ticketManager.UpdateTicketAysnc(ticket);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
         public async Task<ResultOutputDto> RemoveTicketAsync(int ticketId)
         {
-            await _ticketManager.RemoveTicketAsync(ticketId);
-            return ResultOutputDto.Successed;
+            try
+            {
+                await _ticketManager.RemoveTicketAsync(ticketId);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
         public async Task<TicketDto> GetTicketByIdAsync(int ticketId)
         {
-            var ticket = await _ticketManager.GetTicketByIdAsync(ticketId);
-            return ticket.MapTo<TicketDto>();
+            try
+            {
+                var ticket = await _ticketManager.GetTicketByIdAsync(ticketId);
+                return ticket.MapTo<TicketDto>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async Task<IPagedResult<TicketDto>> GetPagedTicketsAsync(GetPagedTicketsInput input)
         {
-            var count = await _ticketManager.GetDestTicketsCountAsync(input.DestId);
-            var tickets =  _ticketManager.GetPagedTickets(input.DestId, input);
-
-            return new PagedResultOutput<TicketDto>()
+            try
             {
-                TotalCount = count,
-                Items = tickets.MapTo<List<TicketDto>>()
-            };
+                var count = await _ticketManager.GetDestTicketsCountAsync(input.DestId);
+                var tickets =  _ticketManager.GetPagedTickets(input.DestId, input);
+
+                return new PagedResultOutput<TicketDto>()
+                {
+                    TotalCount = count,
+                    Items = tickets.MapTo<List<TicketDto>>()
+                };
+            }
+            catch (Exception)
+            {
+                return new PagedResultOutput<TicketDto>()
+                {
+                    TotalCount = 0,
+                    Items = new List<TicketDto>()
+                };
+            }
         }
 
         public async Task<ResultOutputDto> AddTicketQuoteAsync(AddTicketQuoteInput input)
         {
-            var quote = input.TicketQuote.MapTo<TicketQuote>();
-            await _ticketQuoteManager.AddTicketQuoteAsync(quote);
-            return ResultOutputDto.Successed;
+            try
+            {
+                var quote = input.TicketQuote.MapTo<TicketQuote>();
+                await _ticketQuoteManager.AddTicketQuoteAsync(quote);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
         public async Task<ResultOutputDto> UpdateTicketQuoteAsync(UpdateTicketQuoteInput input)
         {
-            var quote = input.TicketQuote.MapTo<TicketQuote>();
-            await _ticketQuoteManager.UpdateTicketQuoteAsync(quote);
-            return ResultOutputDto.Successed;
+            try
+            {
+                var quote = input.TicketQuote.MapTo<TicketQuote>();
+                await _ticketQuoteManager.UpdateTicketQuoteAsync(quote);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
         public async Task<ResultOutputDto> RemoveTicketQuoteAsync(int ticketQuoteId)
         {
-            await _ticketQuoteManager.RemoveTicketQuoteAsync(ticketQuoteId);
-            return ResultOutputDto.Successed;
+            try
+            {
+                await _ticketQuoteManager.RemoveTicketQuoteAsync(ticketQuoteId);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
         public async Task<TicketQuoteDto> GetTicketQuoteByIdAsync(int ticektQuoteId)
         {
-            var quote = await _ticketQuoteManager.GetTicketQuoteByIdAsync(ticektQuoteId);
-            return quote.MapTo<TicketQuoteDto>();
+            try
+            {
+                var quote = await _ticketQuoteManager.GetTicketQuoteByIdAsync(ticektQuoteId);
+                return quote.MapTo<TicketQuoteDto>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async Task<IPagedResult<TicketQuoteDto>> GetPagedTicketQuotesByTicektId(GetPagedTicketQuotesInput input)
         {
-            var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(input.TicketId);
-            var quotes = _ticketQuoteManager.GetPagedTicketQuotesByTicketId(input.TicketId, input);
-
-            return new PagedResultOutput<TicketQuoteDto>()
+            try
             {
-                TotalCount = count,
-                Items = quotes.MapTo<List<TicketQuoteDto>>()
-            };
+                var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(input.TicketId);
+                var quotes = _ticketQuoteManager.GetPagedTicketQuotesByTicketId(input.TicketId, input);
+
+                return new PagedResultOutput<TicketQuoteDto>()
+                {
+                    TotalCount = count,
+                    Items = quotes.MapTo<List<TicketQuoteDto>>()
+                };
+            }
+            catch (Exception)
+            {
+                return new PagedResultDto<TicketQuoteDto>()
+                {
+                    TotalCount = 0,
+                    Items = new List<TicketQuoteDto>()
+                };
+            }
         }
 
         public async Task<ResultOutputDto> AddTicketOrderAsync(AddTicketOrderInput input)
         {
-            var order = input.TicketOrder.MapTo<TicketOrder>();
-            await _ticketOrderManager.AddTicketOrderAsync(order);
-            return ResultOutputDto.Successed;
+            try
+            {
+                var order = input.TicketOrder.MapTo<TicketOrder>();
+                var orderItems = input.TicketOrderItems.MapTo<List<TicketOrderItem>>();
+                await _ticketOrderManager.AddTicketOrderAsync(order);
+                await _ticketOrderManager.AddTicketOrderDetailsAsync(orderItems);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
         public async Task<ResultOutputDto> UpdateTicketOrderAsync(UpdateTicketOrderInput input)
         {
-            var order = input.TicketOrder.MapTo<TicketOrder>();
-            await _ticketOrderManager.UpdateTicketOrderAsync(order);
-            return ResultOutputDto.Successed;
+            try
+            {
+                var order = input.TicketOrder.MapTo<TicketOrder>();
+                await _ticketOrderManager.UpdateTicketOrderAsync(order);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
         public async Task<ResultOutputDto> RemoveTicketOrderAsync(int ticketOrderId)
         {
-            await _ticketOrderManager.RemoveTicketOrderAsync(ticketOrderId);
-            return ResultOutputDto.Successed;
+            try
+            {
+                await _ticketOrderManager.RemoveTicketOrderAsync(ticketOrderId);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
         public async Task<TicketOrderDto> GetTicketOrderByIdAsync(int ticektOrderId)
         {
-            var order = await _ticketOrderManager.GetTicketOrderByIdAsync(ticektOrderId);
-            return order.MapTo<TicketOrderDto>();
+            try
+            {
+                var order = await _ticketOrderManager.GetTicketOrderByIdAsync(ticektOrderId);
+                return order.MapTo<TicketOrderDto>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async Task<IPagedResult<TicketOrderDto>> GetPagedTicketOrdersByTicektId(GetPagedTicketOrdersInput input)
         {
-            var count = await _ticketOrderManager.GetTicketOrdersCountAsync();
-            var orders = _ticketOrderManager.GetPagedTicketOrders(input);
-
-            return new PagedResultOutput<TicketOrderDto>()
+            try
             {
-                TotalCount = count,
-                Items = orders.MapTo<List<TicketOrderDto>>()
-            };
+                var count = await _ticketOrderManager.GetTicketOrdersCountAsync();
+                var orders = _ticketOrderManager.GetPagedTicketOrders(input);
+
+                return new PagedResultOutput<TicketOrderDto>()
+                {
+                    TotalCount = count,
+                    Items = orders.MapTo<List<TicketOrderDto>>()
+                };
+            }
+            catch (Exception)
+            {
+                return new PagedResultOutput<TicketOrderDto>()
+                {
+                    TotalCount = 0,
+                    Items = new List<TicketOrderDto>()
+                };
+            }
+        }
+
+        public async Task<ResultOutputDto> AttachTicketAttributeRecordAsync(AttachTicketAttributeRecordInput input)
+        {
+            try
+            {
+                var records = input.TicketAttributeRecords.MapTo<List<TicketAttributeRecord>>();
+                await _ticketManager.AttachTicketAttributeRecordAsync(records);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
+        }
+
+        public async Task<ResultOutputDto> DetachTicketAttributeRecordAsync(DetachTicketAttributeRecordInput input)
+        {
+            try
+            {
+                var records = input.TicketAttributeRecords.MapTo<List<TicketAttributeRecord>>();
+                await _ticketManager.DetachTicketAttributeRecordAsync(records);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
+        }
+
+        public async Task<List<TicketAttributeRecordDto>> GetAllAttributeRecordByTicketIdAsync(int ticketId)
+        {
+            try
+            {
+                var records = await _ticketManager.GetAttributeRecordsByTicketIdAsync(ticketId);
+                return records.MapTo<List<TicketAttributeRecordDto>>();
+            }
+            catch (Exception)
+            {
+                return new List<TicketAttributeRecordDto>();
+            }
         }
     }
 }

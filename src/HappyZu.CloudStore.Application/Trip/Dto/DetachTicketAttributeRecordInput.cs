@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace HappyZu.CloudStore.Trip.Dto
 {
-    public class AddTicketOrderInput
+    public class DetachTicketAttributeRecordInput
     {
-        public TicketOrderDto TicketOrder { get; set; }
-
-        public IList<TicketOrderItemDto> TicketOrderItems { get; set; }
+        public List<TicketAttributeRecordDto> TicketAttributeRecords { get; set; }
     }
 }

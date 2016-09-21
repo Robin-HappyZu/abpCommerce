@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using HappyZu.CloudStore.Common.Dto;
@@ -46,6 +47,16 @@ namespace HappyZu.CloudStore.Trip
         Task<ResultOutputDto> RemoveDestAsync(int destId);
 
         Task<ResultOutputDto> UpdateDestAsync(UpdateDestInput input);
+
+        #endregion
+
+        #region 景点标签
+
+        Task<ResultOutputDto> AttachDestAttributeRecordAsync(AttachDestAttributeRecordInput input);
+
+        Task<ResultOutputDto> DetachDestAttributeRecordAsync(DetachDestAttributeRecordInput input);
+
+        Task<List<DestAttributeRecordDto>> GetAllAttributeRecordByDestIdAsync(int destId);
 
         #endregion
     }

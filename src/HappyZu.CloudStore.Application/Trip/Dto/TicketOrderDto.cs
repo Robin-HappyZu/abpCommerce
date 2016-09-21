@@ -10,21 +10,14 @@ namespace HappyZu.CloudStore.Trip.Dto
     public class TicketOrderDto : EntityDto
     {
         /// <summary>
-        /// 使用日期
+        /// 客户ID
         /// </summary>
-        public DateTime UseDate { get; set; }
+        public int CustomerId { get; set; }
 
         /// <summary>
         /// 订单编号
         /// </summary>
-        [StringLength(128)]
         public string OrderNo { get; set; }
-
-        /// <summary>
-        /// 电子票编号
-        /// </summary>
-        [StringLength(128)]
-        public string TicketNo { get; set; }
 
         /// <summary>
         /// 使用积分
@@ -32,14 +25,9 @@ namespace HappyZu.CloudStore.Trip.Dto
         public int UsedPoint { get; set; }
 
         /// <summary>
-        /// 成人数量
+        /// 总票数
         /// </summary>
         public int Count { get; set; }
-
-        /// <summary>
-        /// 成人报价
-        /// </summary>
-        public double Amount { get; set; }
 
         /// <summary>
         /// 保险费

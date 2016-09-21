@@ -12,10 +12,12 @@ namespace HappyZu.CloudStore.Trip
     public class TicketManager : IDomainService
     {
         private readonly IRepository<Ticket> _ticketRepository;
+        private readonly IRepository<TicketAttributeRecord> _ticketAttributeRecordRepository; 
 
-        public TicketManager(IRepository<Ticket> ticketRepository)
+        public TicketManager(IRepository<Ticket> ticketRepository, IRepository<TicketAttributeRecord> ticketAttributeRecordRepository)
         {
             _ticketRepository = ticketRepository;
+            _ticketAttributeRecordRepository = ticketAttributeRecordRepository;
         }
         #region 门票
 
@@ -69,6 +71,31 @@ namespace HappyZu.CloudStore.Trip
             }
 
             return await _ticketRepository.GetAllListAsync(ticket => ticket.DestId == destId);
+        }
+
+        #endregion
+
+        #region 门票标签
+
+        public async Task AttachTicketAttributeRecordAsync(List<TicketAttributeRecord> records)
+        {
+            foreach (var record in records)
+            {
+                await _ticketAttributeRecordRepository.InsertAsync(record);
+            }
+        }
+
+        public async Task DetachTicketAttributeRecordAsync(List<TicketAttributeRecord> records)
+        {
+            foreach (var record in records)
+            {
+                await _ticketAttributeRecordRepository.DeleteAsync(record.Id);
+            }
+        }
+
+        public async Task<List<TicketAttributeRecord>> GetAttributeRecordsByTicketIdAsync(int ticketId)
+        {
+            return await _ticketAttributeRecordRepository.GetAllListAsync(record => record.TicketId == ticketId);
         }
 
         #endregion

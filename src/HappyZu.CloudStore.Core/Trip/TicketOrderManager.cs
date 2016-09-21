@@ -13,10 +13,12 @@ namespace HappyZu.CloudStore.Trip
     public class TicketOrderManager : IDomainService
     {
         private readonly IRepository<TicketOrder> _ticketOrderRepository;
+        private readonly IRepository<TicketOrderItem> _ticketOrderItemRepository; 
 
-        public TicketOrderManager(IRepository<TicketOrder> ticketOrderRepository)
+        public TicketOrderManager(IRepository<TicketOrder> ticketOrderRepository, IRepository<TicketOrderItem> ticketOrderItemRepository)
         {
             _ticketOrderRepository = ticketOrderRepository;
+            _ticketOrderItemRepository = ticketOrderItemRepository;
         }
 
         #region 门票订单
@@ -49,6 +51,23 @@ namespace HappyZu.CloudStore.Trip
         public IList<TicketOrder> GetPagedTicketOrders(IPagedResultRequest request)
         {
             return _ticketOrderRepository.GetAll().PageBy(request).ToList();
+        }
+
+        #endregion
+
+        #region 门票订单项
+
+        public async Task AddTicketOrderDetailsAsync(List<TicketOrderItem> items)
+        {
+            foreach (var item in items)
+            {
+                await _ticketOrderItemRepository.InsertAsync(item);
+            }
+        }
+
+        public async Task<IList<TicketOrderItem>> GetTicketOrderDetailsByTicketOrderIdAsync(int ticketOrderId)
+        {
+            return await _ticketOrderItemRepository.GetAllListAsync(item => item.TicketOrderId == ticketOrderId);
         }
 
         #endregion

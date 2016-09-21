@@ -119,7 +119,7 @@ namespace HappyZu.CloudStore.Roles
                     Role = role.MapTo<RoleDto>()
                 };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new GetRoleOutput();
             }
@@ -195,7 +195,7 @@ namespace HappyZu.CloudStore.Roles
                     Permissions = permissions
                 };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new RolePermissionOutputDto()
                 {
