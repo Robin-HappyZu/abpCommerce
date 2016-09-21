@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using HappyZu.CloudStore.Entities;
@@ -15,12 +11,12 @@ namespace HappyZu.CloudStore.Trip
     /// 门票订单
     /// </summary>
     [Table("Trip_TicketOrder")]
-    public class TicketOrder:Entity, ISoftDelete, ICreationAudited
+    public class TicketOrder : Entity, ISoftDelete, ICreationAudited
     {
         /// <summary>
-        /// 使用日期
+        /// 客户ID
         /// </summary>
-        public DateTime UseDate { get; set; }
+        public int CustomerId { get; set; }
 
         /// <summary>
         /// 订单编号
@@ -29,25 +25,14 @@ namespace HappyZu.CloudStore.Trip
         public string OrderNo { get; set; }
 
         /// <summary>
-        /// 电子票编号
-        /// </summary>
-        [StringLength(128)]
-        public string TicketNo { get; set; }
-
-        /// <summary>
         /// 使用积分
         /// </summary>
         public int UsedPoint { get; set; }
 
         /// <summary>
-        /// 成人数量
+        /// 总票数
         /// </summary>
         public int Count { get; set; }
-
-        /// <summary>
-        /// 成人报价
-        /// </summary>
-        public double Amount { get; set; }
         
         /// <summary>
         /// 保险费

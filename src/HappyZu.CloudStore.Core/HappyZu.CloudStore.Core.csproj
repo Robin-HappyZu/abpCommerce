@@ -128,6 +128,7 @@
     <Compile Include="Trip\Ticket.cs" />
     <Compile Include="Trip\TicketManager.cs" />
     <Compile Include="Trip\TicketOrder.cs" />
+    <Compile Include="Trip\TicketOrderItem.cs" />
     <Compile Include="Trip\TicketOrderManager.cs" />
     <Compile Include="Trip\TicketQuote.cs" />
     <Compile Include="Trip\TicketQuoteManager.cs" />

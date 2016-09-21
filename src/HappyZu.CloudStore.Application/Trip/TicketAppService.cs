@@ -183,7 +183,9 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var order = input.TicketOrder.MapTo<TicketOrder>();
+                var orderItems = input.TicketOrderItems.MapTo<List<TicketOrderItem>>();
                 await _ticketOrderManager.AddTicketOrderAsync(order);
+                await _ticketOrderManager.AddTicketOrderDetailsAsync(orderItems);
                 return ResultOutputDto.Successed;
             }
             catch (Exception e)
