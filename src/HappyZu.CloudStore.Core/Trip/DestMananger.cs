@@ -13,10 +13,12 @@ namespace HappyZu.CloudStore.Trip
     public class DestMananger : IDomainService
     {
         private readonly IRepository<Dest> _destRepository;
+        private readonly IRepository<DestAttributeRecord> _destAttributeRecordRepository; 
 
-        public DestMananger(IRepository<Dest> destRepository)
+        public DestMananger(IRepository<Dest> destRepository, IRepository<DestAttributeRecord> destAttributeRecordRepository )
         {
             _destRepository = destRepository;
+            _destAttributeRecordRepository = destAttributeRecordRepository;
         }
 
         public async Task<int> GetDestsCountAsync(int provinceId, int cityId)
@@ -73,6 +75,27 @@ namespace HappyZu.CloudStore.Trip
         public async Task RemoveDestAsync(int destId)
         {
             await _destRepository.DeleteAsync(destId);
+        }
+
+        public async Task AttachDestAttributeRecordAsync(List<DestAttributeRecord> records)
+        {
+            foreach (var record in records)
+            {
+                await _destAttributeRecordRepository.InsertAsync(record);
+            }
+        }
+
+        public async Task DetachDestAttributeRecordAsync(List<DestAttributeRecord> records)
+        {
+            foreach (var record in records)
+            {
+                await _destAttributeRecordRepository.DeleteAsync(record.Id);
+            }
+        }
+
+        public async Task<List<DestAttributeRecord>> GetAttributeRecordsByDestIdAsync(int destId)
+        {
+            return await _destAttributeRecordRepository.GetAllListAsync(record => record.DestId == destId);
         }
     }
 }

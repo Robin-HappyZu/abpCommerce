@@ -2,7 +2,7 @@
 
 namespace HappyZu.CloudStore.Sessions.Dto
 {
-    public class GetCurrentLoginInformationsOutput : IOutputDto
+    public class GetCurrentLoginInformationsOutput
     {
         public UserLoginInfoDto User { get; set; }
 
