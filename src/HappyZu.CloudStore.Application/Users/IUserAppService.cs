@@ -11,8 +11,10 @@ namespace HappyZu.CloudStore.Users
 
         Task RemoveFromRole(long userId, string roleName);
 
-        Task<ListResultOutput<UserListDto>> GetUsers();
+        Task<ListResultOutput<UserDto>> GetUsers();
 
         Task CreateUser(CreateUserInput input);
+
+        Task<UserDto> GetUserByWechatOpenIdAndUnionIdAsync(string wechatOpenId, string unionId);
     }
 }

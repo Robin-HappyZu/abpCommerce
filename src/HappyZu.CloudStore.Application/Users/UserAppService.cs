@@ -37,12 +37,12 @@ namespace HappyZu.CloudStore.Users
             CheckErrors(await UserManager.RemoveFromRoleAsync(userId, roleName));
         }
 
-        public async Task<ListResultOutput<UserListDto>> GetUsers()
+        public async Task<ListResultOutput<UserDto>> GetUsers()
         {
             var users = await _userRepository.GetAllListAsync();
 
-            return new ListResultOutput<UserListDto>(
-                users.MapTo<List<UserListDto>>()
+            return new ListResultOutput<UserDto>(
+                users.MapTo<List<UserDto>>()
                 );
         }
 
@@ -55,6 +55,13 @@ namespace HappyZu.CloudStore.Users
             user.IsEmailConfirmed = true;
 
             CheckErrors(await UserManager.CreateAsync(user));
+        }
+
+        public async Task<UserDto> GetUserByWechatOpenIdAndUnionIdAsync(string wechatOpenId, string unionId)
+        {
+            var result = await _userRepository.SingleAsync(user => user.WechatOpenID == wechatOpenId && user.UnionID == unionId);
+
+            return result.MapTo<UserDto>();
         }
     }
 }

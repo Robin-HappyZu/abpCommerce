@@ -5,7 +5,7 @@ using Abp.AutoMapper;
 namespace HappyZu.CloudStore.Users.Dto
 {
     [AutoMapFrom(typeof(User))]
-    public class UserListDto : EntityDto<long>
+    public class UserDto : EntityDto<long>
     {
         public string Name { get; set; }
 
@@ -18,6 +18,10 @@ namespace HappyZu.CloudStore.Users.Dto
         public string EmailAddress { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
+
+        public string UnionID { get; set; }
+
+        public string WechatOpenID { get; set; }
 
         public DateTime? LastLoginTime { get; set; }
 

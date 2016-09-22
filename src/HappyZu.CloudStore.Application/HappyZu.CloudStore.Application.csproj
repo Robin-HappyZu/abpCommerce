@@ -178,7 +178,7 @@
     <Compile Include="Sessions\SessionAppService.cs" />
     <Compile Include="Users\Dto\ProhibitPermissionInput.cs" />
     <Compile Include="Users\UserAppService.cs" />
-    <Compile Include="Users\Dto\UserListDto.cs" />
+    <Compile Include="Users\Dto\UserDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

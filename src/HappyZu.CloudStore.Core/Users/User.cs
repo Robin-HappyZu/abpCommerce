@@ -26,5 +26,9 @@ namespace HappyZu.CloudStore.Users
                 Password = new PasswordHasher().HashPassword(password)
             };
         }
+
+        public string UnionID { get; set; }
+
+        public string WechatOpenID { get; set; }
     }
 }
