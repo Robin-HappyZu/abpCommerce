@@ -20,7 +20,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 景点编码
         /// </summary>
-        //[StringLength(64)] //@TODO: 下次生成Migration注意
+        [StringLength(64)] //@TODO: 下次生成Migration注意
         public string Coding { get; set; }
 
         /// <summary>
