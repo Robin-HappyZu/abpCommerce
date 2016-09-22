@@ -173,7 +173,7 @@
                                                         <input type="hidden" class="form-control" id="@Html.IdFor(m => m.Dest.Lng)" name="@Html.NameFor(m => m.Dest.Lng)" data-bind="value:Lng">
                                                         <input type="hidden" class="form-control" id="@Html.IdFor(m => m.Dest.Lat)" name="@Html.NameFor(m => m.Dest.Lat)" data-bind="value:Lat">
                                                         <span class="input-group-btn">
-                                                            <a href="javascript:;" class="btn green" id="username1_checker" data-original-title="" title="">
+                                                            <a href="#location-map" class="btn green" data-target="#location-map" data-toggle="modal">
                                                                 <i class="fa fa-map-marker"></i> 标记
                                                             </a>
                                                         </span>
@@ -368,5 +368,19 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div id="location-map" class="modal container fade" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">Full Width</h4>
+    </div>
+    <div class="modal-body">
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
+        <button type="button" class="btn green">确认位置</button>
     </div>
 </div>
