@@ -59,18 +59,54 @@
 </div>
 @section style_plugins{
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
 }
 @section script_plugins{
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.min.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 }
 @section scripts{
-    <script>
+<script>
         $(function () {
-            $(".input-booking-notice").summernote({ height: 300, dialogsInBody: true, placeholder: '预订须知', lang: "zh-CN" });
-            $(".input-agreement").summernote({ height: 300, dialogsInBody: true, placeholder: '游玩协议', lang: "zh-CN" });
-            $(".input-description").summernote({ height: 300, dialogsInBody: true, placeholder: '景点介绍', lang: "zh-CN" });
+            $(".input-booking-notice").summernote({ height: 300, dialogsInBody: true, placeholder: '预订须知', lang: "zh-CN" ,callbacks: {
+                onBlur: function() {
+                    vm.BookingNotice($(".input-booking-notice").val());
+                }
+            }});
+            $(".input-agreement").summernote({ height: 300, dialogsInBody: true, placeholder: '游玩协议', lang: "zh-CN" ,callbacks: {
+                onBlur: function(contents, $editable) {
+                    vm.Agreement($(".input-agreement").val());
+                }
+            }});
+            $(".input-description").summernote({ height: 300, dialogsInBody: true, placeholder: '景点介绍', lang: "zh-CN" ,callbacks: {
+                onBlur: function(contents, $editable) {
+                    vm.Introduce($(".input-description").val());
+                }
+            }});
+
+            if (jQuery().datepicker) {
+                $('.date-picker').datepicker({
+                    language:"zh-CN",
+                    autoclose: true,
+                    isRTL: App.isRTL(),
+                    pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
+                });
+                //$('body').removeClass("modal-open"); //fix bug when inline picker is used in modal
+            }
         });
+
+        function htmldecode(s){
+            var div = document.createElement('div');
+            div.innerHTML = s;
+            return div.innerText || div.textContent;
+        }
+        function htmlencode(s){
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(s));
+            return div.innerHTML;
+        }
 
         var ViewModel = function (title, subject, introduce, feature, openTime, isPublished, publishDateTime, displayOrder,
             destType, provinceId, cityId, address, lng, lat, supplierId, supplier, bookingNotice, agreement, metaTitle,
@@ -78,7 +114,7 @@
             var _this = this;
             this.Title = ko.observable(title);
             this.Subject = ko.observable(subject);
-            this.Introduce = ko.observable(introduce);
+            this.Introduce = ko.observable(htmldecode(introduce));
             this.Feature = ko.observable(feature);
             this.OpenTime = ko.observable(openTime);
             this.IsPublished = ko.observable(isPublished);
@@ -92,8 +128,8 @@
             this.Lat = ko.observable(lat);
             this.SupplierId = ko.observable(supplierId);
             this.Supplier = ko.observable(supplier);
-            this.BookingNotice = ko.observable(bookingNotice);
-            this.Agreement = ko.observable(agreement);
+            this.BookingNotice = ko.observable(htmldecode(bookingNotice));
+            this.Agreement = ko.observable(htmldecode(agreement));
             this.MetaTitle = ko.observable(metaTitle);
             this.MetaKeywords = ko.observable(metaKeywords);
             this.MetaDescription = ko.observable(metaDescription);
@@ -104,7 +140,7 @@
                 var params = [];
                 params.push({ name: "@Html.NameFor(m=>m.Dest.Title)", value: _this.Title() });
                 params.push({ name: "@Html.NameFor(m=>m.Dest.Subject)", value: _this.Subject() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Introduce)", value: _this.Introduce() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Introduce)", value:htmlencode(_this.Introduce()) });
                 params.push({ name: "@Html.NameFor(m=>m.Dest.Feature)", value: _this.Feature() });
                 params.push({ name: "@Html.NameFor(m=>m.Dest.OpenTime)", value: _this.OpenTime() });
                 params.push({ name: "@Html.NameFor(m=>m.Dest.IsPublished)", value: _this.IsPublished() });
@@ -118,8 +154,8 @@
                 params.push({ name: "@Html.NameFor(m=>m.Dest.Lat)", value: _this.Lat() });
                 params.push({ name: "@Html.NameFor(m=>m.Dest.SupplierId)", value: _this.SupplierId() });
                 params.push({ name: "@Html.NameFor(m=>m.Dest.Supplier)", value: _this.Supplier() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.BookingNotice)", value: _this.BookingNotice() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Agreement)", value: _this.Agreement() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.BookingNotice)", value: htmlencode(_this.BookingNotice()) });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Agreement)", value: htmlencode(_this.Agreement()) });
                 params.push({ name: "@Html.NameFor(m=>m.Dest.MetaTitle)", value: _this.MetaTitle() });
                 params.push({ name: "@Html.NameFor(m=>m.Dest.MetaKeywords)", value: _this.MetaKeywords() });
                 params.push({ name: "@Html.NameFor(m=>m.Dest.MetaDescription)", value: _this.MetaDescription() });
@@ -150,7 +186,7 @@
         };
 
         var vm = new ViewModel( "@Model.Dest.Title", "@Model.Dest.Subject","@Model.Dest.Introduce","@Model.Dest.Feature" ,
-            "@Model.Dest.OpenTime",@Model.Dest.IsPublished.ToJsonString(),"@Model.Dest.PublishDateTime", @Model.Dest.DisplayOrder,
+            "@Model.Dest.OpenTime",@Model.Dest.IsPublished.ToJsonString(),"", @Model.Dest.DisplayOrder,
             @((int)Model.Dest.DestType), @Model.Dest.ProvinceId, @Model.Dest.CityId, "@Model.Dest.Address", "@Model.Dest.Lng",
             "@Model.Dest.Lat", @Model.Dest.SupplierId, "@Model.Dest.Supplier", "@Model.Dest.BookingNotice", "@Model.Dest.Agreement",
             "@Model.Dest.MetaTitle","@Model.Dest.MetaKeywords", "@Model.Dest.MetaDescription", "@Request["ReturnUrl"]");
@@ -158,5 +194,5 @@
         ko.applyBindings(vm);
 
 
-    </script>
+</script>
 }

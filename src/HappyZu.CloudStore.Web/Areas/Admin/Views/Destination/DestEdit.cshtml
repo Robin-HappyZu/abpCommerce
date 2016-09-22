@@ -1,4 +1,5 @@
-﻿
+﻿@model HappyZu.CloudStore.Web.Areas.Admin.Models.EditDestViewModel
+
 
 @using Abp.Json
 @{
@@ -38,7 +39,7 @@
                             <i class="fa fa-eye"></i>
                             预览
                         </button>
-                        <button type="submit" name="save" class="btn blue">
+                        <button type="submit" name="save" class="btn blue" data-loading-text="正在保存..." data-bind="click:submit">
                             <i class="fa fa-floppy-o"></i>
                             保存
                         </button>
@@ -57,7 +58,7 @@
                     </div>
                 </div>
                 <div class="portlet-body">
-                    @using (Html.BeginForm("DestCreate", "Destination", FormMethod.Post, new { id = "uiform" }))
+                    @using (Html.BeginForm("DestEdit", "Destination", FormMethod.Post, new { id = "uiform" }))
                     {
                         @Html.Partial("_DestCreateOrEdit")
                     }
@@ -78,22 +79,86 @@
 }
 @section scripts{
     <script>
-        $(function() {
-            $(".input-booking-notice").summernote({ height: 300, dialogsInBody : true,placeholder: '预订须知', lang: "zh-CN" });
-            $(".input-agreement").summernote({ height: 300, dialogsInBody: true, placeholder: '游玩协议', lang: "zh-CN" });
-            $(".input-description").summernote({ height: 300, dialogsInBody: true, placeholder: '景点介绍', lang: "zh-CN" });
+        $(function () {
+            $(".input-booking-notice").summernote({ height: 300, dialogsInBody: true, placeholder: '预订须知', lang: "zh-CN" ,callbacks: {
+                onBlur: function() {
+                    vm.BookingNotice($(".input-booking-notice").val());
+                }
+            }});
+            $(".input-agreement").summernote({ height: 300, dialogsInBody: true, placeholder: '游玩协议', lang: "zh-CN" ,callbacks: {
+                onBlur: function(contents, $editable) {
+                    vm.Agreement($(".input-agreement").val());
+                }
+            }});
+            $(".input-description").summernote({ height: 300, dialogsInBody: true, placeholder: '景点介绍', lang: "zh-CN" ,callbacks: {
+                onBlur: function(contents, $editable) {
+                    vm.Introduce($(".input-description").val());
+                }
+            }});
         });
 
-        var ViewModel = function( returnUrl) {
+        function htmldecode(s){
+            var div = document.createElement('div');
+            div.innerHTML = s;
+            return div.innerText || div.textContent;
+        }
+        function htmlencode(s){  
+            var div = document.createElement('div');  
+            div.appendChild(document.createTextNode(s));  
+            return div.innerHTML;  
+        }  
+
+        var ViewModel = function (title, subject, introduce, feature, openTime, isPublished, publishDateTime, displayOrder,
+            destType, provinceId, cityId, address, lng, lat, supplierId, supplier, bookingNotice, agreement, metaTitle,
+            metaKeywords, metaDescription, returnUrl) {
             var _this = this;
+            this.Title = ko.observable(title);
+            this.Subject = ko.observable(subject);
+            this.Introduce = ko.observable(htmldecode(introduce));
+            this.Feature = ko.observable(feature);
+            this.OpenTime = ko.observable(openTime);
+            this.IsPublished = ko.observable(isPublished);
+            this.PublishDateTime = ko.observable(publishDateTime);
+            this.DisplayOrder = ko.observable(displayOrder);
+            this.DestType = ko.observable(destType);
+            this.ProvinceId = ko.observable(provinceId);
+            this.CityId = ko.observable(cityId);
+            this.Address = ko.observable(address);
+            this.Lng = ko.observable(lng);
+            this.Lat = ko.observable(lat);
+            this.SupplierId = ko.observable(supplierId);
+            this.Supplier = ko.observable(supplier);
+            this.BookingNotice = ko.observable(htmldecode(bookingNotice));
+            this.Agreement = ko.observable(htmldecode(agreement));
+            this.MetaTitle = ko.observable(metaTitle);
+            this.MetaKeywords = ko.observable(metaKeywords);
+            this.MetaDescription = ko.observable(metaDescription);
             this.ReturnUrl = ko.observable(returnUrl);
 
             this.submit = function(data, event) {
                 var url = $('#uiform').attr("action");
                 var params = [];
-                @*params.push({ name: "@Html.NameFor(m=>m.City.Name)", value: _this.Name() });
-                params.push({ name: "@Html.NameFor(m=>m.City.ProvinceId)", value: '@Model.ProvinceId' });
-                params.push({ name: "@Html.NameFor(m=>m.ProvinceId)", value: '@Model.ProvinceId' });*@
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Title)", value: _this.Title() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Subject)", value: _this.Subject() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Introduce)", value:htmlencode(_this.Introduce()) });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Feature)", value: _this.Feature() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.OpenTime)", value: _this.OpenTime() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.IsPublished)", value: _this.IsPublished() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.PublishDateTime)", value: _this.PublishDateTime() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.DisplayOrder)", value: _this.DisplayOrder() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.DestType)", value: _this.DestType() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.ProvinceId)", value: _this.ProvinceId() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.CityId)", value: _this.CityId() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Address)", value: _this.Address() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Lng)", value: _this.Lng() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Lat)", value: _this.Lat() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.SupplierId)", value: _this.SupplierId() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Supplier)", value: _this.Supplier() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.BookingNotice)", value: htmlencode(_this.BookingNotice()) });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.Agreement)", value: htmlencode(_this.Agreement()) });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.MetaTitle)", value: _this.MetaTitle() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.MetaKeywords)", value: _this.MetaKeywords() });
+                params.push({ name: "@Html.NameFor(m=>m.Dest.MetaDescription)", value: _this.MetaDescription() });
                 App.startPageLoading({animate: true});
                 var $btn=$(event.target);
                 $btn.button("loading");
@@ -120,7 +185,11 @@
             }
         };
 
-        var vm = new ViewModel(  "@Request["ReturnUrl"]");
+        var vm = new ViewModel( "@Model.Dest.Title", "@Model.Dest.Subject","@Model.Dest.Introduce","@Model.Dest.Feature" ,
+            "@Model.Dest.OpenTime",@Model.Dest.IsPublished.ToJsonString(),"@Model.Dest.PublishDateTime", @Model.Dest.DisplayOrder,
+            @((int)Model.Dest.DestType), @Model.Dest.ProvinceId, @Model.Dest.CityId, "@Model.Dest.Address", "@Model.Dest.Lng",
+            "@Model.Dest.Lat", @Model.Dest.SupplierId, "@Model.Dest.Supplier", "@Model.Dest.BookingNotice", "@Model.Dest.Agreement",
+            "@Model.Dest.MetaTitle","@Model.Dest.MetaKeywords", "@Model.Dest.MetaDescription", "@Request["ReturnUrl"]");
 
         ko.applyBindings(vm);
 

@@ -42,6 +42,10 @@ namespace HappyZu.CloudStore.Trip
 
         Task<IPagedResult<DestDto>> GetDestsByLocationAsync(GetDestsInput input);
 
+        Task<PagedResultOutput<DestDto>> GetDestsAsync(GetDestsInput input);
+
+        Task<DestDto> GetDestByIdAsync(int id);
+
         Task<ResultOutputDto> AddDestAsync(AddDestInput input);
 
         Task<ResultOutputDto> RemoveDestAsync(int destId);

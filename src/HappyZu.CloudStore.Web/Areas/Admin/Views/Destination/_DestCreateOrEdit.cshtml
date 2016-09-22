@@ -79,7 +79,15 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.PublishDateTime)">发布时间</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.PublishDateTime)" name="@Html.NameFor(m => m.Dest.PublishDateTime)" data-bind="value:PublishDateTime">
+                                                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
+                                                        <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.PublishDateTime)" name="@Html.NameFor(m => m.Dest.PublishDateTime)" data-bind="value:PublishDateTime">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                             @*<div class="form-group">
@@ -126,10 +134,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.DestType)">所属区域</label>
                                                 <div class="col-md-9">
-                                                    <select class="form-control" placeholder="请选择区域" id="@Html.IdFor(m => m.Dest.DestType)" name="@Html.NameFor(m => m.Dest.DestType)" data-bind="value:DestType">
-                                                        <option value="0">境内</option>
-                                                        <option value="1">境外</option>
-                                                    </select>
+                                                    @Html.EnumDropDownListFor(model=>model.Dest.DestType,new {@class="form-control", data_bind= "value:DestType" })
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -137,10 +142,10 @@
                                                 <div class="col-md-9">
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-6">
-                                                            <select class="form-control" id="@Html.IdFor(m => m.Dest.ProvinceId)" name="@Html.NameFor(m => m.Dest.ProvinceId)" data-bind="value:CityId">
-                                                                <option>湖南</option>
-                                                                <option>湖北</option>
-                                                                <option>上海</option>
+                                                            <select class="form-control" id="@Html.IdFor(m => m.Dest.ProvinceId)" name="@Html.NameFor(m => m.Dest.ProvinceId)" data-bind="value:ProvinceId">
+                                                                <option value="0">湖南</option>
+                                                                <option value="1">湖北</option>
+                                                                <option value="2">上海</option>
                                                             </select>
                                                         </div> <!-- Add the extra clearfix for only the required viewport -->
                                                         <div class="clearfix visible-xs-block"></div>

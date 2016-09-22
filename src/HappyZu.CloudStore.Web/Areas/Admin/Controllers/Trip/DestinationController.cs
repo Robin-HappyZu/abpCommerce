@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -30,6 +31,60 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpPost]
+        [WrapResult(WrapOnSuccess = false, WrapOnError = false)]
+        public async Task<JsonResult> GetDests(GetDestsViewModel option)
+        {
+            var output = await _destAppService.GetDestsAsync(new GetDestsInput()
+            {
+                MaxResultCount = option.length,
+                SkipCount = option.start
+            });
+            var vm = new DataTableJsonViewModel()
+            {
+                draw = option.draw,
+                recordsTotal = 0,
+                recordsFiltered = 0,
+                customActionMessage = "",
+                customActionStatus = "OK"
+            };
+
+            try
+            {
+
+                vm.recordsFiltered = vm.recordsTotal = output.TotalCount;
+
+                vm.data = output.Items.Select(x => new
+                {
+                    Address = x.Address,
+                    CityId = x.CityId,
+                    ProvinceId = x.ProvinceId,
+                    DestType = x.DestType,
+                    Lng = x.Lng,
+                    Lat = x.Lat,
+                    IsPublished = x.IsPublished,
+                    CoverImage = x.CoverImage,
+                    HasTicket = x.HasTicket,
+                    Title = x.Title,
+                    Subject = x.Subject,
+                    Id = x.Id
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                vm.customActionMessage = ex.Message;
+                vm.customActionStatus = "";
+            }
+
+            if (vm.data == null)
+            {
+                vm.data = new List<object>();
+            }
+
+            return Json(vm, JsonRequestBehavior.AllowGet);
+        }
+
+
         public ActionResult DestCreate()
         {
             var vm=new EditDestViewModel();
@@ -49,10 +104,29 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         }
 
 
-        public ActionResult DestEdit(EditDestViewModel vm)
+        public async Task<ActionResult> DestEdit(EditDestViewModel vm)
         {
-            return View();
+            var output = await _destAppService.GetDestByIdAsync(vm.Id);
+            vm.Dest = output;
+            return View(vm);
         }
+
+        [HttpPost, ActionName("DestEdit")]//,ValidateInput(false)
+        public async Task<JsonResult> DestEditPost(EditDestViewModel vm)
+        {
+            vm.Dest.Introduce = HttpUtility.HtmlDecode(vm.Dest.Introduce);
+            vm.Dest.BookingNotice = HttpUtility.HtmlDecode(vm.Dest.BookingNotice);
+            vm.Dest.Agreement = HttpUtility.HtmlDecode(vm.Dest.Agreement);
+            vm.Dest.Id = vm.Id;
+            var input = new UpdateDestInput()
+            {
+                Dest = vm.Dest
+            };
+            var output = await _destAppService.UpdateDestAsync(input);
+
+            return Json(new { success = output.Status, id = output.EntityId });
+        }
+
 
         /// <summary>
         /// 返回部分视图

@@ -15,26 +15,139 @@
     </ul>
 </div>
 <!-- END PAGE BAR -->
-<!-- BEGIN PAGE TITLE-->
-<h3 class="page-title">
-    @ViewBag.Title
-    <small>管理旅门票景点</small>
-</h3>
-<!-- END PAGE TITLE-->
 <!-- END PAGE HEADER-->
-<div class="row">
-    <div class="col-md-12 col-sm-12 clearfix margin-bottom-10">
-        <div class="pull-left">
 
-        </div>
-        <div class="pull-right">
-            <div class="btn-group btn-group-devided">
-                <a class="btn btn-transparent green-meadow advanced-search" href="javascript:;"><i class="fa fa-search"></i> 高级搜索</a>
-                <a class="btn btn-transparent blue" href="@Url.Action("DestCreate", "Destination", new {area = "Admin", returnUrl = Request.RawUrl}, true)"><i class="fa fa-user-plus"></i> 添加景区</a>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="zone zone-content">
+            <div class="portlet solid no-padding portlet-box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        @ViewBag.Title
+                    </div>
+                    <div class="actions content-edit-box-actions">
+                        <a class="btn btn-transparent green-meadow advanced-search" href="javascript:;"><i class="fa fa-search"></i> 高级搜索</a>
+                        <a class="btn btn-transparent blue" href="@Url.Action("DestCreate", "Destination", new {area = "Admin", returnUrl = Request.RawUrl}, true)"><i class="fa fa-user-plus"></i> 添加景区</a>
+                    </div>
+                </div>
+                <div class="portlet-body portlet-search hide">
+                    <div class="portlet light bordered ">
+                        <div class="portlet-body">
+                            <form action="#" class="form-horizontal">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">所属区域</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control" placeholder="Chee Kin">
+                                                        <option value="0">境内</option>
+                                                        <option value="1">境外</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">目的地城市</label>
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-6">
+                                                            <select class="form-control">
+                                                                <option>湖南</option>
+                                                                <option>湖北</option>
+                                                                <option>上海</option>
+                                                            </select>
+                                                        </div> <!-- Add the extra clearfix for only the required viewport -->
+                                                        <div class="clearfix visible-xs-block"></div>
+                                                        <div class="col-xs-12 col-sm-6">
+                                                            <select class="form-control">
+                                                                <option value="1">长沙</option>
+                                                                <option value="2">株洲</option>
+                                                                <option value="3">湘潭</option>
+                                                                <option value="4">衡阳</option>
+                                                                <option value="5">张家界</option>
+                                                                <option value="6">岳阳</option>
+                                                                <option value="7">常德</option>
+                                                                <option value="8">郴州</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">景区名称</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">供应商</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">标签</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">景点UUID</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group" style="text-align: left">
+                                                        <input type="text" class="form-control" name="username1" id="username1_input">
+                                                        <span class="input-group-btn">
+                                                            <a href="javascript:;" class="btn green" id="username1_checker" data-original-title="" title="">
+                                                                <i class="fa fa-rocket"></i> 转到
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+
+                                    <!--/row-->
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-5 col-md-2 col-xs-offset-1 col-xs-10">
+                                            <button type="submit" class="btn green btn-block">搜索</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-md-12">
@@ -42,122 +155,6 @@
                 <p> NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only. </p>
             </div>*@
         <!-- Begin: life time stats -->
-        <div class="portlet light portlet-fit portlet-datatable bordered portlet-search hide">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-filter font-dark"></i>
-                    <span class="caption-subject font-dark sbold uppercase">筛选</span>
-                </div>
-            </div>
-            <div class="portlet-body form">
-                <form action="#" class="form-horizontal">
-                    <div class="form-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">所属区域</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" placeholder="Chee Kin">
-                                            <option value="0">境内</option>
-                                            <option value="1">境外</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">目的地城市</label>
-                                    <div class="col-md-9">
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-6">
-                                                <select class="form-control">
-                                                    <option>湖南</option>
-                                                    <option>湖北</option>
-                                                    <option>上海</option>
-                                                </select>
-                                            </div> <!-- Add the extra clearfix for only the required viewport -->
-                                            <div class="clearfix visible-xs-block"></div>
-                                            <div class="col-xs-12 col-sm-6">
-                                                <select class="form-control">
-                                                    <option value="1">长沙</option>
-                                                    <option value="2">株洲</option>
-                                                    <option value="3">湘潭</option>
-                                                    <option value="4">衡阳</option>
-                                                    <option value="5">张家界</option>
-                                                    <option value="6">岳阳</option>
-                                                    <option value="7">常德</option>
-                                                    <option value="8">郴州</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
-                        <!--/row-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">景区名称</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">供应商</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
-                        <!--/row-->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">标签</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">景点UUID</label>
-                                    <div class="col-md-9">
-                                        <div class="input-group" style="text-align: left">
-                                            <input type="text" class="form-control" name="username1" id="username1_input">
-                                            <span class="input-group-btn">
-                                                <a href="javascript:;" class="btn green" id="username1_checker" data-original-title="" title="">
-                                                    <i class="fa fa-rocket"></i> 转到
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/span-->
-                        </div>
-
-                        <!--/row-->
-                    </div>
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-offset-5 col-md-2 col-xs-offset-1 col-xs-10">
-                                <button type="submit" class="btn green btn-block">搜索</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
         <div class="portlet light portlet-fit portlet-datatable bordered">
             <div class="portlet-body">
                 <div class="table-container">
@@ -181,7 +178,7 @@
                         <thead>
                             <tr class="heading">
                                 <th scope="col"><input class="group-checkable" type="checkbox"></th>
-                                <th scope="col">省份</th>
+                                <th scope="col">景点标题</th>
                                 <th scope="col">目的地城市</th>
                                 <th scope="col">操作</th>
                             </tr>
@@ -249,12 +246,12 @@
                         ],
                         "pageLength": 10, // default record count per page
                         "ajax": {
-                            "url": "@Url.Action("GetProvinces", "Destination", new {area = "Admin", CountryType = 0}, true)", // ajax source
+                            "url": "@Url.Action("GetDests", "Destination", new {area = "Admin"}, true)", // ajax source
                         },
                         "columns": [
                             { "data": "Id" },
-                            { "data": "Name" },
-                            { "data": "IsDeleted" }
+                            { "data": "Title" },
+                            { "data": "CityId" }
                         ],
                         "columnDefs": [
                         {
@@ -268,14 +265,7 @@
                         },
                         {
                             render: function(data, type, row) {
-                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("Cities", new {controller = "Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-map-pin"></i> 城市</a> ';
-                                return btns;
-                            },
-                            "targets": 2
-                        },
-                        {
-                            render: function(data, type, row) {
-                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("ProvinceEdit", new {controller = "Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
+                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("DestEdit", new {controller = "Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
                                     btns += '<a class="btn btn-sm btn-outline red" href="javascript:' + row.Id + ';"><i class="fa fa-trash-o"></i> 删除</a>';
                                     return btns;
                                 },

@@ -8,10 +8,14 @@ namespace HappyZu.CloudStore.Trip.Dto
     public class DestDto : EntityDto
     {
         /// <summary>
+        /// 景点编码
+        /// </summary>
+        public string Coding { get; set; }
+
+        /// <summary>
         /// 推广标题
         /// </summary>
         public string Title { get; set; }
-
         /// <summary>
         /// 景点名称
         /// </summary>
