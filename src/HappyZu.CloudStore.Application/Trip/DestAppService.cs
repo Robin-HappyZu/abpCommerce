@@ -228,13 +228,50 @@ namespace HappyZu.CloudStore.Trip
             }
         }
 
+        public async Task<PagedResultOutput<DestDto>> GetDestsAsync(GetDestsInput input)
+        {
+            try
+            {
+                var count = await _destMananger.QueryCountAsync();
+                var dests = await _destMananger.QuerysListAsync(input);
+                return new PagedResultOutput<DestDto>()
+                {
+                    TotalCount = count,
+                    Items = dests.MapTo<List<DestDto>>()
+                };
+            }
+            catch (Exception)
+            {
+                return new PagedResultOutput<DestDto>()
+                {
+                    TotalCount = 0,
+                    Items = new List<DestDto>()
+                };
+            }
+        }
+
+        public async Task<DestDto> GetDestByIdAsync(int id)
+        {
+            try
+            {
+                var dest =await _destMananger.GetDestByIdAsync(id);
+                return dest.MapTo<DestDto>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public async Task<ResultOutputDto> AddDestAsync(AddDestInput input)
         {
             try
             {
                 var dest = input.Dest.MapTo<Dest>();
-                await _destMananger.AddDestAsync(dest);
-                return ResultOutputDto.Successed;
+
+                var id = await _destMananger.AddDestAsync(dest);
+
+                return ResultOutputDto.Success(id);
             }
             catch (Exception e)
             {
@@ -260,6 +297,29 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var dest = await _destMananger.GetDestByIdAsync(input.Dest.Id);
+                dest.CityId = input.Dest.CityId;
+                dest.Address = input.Dest.Address;
+                dest.Agreement = input.Dest.Agreement;
+                dest.BookingNotice = input.Dest.BookingNotice;
+                dest.Coding = input.Dest.Coding;
+                dest.DestType = input.Dest.DestType;
+                dest.Feature = input.Dest.Feature;
+                dest.DisplayOrder = input.Dest.DisplayOrder;
+                dest.Introduce = input.Dest.Introduce;
+                dest.IsPublished = input.Dest.IsPublished;
+                dest.Lat = input.Dest.Lat;
+                dest.Lng = input.Dest.Lng;
+                dest.MetaTitle = input.Dest.MetaTitle;
+                dest.MetaKeywords = input.Dest.MetaKeywords;
+                dest.MetaDescription = input.Dest.MetaDescription;
+                dest.OpenTime = input.Dest.OpenTime;
+                dest.ProvinceId = input.Dest.ProvinceId;
+                dest.PublishDateTime = input.Dest.PublishDateTime;
+                dest.Subject = input.Dest.Subject;
+                dest.Title = input.Dest.Title;
+                dest.SupplierId = input.Dest.SupplierId;
+                dest.Supplier = input.Dest.Supplier;
+
                 await _destMananger.UpdateDestAsync(dest);
                 return ResultOutputDto.Successed;
             }

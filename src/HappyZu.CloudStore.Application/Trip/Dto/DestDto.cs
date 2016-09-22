@@ -1,4 +1,5 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System;
+using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 
 namespace HappyZu.CloudStore.Trip.Dto
@@ -7,10 +8,14 @@ namespace HappyZu.CloudStore.Trip.Dto
     public class DestDto : EntityDto
     {
         /// <summary>
+        /// 景点编码
+        /// </summary>
+        public string Coding { get; set; }
+
+        /// <summary>
         /// 推广标题
         /// </summary>
         public string Title { get; set; }
-
         /// <summary>
         /// 景点名称
         /// </summary>
@@ -95,6 +100,11 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// 封面图片
         /// </summary>
         public string CoverImage { get; set; }
+
+        public bool IsPublished { get; set; }
+
+        public DateTime PublishDateTime { get; set; }
+
 
         public bool HasTicket { get; set; }
         /// <summary>

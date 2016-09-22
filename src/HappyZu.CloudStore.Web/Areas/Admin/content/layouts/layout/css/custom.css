@@ -1,4 +1,10 @@
 /* here you can put your own css to customize and override the theme */
+/*padding*/
+.padding-top-10{
+    padding-top:10px !important;
+}
+
+/*partlet*/
 .portlet-search.portlet>.portlet-title>.caption{
     padding:0px;line-height:30px;
 }
@@ -13,4 +19,22 @@
 }
 .portlet-search.portlet>.portlet-body.form>form>.form-body{
     padding:20px;
+}
+
+.portlet-box.portlet>.portlet-title>.caption{
+    font-size:24px;
+}
+.portlet-box.portlet>.portlet-title>.actions>.btn{
+    padding: 6px 12px;
+}
+
+.content-edit-box-actions.affix{
+    right:30px;
+    top:50px;
+    z-index:999;
+}
+
+.solid.no-padding{
+    padding:0px;
+    margin-bottom:0px;
 }

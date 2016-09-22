@@ -18,6 +18,12 @@ namespace HappyZu.CloudStore.Trip
     public class Dest:Entity,ISoftDelete,ISEO,IAudited
     {
         /// <summary>
+        /// 景点编码
+        /// </summary>
+        //[StringLength(64)] //@TODO: 下次生成Migration注意
+        public string Coding { get; set; }
+
+        /// <summary>
         /// 推广标题
         /// </summary>
         [StringLength(255)]

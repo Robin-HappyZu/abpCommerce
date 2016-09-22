@@ -57,9 +57,36 @@ namespace HappyZu.CloudStore.Trip
             return dests.PageBy(request).ToList();
         }
 
-        public async Task AddDestAsync(Dest dest)
+        public Task<IReadOnlyList<Dest>> QuerysListAsync(Func<IQueryable<Dest>, IQueryable<Dest>> query,IPagedResultRequest request)
         {
-            await _destRepository.InsertAsync(dest);
+            var list= query==null ? 
+                _destRepository.GetAll().OrderBy(p=>p.Id).PageBy(request).ToList() :
+                _destRepository.Query(query).PageBy(request).ToList();
+            return Task.FromResult((IReadOnlyList<Dest>)list);
+        }
+
+        public Task<IReadOnlyList<Dest>> QuerysListAsync(IPagedResultRequest request)
+        {
+            return QuerysListAsync(null, request);
+        }
+
+        public Task<int> QueryCountAsync(Func<IQueryable<Dest>, IQueryable<Dest>> query)
+        {
+            var count = query!=null ?
+                    _destRepository.Query(query).Count() :
+                    _destRepository.Count();
+
+            return Task.FromResult(count);
+        }
+
+        public Task<int> QueryCountAsync()
+        {
+            return QueryCountAsync(null);
+        }
+
+        public async Task<int> AddDestAsync(Dest dest)
+        {
+            return await _destRepository.InsertAndGetIdAsync(dest);
         }
 
         public async Task<Dest> GetDestByIdAsync(int destId)

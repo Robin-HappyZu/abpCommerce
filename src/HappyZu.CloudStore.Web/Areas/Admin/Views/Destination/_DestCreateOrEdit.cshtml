@@ -1,52 +1,370 @@
-﻿
+﻿@model HappyZu.CloudStore.Web.Areas.Admin.Models.EditDestViewModel
 
 <div class="portlet light portlet-fit portlet-datatable bordered">
     <div class="portlet-body">
         <div class="tabbable-line">
             <ul class="nav nav-tabs ">
                 <li class="active">
-                    <a href="#tab_15_1" data-toggle="tab" aria-expanded="true"> 基本资料 </a>
+                    <a href="#tab_base" data-toggle="tab" aria-expanded="true"> 基本资料 </a>
                 </li>
                 <li class="">
-                    <a href="#tab_15_2" data-toggle="tab" aria-expanded="false"> 图片集 </a>
+                    <a href="#tab_seo" data-toggle="tab" aria-expanded="false"> SEO </a>
                 </li>
                 <li class="">
-                    <a href="#tab_15_3" data-toggle="tab" aria-expanded="false"> 门票 </a>
+                    <a href="#tab_booking_notice" data-toggle="tab" aria-expanded="false"> 预订须知 </a>
                 </li>
                 <li class="">
-                    <a href="#tab_15_4" data-toggle="tab" aria-expanded="false"> 预定须知 </a>
+                    <a href="#tab_agreement" data-toggle="tab" aria-expanded="false"> 游玩协议 </a>
                 </li>
                 <li class="">
-                    <a href="#tab_15_5" data-toggle="tab" aria-expanded="false"> 游玩协议 </a>
-                </li>
-                <li class="">
-                    <a href="#tab_15_6" data-toggle="tab" aria-expanded="false"> SEO </a>
-                </li>
-                <li class="">
-                    <a href="#tab_15_6" data-toggle="tab" aria-expanded="false"> 相关景点 </a>
+                    <a href="#tab_pictrues" data-toggle="tab" aria-expanded="false"> 图片集 </a>
                 </li>
             </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="tab_15_1">
-                    tab 1
+            <div class="tab-content padding-top-10">
+                <div class="tab-pane active form" id="tab_base">
+                    <div class="form-horizontal">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <div class="portlet box grey-salt">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                一般信息
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">标题</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Subject)">景点名称</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Subject)" name="@Html.NameFor(m => m.Dest.Subject)" data-bind="value:Subject">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Introduce)">景点介绍</label>
+                                                <div class="col-md-9">
+                                                    <textarea class="form-control input-description input-summernote" id="@Html.IdFor(m => m.Dest.Introduce)" name="@Html.NameFor(m => m.Dest.Introduce)" data-bind="value:Introduce"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Feature)">景点特色</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Feature)" name="@Html.NameFor(m => m.Dest.Feature)" data-bind="value:Feature">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.OpenTime)">开放时间</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.OpenTime)" name="@Html.NameFor(m => m.Dest.OpenTime)" data-bind="value:OpenTime">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">发布</label>
+                                                <div class="col-md-9">
+                                                    <div class="radio-list">
+                                                        <label class="radio-inline">
+                                                            <input type="radio" value="0" id="@Html.IdFor(m => m.Dest.IsPublished)" name="@Html.NameFor(m => m.Dest.IsPublished)" > 立即发布
+                                                        </label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" value="1" id="SchedulePublish" name="@Html.NameFor(m => m.Dest.IsPublished)"> 定时发布
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.PublishDateTime)">发布时间</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd">
+                                                        <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.PublishDateTime)" name="@Html.NameFor(m => m.Dest.PublishDateTime)" data-bind="value:PublishDateTime">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            @*<div class="form-group">
+                                                <label class="control-label col-md-3" >首页显示</label>
+                                                <div class="col-md-9">
+                                                    <div class="checkbox-list">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" value="True" >
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.DisplayOrder)">显示顺序</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.DisplayOrder)" name="@Html.NameFor(m => m.Dest.DisplayOrder)" data-bind="value:DisplayOrder">
+                                                </div>
+                                            </div>
+                                            @*<div class="form-group">
+                                                <label class="control-label col-md-3">创建时间</label>
+                                                <div class="col-md-9">
+                                                    <p class="form-control-static">
+                                                        
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">最后编辑时间</label>
+                                                <div class="col-md-9">
+                                                    <p class="form-control-static"></p>
+                                                </div>
+                                            </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="portlet box grey-salt">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                地理位置
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.DestType)">所属区域</label>
+                                                <div class="col-md-9">
+                                                    @Html.EnumDropDownListFor(model=>model.Dest.DestType,new {@class="form-control", data_bind= "value:DestType" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.ProvinceId)">目的地城市</label>
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-6">
+                                                            <select class="form-control" id="@Html.IdFor(m => m.Dest.ProvinceId)" name="@Html.NameFor(m => m.Dest.ProvinceId)" data-bind="value:ProvinceId">
+                                                                <option value="0">湖南</option>
+                                                                <option value="1">湖北</option>
+                                                                <option value="2">上海</option>
+                                                            </select>
+                                                        </div> <!-- Add the extra clearfix for only the required viewport -->
+                                                        <div class="clearfix visible-xs-block"></div>
+                                                        <div class="col-xs-12 col-sm-6">
+                                                            <select class="form-control" id="@Html.IdFor(m => m.Dest.CityId)" name="@Html.NameFor(m => m.Dest.CityId)" data-bind="value:CityId">
+                                                                <option value="1">长沙</option>
+                                                                <option value="2">株洲</option>
+                                                                <option value="3">湘潭</option>
+                                                                <option value="4">衡阳</option>
+                                                                <option value="5">张家界</option>
+                                                                <option value="6">岳阳</option>
+                                                                <option value="7">常德</option>
+                                                                <option value="8">郴州</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">详细地址</label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group" style="text-align: left">
+                                                        <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Address)" name="@Html.NameFor(m => m.Dest.Address)" data-bind="value:Address">
+                                                        <input type="hidden" class="form-control" id="@Html.IdFor(m => m.Dest.Lng)" name="@Html.NameFor(m => m.Dest.Lng)" data-bind="value:Lng">
+                                                        <input type="hidden" class="form-control" id="@Html.IdFor(m => m.Dest.Lat)" name="@Html.NameFor(m => m.Dest.Lat)" data-bind="value:Lat">
+                                                        <span class="input-group-btn">
+                                                            <a href="javascript:;" class="btn green" id="username1_checker" data-original-title="" title="">
+                                                                <i class="fa fa-map-marker"></i> 标记
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portlet box grey-salt">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                供应商信息
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">供应商</label>
+                                                <div class="col-md-9">
+                                                    <select class="form-control" placeholder="选中供应商" id="@Html.IdFor(m => m.Dest.SupplierId)" name="@Html.NameFor(m => m.Dest.SupplierId)" data-bind="value:SupplierId">
+                                                        <option value="0">其他供应商</option>
+                                                        <option value="1">飞行家</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">供应商名称</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Supplier)" name="@Html.NameFor(m => m.Dest.Supplier)" data-bind="value:Supplier">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portlet box grey-salt">
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                门票
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-scrollable">
+                                                <table class="table table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> # </th>
+                                                            <th> 门票名称 </th>
+                                                            <th> 类型 </th>
+                                                            <th> 价格 </th>
+                                                            <th> 库存 </th>
+                                                            <th> 销量 </th>
+                                                            <th>  </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td> 1 </td>
+                                                            <td> active </td>
+                                                            <td> 儿童 </td>
+                                                            <td> ￥1000 </td>
+                                                            <td> 1 </td>
+                                                            <td> 10000 </td>
+                                                            <td> 编辑 </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane" id="tab_15_2">
-                    tab 2
+                <div class="tab-pane" id="tab_pictrues">
+                    <div class="portlet light bordered">
+                        <div class="portlet-body">
+                            <div class="table-scrollable">
+                                <table class="table table-striped table-bordered table-advance table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <i class="fa fa-briefcase"></i> Company
+                                            </th>
+                                            <th class="hidden-xs">
+                                                <i class="fa fa-user"></i> Contact
+                                            </th>
+                                            <th>
+                                                <i class="fa fa-shopping-cart"></i> Total
+                                            </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="highlight">
+                                                <div class="success"></div>
+                                                <a href="javascript:;"> RedBull </a>
+                                            </td>
+                                            <td class="hidden-xs"> Mike Nilson </td>
+                                            <td> 2560.60$ </td>
+                                            <td>
+                                                <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="highlight">
+                                                <div class="info"> </div>
+                                                <a href="javascript:;"> Google </a>
+                                            </td>
+                                            <td class="hidden-xs"> Adam Larson </td>
+                                            <td> 560.60$ </td>
+                                            <td>
+                                                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-sm black">
+                                                    <i class="fa fa-trash-o"></i> Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="highlight">
+                                                <div class="success"> </div>
+                                                <a href="javascript:;"> Apple </a>
+                                            </td>
+                                            <td class="hidden-xs"> Daniel Kim </td>
+                                            <td> 3460.60$ </td>
+                                            <td>
+                                                <a href="javascript:;" class="btn btn-outline btn-circle green btn-sm purple">
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="highlight">
+                                                <div class="warning"> </div>
+                                                <a href="javascript:;"> Microsoft </a>
+                                            </td>
+                                            <td class="hidden-xs"> Nick </td>
+                                            <td> 2560.60$ </td>
+                                            <td>
+                                                <a href="javascript:;" class="btn btn-outline btn-circle red btn-sm blue">
+                                                    <i class="fa fa-share"></i> Share
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane" id="tab_15_3">
-                    tab 3
+                <div class="tab-pane" id="tab_booking_notice">
+                    <div class="portlet light bordered">
+                        <div class="portlet-body">
+                            <textarea class="form-control input-booking-notice input-summernote" placeholder="预订须知" rows="8" id="@Html.IdFor(m => m.Dest.BookingNotice)" name="@Html.NameFor(m => m.Dest.BookingNotice)" data-bind="value:BookingNotice"></textarea>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane" id="tab_15_4">
-                    tab 4
+                <div class="tab-pane" id="tab_agreement">
+                    <div class="portlet light bordered">
+                        <div class="portlet-body">
+                            <textarea class="form-control input-agreement input-summernote" placeholder="游玩协议" rows="8" id="@Html.IdFor(m => m.Dest.Agreement)" name="@Html.NameFor(m => m.Dest.Agreement)" data-bind="value:Agreement"></textarea>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-pane" id="tab_15_5">
-                    tab 5
-                </div>
-                <div class="tab-pane" id="tab_15_6">
-                    tab 6
-                </div>
-                <div class="tab-pane" id="tab_15_7">
-                    tab 7
+                <div class="tab-pane form" id="tab_seo">
+                    <div class="portlet light bordered">
+                        <div class="portlet-body">
+                            <div class="form-horizontal">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2" for="@Html.IdFor(m => m.Dest.MetaTitle)" title="">META标题</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control text-box single-line" type="text" id="@Html.IdFor(m => m.Dest.MetaTitle)" name="@Html.NameFor(m => m.Dest.MetaTitle)" data-bind="value:MetaTitle">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2" for="@Html.IdFor(m => m.Dest.MetaKeywords)" title="">META关键字</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control text-box single-line" type="text" id="@Html.IdFor(m => m.Dest.MetaKeywords)" name="@Html.NameFor(m => m.Dest.MetaKeywords)" data-bind="value:MetaKeywords">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2" for="@Html.IdFor(m => m.Dest.MetaDescription)" title="">META描述</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" rows="4" id="@Html.IdFor(m => m.Dest.MetaDescription)" name="@Html.NameFor(m => m.Dest.MetaDescription)" data-bind="value:MetaDescription"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

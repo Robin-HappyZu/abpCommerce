@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /***
 NEW TODO Page
 ***/
@@ -119,7 +119,9 @@ NEW TODO Page
     border-left: 20px solid #fafbfc;
     position: absolute;
     right: -20px;
-    top: 65px; }
+    top: 50%;
+    margin-top: -40px;
+  }
 
 .todo-container .todo-projects-item:hover {
   background-color: #fafbfc;
