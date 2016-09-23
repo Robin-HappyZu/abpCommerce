@@ -38,3 +38,8 @@
     padding:0px;
     margin-bottom:0px;
 }
+
+.map-widget{
+    min-height:300px;
+    position: relative;
+}
