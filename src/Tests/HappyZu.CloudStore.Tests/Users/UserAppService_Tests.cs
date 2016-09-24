@@ -30,7 +30,7 @@ namespace HappyZu.CloudStore.Tests.Users
         public async Task CreateUser_Test()
         {
             //Act
-            await _userAppService.CreateUser(
+            await _userAppService.CreateUserAsync(
                 new CreateUserInput
                 {
                     EmailAddress = "john@volosoft.com",

@@ -13,16 +13,14 @@ namespace HappyZu.CloudStore.Users.Dto
         [StringLength(AbpUserBase.MaxUserNameLength)]
         public string UserName { get; set; }
 
-        [Required]
+
         [StringLength(User.MaxNameLength)]
         public string Name { get; set; }
 
-        [Required]
+
         [StringLength(User.MaxSurnameLength)]
         public string Surname { get; set; }
 
-        [Required]
-        [EmailAddress]
         [StringLength(AbpUserBase.MaxEmailAddressLength)]
         public string EmailAddress { get; set; }
 
@@ -30,6 +28,10 @@ namespace HappyZu.CloudStore.Users.Dto
         [StringLength(User.MaxPlainPasswordLength)]
         [DisableAuditing]
         public string Password { get; set; }
+
+        public string UnionID { get; set; }
+
+        public string WechatOpenID { get; set; }
 
         public bool IsActive { get; set; }
     }

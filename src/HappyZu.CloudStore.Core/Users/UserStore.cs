@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Abp.Authorization.Users;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
@@ -7,6 +8,8 @@ namespace HappyZu.CloudStore.Users
 {
     public class UserStore : AbpUserStore<Role, User>
     {
+        private readonly IRepository<User, long> _userRepository;
+
         public UserStore(
             IRepository<User, long> userRepository,
             IRepository<UserLogin, long> userLoginRepository,
@@ -22,6 +25,12 @@ namespace HappyZu.CloudStore.Users
               userPermissionSettingRepository,
               unitOfWorkManager)
         {
+            _userRepository = userRepository;
+        }
+
+        public async Task<User> GetUserByWechatOpenIdAndUnionIdAsync(string wechatOpenId, string unionId)
+        {
+            return await _userRepository.FirstOrDefaultAsync(user => user.WechatOpenID == wechatOpenId);
         }
     }
 }

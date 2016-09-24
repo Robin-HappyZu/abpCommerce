@@ -169,6 +169,7 @@
     <Compile Include="Trip\IDestAppService.cs" />
     <Compile Include="Trip\TicketAppService.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
+    <Compile Include="Users\Dto\UserLoginInput.cs" />
     <Compile Include="Users\IUserAppService.cs" />
     <Compile Include="Roles\RoleAppService.cs" />
     <Compile Include="Sessions\Dto\GetCurrentLoginInformationsOutput.cs" />

@@ -4,9 +4,11 @@ using Abp.AutoMapper;
 
 namespace HappyZu.CloudStore.Users.Dto
 {
-    [AutoMapFrom(typeof(User))]
+    [AutoMap(typeof(User))]
     public class UserDto : EntityDto<long>
     {
+        public int? TenantId { get; set; }
+
         public string Name { get; set; }
 
         public string Surname { get; set; }

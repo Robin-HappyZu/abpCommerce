@@ -2,17 +2,20 @@
 using System.Configuration;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Util;
+using Senparc.Weixin.MP;
+using Senparc.Weixin.MP.AdvancedAPIs;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Filters
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true)]
     public class WechatAuthFilterAttribute : AuthorizeAttribute
     {
-        public const string USER_OAUTH2_BASE_URL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_base&state={2}#wechat_redirect";
-        private string appId = ConfigurationManager.AppSettings["AppId"];
+        private string appId = ConfigurationManager.AppSettings["ExternalAuth.Wechat.AppId"];
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
+
             var userAgent = filterContext.RequestContext.HttpContext.Request.UserAgent;
             // 检查是否是微信客户端访问
             if (string.IsNullOrWhiteSpace(userAgent) || !userAgent.Contains("MicroMessager"))
@@ -34,9 +37,11 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Filters
             base.HandleUnauthorizedRequest(filterContext);
 
             // redirect 
-            var redirect = string.Concat("http://", filterContext.HttpContext.Request.Url.Host, "Wechat/AuthCallback");
+            //var redirect = string.Concat("http://", filterContext.HttpContext.Request.Url.Host, "Wechat/AuthCallback");
+            var redirect = string.Concat("http://", "www.hqcang.com/", "Wechat/AuthCallback");
+            var url = OAuthApi.GetAuthorizeUrl(appId, redirect, filterContext.HttpContext.Request.RawUrl, OAuthScope.snsapi_base);
 
-            filterContext.Result = new RedirectResult(string.Format(USER_OAUTH2_BASE_URL, appId, redirect, 0));
+            filterContext.Result = new RedirectResult(url);
         }
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
