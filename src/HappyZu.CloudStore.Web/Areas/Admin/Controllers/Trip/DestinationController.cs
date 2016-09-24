@@ -190,6 +190,22 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return Json(vm, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public async Task<JsonResult> GetAllProvinces(int countryType)
+        {
+            var output = await _destAppService.GetAllDestProvincesAsync((CountryType)countryType);
+            if (output == null || output.Items.Count<=0)
+            {
+                return Json(null);
+            }
+
+            var list = output.Items.Select(p => new
+            {
+                Name=p.Name,
+                Id=p.Id
+            });
+            return Json(list);
+        }
 
         public ActionResult ProvinceCreate()
         {
@@ -282,7 +298,27 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return Json(vm, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public async Task<JsonResult> GetAllCities(int provinceId)
+        {
+            var output = await _destAppService.GetDestCitiesByDestProvinceIdAsync(new GetDestCitiesInput()
+            {
+                MaxResultCount = -1,
+                SkipCount = 0,
+                ProvinceId = provinceId
+            });
+            if (output == null || output.Items.Count <= 0)
+            {
+                return Json(null);
+            }
 
+            var list = output.Items.Select(p => new
+            {
+                Name = p.Name,
+                Id = p.Id
+            });
+            return Json(list);
+        }
 
         public async Task<ActionResult> CityCreate(int provinceId)
         {
@@ -328,6 +364,19 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return Json(new { success = output.Status });
         }
 
+        #endregion
+
+        #region 添加门票
+
+        public async Task<ActionResult> TicketCreate(int destId)
+        {
+            var dest = await _destAppService.GetDestByIdAsync(destId);
+            var vm=new EditTicketViewModel()
+            {
+                Dest = dest
+            };
+            return View(vm);
+        }
         #endregion
     }
 }

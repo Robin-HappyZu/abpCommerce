@@ -60,7 +60,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.OpenTime)">开放时间</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.OpenTime)" name="@Html.NameFor(m => m.Dest.OpenTime)" data-bind="value:OpenTime">
+                                                    <textarea class="form-control" rows="2" id="@Html.IdFor(m => m.Dest.OpenTime)" name="@Html.NameFor(m => m.Dest.OpenTime)" data-bind="value:OpenTime"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -130,11 +130,11 @@
                                                 地理位置
                                             </div>
                                         </div>
-                                        <div class="portlet-body">
+                                        <div class="portlet-body location-portlet-body">
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.DestType)">所属区域</label>
                                                 <div class="col-md-9">
-                                                    @Html.EnumDropDownListFor(model=>model.Dest.DestType,new {@class="form-control", data_bind= "value:DestType" })
+                                                    @Html.EnumDropDownListFor(model=>model.Dest.DestType,new {@class="form-control", data_bind= "value:DestType,event:{change:loadProvinces}" })
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -142,23 +142,12 @@
                                                 <div class="col-md-9">
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-6">
-                                                            <select class="form-control" id="@Html.IdFor(m => m.Dest.ProvinceId)" name="@Html.NameFor(m => m.Dest.ProvinceId)" data-bind="value:ProvinceId">
-                                                                <option value="0">湖南</option>
-                                                                <option value="1">湖北</option>
-                                                                <option value="2">上海</option>
+                                                            <select class="form-control" id="@Html.IdFor(m => m.Dest.ProvinceId)" name="@Html.NameFor(m => m.Dest.ProvinceId)" data-bind="value:ProvinceId,options:Provinces,optionsText:'name',optionsValue:'id',event:{change:loadCities}">
                                                             </select>
                                                         </div> <!-- Add the extra clearfix for only the required viewport -->
                                                         <div class="clearfix visible-xs-block"></div>
                                                         <div class="col-xs-12 col-sm-6">
-                                                            <select class="form-control" id="@Html.IdFor(m => m.Dest.CityId)" name="@Html.NameFor(m => m.Dest.CityId)" data-bind="value:CityId">
-                                                                <option value="1">长沙</option>
-                                                                <option value="2">株洲</option>
-                                                                <option value="3">湘潭</option>
-                                                                <option value="4">衡阳</option>
-                                                                <option value="5">张家界</option>
-                                                                <option value="6">岳阳</option>
-                                                                <option value="7">常德</option>
-                                                                <option value="8">郴州</option>
+                                                            <select class="form-control" id="@Html.IdFor(m => m.Dest.CityId)" name="@Html.NameFor(m => m.Dest.CityId)" data-bind="value:CityId,options:Cities,optionsText:'name',optionsValue:'id'">
                                                             </select>
                                                         </div>
                                                     </div>
@@ -173,7 +162,7 @@
                                                         <input type="hidden" class="form-control" id="@Html.IdFor(m => m.Dest.Lng)" name="@Html.NameFor(m => m.Dest.Lng)" data-bind="value:Lng">
                                                         <input type="hidden" class="form-control" id="@Html.IdFor(m => m.Dest.Lat)" name="@Html.NameFor(m => m.Dest.Lat)" data-bind="value:Lat">
                                                         <span class="input-group-btn">
-                                                            <a href="javascript:;" class="btn green" id="username1_checker" data-original-title="" title="">
+                                                            <a href="#location-map" class="btn green" data-target="#location-map" data-toggle="modal">
                                                                 <i class="fa fa-map-marker"></i> 标记
                                                             </a>
                                                         </span>
@@ -194,7 +183,6 @@
                                                 <div class="col-md-9">
                                                     <select class="form-control" placeholder="选中供应商" id="@Html.IdFor(m => m.Dest.SupplierId)" name="@Html.NameFor(m => m.Dest.SupplierId)" data-bind="value:SupplierId">
                                                         <option value="0">其他供应商</option>
-                                                        <option value="1">飞行家</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -213,31 +201,28 @@
                                             </div>
                                         </div>
                                         <div class="portlet-body">
-                                            <div class="table-scrollable">
+                                            <div class="must-save" data-bind="visible:IsCreate">
+                                                必须保存后才能再进行下一步操作
+                                            </div>
+                                            <div class="table-scrollable" data-bind="visible:!IsCreate()">
                                                 <table class="table table-bordered table-hover">
                                                     <thead>
-                                                        <tr>
-                                                            <th> # </th>
-                                                            <th> 门票名称 </th>
-                                                            <th> 类型 </th>
-                                                            <th> 价格 </th>
-                                                            <th> 库存 </th>
-                                                            <th> 销量 </th>
-                                                            <th>  </th>
-                                                        </tr>
+                                                    <tr>
+                                                        <th> # </th>
+                                                        <th> 门票名称 </th>
+                                                        <th> 类型 </th>
+                                                        <th> 价格 </th>
+                                                        <th> 库存 </th>
+                                                        <th> 销量 </th>
+                                                        <th> </th>
+                                                    </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td> 1 </td>
-                                                            <td> active </td>
-                                                            <td> 儿童 </td>
-                                                            <td> ￥1000 </td>
-                                                            <td> 1 </td>
-                                                            <td> 10000 </td>
-                                                            <td> 编辑 </td>
-                                                        </tr>
                                                     </tbody>
                                                 </table>
+                                            </div>
+                                            <div>
+                                                <a class="btn red" href="@Url.Action("TicketCreate","Destination",new {area="Mobile",destId=Model.Id,returnUrl=Request.RawUrl},true)"> 添加门票 </a>
                                             </div>
                                         </div>
                                     </div>
@@ -249,75 +234,78 @@
                 <div class="tab-pane" id="tab_pictrues">
                     <div class="portlet light bordered">
                         <div class="portlet-body">
-                            <div class="table-scrollable">
+                            <div class="must-save" data-bind="visible:IsCreate">
+                                必须保存后才能再进行下一步操作
+                            </div>
+                            <div class="table-scrollable" data-bind="visible:!IsCreate()">
                                 <table class="table table-striped table-bordered table-advance table-hover">
                                     <thead>
-                                        <tr>
-                                            <th>
-                                                <i class="fa fa-briefcase"></i> Company
-                                            </th>
-                                            <th class="hidden-xs">
-                                                <i class="fa fa-user"></i> Contact
-                                            </th>
-                                            <th>
-                                                <i class="fa fa-shopping-cart"></i> Total
-                                            </th>
-                                            <th> </th>
-                                        </tr>
+                                    <tr>
+                                        <th>
+                                            <i class="fa fa-briefcase"></i> Company
+                                        </th>
+                                        <th class="hidden-xs">
+                                            <i class="fa fa-user"></i> Contact
+                                        </th>
+                                        <th>
+                                            <i class="fa fa-shopping-cart"></i> Total
+                                        </th>
+                                        <th> </th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="success"></div>
-                                                <a href="javascript:;"> RedBull </a>
-                                            </td>
-                                            <td class="hidden-xs"> Mike Nilson </td>
-                                            <td> 2560.60$ </td>
-                                            <td>
-                                                <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
-                                                    <i class="fa fa-edit"></i> Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="info"> </div>
-                                                <a href="javascript:;"> Google </a>
-                                            </td>
-                                            <td class="hidden-xs"> Adam Larson </td>
-                                            <td> 560.60$ </td>
-                                            <td>
-                                                <a href="javascript:;" class="btn btn-outline btn-circle dark btn-sm black">
-                                                    <i class="fa fa-trash-o"></i> Delete
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="success"> </div>
-                                                <a href="javascript:;"> Apple </a>
-                                            </td>
-                                            <td class="hidden-xs"> Daniel Kim </td>
-                                            <td> 3460.60$ </td>
-                                            <td>
-                                                <a href="javascript:;" class="btn btn-outline btn-circle green btn-sm purple">
-                                                    <i class="fa fa-edit"></i> Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="highlight">
-                                                <div class="warning"> </div>
-                                                <a href="javascript:;"> Microsoft </a>
-                                            </td>
-                                            <td class="hidden-xs"> Nick </td>
-                                            <td> 2560.60$ </td>
-                                            <td>
-                                                <a href="javascript:;" class="btn btn-outline btn-circle red btn-sm blue">
-                                                    <i class="fa fa-share"></i> Share
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success"></div>
+                                            <a href="javascript:;"> RedBull </a>
+                                        </td>
+                                        <td class="hidden-xs"> Mike Nilson </td>
+                                        <td> 2560.60$ </td>
+                                        <td>
+                                            <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
+                                                <i class="fa fa-edit"></i> Edit
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="info"> </div>
+                                            <a href="javascript:;"> Google </a>
+                                        </td>
+                                        <td class="hidden-xs"> Adam Larson </td>
+                                        <td> 560.60$ </td>
+                                        <td>
+                                            <a href="javascript:;" class="btn btn-outline btn-circle dark btn-sm black">
+                                                <i class="fa fa-trash-o"></i> Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="success"> </div>
+                                            <a href="javascript:;"> Apple </a>
+                                        </td>
+                                        <td class="hidden-xs"> Daniel Kim </td>
+                                        <td> 3460.60$ </td>
+                                        <td>
+                                            <a href="javascript:;" class="btn btn-outline btn-circle green btn-sm purple">
+                                                <i class="fa fa-edit"></i> Edit
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="highlight">
+                                            <div class="warning"> </div>
+                                            <a href="javascript:;"> Microsoft </a>
+                                        </td>
+                                        <td class="hidden-xs"> Nick </td>
+                                        <td> 2560.60$ </td>
+                                        <td>
+                                            <a href="javascript:;" class="btn btn-outline btn-circle red btn-sm blue">
+                                                <i class="fa fa-share"></i> Share
+                                            </a>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -368,5 +356,19 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div id="location-map" class="modal container fade" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">标注地理位置</h4>
+    </div>
+    <div class="modal-body">
+        <div id="map-widget" class="map-widget"></div>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-left choose-location"></div>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
+        <button type="button" class="btn green save-location">确认位置</button>
     </div>
 </div>

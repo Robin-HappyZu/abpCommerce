@@ -437,6 +437,8 @@
     <Content Include="Areas\Admin\Views\Destination\DestCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\DestEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\_DestCreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\TicketCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Destination\_TicketCreateOrEdit.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -552,6 +554,7 @@
     <Compile Include="Areas\Admin\Models\DestCityViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditDestCityViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditDestViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\EditTicketViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetDestsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetRolesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
