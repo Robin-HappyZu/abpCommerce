@@ -11,7 +11,7 @@ namespace HappyZu.CloudStore.Trip
     /// 门票
     /// </summary>
     [Table("Trip_Ticket")]
-    public class Ticket : Entity, ISoftDelete, ISEO, IAudited
+    public class Ticket : Entity, ISoftDelete,  IAudited
     {
         /// <summary>
         /// 景点Id
@@ -105,12 +105,13 @@ namespace HappyZu.CloudStore.Trip
         public QuotesType QuotesType { get; set; }
 
         public bool IsDeleted { get; set; }
-        public string MetaTitle { get; set; }
-        public string MetaKeywords { get; set; }
-        public string MetaDescription { get; set; }
+
         public DateTime CreationTime { get; set; }
+
         public long? CreatorUserId { get; set; }
+
         public DateTime? LastModificationTime { get; set; }
+
         public long? LastModifierUserId { get; set; }
     }
 

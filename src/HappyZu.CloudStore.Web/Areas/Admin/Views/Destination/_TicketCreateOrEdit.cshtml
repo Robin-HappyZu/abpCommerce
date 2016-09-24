@@ -1,0 +1,42 @@
+﻿@model HappyZu.CloudStore.Web.Areas.Admin.Models.EditTicketViewModel
+<div class="portlet box grey-salt">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-edit"></i> @Model.Dest.Title 门票详情
+        </div>
+    </div>
+    <div class="portlet-body form form-horizontal">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">当前景点</label>
+                        <div class="col-md-9">
+                            <p class="form-control-static">@Model.Dest.Title</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票名称</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票类型</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">市场价</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<input id="returnUrl" name="returnUrl" type="hidden" data-bind="value:ReturnUrl" />

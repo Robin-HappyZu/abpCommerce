@@ -1,6 +1,7 @@
 ﻿@model HappyZu.CloudStore.Web.Areas.Admin.Models.EditDestViewModel
 
 @using Abp.Json
+@using HappyZu.CloudStore.Trip
 @{
     ViewBag.Title = "添加景点";
 }
@@ -73,77 +74,128 @@
     <script src="http://api.map.baidu.com/api?v=2.0&ak=SARIdZ6EA22D6Si5luRMjCYU"></script> 
 }
 @section scripts{
-<script>
-        $(function () {
-            $(".input-booking-notice").summernote({ height: 300, dialogsInBody: true, placeholder: '预订须知', lang: "zh-CN" ,callbacks: {
-                onBlur: function() {
-                    vm.BookingNotice($(".input-booking-notice").val());
+    <script>
+        $(function() {
+            $(".input-booking-notice").summernote({
+                height: 300,
+                dialogsInBody: true,
+                placeholder: '预订须知',
+                lang: "zh-CN",
+                callbacks: {
+                    onBlur: function() {
+                        vm.BookingNotice($(".input-booking-notice").val());
+                    }
                 }
-            }});
-            $(".input-agreement").summernote({ height: 300, dialogsInBody: true, placeholder: '游玩协议', lang: "zh-CN" ,callbacks: {
-                onBlur: function(contents, $editable) {
-                    vm.Agreement($(".input-agreement").val());
+            });
+            $(".input-agreement").summernote({
+                height: 300,
+                dialogsInBody: true,
+                placeholder: '游玩协议',
+                lang: "zh-CN",
+                callbacks: {
+                    onBlur: function(contents, $editable) {
+                        vm.Agreement($(".input-agreement").val());
+                    }
                 }
-            }});
-            $(".input-description").summernote({ height: 300, dialogsInBody: true, placeholder: '景点介绍', lang: "zh-CN" ,callbacks: {
-                onBlur: function(contents, $editable) {
-                    vm.Introduce($(".input-description").val());
+            });
+            $(".input-description").summernote({
+                height: 300,
+                dialogsInBody: true,
+                placeholder: '景点介绍',
+                lang: "zh-CN",
+                callbacks: {
+                    onBlur: function(contents, $editable) {
+                        vm.Introduce($(".input-description").val());
+                    }
                 }
-            }});
+            });
 
             if (jQuery().datepicker) {
                 $('.date-picker').datepicker({
-                    language:"zh-CN",
+                    language: "zh-CN",
                     autoclose: true,
                     isRTL: App.isRTL(),
                     pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
                 });
                 //$('body').removeClass("modal-open"); //fix bug when inline picker is used in modal
             }
+
+            vm.loadProvinces();
         });
 
         $('#location-map').on('shown.bs.modal', function() {
-            App.blockUI({target:'#location-map',animate: true});
+            var $city = $('#@Html.IdFor(m => m.Dest.CityId) option:selected');
+            App.blockUI({ target: '#location-map', animate: true });
             /*地图*/
-            var map = new BMap.Map("map-widget");    // 创建Map实例
-            map.centerAndZoom('长沙', 11);  // 初始化地图,设置中心点坐标和地图级别
-            map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
-            map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+            var map = new BMap.Map("map-widget"); // 创建Map实例
+
+            if (vm.Lat() !== '' && vm.Lng() !== '') {
+                var point = new BMap.Point(vm.Lng(), vm.Lat());
+                map.centerAndZoom(point, 11); // 初始化地图,设置中心点坐标和地图级别
+                var defaultMarker = new BMap.Marker(e.point); // 创建标注
+                map.addOverlay(defaultMarker);
+            } else {
+                var city = $city.text();
+                if (city === '' || city === undefined) {
+                    city = '长沙';
+                }
+                map.centerAndZoom(city, 11); // 初始化地图,设置中心点坐标和地图级别
+            }
+            map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
+            map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
             map.addEventListener("tilesloaded", function() {
                 App.unblockUI('#location-map');
             });
             map.addEventListener("click", function(e) {
-                $('.choose-location').html('您选中的位置：lng：'+e.point.lng + ",lat：" + e.point.lat);
-                $('.choose-location').attr('data-lng',e.point.lng);
-                $('.choose-location').attr('data-lat',e.point.lat);
-
+                $('.choose-location').html('您选中的位置：lng：' + e.point.lng + ",lat：" + e.point.lat);
+                $('.choose-location').attr('data-lng', e.point.lng);
+                $('.choose-location').attr('data-lat', e.point.lat);
+                map.clearOverlays();
+                var marker = new BMap.Marker(e.point); // 创建标注
+                map.addOverlay(marker);
             });
         });
 
         $('.save-location').on('click', function() {
-            var lng=$('.choose-location').attr('data-lng');
+            var lng = $('.choose-location').attr('data-lng');
+            var lat = $('.choose-location').attr('data-lat');
+            var empty = false;
 
-            if ((lng !== '' && lng!== undefined ) || confirm("您还没有选中位置确定要放弃吗？")) {
+            if (lng === '' || lng === undefined) {
+                empty = true;
+            }
+            if (lat === '' || lat === undefined) {
+                empty = true;
+            }
+
+            if (!empty || confirm("您还没有选中位置确定要放弃吗？")) {
+                if (!empty) {
+                    vm.Lat(lat);
+                    vm.Lng(lng);
+                }
                 $('#location-map').modal('hide');
             }
         });
 
         /*数据绑定*/
-        function htmldecode(s){
+        function htmldecode(s) {
             var div = document.createElement('div');
             div.innerHTML = s;
             return div.innerText || div.textContent;
         }
-        function htmlencode(s){
+
+        function htmlencode(s) {
             var div = document.createElement('div');
             div.appendChild(document.createTextNode(s));
             return div.innerHTML;
         }
 
-        var ViewModel = function (title, subject, introduce, feature, openTime, isPublished, publishDateTime, displayOrder,
+        var ViewModel = function(title, subject, introduce, feature, openTime, isPublished, publishDateTime, displayOrder,
             destType, provinceId, cityId, address, lng, lat, supplierId, supplier, bookingNotice, agreement, metaTitle,
             metaKeywords, metaDescription, returnUrl) {
             var _this = this;
+            this.Provinces = ko.observableArray([]);
+            this.Cities = ko.observableArray([]);
             this.Title = ko.observable(title);
             this.Subject = ko.observable(subject);
             this.Introduce = ko.observable(htmldecode(introduce));
@@ -166,33 +218,34 @@
             this.MetaKeywords = ko.observable(metaKeywords);
             this.MetaDescription = ko.observable(metaDescription);
             this.ReturnUrl = ko.observable(returnUrl);
+            this.IsCreate=ko.observable(true);
 
             this.submit = function(data, event) {
                 var url = $('#uiform').attr("action");
                 var params = [];
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Title)", value: _this.Title() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Subject)", value: _this.Subject() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Introduce)", value:htmlencode(_this.Introduce()) });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Feature)", value: _this.Feature() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.OpenTime)", value: _this.OpenTime() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.IsPublished)", value: _this.IsPublished() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.PublishDateTime)", value: _this.PublishDateTime() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.DisplayOrder)", value: _this.DisplayOrder() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.DestType)", value: _this.DestType() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.ProvinceId)", value: _this.ProvinceId() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.CityId)", value: _this.CityId() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Address)", value: _this.Address() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Lng)", value: _this.Lng() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Lat)", value: _this.Lat() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.SupplierId)", value: _this.SupplierId() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Supplier)", value: _this.Supplier() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.BookingNotice)", value: htmlencode(_this.BookingNotice()) });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.Agreement)", value: htmlencode(_this.Agreement()) });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.MetaTitle)", value: _this.MetaTitle() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.MetaKeywords)", value: _this.MetaKeywords() });
-                params.push({ name: "@Html.NameFor(m=>m.Dest.MetaDescription)", value: _this.MetaDescription() });
-                App.startPageLoading({animate: true});
-                var $btn=$(event.target);
+                params.push({ name: "@Html.NameFor(m => m.Dest.Title)", value: _this.Title() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.Subject)", value: _this.Subject() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.Introduce)", value: htmlencode(_this.Introduce()) });
+                params.push({ name: "@Html.NameFor(m => m.Dest.Feature)", value: _this.Feature() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.OpenTime)", value: _this.OpenTime() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.IsPublished)", value: _this.IsPublished() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.PublishDateTime)", value: _this.PublishDateTime() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.DisplayOrder)", value: _this.DisplayOrder() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.DestType)", value: _this.DestType() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.ProvinceId)", value: _this.ProvinceId() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.CityId)", value: _this.CityId() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.Address)", value: _this.Address() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.Lng)", value: _this.Lng() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.Lat)", value: _this.Lat() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.SupplierId)", value: _this.SupplierId() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.Supplier)", value: _this.Supplier() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.BookingNotice)", value: htmlencode(_this.BookingNotice()) });
+                params.push({ name: "@Html.NameFor(m => m.Dest.Agreement)", value: htmlencode(_this.Agreement()) });
+                params.push({ name: "@Html.NameFor(m => m.Dest.MetaTitle)", value: _this.MetaTitle() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.MetaKeywords)", value: _this.MetaKeywords() });
+                params.push({ name: "@Html.NameFor(m => m.Dest.MetaDescription)", value: _this.MetaDescription() });
+                App.startPageLoading({ animate: true });
+                var $btn = $(event.target);
                 $btn.button("loading");
                 $.post(url, params, function(data) {
                     if (data.success) {
@@ -202,8 +255,8 @@
                         App.alert({
                             container: '',
                             place: 'append', // append or prepent in container
-                            type: 'danger',  // alert's type
-                            message: data.error.message,  // alert's message
+                            type: 'danger', // alert's type
+                            message: data.error.message, // alert's message
                             close: true, // make alert closable
                             reset: true, // close all previouse alerts first
                             focus: true, // auto scroll to the alert after shown
@@ -214,17 +267,83 @@
                     App.stopPageLoading();
                 }, 'json');
 
-            }
+            };
+
+            this.loadProvinces = function() {
+                var provincesUrl = '@Url.Action("GetAllProvinces", "Destination", new {area = "Mobile"}, true)';
+                var params = [];
+                params.push({ name: "countryType", value: _this.DestType() });
+                App.blockUI({ target: '.location-portlet-body', animate: true });
+                $.post(provincesUrl, params, function(data) {
+                    App.unblockUI('.location-portlet-body');
+                    if (data.success) {
+                        vm.Provinces([]);
+                        var $data = data.result;
+                        if ($data==null) {
+                            return;
+                        }
+                        for (var i = 0; i < $data.length ; i++) {
+                            vm.Provinces.push({id:$data[i].id,name:$data[i].name});
+                        }
+                    } else {
+                        App.alert({
+                            container: '',
+                            place: 'append', // append or prepent in container
+                            type: 'danger', // alert's type
+                            message: data.error.message, // alert's message
+                            close: true, // make alert closable
+                            reset: true, // close all previouse alerts first
+                            focus: true, // auto scroll to the alert after shown
+                            icon: 'warning' // put icon before the message
+                        });
+                    };
+                }, 'json');
+            };
+
+            this.loadCities = function() {
+                var citiesUrl = '@Url.Action("GetAllCities", "Destination", new {area = "Mobile"}, true)';
+                var params = [];
+                params.push({ name: "provinceId", value: _this.ProvinceId() });
+
+                if (_this.ProvinceId()==='' || _this.ProvinceId()===undefined) {
+                    return;
+                }
+                App.blockUI({ target: '.location-portlet-body', animate: true });
+                $.post(citiesUrl, params, function(data) {
+                    App.unblockUI('.location-portlet-body');
+                    if (data.success) {
+                        vm.Cities([]);
+                        var $data = data.result;
+                        if ($data==null) {
+                            return;
+                        }
+                        for (var i = 0; i < $data.length ; i++) {
+                            vm.Cities.push({id:$data[i].id,name:$data[i].name});
+                        }
+                    } else {
+                        App.alert({
+                            container: '',
+                            place: 'append', // append or prepent in container
+                            type: 'danger', // alert's type
+                            message: data.error.message, // alert's message
+                            close: true, // make alert closable
+                            reset: true, // close all previouse alerts first
+                            focus: true, // auto scroll to the alert after shown
+                            icon: 'warning' // put icon before the message
+                        });
+                    };
+                }, 'json');
+            };
         };
 
-        var vm = new ViewModel( "@Model.Dest.Title", "@Model.Dest.Subject","@Model.Dest.Introduce","@Model.Dest.Feature" ,
-            "@Model.Dest.OpenTime",@Model.Dest.IsPublished.ToJsonString(),"", @Model.Dest.DisplayOrder,
-            @((int)Model.Dest.DestType), @Model.Dest.ProvinceId, @Model.Dest.CityId, "@Model.Dest.Address", "@Model.Dest.Lng",
+        var vm = new ViewModel("@Model.Dest.Title", "@Model.Dest.Subject", "@Model.Dest.Introduce", "@Model.Dest.Feature",
+            "@Model.Dest.OpenTime", @Model.Dest.IsPublished.ToJsonString(), "", @Model.Dest.DisplayOrder,
+            @((int) Model.Dest.DestType), @Model.Dest.ProvinceId, @Model.Dest.CityId, "@Model.Dest.Address", "@Model.Dest.Lng",
             "@Model.Dest.Lat", @Model.Dest.SupplierId, "@Model.Dest.Supplier", "@Model.Dest.BookingNotice", "@Model.Dest.Agreement",
-            "@Model.Dest.MetaTitle","@Model.Dest.MetaKeywords", "@Model.Dest.MetaDescription", "@Request["ReturnUrl"]");
+            "@Model.Dest.MetaTitle", "@Model.Dest.MetaKeywords", "@Model.Dest.MetaDescription", "@Request["ReturnUrl"]");
 
         ko.applyBindings(vm);
 
 
-</script>
+    </script>
 }
