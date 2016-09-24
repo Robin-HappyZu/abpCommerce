@@ -71,6 +71,7 @@ namespace HappyZu.CloudStore.Users
         {
             var user = input.User.MapTo<User>();
             await UserManager.AddLoginAsync(user, new UserLoginInfo(input.LoginProvider, input.ProviderKey));
+            await UnitOfWorkManager.Current.SaveChangesAsync();
         }
 
         public async Task<ClaimsIdentity> CreateIdentityAsync(User user)
