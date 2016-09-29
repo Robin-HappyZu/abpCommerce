@@ -1,42 +1,357 @@
 ﻿@model HappyZu.CloudStore.Web.Areas.Admin.Models.EditTicketViewModel
-<div class="portlet box grey-salt">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-edit"></i> @Model.Dest.Title 门票详情
-        </div>
-    </div>
-    <div class="portlet-body form form-horizontal">
-        <div class="form-body">
+<div class="tab-pane active form" id="tab_base">
+    <div class="form-horizontal">
+        <div class="form-body no-padding">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">当前景点</label>
-                        <div class="col-md-9">
-                            <p class="form-control-static">@Model.Dest.Title</p>
+                <div class="col-lg-7">
+                    <div class="portlet box grey-salt">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-edit"></i> 门票基本信息
+                            </div>
+                        </div>
+                        <div class="portlet-body form">
+                            <div class="form-horizontal">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">当前景点</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static bold font-green-sharp">@Model.Dest.Title</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票名称</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票类型</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">市场价</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">代理商价</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">成本</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票积分</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">库存</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票描述</label>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" rows="4" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">提前预订</label>
+                                        <div class="col-md-9">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        提前：<input type="text" class="form-control input-xsmall" id="Day" placeholder="天数"> 天
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-12 bootstrap-timepicker timepicker">
+                                                        <input type="text" class="form-control input-xsmall advanced-time-picker" id="Time" placeholder="时间"> 前
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票名称</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+
+                    <div class="portlet box grey-salt">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-edit"></i> 支付
+                            </div>
+                        </div>
+                        <div class="portlet-body form form-horizontal">
+                            <div class="form-body">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">只需要支付订金</label>
+                                    <div class="col-md-9">
+                                        <div class="checkbox-list">
+                                            <label class="checkbox-inline">
+                                                <input class="form-control" type="checkbox" /> 启用订金
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">订金金额</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">启用积分抵现</label>
+                                    <div class="col-md-9">
+                                        <div class="checkbox-list">
+                                            <label class="checkbox-inline">
+                                                <input class="form-control" type="checkbox" /> 使用积分
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">使用数量</label>
+                                    <div class="col-md-9 ">
+                                        <input type="text" class="form-control input-xsmall " id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票类型</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                    <input id="returnUrl" name="returnUrl" type="hidden" data-bind="value:ReturnUrl"/>
+                </div>
+                <div class="col-lg-5">
+
+
+                    <div class="portlet box grey-salt">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-edit"></i> 报价
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">市场价</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                        <div class="portlet-body form form-horizontal">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">报价有效期</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group input-large" id="pricedaterange">
+                                            <input type="text" class="form-control">
+                                            <span class="input-group-btn">
+                                                <button class="btn default date-range-toggle" type="button">
+                                                    <i class="fa fa-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">商城价</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-small ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">代理商价</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-small ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">市场价</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-small ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">成本价</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-small ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">库存</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control input-inline input-xsmall "> <span class="help-inline"> -1表示不限 </span>
+                                    </div>
+                                </div>
+                                <div class="tabbable-custom ">
+                                    <ul class="nav nav-tabs ">
+                                        <li class="active">
+                                            <a href="#tab_all_day" data-toggle="tab"> 所有日期 </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_week" data-toggle="tab"> 按星期 </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_day" data-toggle="tab"> 指定号数 </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_date" data-toggle="tab"> 指定日期 </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab_all_day">
+                                            <p class="muted"><span>2016-09-30 至 2016-10-27</span>所有日期
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane" id="tab_week">
+                                            <div class="clearfix check-week">
+                                                <div class="btn-group" data-toggle="buttons">
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 周一
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 周二
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 周三
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 周四
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 周五
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 周六
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 周日
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div><button type="button" class="btn btn-success">更新报价</button>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_day">
+                                            <div class="clearfix check-week">
+                                                <div class="btn-group" data-toggle="buttons">
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 1
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 2
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 3
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 4
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 5
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 6
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 7
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 8
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 9
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 10
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 11
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 12
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 13
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 14
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 15
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 16
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 17
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 18
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 19
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 20
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 21
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 22
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 23
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 24
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 25
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 26
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 27
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 28
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 29
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 30
+                                                    </label>
+                                                    <label class="btn btn-default">
+                                                        <input type="checkbox" class="toggle"> 31
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div><button type="button" class="btn btn-success">更新报价</button>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_date">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn red"><i class="fa fa-eye"></i> 预览报价</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-<input id="returnUrl" name="returnUrl" type="hidden" data-bind="value:ReturnUrl" />

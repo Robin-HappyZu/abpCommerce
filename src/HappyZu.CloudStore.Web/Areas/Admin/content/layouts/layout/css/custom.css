@@ -4,6 +4,9 @@
     padding-top:10px !important;
 }
 
+.form-body.no-padding{
+    padding:0px;
+}
 /*partlet*/
 .portlet-search.portlet>.portlet-title>.caption{
     padding:0px;line-height:30px;
@@ -42,4 +45,17 @@
 .map-widget{
     min-height:300px;
     position: relative;
+}
+
+.daterangepicker .ranges .btn{
+    margin-top:0px;
+}
+
+.check-week .btn-group .btn{
+    margin-right:5px;
+    margin-bottom:5px;
+}
+.check-week .btn-group .btn.active{
+    background-color:#3598dc;
+    color:#fff;
 }

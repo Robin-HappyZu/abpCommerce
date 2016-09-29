@@ -204,25 +204,26 @@
                                             <div class="must-save" data-bind="visible:IsCreate">
                                                 必须保存后才能再进行下一步操作
                                             </div>
-                                            <div class="table-scrollable" data-bind="visible:!IsCreate()">
-                                                <table class="table table-bordered table-hover">
-                                                    <thead>
-                                                    <tr>
-                                                        <th> # </th>
-                                                        <th> 门票名称 </th>
-                                                        <th> 类型 </th>
-                                                        <th> 价格 </th>
-                                                        <th> 库存 </th>
-                                                        <th> 销量 </th>
-                                                        <th> </th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div>
-                                                <a class="btn red" href="@Url.Action("TicketCreate","Destination",new {area="Mobile",destId=Model.Id,returnUrl=Request.RawUrl},true)"> 添加门票 </a>
+                                            <div data-bind="visible:!IsCreate()">
+                                                <div class="table-scrollable">
+                                                    <table class="table table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th> # </th>
+                                                                <th> 门票名称 </th>
+                                                                <th> 类型 </th>
+                                                                <th> 价格 </th>
+                                                                <th> 库存 </th>
+                                                                <th> 销量 </th>
+                                                                <th> </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                                <div>
+                                                    <a class="btn red" href="@Url.Action("TicketCreate","Destination",new {area="Mobile",destId=Model.Id,returnUrl=Request.RawUrl},true)"> 添加门票 </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
