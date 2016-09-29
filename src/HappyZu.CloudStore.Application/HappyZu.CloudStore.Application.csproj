@@ -131,6 +131,7 @@
     <Compile Include="Trip\Dto\AddDestCityInput.cs" />
     <Compile Include="Trip\Dto\AddDestInput.cs" />
     <Compile Include="Trip\Dto\AddDestProvinceInput.cs" />
+    <Compile Include="Trip\Dto\AddPaymentRecordInput.cs" />
     <Compile Include="Trip\Dto\AddTicketAttributeInput.cs" />
     <Compile Include="Trip\Dto\AddTicketInput.cs" />
     <Compile Include="Trip\Dto\AddTicketOrderInput.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Trip\Dto\UpdateTicketOrderInput.cs" />
     <Compile Include="Trip\Dto\UpdateTicketQuoteInput.cs" />
     <Compile Include="Trip\IAttributeAppService.cs" />
+    <Compile Include="Trip\IPaymentAppService.cs" />
     <Compile Include="Trip\ITicketAppService.cs" />
     <Compile Include="Trip\Dto\TicketDto.cs" />
     <Compile Include="Trip\Dto\TicketOrderDto.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="Trip\Dto\UpdateDestInput.cs" />
     <Compile Include="Trip\Dto\UpdateDestProvinceInput.cs" />
     <Compile Include="Trip\IDestAppService.cs" />
+    <Compile Include="Trip\PaymentAppSerivce.cs" />
     <Compile Include="Trip\TicketAppService.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\Dto\UserLoginInput.cs" />

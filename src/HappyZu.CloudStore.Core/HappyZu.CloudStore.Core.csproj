@@ -116,6 +116,8 @@
     <Compile Include="Trip\DestAttributeRecord.cs" />
     <Compile Include="Trip\DestLocationManager.cs" />
     <Compile Include="Trip\DestMananger.cs" />
+    <Compile Include="Trip\PaymentRecord.cs" />
+    <Compile Include="Trip\PaymentRecordManager.cs" />
     <Compile Include="Trip\Quote.cs" />
     <Compile Include="Trip\TicketAttribute.cs" />
     <Compile Include="Trip\TicketAttributeManager.cs" />

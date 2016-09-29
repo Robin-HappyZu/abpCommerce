@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -12,10 +11,8 @@ using HappyZu.CloudStore.Users;
 using HappyZu.CloudStore.Users.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Filters;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Senparc.Weixin;
-using Senparc.Weixin.Exceptions;
 using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using Senparc.Weixin.MP.CommonAPIs;
@@ -111,12 +108,6 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             var user = await _userAppService.GetUserByWechatOpenIdAndUnionIdAsync(openId, unionId);
             if (user != null)
             {
-                if (user.UserName != nickName)
-                {
-                    user.UserName = nickName;
-                    // update User
-                }
-
                 // 登陆
                 var userLoginInput = new UserLoginInput()
                 {
@@ -126,7 +117,6 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 };
 
                 var loginResult = await _userAppService.UserLoginAsync(userLoginInput);
-
                 await SignInAsync(user.MapTo<User>(), loginResult.Identity, true);
             }
             else
@@ -158,7 +148,6 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
                 // 登陆
                 var loginResult = await _userAppService.UserLoginAsync(userLoginInput);
-
                 await SignInAsync(user.MapTo<User>(), loginResult.Identity, true);
             }
             

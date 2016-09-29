@@ -50,6 +50,18 @@ namespace HappyZu.CloudStore.Trip
 
         Task<IPagedResult<TicketOrderDto>> GetPagedTicketOrdersByTicektId(GetPagedTicketOrdersInput input);
 
+        bool CanCancelTicketOrder(TicketOrder order);
+
+        Task<ResultOutputDto> CancelTicketOrderAsync(TicketOrder order, bool notifyCustomer);
+
+        bool CanMarkTicketOrderAsPaid(TicketOrder order);
+
+        Task<ResultOutputDto> MarkTicketOrderAsPaidAsync(TicketOrder order);
+
+        bool CanRefundTicketOrder(TicketOrder order);
+
+        Task<ResultOutputDto> RefundTicketOrderAsync(TicketOrder order);
+
         #endregion
 
         #region 门票标签

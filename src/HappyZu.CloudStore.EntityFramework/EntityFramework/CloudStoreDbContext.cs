@@ -39,6 +39,7 @@ namespace HappyZu.CloudStore.EntityFramework
         public virtual IDbSet<TicketAttribute> TicketAttribute { get; set; }
         public virtual IDbSet<TicketAttributeRecord> TicketAttributeRecord { get; set; }
 
+        public virtual IDbSet<PaymentRecord> PaymentRecords { get; set; } 
         #endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

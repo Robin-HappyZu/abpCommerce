@@ -15,10 +15,9 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Filters
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-
             var userAgent = filterContext.RequestContext.HttpContext.Request.UserAgent;
             // 检查是否是微信客户端访问
-            if (string.IsNullOrWhiteSpace(userAgent) || !userAgent.Contains("MicroMessager"))
+            if (string.IsNullOrWhiteSpace(userAgent) || !userAgent.Contains("MicroMessenger"))
             {
                 // redirect 提示页面(请通过服务号访问）
                 filterContext.Result = new JsonResult

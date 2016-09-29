@@ -439,6 +439,8 @@
     <Content Include="Areas\Admin\Views\Destination\_DestCreateOrEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\TicketCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\_TicketCreateOrEdit.cshtml" />
+    <Content Include="Areas\Mobile\Views\WechatPay\Index.cshtml" />
+    <Content Include="Areas\Mobile\Views\WechatPay\JsApi.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -568,6 +570,7 @@
     <Compile Include="Areas\Mobile\Controllers\MobileControllerBase.cs" />
     <Compile Include="Areas\Mobile\Controllers\TicketController.cs" />
     <Compile Include="Areas\Mobile\Controllers\ToursController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\WechatPayController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\FootMenuViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\HeaderViewModel.cs" />

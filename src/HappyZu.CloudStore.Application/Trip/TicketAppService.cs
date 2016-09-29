@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using HappyZu.CloudStore.Common.Dto;
+using HappyZu.CloudStore.Entities;
 using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
@@ -255,6 +256,105 @@ namespace HappyZu.CloudStore.Trip
                     Items = new List<TicketOrderDto>()
                 };
             }
+        }
+
+        private async Task SetTicketOrderStatusAsync(TicketOrder order, OrderStatus os, bool notifyCustomer = false)
+        {
+            if (order == null)
+                throw new ArgumentNullException("order");
+
+            OrderStatus preOrderStatus = order.Status;
+            if (preOrderStatus == os) return;
+
+            order.Status = os;
+            await _ticketOrderManager.UpdateTicketOrderAsync(order);
+
+            // 通知订单状态
+            if (notifyCustomer)
+            {
+                switch (os)
+                {
+                    case OrderStatus.Completed:
+                        break;
+                }
+            }
+        }
+
+        private async Task ProcessTicketOrderPaidAsync(TicketOrder order)
+        {
+            if (order == null)
+                throw new ArgumentNullException("order");
+
+            // 发布订单付款事件
+        }
+
+        public bool CanCancelTicketOrder(TicketOrder order)
+        {
+            if (order == null)
+                throw new ArgumentNullException("order");
+
+            return order.Status == OrderStatus.Pending || order.Status == OrderStatus.Paying;
+        }
+
+        public async Task<ResultOutputDto> CancelTicketOrderAsync(TicketOrder order, bool notifyCustomer)
+        {
+            try
+            {
+                if (order == null)
+                    return ResultOutputDto.Exception(new ArgumentNullException("order"));
+
+                if (!CanCancelTicketOrder(order))
+                    return ResultOutputDto.Fail(200, $"{order.Id}");
+
+                await SetTicketOrderStatusAsync(order, OrderStatus.Closed, notifyCustomer);
+                // 如果有扣库存 这里就需要调整库存
+                // 发布订单取消事件
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
+        }
+
+        public bool CanMarkTicketOrderAsPaid(TicketOrder order)
+        {
+            if (order == null)
+                throw new ArgumentNullException("order");
+
+            return order.Status == OrderStatus.Paying;
+        }
+
+        public async Task<ResultOutputDto> MarkTicketOrderAsPaidAsync(TicketOrder order)
+        {
+            try
+            {
+                if (order == null)
+                    return ResultOutputDto.Exception(new ArgumentNullException("order"));
+
+                if (!CanMarkTicketOrderAsPaid(order))
+                    return ResultOutputDto.Fail(200, $"TicketOrder: {order.Id} can not mark as paid");
+            
+                await SetTicketOrderStatusAsync(order, OrderStatus.Paid, true);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
+        }
+
+        public bool CanRefundTicketOrder(TicketOrder order)
+        {
+            if (order == null)
+                throw new ArgumentNullException("order");
+
+            return order.Status == OrderStatus.Paid;
+        }
+
+        public Task<ResultOutputDto> RefundTicketOrderAsync(TicketOrder order)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ResultOutputDto> AttachTicketAttributeRecordAsync(AttachTicketAttributeRecordInput input)
