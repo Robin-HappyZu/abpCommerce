@@ -7,6 +7,7 @@ using Abp.UI;
 using Abp.Web.Models;
 using Abp.WebApi.Controllers;
 using HappyZu.CloudStore.Api.Models;
+using HappyZu.CloudStore.Authorization;
 using HappyZu.CloudStore.Authorization.Roles;
 using HappyZu.CloudStore.MultiTenancy;
 using HappyZu.CloudStore.Users;
@@ -21,14 +22,14 @@ namespace HappyZu.CloudStore.Api.Controllers
         public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
 
         private readonly UserManager _userManager;
-        private readonly AbpLogInManager<Tenant, Role, User> _logInManager; 
+        private readonly LogInManager _logInManager; 
 
         static AccountController()
         {
             OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
         }
 
-        public AccountController(UserManager userManager, AbpLogInManager<Tenant, Role, User> logInManager)
+        public AccountController(UserManager userManager, LogInManager logInManager)
         {
             _userManager = userManager;
             _logInManager = logInManager;

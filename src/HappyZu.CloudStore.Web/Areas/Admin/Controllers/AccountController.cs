@@ -17,6 +17,7 @@ using Abp.Threading;
 using Abp.UI;
 using Abp.Web.Models;
 using Happyzu.CloudStore.Common.Theming.Attributes;
+using HappyZu.CloudStore.Authorization;
 using HappyZu.CloudStore.Authorization.Roles;
 using HappyZu.CloudStore.MultiTenancy;
 using HappyZu.CloudStore.Users;
@@ -35,7 +36,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         private readonly RoleManager _roleManager;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
-        private readonly AbpLogInManager<Tenant, Role, User> _logInManager; 
+        private readonly LogInManager _logInManager; 
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -49,7 +50,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             TenantManager tenantManager,
             UserManager userManager,
             RoleManager roleManager,
-            AbpLogInManager<Tenant, Role, User> logInManager,
+            LogInManager logInManager,
             IUnitOfWorkManager unitOfWorkManager,
             IMultiTenancyConfig multiTenancyConfig)
         {

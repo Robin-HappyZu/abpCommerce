@@ -21,9 +21,9 @@ namespace HappyZu.CloudStore.Users
     {
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
-        private readonly AbpLogInManager<Tenant, Role, User> _logInManager; 
+        private readonly LogInManager _logInManager; 
 
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, AbpLogInManager<Tenant, Role, User> logInManager)   
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, LogInManager logInManager)   
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
