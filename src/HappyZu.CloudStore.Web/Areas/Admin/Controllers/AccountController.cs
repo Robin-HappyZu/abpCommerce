@@ -108,7 +108,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 
         private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
-            var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
+            var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password);
 
             switch (loginResult.Result)
             {
