@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201609301011427_Add_Ticket_OrderItem.Designer.cs">
       <DependentUpon>201609301011427_Add_Ticket_OrderItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609301530443_Update_Ticket_Entity1.cs" />
+    <Compile Include="Migrations\201609301530443_Update_Ticket_Entity1.Designer.cs">
+      <DependentUpon>201609301530443_Update_Ticket_Entity1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="CloudStoreDataModule.cs" />
@@ -317,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609301011427_Add_Ticket_OrderItem.resx">
       <DependentUpon>201609301011427_Add_Ticket_OrderItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609301530443_Update_Ticket_Entity1.resx">
+      <DependentUpon>201609301530443_Update_Ticket_Entity1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

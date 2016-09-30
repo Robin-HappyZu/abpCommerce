@@ -28,30 +28,13 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票类型</label>
                                         <div class="col-md-9">
-                                            <select class="bs-select form-control input-medium input-inline" data-show-subtext="true">
-                                                <option data-icon="fa-glass">Mustard</option>
-                                                <option data-icon="fa-heart">Ketchup</option>
-                                                <option data-icon="fa-film">Relish</option>
-                                                <option data-icon="fa-home">Mayonnaise</option>
-                                                <option data-icon="fa-user">Barbecue Sauce</option>
+                                            <select class="tickettype-select form-control input-medium input-inline" data-show-subtext="true" data-bind="optionsCaption:'请选择类型...',options:TicketTypes,optionsText:'name',optionsValue:'id'">
                                             </select>
                                             <a href="javascript:;" class="btn green" data-bind="click:showAddTicketTypeMoble">添加类型</a>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">市场价</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">代理商价</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">成本</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
                                         </div>
@@ -77,6 +60,16 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">提前预订</label>
                                         <div class="col-md-9">
+                                            <div class="checkbox-list">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" /> 必须提前
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <div class="col-md-9 col-md-offset-3">
                                             <div class="form-inline">
                                                 <div class="form-group">
                                                     <div class="col-md-12">

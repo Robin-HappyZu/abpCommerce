@@ -139,17 +139,19 @@
             var tags = $('.custom-date');
             tags.tagsinput({ freeInput: false });
 
-            $('.bs-select').selectpicker({
+            $('.tickettype-select').selectpicker({
                 iconBase: 'fa',
                 tickIcon: 'fa-check'
             });
+
+            vm.loadTicketTypeList();
         });
 
         function showPriceDateRange(start, end) {
             $('#pricedaterange input').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
         }
-        
-        $('#ticket-type-manager').on('hide.bs.modal', function () {
+
+        $('#ticket-type-manager').on('hide.bs.modal', function() {
             $('.save-ticket-type').button('reset');
             App.stopPageLoading();
             vm.TicketTypeDisplayOrder('');
@@ -162,24 +164,55 @@
             this.TicketTypeName = ko.observable('');
             this.TicketTypeDisplayOrder = ko.observable('');
             this.ReturnUrl = ko.observable(returnUrl);
+            this.TicketTypes = ko.observableArray([]);
 
             this.showAddTicketTypeMoble = function() {
                 $('#ticket-type-manager').modal('show');
             };
 
-            this.addTicketType = function (data, event) {
-                var url = '@Url.Action("TicketTypeCreate", "Destination",new {area="Mobile", DestId = Model.Dest.Id},true)';
+            this.addTicketType = function(data, event) {
+                var url = '@Url.Action("TicketTypeCreate", "Destination", new {area = "Mobile", DestId = Model.Dest.Id}, true)';
                 var params = [];
                 params.push({ name: "Name", value: _this.TicketTypeName() });
                 params.push({ name: "DisplayOrder", value: _this.TicketTypeDisplayOrder() });
                 App.startPageLoading({ animate: true });
                 var $btn = $(event.target);
                 $btn.button("loading");
-                $.post(url, params, function (data) {
+                $.post(url, params, function(data) {
+                        if (data.success) {
+                            $('#ticket-type-manager').modal('hide');
+                            App.stopPageLoading();
+                            _this.loadTicketTypeList();
+                            return;
+                        } else {
+                            App.alert({
+                                container: '',
+                                place: 'append', // append or prepent in container
+                                type: 'danger', // alert's type
+                                message: data.error.message, // alert's message
+                                close: true, // make alert closable
+                                reset: true, // close all previouse alerts first
+                                focus: true, // auto scroll to the alert after shown
+                                icon: 'warning' // put icon before the message
+                            });
+                        };
+                        $btn.button('reset');
+                        App.stopPageLoading();
+                    },
+                    'json');
+            }
+
+            this.loadTicketTypeList = function() {
+                var url = '@Url.Action("GetTicketType", "Destination", new {area = "Mobile", DestId = Model.Dest.Id}, true)';
+                App.startPageLoading({ animate: true });
+                $.post(url, {}, function(data) {
                     if (data.success) {
-                        $('#ticket-type-manager').modal('hide');
-                        loadTicketTypeList();
-                        return;
+                        var list = data.result.list;
+                        _this.TicketTypes([]);
+                        for (var i = 0; i < list.length; i++) {
+                            _this.TicketTypes.push(list[i]);
+                        }
+                        $('.tickettype-select').selectpicker('refresh');
                     } else {
                         App.alert({
                             container: '',
@@ -192,13 +225,8 @@
                             icon: 'warning' // put icon before the message
                         });
                     };
-                    $btn.button('reset');
                     App.stopPageLoading();
-                },
-                    'json');
-            }
-
-            this.loadTicketTypeList=function() {
+                }, 'json');
 
                 App.stopPageLoading();
             }
@@ -238,7 +266,7 @@
             }
         };
 
-        var vm = new ViewModel( "@Request["ReturnUrl"]");
+        var vm = new ViewModel("@Request["ReturnUrl"]");
 
         ko.applyBindings(vm);
 

@@ -83,9 +83,14 @@ namespace HappyZu.CloudStore.Trip.Dto
         public DateTime EndDate { get; set; }
 
         /// <summary>
+        /// 必须提前
+        /// </summary>
+        public bool MustAdvance { get; set; }
+
+        /// <summary>
         /// 提前预定天数
         /// </summary>
-        public int AdvancedBookingDays { get; set; }
+        public int AdvanceBookingDays { get; set; }
 
         /// <summary>
         /// 截止时间
