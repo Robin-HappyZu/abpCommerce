@@ -9,7 +9,7 @@ using HappyZu.CloudStore.Users;
 
 namespace HappyZu.CloudStore.Features
 {
-    public class FeatureValueStore : AbpFeatureValueStore<Tenant, Role, User>
+    public class FeatureValueStore : AbpFeatureValueStore<Tenant, User>
     {
         public FeatureValueStore(
             ICacheManager cacheManager, 

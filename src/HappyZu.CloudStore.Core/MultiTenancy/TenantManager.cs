@@ -7,7 +7,7 @@ using HappyZu.CloudStore.Users;
 
 namespace HappyZu.CloudStore.MultiTenancy
 {
-    public class TenantManager : AbpTenantManager<Tenant, Role, User>
+    public class TenantManager : AbpTenantManager<Tenant, User>
     {
         public TenantManager(
             IRepository<Tenant> tenantRepository, 

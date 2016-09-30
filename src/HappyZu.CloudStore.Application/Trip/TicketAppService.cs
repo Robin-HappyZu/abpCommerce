@@ -86,7 +86,7 @@ namespace HappyZu.CloudStore.Trip
                 var count = await _ticketManager.GetDestTicketsCountAsync(input.DestId);
                 var tickets =  _ticketManager.GetPagedTickets(input.DestId, input);
 
-                return new PagedResultOutput<TicketDto>()
+                return new PagedResultDto<TicketDto>()
                 {
                     TotalCount = count,
                     Items = tickets.MapTo<List<TicketDto>>()
@@ -94,7 +94,7 @@ namespace HappyZu.CloudStore.Trip
             }
             catch (Exception)
             {
-                return new PagedResultOutput<TicketDto>()
+                return new PagedResultDto<TicketDto>()
                 {
                     TotalCount = 0,
                     Items = new List<TicketDto>()
@@ -163,7 +163,7 @@ namespace HappyZu.CloudStore.Trip
                 var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(input.TicketId);
                 var quotes = _ticketQuoteManager.GetPagedTicketQuotesByTicketId(input.TicketId, input);
 
-                return new PagedResultOutput<TicketQuoteDto>()
+                return new PagedResultDto<TicketQuoteDto>()
                 {
                     TotalCount = count,
                     Items = quotes.MapTo<List<TicketQuoteDto>>()
@@ -242,7 +242,7 @@ namespace HappyZu.CloudStore.Trip
                 var count = await _ticketOrderManager.GetTicketOrdersCountAsync();
                 var orders = _ticketOrderManager.GetPagedTicketOrders(input);
 
-                return new PagedResultOutput<TicketOrderDto>()
+                return new PagedResultDto<TicketOrderDto>()
                 {
                     TotalCount = count,
                     Items = orders.MapTo<List<TicketOrderDto>>()
@@ -250,7 +250,7 @@ namespace HappyZu.CloudStore.Trip
             }
             catch (Exception)
             {
-                return new PagedResultOutput<TicketOrderDto>()
+                return new PagedResultDto<TicketOrderDto>()
                 {
                     TotalCount = 0,
                     Items = new List<TicketOrderDto>()

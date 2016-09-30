@@ -15,9 +15,9 @@ namespace HappyZu.CloudStore.Roles
         /// 获取角色列表
         /// </summary>
         /// <returns></returns>
-        Task<ListResultOutput<RoleDto>> GetRolesAsync();
+        Task<ListResultDto<RoleDto>> GetRolesAsync();
 
-        Task<PagedResultOutput<RoleDto>> GetRolesAsync(GetRolesInput input);
+        Task<PagedResultDto<RoleDto>> GetRolesAsync(GetRolesInput input);
 
         /// <summary>
         /// 创建用户组

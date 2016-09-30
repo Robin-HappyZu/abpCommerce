@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
@@ -20,11 +21,13 @@ namespace HappyZu.CloudStore.Users
     {
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
+        private readonly AbpLogInManager<Tenant, Role, User> _logInManager; 
 
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager)
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, AbpLogInManager<Tenant, Role, User> logInManager)   
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
+            _logInManager = logInManager;
         }
 
         public async Task ProhibitPermission(ProhibitPermissionInput input)
@@ -41,11 +44,11 @@ namespace HappyZu.CloudStore.Users
             CheckErrors(await UserManager.RemoveFromRoleAsync(userId, roleName));
         }
 
-        public async Task<ListResultOutput<UserDto>> GetUsers()
+        public async Task<ListResultDto<UserDto>> GetUsers()
         {
             var users = await _userRepository.GetAllListAsync();
 
-            return new ListResultOutput<UserDto>(
+            return new ListResultDto<UserDto>(
                 users.MapTo<List<UserDto>>()
                 );
         }
@@ -85,10 +88,10 @@ namespace HappyZu.CloudStore.Users
             return user.MapTo<UserDto>();
         }
 
-        public async Task<AbpUserManager<Tenant, Role, User>.AbpLoginResult> UserLoginAsync(UserLoginInput input)
+        public async Task<AbpLoginResult<Tenant, User>> UserLoginAsync(UserLoginInput input)
         {
             var login = new UserLoginInfo(input.LoginProvider, input.ProviderKey);
-            var loginResult = await UserManager.LoginAsync(login);
+            var loginResult = await _logInManager.LoginAsync(login);
 
             switch (loginResult.Result)
             {

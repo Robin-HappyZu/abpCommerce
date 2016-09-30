@@ -19,14 +19,14 @@ namespace HappyZu.CloudStore.FAQ
             _faqManager = faqManager;
         }
 
-        public async Task<ListResultOutput<FAQDetailDto>> GetDetailListAsync(GetDetailListInput input)
+        public async Task<ListResultDto<FAQDetailDto>> GetDetailListAsync(GetDetailListInput input)
         {
             var list=await _faqManager.GetAllByCategoryIdAsync(input.CategoryId);
 
-            return new ListResultOutput<FAQDetailDto>(list.MapTo<List<FAQDetailDto>>());
+            return new ListResultDto<FAQDetailDto>(list.MapTo<List<FAQDetailDto>>());
         }
 
-        public async Task<FAQDetailDto> GetDetailByIdAsync(EntityRequestInput input)
+        public async Task<FAQDetailDto> GetDetailByIdAsync(EntityDto input)
         {
             var @detail =await _faqManager.GetByIdAsync(input.Id);
             if (@detail == null)
@@ -44,7 +44,7 @@ namespace HappyZu.CloudStore.FAQ
             return ResultOutputDto.Successed;
         }
 
-        public async Task<ResultOutputDto> DeleteAsync(EntityRequestInput input)
+        public async Task<ResultOutputDto> DeleteAsync(EntityDto input)
         {
             await _faqManager.DeleteAsync(input.Id);
 
@@ -59,7 +59,7 @@ namespace HappyZu.CloudStore.FAQ
             return ResultOutputDto.Successed;
         }
 
-        public async Task<FAQCategoryDto> GetCategoryByIdAsync(EntityRequestInput input)
+        public async Task<FAQCategoryDto> GetCategoryByIdAsync(EntityDto input)
         {
             var @category = await _faqManager.GetCategoryByIdAsync(input.Id);
             if (@category == null)
@@ -69,7 +69,7 @@ namespace HappyZu.CloudStore.FAQ
             return @category.MapTo<FAQCategoryDto>();
         }
 
-        public async Task<ResultOutputDto> IsEnableCategoryAsync(EntityRequestInput input)
+        public async Task<ResultOutputDto> IsEnableCategoryAsync(EntityDto input)
         {
             await _faqManager.IsEnableCategoryAsync(input.Id);
 
@@ -77,25 +77,25 @@ namespace HappyZu.CloudStore.FAQ
 
         }
 
-        public async Task<ResultOutputDto> IsDisableCategoryAsync(EntityRequestInput input)
+        public async Task<ResultOutputDto> IsDisableCategoryAsync(EntityDto input)
         {
             await _faqManager.IsDisableCategoryAsync(input.Id);
 
             return ResultOutputDto.Successed;
         }
 
-        public async Task<ResultOutputDto> DeleteCategoryAsync(EntityRequestInput input)
+        public async Task<ResultOutputDto> DeleteCategoryAsync(EntityDto input)
         {
             await _faqManager.DeleteCategoryAsync(input.Id);
 
             return ResultOutputDto.Successed;
         }
 
-        public async Task<ListResultOutput<FAQCategoryListDto>> GetAllCategorysAsync()
+        public async Task<ListResultDto<FAQCategoryListDto>> GetAllCategorysAsync()
         {
             var list = await _faqManager.GetAllCategorysAsync();
 
-            return new ListResultOutput<FAQCategoryListDto>(list.MapTo<List<FAQCategoryListDto>>());
+            return new ListResultDto<FAQCategoryListDto>(list.MapTo<List<FAQCategoryListDto>>());
 
         }
     }

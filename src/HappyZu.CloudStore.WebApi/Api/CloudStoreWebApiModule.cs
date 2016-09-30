@@ -15,7 +15,7 @@ namespace HappyZu.CloudStore.Api
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
 
-            DynamicApiControllerBuilder
+            Configuration.Modules.AbpWebApi().DynamicApiControllerBuilder
                 .ForAll<IApplicationService>(typeof(CloudStoreApplicationModule).Assembly, "app")
                 .Build();
 

@@ -14,7 +14,8 @@ namespace HappyZu.CloudStore.Roles.Dto
         public int MaxResultCount { get; set; }
         public int SkipCount { get; set; }
         public string Sorting { get; set; }
-        public void AddValidationErrors(List<ValidationResult> results)
+
+        public void AddValidationErrors(CustomValidationContext context)
         {
             throw new NotImplementedException();
         }

@@ -15,7 +15,7 @@ namespace HappyZu.CloudStore.Users
 
         Task RemoveFromRole(long userId, string roleName);
 
-        Task<ListResultOutput<UserDto>> GetUsers();
+        Task<ListResultDto<UserDto>> GetUsers();
 
         Task CreateUserAsync(CreateUserInput input);
 
@@ -25,6 +25,6 @@ namespace HappyZu.CloudStore.Users
 
         Task<UserDto> GetUserByWechatOpenIdAndUnionIdAsync(string wechatOpenId, string unionId);
 
-        Task<AbpUserManager<Tenant, Role, User>.AbpLoginResult> UserLoginAsync(UserLoginInput input);
+        Task<AbpLoginResult<Tenant, User>> UserLoginAsync(UserLoginInput input);
     }
 }

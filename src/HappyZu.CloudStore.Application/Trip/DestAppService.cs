@@ -212,7 +212,7 @@ namespace HappyZu.CloudStore.Trip
             {
                 var count = await _destMananger.GetDestsCountAsync(input.ProvinceId, input.CityId);
                 var dests = _destMananger.GetDestsByLocation(input.ProvinceId, input.CityId, input);
-                return new PagedResultOutput<DestDto>()
+                return new PagedResultDto<DestDto>()
                 {
                     TotalCount = count,
                     Items = dests.MapTo<List<DestDto>>()
@@ -220,7 +220,7 @@ namespace HappyZu.CloudStore.Trip
             }
             catch (Exception)
             {
-                return new PagedResultOutput<DestDto>()
+                return new PagedResultDto<DestDto>()
                 {
                     TotalCount = 0,
                     Items = new List<DestDto>()
@@ -228,13 +228,13 @@ namespace HappyZu.CloudStore.Trip
             }
         }
 
-        public async Task<PagedResultOutput<DestDto>> GetDestsAsync(GetDestsInput input)
+        public async Task<PagedResultDto<DestDto>> GetDestsAsync(GetDestsInput input)
         {
             try
             {
                 var count = await _destMananger.QueryCountAsync();
                 var dests = await _destMananger.QuerysListAsync(input);
-                return new PagedResultOutput<DestDto>()
+                return new PagedResultDto<DestDto>()
                 {
                     TotalCount = count,
                     Items = dests.MapTo<List<DestDto>>()
@@ -242,7 +242,7 @@ namespace HappyZu.CloudStore.Trip
             }
             catch (Exception)
             {
-                return new PagedResultOutput<DestDto>()
+                return new PagedResultDto<DestDto>()
                 {
                     TotalCount = 0,
                     Items = new List<DestDto>()

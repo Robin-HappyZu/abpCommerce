@@ -14,13 +14,13 @@ namespace HappyZu.CloudStore.FAQ
     {
         #region 帮助详情
 
-        Task<ListResultOutput<FAQDetailDto>> GetDetailListAsync(GetDetailListInput input);
+        Task<ListResultDto<FAQDetailDto>> GetDetailListAsync(GetDetailListInput input);
 
-        Task<FAQDetailDto> GetDetailByIdAsync(EntityRequestInput input);
+        Task<FAQDetailDto> GetDetailByIdAsync(EntityDto input);
 
         Task<ResultOutputDto> CreateAsync(CreateDetailInput input);
 
-        Task<ResultOutputDto> DeleteAsync(EntityRequestInput input);
+        Task<ResultOutputDto> DeleteAsync(EntityDto input);
 
         #endregion
 
@@ -28,15 +28,15 @@ namespace HappyZu.CloudStore.FAQ
 
         Task<ResultOutputDto> CreateCategoryAsync(CreateFAQCategoryInput input);
 
-        Task<FAQCategoryDto> GetCategoryByIdAsync(EntityRequestInput input);
+        Task<FAQCategoryDto> GetCategoryByIdAsync(EntityDto input);
 
-        Task<ResultOutputDto> IsEnableCategoryAsync(EntityRequestInput input);
+        Task<ResultOutputDto> IsEnableCategoryAsync(EntityDto input);
 
-        Task<ResultOutputDto> IsDisableCategoryAsync(EntityRequestInput input);
+        Task<ResultOutputDto> IsDisableCategoryAsync(EntityDto input);
 
-        Task<ResultOutputDto> DeleteCategoryAsync(EntityRequestInput input);
+        Task<ResultOutputDto> DeleteCategoryAsync(EntityDto input);
 
-        Task<ListResultOutput<FAQCategoryListDto>> GetAllCategorysAsync();
+        Task<ListResultDto<FAQCategoryListDto>> GetAllCategorysAsync();
         #endregion
     }
 }

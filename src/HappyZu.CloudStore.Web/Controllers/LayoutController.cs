@@ -13,17 +13,20 @@ namespace HappyZu.CloudStore.Web.Controllers
     {
         private readonly IUserNavigationManager _userNavigationManager;
         private readonly ILocalizationManager _localizationManager;
+        private readonly ILanguageManager _languageManager;
         private readonly ISessionAppService _sessionAppService;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
 
         public LayoutController(
             IUserNavigationManager userNavigationManager, 
             ILocalizationManager localizationManager,
+            ILanguageManager languageManager,
             ISessionAppService sessionAppService, 
             IMultiTenancyConfig multiTenancyConfig)
         {
             _userNavigationManager = userNavigationManager;
             _localizationManager = localizationManager;
+            _languageManager = languageManager;
             _sessionAppService = sessionAppService;
             _multiTenancyConfig = multiTenancyConfig;
         }
@@ -45,8 +48,8 @@ namespace HappyZu.CloudStore.Web.Controllers
         {
             var model = new LanguageSelectionViewModel
                         {
-                            CurrentLanguage = _localizationManager.CurrentLanguage,
-                            Languages = _localizationManager.GetAllLanguages()
+                            CurrentLanguage = _languageManager.CurrentLanguage,
+                            Languages = _languageManager.GetLanguages()
                         };
 
             return PartialView("_LanguageSelection", model);

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Abp.Auditing;
+using Abp.Authorization;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
 using Abp.Configuration.Startup;
@@ -34,6 +35,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         private readonly RoleManager _roleManager;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
+        private readonly AbpLogInManager<Tenant, Role, User> _logInManager; 
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -47,12 +49,14 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             TenantManager tenantManager,
             UserManager userManager,
             RoleManager roleManager,
+            AbpLogInManager<Tenant, Role, User> logInManager,
             IUnitOfWorkManager unitOfWorkManager,
             IMultiTenancyConfig multiTenancyConfig)
         {
             _tenantManager = tenantManager;
             _userManager = userManager;
             _roleManager = roleManager;
+            _logInManager = logInManager;
             _unitOfWorkManager = unitOfWorkManager;
             _multiTenancyConfig = multiTenancyConfig;
         }
@@ -101,9 +105,9 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return Json(new AjaxResponse { TargetUrl = returnUrl });
         }
 
-        private async Task<AbpUserManager<Tenant, Role, User>.AbpLoginResult> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
+        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
-            var loginResult = await _userManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
+            var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
             switch (loginResult.Result)
             {
@@ -261,10 +265,10 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                 //Directly login if possible
                 if (user.IsActive)
                 {
-                    AbpUserManager<Tenant, Role, User>.AbpLoginResult loginResult;
+                    AbpLoginResult<Tenant, User> loginResult;
                     if (externalLoginInfo != null)
                     {
-                        loginResult = await _userManager.LoginAsync(externalLoginInfo.Login, tenant.TenancyName);
+                        loginResult = await _logInManager.LoginAsync(externalLoginInfo.Login, tenant.TenancyName);
                     }
                     else
                     {
@@ -348,7 +352,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                 }
             }
 
-            var loginResult = await _userManager.LoginAsync(loginInfo.Login, tenancyName);
+            var loginResult = await _logInManager.LoginAsync(loginInfo.Login, tenancyName);
 
             switch (loginResult.Result)
             {

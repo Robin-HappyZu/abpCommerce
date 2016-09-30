@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Abp.Authorization;
 using Abp.Authorization.Users;
 using Abp.UI;
 using Abp.Web.Models;
@@ -20,15 +21,17 @@ namespace HappyZu.CloudStore.Api.Controllers
         public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
 
         private readonly UserManager _userManager;
+        private readonly AbpLogInManager<Tenant, Role, User> _logInManager; 
 
         static AccountController()
         {
             OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
         }
 
-        public AccountController(UserManager userManager)
+        public AccountController(UserManager userManager, AbpLogInManager<Tenant, Role, User> logInManager)
         {
             _userManager = userManager;
+            _logInManager = logInManager;
         }
 
         [HttpPost]
@@ -51,9 +54,9 @@ namespace HappyZu.CloudStore.Api.Controllers
             return new AjaxResponse(OAuthBearerOptions.AccessTokenFormat.Protect(ticket));
         }
 
-        private async Task<AbpUserManager<Tenant, Role, User>.AbpLoginResult> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
+        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
-            var loginResult = await _userManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
+            var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
             switch (loginResult.Result)
             {

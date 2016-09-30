@@ -39,17 +39,17 @@ namespace HappyZu.CloudStore.Roles
             await _roleManager.SetGrantedPermissionsAsync(role, grantedPermissions);
         }
 
-        public async Task<ListResultOutput<RoleDto>> GetRolesAsync()
+        public async Task<ListResultDto<RoleDto>> GetRolesAsync()
         {
             var list= await _roleManager.GetAllListAsync();
-            return new ListResultOutput<RoleDto>(list.MapTo<IReadOnlyList<RoleDto>>());
+            return new ListResultDto<RoleDto>(list.MapTo<IReadOnlyList<RoleDto>>());
         }
 
-        public async Task<PagedResultOutput<RoleDto>> GetRolesAsync(GetRolesInput input)
+        public async Task<PagedResultDto<RoleDto>> GetRolesAsync(GetRolesInput input)
         {
             var count = await _roleManager.CountAsync();
             var roles = _roleManager.Roles.PageBy(input).ToList();
-            return new PagedResultOutput<RoleDto>
+            return new PagedResultDto<RoleDto>
             {
                 TotalCount = count,
                 Items = roles.MapTo<List<RoleDto>>()
@@ -185,7 +185,6 @@ namespace HappyZu.CloudStore.Roles
                     Name = item.Name,
                     Description = item.Description?.ToString(),
                     DisplayName = item.DisplayName?.ToString(),
-                    IsGrantedByDefault = item.IsGrantedByDefault,
                     MultiTenancySides = item.MultiTenancySides
                 }).ToList();
 
