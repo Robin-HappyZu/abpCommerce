@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201609290830392_Create_PaymentRecord_Entity.Designer.cs">
       <DependentUpon>201609290830392_Create_PaymentRecord_Entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609300231066_modify_paymentrecord.cs" />
+    <Compile Include="Migrations\201609300231066_modify_paymentrecord.Designer.cs">
+      <DependentUpon>201609300231066_modify_paymentrecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="CloudStoreDataModule.cs" />
@@ -303,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609290830392_Create_PaymentRecord_Entity.resx">
       <DependentUpon>201609290830392_Create_PaymentRecord_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609300231066_modify_paymentrecord.resx">
+      <DependentUpon>201609300231066_modify_paymentrecord.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
