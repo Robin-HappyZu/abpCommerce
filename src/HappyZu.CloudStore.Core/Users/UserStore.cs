@@ -27,7 +27,7 @@ namespace HappyZu.CloudStore.Users
                 unitOfWorkManager,
                 userClaimRepository)
         {
-
+            _userRepository = userRepository;
         }
 
         public async Task<User> GetUserByWechatOpenIdAndUnionIdAsync(string wechatOpenId, string unionId)
