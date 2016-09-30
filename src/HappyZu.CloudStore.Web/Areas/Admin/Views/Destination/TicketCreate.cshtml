@@ -65,6 +65,8 @@
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" />
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
+<link href="~/Areas/Admin/content/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+<link href="~/Areas/Admin/content/global/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
 }
 @section script_plugins{
     <script src="~/Areas/Admin/content/global/plugins/moment.min.js"></script>
@@ -74,81 +76,116 @@
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script src="~/Areas/Admin/content/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script src="~/Areas/Admin/content/global/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
 }
 
 
 @section scripts{
     <script>
-        $(function () {
+        $(function() {
             if (jQuery().datepicker) {
-                $('#pricedaterange').daterangepicker({
-                    "locale": {
-                        "format": "MM/DD/YYYY",
-                        "separator": " - ",
-                        "applyLabel": "确认",
-                        "cancelLabel": "取消",
-                        "fromLabel": "From",
-                        "toLabel": "To",
-                        "customRangeLabel": "Custom",
-                        "weekLabel": "W",
-                        "daysOfWeek": [
-                            "日","一","二","三","四","五","六"
-                        ],
-                        "monthNames": [
-                            "一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"
-                        ],
-                        "firstDay": 1
-                    },
-                    opens: (App.isRTL() ? 'right' : 'left'),
-                    format: 'YYYY-MM-DD',
-                    separator: ' 至 ',
-                    minDate: moment(),
-                    maxDate: moment().add(6, 'months').format('L')
-                    
-                },
-                showPriceDateRange);
+                $('#pricedaterange')
+                    .daterangepicker({
+                            "locale": {
+                                "format": "MM/DD/YYYY",
+                                "separator": " - ",
+                                "applyLabel": "确认",
+                                "cancelLabel": "取消",
+                                "fromLabel": "From",
+                                "toLabel": "To",
+                                "customRangeLabel": "Custom",
+                                "weekLabel": "W",
+                                "daysOfWeek": [
+                                    "日", "一", "二", "三", "四", "五", "六"
+                                ],
+                                "monthNames": [
+                                    "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"
+                                ],
+                                "firstDay": 1
+                            },
+                            opens: (App.isRTL() ? 'right' : 'left'),
+                            format: 'YYYY-MM-DD',
+                            separator: ' 至 ',
+                            minDate: moment(),
+                            maxDate: moment().add(6, 'months').format('L')
+
+                        },
+                        showPriceDateRange);
             };
 
             if (jQuery().timepicker) {
-                
-                $('.advanced-time-picker').timepicker({
-                    minuteStep: 1,
-                    template: false,
-                    appendWidgetTo: 'body',
-                    showMeridian: false,
-                    defaultTime: '8:00'
-                });
+
+                $('.advanced-time-picker')
+                    .timepicker({
+                        minuteStep: 1,
+                        template: false,
+                        appendWidgetTo: 'body',
+                        showMeridian: false,
+                        defaultTime: '8:00'
+                    });
             }
+
+            if (jQuery().datepicker) {
+                $('.date-picker')
+                    .datepicker({
+                        rtl: App.isRTL(),
+                        orientation: "right",
+                        autoclose: true,
+                        language: 'zh-CN'
+                    });
+            }
+
+            var tags = $('.custom-date');
+            tags.tagsinput({ freeInput: false });
+
+            $('.bs-select').selectpicker({
+                iconBase: 'fa',
+                tickIcon: 'fa-check'
+            });
         });
 
         function showPriceDateRange(start, end) {
             $('#pricedaterange input').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
         }
+        
+        $('#ticket-type-manager').on('hide.bs.modal', function () {
+            $('.save-ticket-type').button('reset');
+            App.stopPageLoading();
+            vm.TicketTypeDisplayOrder('');
+            vm.TicketTypeName('');
+        });
 
-        var ViewModel = function(name, returnUrl) {
+        var ViewModel = function(returnUrl) {
             var _this = this;
-            this.Name = ko.observable(name);
+            this.Title = ko.observable('');
+            this.TicketTypeName = ko.observable('');
+            this.TicketTypeDisplayOrder = ko.observable('');
             this.ReturnUrl = ko.observable(returnUrl);
 
-            this.submit = function(data, event) {
-                var url = $('#uiform').attr("action");
+            this.showAddTicketTypeMoble = function() {
+                $('#ticket-type-manager').modal('show');
+            };
+
+            this.addTicketType = function (data, event) {
+                var url = '@Url.Action("TicketTypeCreate", "Destination",new {area="Mobile", DestId = Model.Dest.Id},true)';
                 var params = [];
-                @*params.push({ name: "@Html.NameFor(m=>m.City.Name)", value: _this.Name() });
-                params.push({ name: "@Html.NameFor(m=>m.City.ProvinceId)", value: '@Model.ProvinceId' });
-                params.push({ name: "@Html.NameFor(m=>m.ProvinceId)", value: '@Model.ProvinceId' });*@
-                App.startPageLoading({animate: true});
-                var $btn=$(event.target);
+                params.push({ name: "Name", value: _this.TicketTypeName() });
+                params.push({ name: "DisplayOrder", value: _this.TicketTypeDisplayOrder() });
+                App.startPageLoading({ animate: true });
+                var $btn = $(event.target);
                 $btn.button("loading");
-                $.post(url, params, function(data) {
+                $.post(url, params, function (data) {
                     if (data.success) {
-                        window.location = _this.ReturnUrl();
+                        $('#ticket-type-manager').modal('hide');
+                        loadTicketTypeList();
                         return;
                     } else {
                         App.alert({
                             container: '',
                             place: 'append', // append or prepent in container
-                            type: 'danger',  // alert's type
-                            message: data.error.message,  // alert's message
+                            type: 'danger', // alert's type
+                            message: data.error.message, // alert's message
                             close: true, // make alert closable
                             reset: true, // close all previouse alerts first
                             focus: true, // auto scroll to the alert after shown
@@ -157,14 +194,53 @@
                     };
                     $btn.button('reset');
                     App.stopPageLoading();
-                }, 'json');
+                },
+                    'json');
+            }
+
+            this.loadTicketTypeList=function() {
+
+                App.stopPageLoading();
+            }
+
+            this.submit = function(data, event) {
+                var url = $('#uiform').attr("action");
+                var params = [];
+                @*params.push({ name: "@Html.NameFor(m=>m.City.Name)", value: _this.Name() });
+                params.push({ name: "@Html.NameFor(m=>m.City.ProvinceId)", value: '@Model.ProvinceId' });
+                params.push({ name: "@Html.NameFor(m=>m.ProvinceId)", value: '@Model.ProvinceId' });*@
+                App.startPageLoading({ animate: true });
+                var $btn = $(event.target);
+                $btn.button("loading");
+                $.post(url,
+                    params,
+                    function(data) {
+                        if (data.success) {
+                            window.location = _this.ReturnUrl();
+                            return;
+                        } else {
+                            App.alert({
+                                container: '',
+                                place: 'append', // append or prepent in container
+                                type: 'danger', // alert's type
+                                message: data.error.message, // alert's message
+                                close: true, // make alert closable
+                                reset: true, // close all previouse alerts first
+                                focus: true, // auto scroll to the alert after shown
+                                icon: 'warning' // put icon before the message
+                            });
+                        };
+                        $btn.button('reset');
+                        App.stopPageLoading();
+                    },
+                    'json');
 
             }
         };
 
-        @*var vm = new ViewModel("@Model.City.Name",  "@Request["ReturnUrl"]");
+        var vm = new ViewModel( "@Request["ReturnUrl"]");
 
-        ko.applyBindings(vm);*@
+        ko.applyBindings(vm);
 
 
     </script>

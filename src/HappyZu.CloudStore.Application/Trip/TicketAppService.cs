@@ -16,12 +16,14 @@ namespace HappyZu.CloudStore.Trip
         private readonly TicketManager _ticketManager;
         private readonly TicketQuoteManager _ticketQuoteManager;
         private readonly TicketOrderManager _ticketOrderManager;
+        private readonly TicketTypeManager _ticketTypeManager;
 
         public TicketAppService(TicketManager ticketManager, TicketQuoteManager ticketQuoteManager,
-            TicketOrderManager ticketOrderManager)
+            TicketOrderManager ticketOrderManager, TicketTypeManager ticketTypeManager)
         {
             _ticketManager = ticketManager;
             _ticketOrderManager = ticketOrderManager;
+            _ticketTypeManager = ticketTypeManager;
             _ticketQuoteManager = ticketQuoteManager;
         }
 
@@ -395,6 +397,67 @@ namespace HappyZu.CloudStore.Trip
             catch (Exception)
             {
                 return new List<TicketAttributeRecordDto>();
+            }
+        }
+
+        public async Task<IPagedResult<TicketTypeDto>> GetTicketTypeListAsync(int destId)
+        {
+            try
+            {
+               var list = await _ticketTypeManager.GetListAsync(destId);
+                return new PagedResultDto<TicketTypeDto>(list.Count, list.MapTo<List<TicketTypeDto>>());
+            }
+            catch (Exception)
+            {
+                return new PagedResultDto<TicketTypeDto>(0,new List<TicketTypeDto>());
+            }
+           
+        }
+
+        public async Task<TicketTypeDto> GetTicketTypeAsync(int id)
+        {
+            try
+            {
+                var entity=await _ticketTypeManager.GetAsync(new EntityDto(id));
+                return entity.MapTo<TicketTypeDto>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public async Task<ResultOutputDto> AddTicketTypeAsync(AddTicketTypeInput input)
+        {
+            try
+            {
+                var ticketType=new TicketType()
+                {
+                    DestId = input.DestId,
+                    Name = input.Name,
+                    DisplayOrder = input.DisplayOrder
+                };
+
+                await _ticketTypeManager.AddAsync(ticketType);
+
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
+        }
+
+        public async Task<ResultOutputDto> RemoveTicketTypeAsync(int id)
+        {
+            try
+            {
+                await _ticketTypeManager.RemoveAsync(new EntityDto(id));
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
             }
         }
     }

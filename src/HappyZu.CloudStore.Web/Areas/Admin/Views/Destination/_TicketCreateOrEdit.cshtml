@@ -28,7 +28,14 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票类型</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                            <select class="bs-select form-control input-medium input-inline" data-show-subtext="true">
+                                                <option data-icon="fa-glass">Mustard</option>
+                                                <option data-icon="fa-heart">Ketchup</option>
+                                                <option data-icon="fa-film">Relish</option>
+                                                <option data-icon="fa-home">Mayonnaise</option>
+                                                <option data-icon="fa-user">Barbecue Sauce</option>
+                                            </select>
+                                            <a href="javascript:;" class="btn green" data-bind="click:showAddTicketTypeMoble">添加类型</a>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -210,6 +217,9 @@
                                         <div class="tab-pane active" id="tab_all_day">
                                             <p class="muted"><span>2016-09-30 至 2016-10-27</span>所有日期
                                             </p>
+                                            <div>
+                                                <button type="button" class="btn btn-success">更新报价</button>
+                                            </div>
                                         </div>
                                         <div class="tab-pane" id="tab_week">
                                             <div class="clearfix check-week">
@@ -342,7 +352,23 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="tab_date">
-
+                                            <div class="clearfix">
+                                                <div class="input-group input-medium date date-picker pull-left" id="datePicker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
+                                                    <input type="text" class="form-control" readonly>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <button type="button" class="btn blue pull-left margin-left-10">添加日期</button>
+                                            </div>
+                                            <div class="clearfix margin-top-10 tagsinput-full">
+                                                <input class="custom-date" type="text"/>
+                                            </div>
+                                            <div>
+                                                <button type="button" class="btn btn-success">更新报价</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -353,5 +379,37 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="ticket-type-manager" class="modal fade" tabindex="-1">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">添加门票类型</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form">
+            <div class="form-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ticketTypeName">类型名称</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="ticketTypeName" data-bind="value:TicketTypeName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ticketTypeDisplayOrder">显示位置</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-xsmall" id="ticketTypeDisplayOrder" data-bind="value:TicketTypeDisplayOrder">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-left choose-location"></div>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
+        <button type="button" class="btn green save-ticket-type" data-loading-text="正在添加..." data-bind="click:addTicketType">添加</button>
     </div>
 </div>

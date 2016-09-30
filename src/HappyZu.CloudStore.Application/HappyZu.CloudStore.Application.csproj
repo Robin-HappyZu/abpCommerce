@@ -140,6 +140,7 @@
     <Compile Include="Trip\Dto\AddTicketInput.cs" />
     <Compile Include="Trip\Dto\AddTicketOrderInput.cs" />
     <Compile Include="Trip\Dto\AddTicketQuoteInput.cs" />
+    <Compile Include="Trip\Dto\AddTicketTypeInput.cs" />
     <Compile Include="Trip\Dto\AttachDestAttributeRecordInput.cs" />
     <Compile Include="Trip\Dto\AttachTicketAttributeRecordInput.cs" />
     <Compile Include="Trip\Dto\DestAttributeDto.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Trip\Dto\TicketAttributeDto.cs" />
     <Compile Include="Trip\Dto\TicketAttributeRecordDto.cs" />
     <Compile Include="Trip\Dto\TicketOrderItemDto.cs" />
+    <Compile Include="Trip\Dto\TicketTypeDto.cs" />
     <Compile Include="Trip\Dto\UpdateTicketAttributeInput.cs" />
     <Compile Include="Trip\Dto\UpdateDestAttributeInput.cs" />
     <Compile Include="Trip\Dto\UpdateTicketInput.cs" />

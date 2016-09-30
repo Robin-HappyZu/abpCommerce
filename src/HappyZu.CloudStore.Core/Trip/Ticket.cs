@@ -88,6 +88,7 @@ namespace HappyZu.CloudStore.Trip
         /// 门票结束时间
         /// </summary>
         public DateTime EndDate { get; set; }
+        
 
         /// <summary>
         /// 提前预定天数

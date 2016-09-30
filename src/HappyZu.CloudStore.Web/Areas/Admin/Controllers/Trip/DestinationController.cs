@@ -15,9 +15,11 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
     public class DestinationController : AdminControllerBase
     {
         private readonly IDestAppService _destAppService;
-        public DestinationController(IDestAppService destAppService)
+        private readonly ITicketAppService _ticketAppService;
+        public DestinationController(IDestAppService destAppService, ITicketAppService ticketAppService)
         {
             _destAppService = destAppService;
+            _ticketAppService = ticketAppService;
         }
 
         #region 景区管理
@@ -378,5 +380,21 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return View(vm);
         }
         #endregion
+
+        #region 门票类型
+        public async Task<JsonResult> GetTicketType(int destId)
+        {
+            var result = await _ticketAppService.GetTicketTypeListAsync(destId);
+            return Json(new {list=result.Items});
+        }
+
+        [HttpPost,ActionName("TicketTypeCreate")]
+        public async Task<JsonResult> TicketTypeCreatePost(AddTicketTypeInput input)
+        {
+            var result = await _ticketAppService.AddTicketTypeAsync(input);
+            return Json(new { success = result.Status });
+        }
+        #endregion
+
     }
 }

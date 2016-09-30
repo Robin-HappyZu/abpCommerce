@@ -8,7 +8,7 @@ using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
 {
-    interface ITicketAppService : IApplicationService
+    public interface ITicketAppService : IApplicationService
     {
         #region 门票
 
@@ -72,6 +72,17 @@ namespace HappyZu.CloudStore.Trip
 
         Task<List<TicketAttributeRecordDto>> GetAllAttributeRecordByTicketIdAsync(int ticketId);
 
+        #endregion
+
+        #region 门票类型
+
+        Task<IPagedResult<TicketTypeDto>> GetTicketTypeListAsync(int destId);
+
+        Task<TicketTypeDto> GetTicketTypeAsync(int id);
+
+        Task<ResultOutputDto> AddTicketTypeAsync(AddTicketTypeInput input);
+
+        Task<ResultOutputDto> RemoveTicketTypeAsync(int id);
         #endregion
     }
 }

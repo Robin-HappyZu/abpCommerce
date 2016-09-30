@@ -3,7 +3,9 @@
 .padding-top-10{
     padding-top:10px !important;
 }
-
+.margin-left-10{
+    margin-left:10px;
+}
 .form-body.no-padding{
     padding:0px;
 }
@@ -58,4 +60,8 @@
 .check-week .btn-group .btn.active{
     background-color:#3598dc;
     color:#fff;
+}
+
+.tagsinput-full .bootstrap-tagsinput{
+    display:block;
 }

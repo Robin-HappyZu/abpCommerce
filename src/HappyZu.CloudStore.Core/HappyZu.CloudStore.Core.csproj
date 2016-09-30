@@ -140,6 +140,7 @@
     <Compile Include="Trip\TicketQuote.cs" />
     <Compile Include="Trip\TicketQuoteManager.cs" />
     <Compile Include="Trip\TicketType.cs" />
+    <Compile Include="Trip\TicketTypeManager.cs" />
     <Compile Include="Trip\Travel.cs" />
     <Compile Include="Trip\CountryType.cs" />
     <Compile Include="Trip\Traveler.cs" />
