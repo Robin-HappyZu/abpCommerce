@@ -59,11 +59,71 @@
 </div>
 <div class="clearfix">
 </div>
-
+@section style_plugins{
+    <link href="~/Areas/Admin/content/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/content/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
+}
+@section script_plugins{
+    <script src="~/Areas/Admin/content/global/plugins/moment.min.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+}
 
 
 @section scripts{
     <script>
+        $(function () {
+            if (jQuery().datepicker) {
+                $('#pricedaterange').daterangepicker({
+                    "locale": {
+                        "format": "MM/DD/YYYY",
+                        "separator": " - ",
+                        "applyLabel": "确认",
+                        "cancelLabel": "取消",
+                        "fromLabel": "From",
+                        "toLabel": "To",
+                        "customRangeLabel": "Custom",
+                        "weekLabel": "W",
+                        "daysOfWeek": [
+                            "日","一","二","三","四","五","六"
+                        ],
+                        "monthNames": [
+                            "一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"
+                        ],
+                        "firstDay": 1
+                    },
+                    opens: (App.isRTL() ? 'right' : 'left'),
+                    format: 'YYYY-MM-DD',
+                    separator: ' 至 ',
+                    minDate: moment(),
+                    maxDate: moment().add(6, 'months').format('L')
+                    
+                },
+                showPriceDateRange);
+            };
+
+            if (jQuery().timepicker) {
+                
+                $('.advanced-time-picker').timepicker({
+                    minuteStep: 1,
+                    template: false,
+                    appendWidgetTo: 'body',
+                    showMeridian: false,
+                    defaultTime: '8:00'
+                });
+            }
+        });
+
+        function showPriceDateRange(start, end) {
+            $('#pricedaterange input').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
+        }
 
         var ViewModel = function(name, returnUrl) {
             var _this = this;
