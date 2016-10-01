@@ -50,7 +50,7 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// <summary>
         /// 预付款金额
         /// </summary>
-        public bool FrontMoneyPrice { get; set; }
+        public double FrontMoneyPrice { get; set; }
 
         /// <summary>
         /// 可以使用积分

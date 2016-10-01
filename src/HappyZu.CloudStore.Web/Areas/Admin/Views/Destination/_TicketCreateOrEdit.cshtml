@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.TypeId)">门票类型</label>
                                         <div class="col-md-9">
-                                            <select class="tickettype-select form-control input-medium input-inline" data-show-subtext="true" data-bind="optionsCaption:'请选择类型...',options:TicketTypes,optionsText:'name',optionsValue:'id',value:TypeId">
+                                            <select class="tickettype-select form-control input-medium input-inline" data-show-subtext="true" data-bind="optionsCaption:'请选择类型...',options:TicketTypes,optionsText:'name',optionsValue:'id',value:TypeId,valueAllowUnset: true">
                                             </select>
                                             <a href="javascript:;" class="btn green" data-bind="click:showAddTicketTypeMoble">添加类型</a>
                                         </div>
@@ -55,7 +55,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" data-bind="visible:MustAdvance">
                                         
                                         <div class="col-md-9 col-md-offset-3">
                                             <div class="form-inline">
@@ -98,7 +98,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" data-bind="visible:CanPayFrontMoney">
                                     <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.FrontMoneyPrice)">订金金额</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Ticket.FrontMoneyPrice)" data-bind="value:FrontMoneyPrice">
@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" data-bind="visible:CanUsePoint">
                                     <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.UsePoints)">使用数量</label>
                                     <div class="col-md-9 ">
                                         <input type="text" class="form-control input-xsmall " id="@Html.IdFor(m => m.Ticket.UsePoints)" data-bind="value:UsePoints">
@@ -140,7 +140,7 @@
                                     <label class="control-label col-md-3">报价有效期</label>
                                     <div class="col-md-9">
                                         <div class="input-group input-large" id="pricedaterange">
-                                            <input type="text" class="form-control" data-bind="DateRange">
+                                            <input type="text" class="form-control" data-bind="value:DateRange">
                                             <span class="input-group-btn">
                                                 <button class="btn default date-range-toggle" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -202,32 +202,14 @@
                                             <p class="muted"><span data-bind="text:DateRange"></span>所有日期
                                             </p>
                                             <div>
-                                                <button type="button" class="btn btn-success">更新报价</button>
+                                                <button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="0"  class="btn btn-success">更新报价</button>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="tab_week">
                                             <div class="clearfix check-week">
-                                                <div class="btn-group" data-toggle="buttons">
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周一
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周二
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周三
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周四
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周五
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周六
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周日
+                                                <div class="btn-group" data-toggle="buttons" data-bind="foreach:WeekTabs">
+                                                    <label class="btn btn-default" data-bind="css: $parent.ActiveCss,click:$parent.changeChooes">
+                                                        <input type="checkbox" class="toggle"> <span data-bind="text:Text"></span>
                                                     </label>
                                                 </div>
                                             </div>

@@ -11,6 +11,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Models
         public EditTicketViewModel()
         {
             Dest=new DestDto();
+            Ticket=new TicketDto();
         }
 
         /// <summary>

@@ -2,7 +2,7 @@
 @model HappyZu.CloudStore.Web.Areas.Admin.Models.EditTicketViewModel
 
 @{
-    ViewBag.Title = "添加景点门票";
+    ViewBag.Title = "编辑景点门票";
 }
 
 <!-- BEGIN PAGE BAR -->
@@ -44,10 +44,14 @@
                             <i class="fa fa-floppy-o"></i>
                             保存并继续编辑
                         </button>
+                        <span id="product-delete" class="btn red" data-toggle="modal" data-target="#productmodel-delete-confirmation">
+                            <i class="fa fa-trash-o"></i>
+                            删除
+                        </span>
                     </div>
                 </div>
                 <div class="portlet-body">
-                    @using (Html.BeginForm("TicketCreate", "Destination", FormMethod.Post, new { id = "uiform" }))
+                    @using (Html.BeginForm("TicketEdit", "Destination", FormMethod.Post, new { id = "uiform" }))
                     {
                         @Html.Partial("_TicketCreateOrEdit", Model)
                     }
@@ -85,8 +89,7 @@
     <script>
         $(function () {
             if (jQuery().datepicker) {
-                $('#pricedaterange')
-                    .daterangepicker({
+                $('#pricedaterange').daterangepicker({
                         "locale": {
                             "format": "MM/DD/YYYY",
                             "separator": " - ",
@@ -112,6 +115,7 @@
 
                     },
                         showPriceDateRange);
+
             };
 
             if (jQuery().timepicker) {
@@ -145,6 +149,7 @@
             });
 
             vm.loadTicketTypeList();
+
         });
 
         function showPriceDateRange(start, end) {
@@ -161,36 +166,79 @@
             vm.TicketTypeDisplayOrder('');
             vm.TicketTypeName('');
         });
+        
+        var TicketQuote=function(ticketId,day,month,year,week,marketPrice,price,costPrice,agentPrice,inventory,sales,isDisplay) {
+            this.TicketId = ticketId;
+            this.Day = day;
+            this.Month = month;
+            this.Year = year;
+            this.Week = week;
+            this.Quote_MarketPrice = marketPrice;
+            this.Quote_Price = price;
+            this.Quote_CostPrice = costPrice;
+            this.Quote_AgentPrice = agentPrice;
+            this.Quote_Inventory = inventory;
+            this.Sales = sales;
+            this.IsDisplay = isDisplay;
+        }
 
+        var WeekTabItem=function(text, active) {
+            this.Text = text;
+            this.Active = active;
+        }
 
-        var ViewModel = function (returnUrl) {
+        var ViewModel = function (name,typeId,points,description,mustAdvance,advanceBookingDays,endTime,canPayFrontMoney,
+            frontMoneyPrice,canUsePoint,usePoints,startDate,endDate,price,agentPrice,marketPrice,costPrice,inventory,quotesType,returnUrl) {
+            var dateRange = '';
+            if (startDate!=='' && endDate !=='') {
+                dateRange = startDate + ' 至 ' + endDate;
+            }
             var _this = this;
-            this.Name = ko.observable('');
-            this.TypeId = ko.observable('');
-            this.Points = ko.observable(0);
-            this.Description = ko.observable('');
-            this.MustAdvance = ko.observable(true);
-            this.AdvanceBookingDays = ko.observable(0);
-            this.EndTime = ko.observable(0);
-            this.CanPayFrontMoney = ko.observable(false);
-            this.FrontMoneyPrice = ko.observable(0);
-            this.CanUsePoint = ko.observable(true);
-            this.UsePoints = ko.observable(0);
-            this.DateRange = ko.observable('');
-            this.StartDate = ko.observable();
-            this.EndDate = ko.observable();
-            this.Price = ko.observable(0);
-            this.AgentPrice = ko.observable(0);
-            this.MarketPrice = ko.observable(0);
-            this.CostPrice = ko.observable(0);
-            this.Inventory = ko.observable(-1);
-            this.QuotesType = ko.observable(0);
+            this.Name = ko.observable(name);
+            this.TypeId = ko.observable(typeId);
+            this.Points = ko.observable(points);
+            this.Description = ko.observable(description);
+            this.MustAdvance = ko.observable(mustAdvance);
+            this.AdvanceBookingDays = ko.observable(advanceBookingDays);
+            this.EndTime = ko.observable(endTime);
+            this.CanPayFrontMoney = ko.observable(canPayFrontMoney);
+            this.FrontMoneyPrice = ko.observable(frontMoneyPrice);
+            this.CanUsePoint = ko.observable(canUsePoint);
+            this.UsePoints = ko.observable(usePoints);
+            this.DateRange = ko.observable(dateRange);
+            this.StartDate = ko.observable(startDate);
+            this.EndDate = ko.observable(endDate);
+            this.Price = ko.observable(price);
+            this.AgentPrice = ko.observable(agentPrice);
+            this.MarketPrice = ko.observable(marketPrice);
+            this.CostPrice = ko.observable(costPrice);
+            this.Inventory = ko.observable(inventory);
+            this.QuotesType = ko.observable(quotesType);
 
             this.TicketTypeName = ko.observable('');
             this.TicketTypeDisplayOrder = ko.observable('');
             this.ReturnUrl = ko.observable(returnUrl);
             this.TicketTypes = ko.observableArray([]);
+            this.NewTicketQuotes = ko.observableArray([]);
+        
+            this.ActiveCss=ko.pureComputed(function(data) {
+                return data.Active ? "active" : "";
+            }, this);
 
+            this.WeekTabs=ko.observableArray([
+                new WeekTabItem('周一',false),
+                new WeekTabItem('周二',true),
+                new WeekTabItem('周三',false),
+                new WeekTabItem('周四',false),
+                new WeekTabItem('周五',false),
+                new WeekTabItem('周六',false),
+                new WeekTabItem('周日',false)
+            ]);
+
+            this.changeChooes=function() {
+                
+            }
+            
             this.showAddTicketTypeMoble = function () {
                 $('#ticket-type-manager').modal('show');
             };
@@ -232,6 +280,7 @@
                 App.startPageLoading({ animate: true });
                 $.post(url, {}, function (data) {
                     if (data.success) {
+
                         var list = data.result.list;
                         _this.TicketTypes([]);
                         for (var i = 0; i < list.length; i++) {
@@ -251,7 +300,9 @@
                         });
                     };
                     App.stopPageLoading();
-                },'json');
+                },
+                'json');
+
             }
 
             this.submitAndEdit = function (data, event) {
@@ -265,6 +316,7 @@
             this.postData = function (data, event, edit) {
                 var url = $('#uiform').attr("action");
                 var params = [];
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.Id)", value: '@Model.Ticket.Id' });
                 params.push({ name: "@Html.NameFor(m=>m.Ticket.DestId)", value: '@Model.Dest.Id' });
                 params.push({ name: "@Html.NameFor(m=>m.Ticket.Name)", value: _this.Name() });
                 params.push({ name: "@Html.NameFor(m=>m.Ticket.TypeId)", value: _this.TypeId() });
@@ -292,7 +344,7 @@
                     function (data) {
                         if (data.success) {
                             if (edit) {
-                                window.location = "@Url.Action("TicketEdit","Destination",new {area="Mobile"},true)/" + data.result.id + '?returnUrl=' + _this.ReturnUrl();
+                                window.location = "@Url.Action("TicketEdit","Destination",new {area="Mobile"},true)" + '?returnUrl=' + _this.ReturnUrl();
                             } else {
                                 window.location = _this.ReturnUrl();
                             }
@@ -315,17 +367,48 @@
                     'json');
 
             }
-
+            
             this.UpdateTicketQuote=function(data,event) {
-               
+                var type = $(event.target).attr('data-quote-type');
+                console.debug(type);
+                var startDate = moment(_this.StartDate(), 'YYYY-MM-DD').dayOfYear();
+                var endDate = moment(_this.EndDate(), 'YYYY-MM-DD').dayOfYear();
+                switch (type) {
+                    case '0':
+                        _this.QuotesType(0);
+                        _this.NewTicketQuotes([]);
+                        for (var i = 0; i < endDate-startDate+1; i++) {
+                            var today = moment().dayOfYear(startDate+i);
+                            //console.debug(today.format('YYYY-MM-DD')+' week:'+ today.weeks()+'month:'+today.month()+'year:'+today.year()+'day:'+today.date() );
+                            _this.NewTicketQuotes.push(new TicketQuote(@Model.Ticket.Id,today.date(),today.month(),today.year(),today.week(),
+                                _this.MarketPrice(),_this.Price(),_this.CostPrice(),_this.AgentPrice(),_this.Inventory(),0,true));
+                        }
+                        break;
+                    case '1':
+                        _this.QuotesType(0);
+                        _this.NewTicketQuotes([]);
+                        for (var i = 0; i < endDate-startDate+1; i++) {
+                            var today = moment().dayOfYear(startDate+i);
+                            //console.debug(today.format('YYYY-MM-DD')+' week:'+ today.weeks()+'month:'+today.month()+'year:'+today.year()+'day:'+today.date() );
+                            _this.NewTicketQuotes.push(new TicketQuote(@Model.Ticket.Id,today.date(),today.month(),today.year(),today.week(),
+                                _this.MarketPrice(),_this.Price(),_this.CostPrice(),_this.AgentPrice(),_this.Inventory(),0,true));
+                        }
+                        break;
+                    default:
+                }
 
             }
+
         };
 
-        var vm = new ViewModel("@Request["ReturnUrl"]");
+        var vm = new ViewModel('@Model.Ticket.Name', @Model.Ticket.TypeId, @Model.Ticket.Points, '@Model.Ticket.Description',
+            @Model.Ticket.MustAdvance.ToJsonString(),@Model.Ticket.AdvanceBookingDays,'@Model.Ticket.EndTime',@Model.Ticket.CanPayFrontMoney.ToJsonString(),
+            @Model.Ticket.FrontMoneyPrice,@Model.Ticket.CanUsePoint.ToJsonString(),@Model.Ticket.UsePoints,'@Model.Ticket.StartDate.ToString("yyyy-MM-dd")',
+            '@Model.Ticket.EndDate.ToString("yyyy-MM-dd")',@Model.Ticket.Price,@Model.Ticket.AgentPrice,@Model.Ticket.MarketPrice,@Model.Ticket.CostPrice,
+            @Model.Ticket.Inventory,@((int)Model.Ticket.QuotesType),"@Request["ReturnUrl"]");
 
         ko.applyBindings(vm);
 
 
-    </script>
+</script>
 }

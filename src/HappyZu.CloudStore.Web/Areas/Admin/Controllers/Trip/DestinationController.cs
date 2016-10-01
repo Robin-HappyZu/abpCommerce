@@ -379,6 +379,36 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             };
             return View(vm);
         }
+
+        [HttpPost,ActionName("TicketCreate")]
+        public async Task<JsonResult> TicketCreatePost(AddTicketInput input)
+        {
+            var result = await _ticketAppService.AddTicketAsync(input);
+
+            return Json(new { success = result.Status,id=result.EntityId });
+        }
+
+        public async Task<ActionResult> TicketEdit(int id)
+        {
+            var ticket = await _ticketAppService.GetTicketByIdAsync(id);
+            var vm=new EditTicketViewModel();
+            if (ticket != null)
+            {
+                vm.Ticket = ticket;
+                var dest = await _destAppService.GetDestByIdAsync(ticket.DestId);
+                vm.Dest = dest;
+            }
+
+            return View(vm);
+        }
+
+        [HttpPost, ActionName("TicketEdit")]
+        public async Task<JsonResult> TicketEditPost(UpdateTicketInput input)
+        {
+            var result = await _ticketAppService.UpdateTicketAsync(input);
+
+            return Json(new { success = result.Status, id = result.EntityId });
+        }
         #endregion
 
         #region 门票类型
