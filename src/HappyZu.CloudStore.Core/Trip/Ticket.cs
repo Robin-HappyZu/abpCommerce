@@ -19,6 +19,12 @@ namespace HappyZu.CloudStore.Trip
         public int DestId { get; set; }
 
         /// <summary>
+        /// 门票名称
+        /// </summary>
+        [StringLength(255)]
+        public string Name { get; set; }
+
+        /// <summary>
         /// 门票类型Id
         /// </summary>
         public int TypeId { get; set; }
@@ -124,6 +130,7 @@ namespace HappyZu.CloudStore.Trip
     {
         AllDays,
         Weekly,
-        FixedDay
+        FixedDay,
+        FixedDate
     }
 }
