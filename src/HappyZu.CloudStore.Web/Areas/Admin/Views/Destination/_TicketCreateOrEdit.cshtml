@@ -20,49 +20,37 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票名称</label>
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.Name)">门票名称</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                            <input type="text" class="form-control" id="@Html.IdFor(m => m.Ticket.Name)" data-bind="value:Name">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票类型</label>
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.TypeId)">门票类型</label>
                                         <div class="col-md-9">
-                                            <select class="tickettype-select form-control input-medium input-inline" data-show-subtext="true" data-bind="optionsCaption:'请选择类型...',options:TicketTypes,optionsText:'name',optionsValue:'id'">
+                                            <select class="tickettype-select form-control input-medium input-inline" data-show-subtext="true" data-bind="optionsCaption:'请选择类型...',options:TicketTypes,optionsText:'name',optionsValue:'id',value:TypeId">
                                             </select>
                                             <a href="javascript:;" class="btn green" data-bind="click:showAddTicketTypeMoble">添加类型</a>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">市场价</label>
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.Points)">门票积分</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Ticket.Points)" data-bind="value:Points">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票积分</label>
+                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.Description)">门票描述</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                            <textarea class="form-control" rows="4" id="@Html.IdFor(m => m.Ticket.Description)" data-bind="value:Description"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">库存</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">门票描述</label>
-                                        <div class="col-md-9">
-                                            <textarea class="form-control" rows="4" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">提前预订</label>
+                                        <label class="control-label col-md-3">提前预订</label>
                                         <div class="col-md-9">
                                             <div class="checkbox-list">
                                                 <label class="checkbox-inline">
-                                                    <input type="checkbox" /> 必须提前
+                                                    <input type="checkbox" value="True" data-bind="checked:MustAdvance" /> 必须提前
                                                 </label>
                                             </div>
                                         </div>
@@ -73,12 +61,12 @@
                                             <div class="form-inline">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        提前：<input type="text" class="form-control input-xsmall" id="Day" placeholder="天数"> 天
+                                                        提前：<input type="text" class="form-control input-xsmall" id="@Html.IdFor(m => m.Ticket.AdvanceBookingDays)" data-bind="value:AdvanceBookingDays" placeholder="天数"> 天
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12 bootstrap-timepicker timepicker">
-                                                        <input type="text" class="form-control input-xsmall advanced-time-picker" id="Time" placeholder="时间"> 前
+                                                        <input type="text" class="form-control input-xsmall advanced-time-picker" id="@Html.IdFor(m => m.Ticket.EndTime)" data-bind="value:EndTime" placeholder="时间"> 前
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,35 +89,35 @@
                             <div class="form-body">
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">只需要支付订金</label>
+                                    <label class="control-label col-md-3">只需要支付订金</label>
                                     <div class="col-md-9">
                                         <div class="checkbox-list">
                                             <label class="checkbox-inline">
-                                                <input class="form-control" type="checkbox" /> 启用订金
+                                                <input class="form-control" type="checkbox" value="True" data-bind="checked:CanPayFrontMoney" /> 启用订金
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">订金金额</label>
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.FrontMoneyPrice)">订金金额</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                        <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Ticket.FrontMoneyPrice)" data-bind="value:FrontMoneyPrice">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">启用积分抵现</label>
+                                    <label class="control-label col-md-3">启用积分抵现</label>
                                     <div class="col-md-9">
                                         <div class="checkbox-list">
                                             <label class="checkbox-inline">
-                                                <input class="form-control" type="checkbox" /> 使用积分
+                                                <input class="form-control" type="checkbox" data-bind="checked:CanUsePoint" /> 使用积分
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">使用数量</label>
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.UsePoints)">使用数量</label>
                                     <div class="col-md-9 ">
-                                        <input type="text" class="form-control input-xsmall " id="@Html.IdFor(m => m.Dest.Title)" name="@Html.NameFor(m => m.Dest.Title)" data-bind="value:Title">
+                                        <input type="text" class="form-control input-xsmall " id="@Html.IdFor(m => m.Ticket.UsePoints)" data-bind="value:UsePoints">
                                     </div>
                                 </div>
                             </div>
@@ -149,46 +137,49 @@
                         <div class="portlet-body form form-horizontal">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">报价有效期</label>
+                                    <label class="control-label col-md-3">报价有效期</label>
                                     <div class="col-md-9">
                                         <div class="input-group input-large" id="pricedaterange">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" data-bind="DateRange">
                                             <span class="input-group-btn">
                                                 <button class="btn default date-range-toggle" type="button">
                                                     <i class="fa fa-calendar"></i>
                                                 </button>
                                             </span>
+                                            @Html.HiddenFor(m=>m.Ticket.StartDate,new {data_bind= "value:StartDate" })
+                                            @Html.HiddenFor(m=>m.Ticket.EndDate,new {data_bind= "value:EndDate" })
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">商城价</label>
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.Price)">商城价</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control input-small ">
+                                        <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Ticket.Price)" data-bind="value:Price">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">代理商价</label>
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.AgentPrice)">代理商价</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control input-small ">
+                                        <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Ticket.AgentPrice)" data-bind="value:AgentPrice">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">市场价</label>
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.MarketPrice)">市场价</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control input-small ">
+                                        <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Ticket.MarketPrice)" data-bind="value:MarketPrice">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">成本价</label>
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.CostPrice)">成本价</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control input-small ">
+                                        <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Ticket.CostPrice)" data-bind="value:CostPrice">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Dest.Title)">库存</label>
+                                    <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.Inventory)">库存</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control input-inline input-xsmall "> <span class="help-inline"> -1表示不限 </span>
+                                        <input type="text" class="form-control input-inline input-xsmall " id="@Html.IdFor(m => m.Ticket.Inventory)" data-bind="value:Inventory"> <span class="help-inline"> -1表示不限 </span>
+                                        @Html.HiddenFor(m=>m.Ticket.QuotesType,new {data_bind= "value:QuotesType" })
                                     </div>
                                 </div>
                                 <div class="tabbable-custom ">
@@ -208,7 +199,7 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="tab_all_day">
-                                            <p class="muted"><span>2016-09-30 至 2016-10-27</span>所有日期
+                                            <p class="muted"><span data-bind="text:DateRange"></span>所有日期
                                             </p>
                                             <div>
                                                 <button type="button" class="btn btn-success">更新报价</button>

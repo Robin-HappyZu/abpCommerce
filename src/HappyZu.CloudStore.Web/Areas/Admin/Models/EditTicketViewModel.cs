@@ -17,5 +17,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Models
         /// 景点信息
         /// </summary>
         public DestDto Dest { get; set; }
+
+        public TicketDto Ticket { get; set; }
     }
 }

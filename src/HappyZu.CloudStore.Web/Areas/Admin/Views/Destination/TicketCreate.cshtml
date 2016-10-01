@@ -148,7 +148,11 @@
         });
 
         function showPriceDateRange(start, end) {
-            $('#pricedaterange input').val(start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD'));
+            var str = start.format('YYYY-MM-DD') + ' 至 ' + end.format('YYYY-MM-DD');
+            $('#pricedaterange input').val(str);
+            vm.DateRange(str);
+            vm.StartDate(start.format('YYYY-MM-DD'));
+            vm.EndDate(end.format('YYYY-MM-DD'));
         }
 
         $('#ticket-type-manager').on('hide.bs.modal', function() {
@@ -160,7 +164,27 @@
 
         var ViewModel = function(returnUrl) {
             var _this = this;
-            this.Title = ko.observable('');
+            this.Name = ko.observable('');
+            this.TypeId = ko.observable('');
+            this.Points = ko.observable(0);
+            this.Description = ko.observable('');
+            this.MustAdvance = ko.observable(true);
+            this.AdvanceBookingDays = ko.observable(0);
+            this.EndTime = ko.observable(0);
+            this.CanPayFrontMoney = ko.observable(false);
+            this.FrontMoneyPrice = ko.observable(0);
+            this.CanUsePoint = ko.observable(true);
+            this.UsePoints = ko.observable(0);
+            this.DateRange = ko.observable('');
+            this.StartDate = ko.observable();
+            this.EndDate = ko.observable();
+            this.Price = ko.observable(0);
+            this.AgentPrice = ko.observable(0);
+            this.MarketPrice = ko.observable(0);
+            this.CostPrice = ko.observable(0);
+            this.Inventory = ko.observable(0);
+            this.QuotesType = ko.observable(0);
+
             this.TicketTypeName = ko.observable('');
             this.TicketTypeDisplayOrder = ko.observable('');
             this.ReturnUrl = ko.observable(returnUrl);
