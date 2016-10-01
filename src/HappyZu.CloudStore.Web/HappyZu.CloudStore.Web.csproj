@@ -441,7 +441,6 @@
     <Content Include="Areas\Admin\Views\Destination\TicketCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\_TicketCreateOrEdit.cshtml" />
     <Content Include="Areas\Mobile\Views\WechatPay\Index.cshtml" />
-    <Content Include="Areas\Mobile\Views\WechatPay\JsApi.cshtml" />
     <Content Include="Abp\Framework\styles\abp.mixings.less" />
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
@@ -580,6 +579,7 @@
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\FootMenuViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\HeaderViewModel.cs" />
+    <Compile Include="Areas\Mobile\Models\WechatPay\WechatPayParamModel.cs" />
     <Compile Include="Areas\Web\Controllers\HomeController.cs" />
     <Compile Include="Areas\Web\WebAreaRegistration.cs" />
     <Compile Include="Controllers\AboutController.cs" />
