@@ -208,113 +208,25 @@
                                         <div class="tab-pane" id="tab_week">
                                             <div class="clearfix check-week">
                                                 <div class="btn-group" data-toggle="buttons" data-bind="foreach:WeekTabs">
-                                                    <label class="btn btn-default" data-bind="css: $parent.ActiveCss,click:$parent.changeChooes">
+                                                    <label class="btn btn-default" data-bind="css: {active:Active},click:$parent.changeChooes">
                                                         <input type="checkbox" class="toggle"> <span data-bind="text:Text"></span>
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div><button type="button" class="btn btn-success">更新报价</button>
+                                            <div><button type="button"  data-bind="click:UpdateTicketQuote" data-quote-type="1" class="btn btn-success">更新报价</button>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="tab_day">
                                             <div class="clearfix check-week">
-                                                <div class="btn-group" data-toggle="buttons">
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 1
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 2
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 3
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 4
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 5
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 6
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 7
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 8
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 9
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 10
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 11
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 12
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 13
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 14
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 15
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 16
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 17
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 18
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 19
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 20
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 21
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 22
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 23
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 24
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 25
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 26
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 27
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 28
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 29
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 30
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 31
-                                                    </label>
+                                                <div class="clearfix check-week">
+                                                    <div class="btn-group" data-toggle="buttons" data-bind="foreach:DayTabs">
+                                                        <label class="btn btn-default" data-bind="css: {active:Active},click:$parent.changeChooes">
+                                                            <input type="checkbox" class="toggle"> <span data-bind="text:Text"></span>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div><button type="button" class="btn btn-success">更新报价</button>
+                                            <div><button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="2" class="btn btn-success">更新报价</button>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="tab_date">

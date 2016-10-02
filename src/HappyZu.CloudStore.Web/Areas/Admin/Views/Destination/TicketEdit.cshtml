@@ -166,7 +166,7 @@
             vm.TicketTypeDisplayOrder('');
             vm.TicketTypeName('');
         });
-        
+
         var TicketQuote=function(ticketId,day,month,year,week,marketPrice,price,costPrice,agentPrice,inventory,sales,isDisplay) {
             this.TicketId = ticketId;
             this.Day = day;
@@ -220,25 +220,37 @@
             this.ReturnUrl = ko.observable(returnUrl);
             this.TicketTypes = ko.observableArray([]);
             this.NewTicketQuotes = ko.observableArray([]);
-        
-            this.ActiveCss=ko.pureComputed(function(data) {
-                return data.Active ? "active" : "";
-            }, this);
+
+
 
             this.WeekTabs=ko.observableArray([
+                new WeekTabItem('周日',false),
                 new WeekTabItem('周一',false),
-                new WeekTabItem('周二',true),
+                new WeekTabItem('周二',false),
                 new WeekTabItem('周三',false),
                 new WeekTabItem('周四',false),
                 new WeekTabItem('周五',false),
-                new WeekTabItem('周六',false),
-                new WeekTabItem('周日',false)
+                new WeekTabItem('周六',false)
             ]);
 
-            this.changeChooes=function() {
-                
+
+            this.BuildDays=function() {
+                var days = [];
+                for (var i = 1; i <= 31; i++) {
+                    days.push(new WeekTabItem(i, false));
+                }
+                return days;
             }
-            
+
+
+            this.DayTabs = ko.observableArray(_this.BuildDays());
+
+            this.changeChooes=function(data,event) {
+                var index=_this.WeekTabs.indexOf(data);
+                data.Active = !data.Active;
+                _this.WeekTabs()[index] = data;
+            }
+
             this.showAddTicketTypeMoble = function () {
                 $('#ticket-type-manager').modal('show');
             };
@@ -367,18 +379,20 @@
                     'json');
 
             }
-            
+
             this.UpdateTicketQuote=function(data,event) {
                 var type = $(event.target).attr('data-quote-type');
                 console.debug(type);
                 var startDate = moment(_this.StartDate(), 'YYYY-MM-DD').dayOfYear();
                 var endDate = moment(_this.EndDate(), 'YYYY-MM-DD').dayOfYear();
+                var today;
+                var i;
                 switch (type) {
                     case '0':
                         _this.QuotesType(0);
                         _this.NewTicketQuotes([]);
-                        for (var i = 0; i < endDate-startDate+1; i++) {
-                            var today = moment().dayOfYear(startDate+i);
+                        for (i = 0; i < endDate-startDate+1; i++) {
+                            today = moment().dayOfYear(startDate+i);
                             //console.debug(today.format('YYYY-MM-DD')+' week:'+ today.weeks()+'month:'+today.month()+'year:'+today.year()+'day:'+today.date() );
                             _this.NewTicketQuotes.push(new TicketQuote(@Model.Ticket.Id,today.date(),today.month(),today.year(),today.week(),
                                 _this.MarketPrice(),_this.Price(),_this.CostPrice(),_this.AgentPrice(),_this.Inventory(),0,true));
@@ -387,11 +401,25 @@
                     case '1':
                         _this.QuotesType(0);
                         _this.NewTicketQuotes([]);
-                        for (var i = 0; i < endDate-startDate+1; i++) {
-                            var today = moment().dayOfYear(startDate+i);
-                            //console.debug(today.format('YYYY-MM-DD')+' week:'+ today.weeks()+'month:'+today.month()+'year:'+today.year()+'day:'+today.date() );
-                            _this.NewTicketQuotes.push(new TicketQuote(@Model.Ticket.Id,today.date(),today.month(),today.year(),today.week(),
+                        var weekTabs = _this.WeekTabs();
+                        for (i = 0; i < endDate-startDate+1; i++) {
+                            today = moment().dayOfYear(startDate+i);
+                            if (weekTabs[today.day()].Active) {
+                                _this.NewTicketQuotes.push(new TicketQuote(@Model.Ticket.Id,today.date(),today.month(),today.year(),today.week(),
                                 _this.MarketPrice(),_this.Price(),_this.CostPrice(),_this.AgentPrice(),_this.Inventory(),0,true));
+                            }
+                        }
+                        break;
+                    case '2':
+                        _this.QuotesType(0);
+                        _this.NewTicketQuotes([]);
+                        var dayTabs = _this.DayTabs();
+                        for (i = 0; i < endDate-startDate+1; i++) {
+                            today = moment().dayOfYear(startDate+i);
+                            if (dayTabs[today.date()-1].Active) {
+                                _this.NewTicketQuotes.push(new TicketQuote(@Model.Ticket.Id,today.date(),today.month(),today.year(),today.week(),
+                                _this.MarketPrice(),_this.Price(),_this.CostPrice(),_this.AgentPrice(),_this.Inventory(),0,true));
+                            }
                         }
                         break;
                     default:
