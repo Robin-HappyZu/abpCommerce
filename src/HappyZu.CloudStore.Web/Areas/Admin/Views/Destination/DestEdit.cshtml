@@ -2,6 +2,7 @@
 
 
 @using Abp.Json
+@using Senparc.Weixin.HttpUtility
 @{
     ViewBag.Title = "编辑景点";
 }
@@ -77,6 +78,7 @@
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
 }
 @section script_plugins{
+    <script src="~/Areas/Admin/content/global/plugins/moment.min.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.min.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
@@ -232,6 +234,9 @@
             this.ReturnUrl = ko.observable(returnUrl);
             this.IsCreate=ko.observable(false);
 
+            this.TicketTypes = ko.observableArray(@Html.Raw(Model.TicketTypes.ToJsonString()));
+            this.Tickets = ko.observableArray(@Html.Raw(Model.Tickets.ToJsonString()));
+
             this.submit = function(data, event) {
                 var url = $('#uiform').attr("action");
                 var params = [];
@@ -346,6 +351,23 @@
                     };
                 }, 'json');
             };
+
+            this.ShowTicketType=function(data) {
+
+                var types = _this.TicketTypes();
+                for (var i = 0; i < types.length; i++) {
+                    if (types[i].Id==data.TypeId) {
+                        return types[i].Name;
+                    }
+                }
+
+                return '';
+            }
+            
+            this.ShowTicketEdit=function(data) {
+                
+                return '<a href="@Url.Action("TicketEdit","Destination",new {area="Mobile"},true)/'+data.Id+'?returnUrl=@Request.RawUrl.HtmlEncode()" class="btn btn-outline btn-circle btn-sm purple"><i class="fa fa-edit"></i> 编辑</a>';
+            }
         };
 
         var vm = new ViewModel("@Model.Dest.Title", "@Model.Dest.Subject", "@Model.Dest.Introduce", "@Model.Dest.Feature",

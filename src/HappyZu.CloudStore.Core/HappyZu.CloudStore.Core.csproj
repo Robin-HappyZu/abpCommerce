@@ -121,6 +121,8 @@
     <Compile Include="Trip\DestAttributeRecord.cs" />
     <Compile Include="Trip\DestLocationManager.cs" />
     <Compile Include="Trip\DestMananger.cs" />
+    <Compile Include="Trip\DestPictureMapping.cs" />
+    <Compile Include="Trip\DestPictureMappingManager.cs" />
     <Compile Include="Trip\PaymentRecord.cs" />
     <Compile Include="Trip\PaymentRecordManager.cs" />
     <Compile Include="Trip\Quote.cs" />
@@ -146,6 +148,8 @@
     <Compile Include="Trip\Traveler.cs" />
     <Compile Include="Trip\TravelOrder.cs" />
     <Compile Include="Trip\TravelQuotes.cs" />
+    <Compile Include="UploadFiles\FileItem.cs" />
+    <Compile Include="UploadFiles\FileItemManager.cs" />
     <Compile Include="Users\User.cs" />
     <Compile Include="Users\UserManager.cs" />
     <Compile Include="Users\UserStore.cs" />

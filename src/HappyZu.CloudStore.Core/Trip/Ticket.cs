@@ -114,6 +114,7 @@ namespace HappyZu.CloudStore.Trip
         /// 报价类型
         /// </summary>
         public QuotesType QuotesType { get; set; }
+        
 
         public bool IsDeleted { get; set; }
 

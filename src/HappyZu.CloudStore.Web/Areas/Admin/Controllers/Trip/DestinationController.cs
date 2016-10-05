@@ -109,7 +109,14 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         public async Task<ActionResult> DestEdit(EditDestViewModel vm)
         {
             var output = await _destAppService.GetDestByIdAsync(vm.Id);
+            var ticketType = await _ticketAppService.GetTicketTypeListAsync(vm.Id);
+            var tickets = await _ticketAppService.GetPagedTicketsAsync(new GetPagedTicketsInput()
+            {
+                DestId = vm.Id
+            });
             vm.Dest = output;
+            vm.TicketTypes = ticketType.Items;
+            vm.Tickets = tickets.Items;
             return View(vm);
         }
 
@@ -426,10 +433,8 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                 }
             });
 
-            var oldTq = await _ticketAppService.GetPagedTicketQuotesByTicektId(new GetPagedTicketQuotesInput()
-            {
-                TicketId = vm.TicketId
-            });
+            var oldTq = await _ticketAppService.GetTicketQuotesByTicketId(vm.TicketId);
+
             foreach (var item in tq)
             {
                 if (oldTq.TotalCount==0 || !oldTq.Items.Any(q=>q.Year==item.Year && q.Day==item.Day && q.Month==item.Month))
@@ -448,21 +453,30 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 
                     var firstOrDefault = tq.FirstOrDefault(
                      q => q.Year == item.Year && q.Day == item.Day && q.Month == item.Month);
-                    if (firstOrDefault == null) continue;
-
-                    firstOrDefault.Id = item.Id;
-
-                    if (!tq.Any(q => q.Year == item.Year && q.Day == item.Day && q.Month == item.Month))
+                    if (firstOrDefault == null)
                     {
-                        firstOrDefault.IsDisplay = false;
+                        item.IsDisplay = false;
+                        firstOrDefault = item;
                     }
+                    else
+                    {
+                        firstOrDefault.Id = item.Id;
+                    }
+
                     await _ticketAppService.UpdateTicketQuoteAsync(new UpdateTicketQuoteInput()
                     {
-                        TicketQuote = item
+                        TicketQuote = firstOrDefault
                     });
                 }
             }
             return Json(null);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> GetTicketQuotes(int ticketId)
+        {
+            var oldTq = await _ticketAppService.GetTicketQuotesByTicketId(ticketId);
+            return Json(oldTq);
         }
         #endregion
 

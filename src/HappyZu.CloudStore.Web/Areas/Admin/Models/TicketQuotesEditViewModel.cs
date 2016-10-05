@@ -11,6 +11,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Models
         public int TicketId { get; set; }
 
         public int QuotesType { get; set; }
+        
 
         public IList<TicketQuoteDto> TicketQuotes { get; set; } 
     }

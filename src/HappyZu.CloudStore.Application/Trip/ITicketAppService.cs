@@ -37,6 +37,8 @@ namespace HappyZu.CloudStore.Trip
 
         Task<IPagedResult<TicketQuoteDto>> GetPagedTicketQuotesByTicektId(GetPagedTicketQuotesInput input);
 
+        Task<IPagedResult<TicketQuoteDto>> GetTicketQuotesByTicketId(int ticketId);
+
         #endregion
 
         #region 门票订单

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
@@ -122,7 +123,8 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var count = await _ticketManager.GetDestTicketsCountAsync(input.DestId);
-                var tickets =  _ticketManager.GetPagedTickets(input.DestId, input);
+                
+                var tickets = await _ticketManager.QuerysListAsync(m=>m.Where(x=>x.DestId==input.DestId).OrderBy(x=>x.Id), input);
 
                 return new PagedResultDto<TicketDto>()
                 {
@@ -130,7 +132,7 @@ namespace HappyZu.CloudStore.Trip
                     Items = tickets.MapTo<List<TicketDto>>()
                 };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new PagedResultDto<TicketDto>()
                 {
@@ -201,7 +203,30 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(input.TicketId);
-                var quotes = _ticketQuoteManager.GetPagedTicketQuotesByTicketId(input.TicketId, input);
+                var quotes = _ticketQuoteManager.GetPagedTicketQuotesByTicketId(input.TicketId,input);
+
+                return new PagedResultDto<TicketQuoteDto>()
+                {
+                    TotalCount = count,
+                    Items = quotes.MapTo<List<TicketQuoteDto>>()
+                };
+            }
+            catch (Exception)
+            {
+                return new PagedResultDto<TicketQuoteDto>()
+                {
+                    TotalCount = 0,
+                    Items = new List<TicketQuoteDto>()
+                };
+            }
+        }
+
+        public async Task<IPagedResult<TicketQuoteDto>> GetTicketQuotesByTicketId(int ticketId)
+        {
+            try
+            {
+                var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(ticketId);
+                var quotes = await _ticketQuoteManager.GetTicketQuotesByTicketIdAsync(ticketId);
 
                 return new PagedResultDto<TicketQuoteDto>()
                 {
