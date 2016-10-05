@@ -15,6 +15,7 @@ namespace HappyZu.CloudStore.Trip
         Task<ResultOutputDto> AddTicketAsync(AddTicketInput input);
 
         Task<ResultOutputDto> UpdateTicketAsync(UpdateTicketInput input);
+        Task<ResultOutputDto> UpdateTicketQuoteTypeAsync(UpdateTicketInput input);
 
         Task<ResultOutputDto> RemoveTicketAsync(int ticketId);
 

@@ -179,78 +179,86 @@
                                     <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.Inventory)">库存</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control input-inline input-xsmall " id="@Html.IdFor(m => m.Ticket.Inventory)" data-bind="value:Inventory"> <span class="help-inline"> -1表示不限 </span>
-                                        @Html.HiddenFor(m=>m.Ticket.QuotesType,new {data_bind= "value:QuotesType" })
+                                        @Html.HiddenFor(m => m.Ticket.QuotesType, new {data_bind = "value:QuotesType"})
                                     </div>
                                 </div>
-                                <div class="tabbable-custom ">
-                                    <ul class="nav nav-tabs ">
-                                        <li class="active">
-                                            <a href="#tab_all_day" data-toggle="tab"> 所有日期 </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab_week" data-toggle="tab"> 按星期 </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab_day" data-toggle="tab"> 指定号数 </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab_date" data-toggle="tab"> 指定日期 </a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="tab_all_day">
-                                            <p class="muted"><span data-bind="text:DateRange"></span>所有日期
-                                            </p>
-                                            <div>
-                                                <button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="0"  class="btn btn-success">更新报价</button>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab_week">
-                                            <div class="clearfix check-week">
-                                                <div class="btn-group" data-toggle="buttons" data-bind="foreach:WeekTabs">
-                                                    <label class="btn btn-default" data-bind="css: {active:Active},click:$parent.changeChooes">
-                                                        <input type="checkbox" class="toggle"> <span data-bind="text:Text"></span>
-                                                    </label>
+                                @if (Model.Ticket.Id>0)
+                                {
+                                    <div class="tabbable-custom ">
+                                        <ul class="nav nav-tabs ">
+                                            <li class="active">
+                                                <a href="#tab_all_day" data-toggle="tab"> 所有日期 </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_week" data-toggle="tab"> 按星期 </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_day" data-toggle="tab"> 指定号数 </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_date" data-toggle="tab"> 指定日期 </a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab_all_day">
+                                                <p class="muted"><span data-bind="text:DateRange"></span>所有日期
+                                                </p>
+                                                <div>
+                                                    <button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="0" class="btn btn-success">更新报价</button>
                                                 </div>
                                             </div>
-                                            <div><button type="button"  data-bind="click:UpdateTicketQuote" data-quote-type="1" class="btn btn-success">更新报价</button>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab_day">
-                                            <div class="clearfix check-week">
+                                            <div class="tab-pane" id="tab_week">
                                                 <div class="clearfix check-week">
-                                                    <div class="btn-group" data-toggle="buttons" data-bind="foreach:DayTabs">
+                                                    <div class="btn-group" data-toggle="buttons" data-bind="foreach:WeekTabs">
                                                         <label class="btn btn-default" data-bind="css: {active:Active},click:$parent.changeChooes">
                                                             <input type="checkbox" class="toggle"> <span data-bind="text:Text"></span>
                                                         </label>
                                                     </div>
                                                 </div>
+                                                <div><button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="1" class="btn btn-success">更新报价</button>
+                                                </div>
                                             </div>
-                                            <div><button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="2" class="btn btn-success">更新报价</button>
+                                            <div class="tab-pane" id="tab_day">
+                                                <div class="clearfix check-week">
+                                                    <div class="clearfix check-week">
+                                                        <div class="btn-group" data-toggle="buttons" data-bind="foreach:DayTabs">
+                                                            <label class="btn btn-default" data-bind="css: {active:Active},click:$parent.changeChooes">
+                                                                <input type="checkbox" class="toggle"> <span data-bind="text:Text"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div><button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="2" class="btn btn-success">更新报价</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab_date">
-                                            <div class="clearfix">
-                                                <div class="input-group input-medium date date-picker pull-left" id="datePicker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                                    <input type="text" class="form-control" readonly>
-                                                    <span class="input-group-btn">
+                                            <div class="tab-pane" id="tab_date">
+                                                <div class="clearfix">
+                                                    <div class="input-group input-medium date date-picker pull-left" id="datePicker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
+                                                        <input type="text" class="form-control" readonly data-bind="value:CustomDate">
+                                                        <span class="input-group-btn">
                                                         <button class="btn default" type="button">
                                                             <i class="fa fa-calendar"></i>
                                                         </button>
                                                     </span>
+                                                    </div>
+                                                    <button type="button" data-bind="click:addDateToTags" class="btn blue pull-left margin-left-10">添加日期</button>
                                                 </div>
-                                                <button type="button" class="btn blue pull-left margin-left-10">添加日期</button>
-                                            </div>
-                                            <div class="clearfix margin-top-10 tagsinput-full">
-                                                <input class="custom-date" type="text"/>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn btn-success">更新报价</button>
+                                                <div class="clearfix margin-top-10 tagsinput-full">
+                                                    <input class="custom-date" type="text"/>
+                                                </div>
+                                                <div>
+                                                    <button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="3" class="btn btn-success">更新报价</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <button type="button" class="btn red"><i class="fa fa-eye"></i> 预览报价</button>
+                                    <button type="button" class="btn red"><i class="fa fa-eye"></i> 预览报价</button>
+                                    <button type="button" data-loading-text="正在保存报价..." data-bind="click:saveTicketQuotes" class="btn blue-sharp"><i class="fa fa-save"></i> 保存报价</button>
+                                }
+                                else
+                                {
+                                    <div class="text-danger">保存后再进行设置报价具体内容</div>
+                                }
                             </div>
                         </div>
                     </div>

@@ -411,6 +411,61 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         }
         #endregion
 
+        #region 门票报价
+
+        public async Task<JsonResult> TicketQuotesEdit(TicketQuotesEditViewModel vm)
+        {
+            var tq = vm.TicketQuotes;
+
+            await _ticketAppService.UpdateTicketQuoteTypeAsync(new UpdateTicketInput()
+            {
+                Ticket = new TicketDto()
+                {
+                    Id = vm.TicketId,
+                    QuotesType = (QuotesType) vm.QuotesType
+                }
+            });
+
+            var oldTq = await _ticketAppService.GetPagedTicketQuotesByTicektId(new GetPagedTicketQuotesInput()
+            {
+                TicketId = vm.TicketId
+            });
+            foreach (var item in tq)
+            {
+                if (oldTq.TotalCount==0 || !oldTq.Items.Any(q=>q.Year==item.Year && q.Day==item.Day && q.Month==item.Month))
+                {
+                    await _ticketAppService.AddTicketQuoteAsync(new AddTicketQuoteInput()
+                    {
+                        TicketQuote = item
+                    });
+                }
+            }
+
+            if (oldTq.TotalCount>0)
+            {
+                foreach (var item in oldTq.Items)
+                {
+
+                    var firstOrDefault = tq.FirstOrDefault(
+                     q => q.Year == item.Year && q.Day == item.Day && q.Month == item.Month);
+                    if (firstOrDefault == null) continue;
+
+                    firstOrDefault.Id = item.Id;
+
+                    if (!tq.Any(q => q.Year == item.Year && q.Day == item.Day && q.Month == item.Month))
+                    {
+                        firstOrDefault.IsDisplay = false;
+                    }
+                    await _ticketAppService.UpdateTicketQuoteAsync(new UpdateTicketQuoteInput()
+                    {
+                        TicketQuote = item
+                    });
+                }
+            }
+            return Json(null);
+        }
+        #endregion
+
         #region 门票类型
         public async Task<JsonResult> GetTicketType(int destId)
         {

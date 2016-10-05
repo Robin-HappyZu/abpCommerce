@@ -62,9 +62,25 @@ namespace HappyZu.CloudStore.Trip
                 ticket.Name = input.Ticket.Name;
                 ticket.Points = input.Ticket.Points;
                 ticket.Price = input.Ticket.Price;
-                ticket.QuotesType = input.Ticket.QuotesType;
                 ticket.TypeId = input.Ticket.TypeId;
                 ticket.UsePoints = input.Ticket.UsePoints;
+
+                await _ticketManager.UpdateTicketAysnc(ticket);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
+        }
+
+        public async Task<ResultOutputDto> UpdateTicketQuoteTypeAsync(UpdateTicketInput input)
+        {
+            try
+            {
+                var ticket = await _ticketManager.GetTicketByIdAsync(input.Ticket.Id);
+
+                ticket.QuotesType = input.Ticket.QuotesType;
 
                 await _ticketManager.UpdateTicketAysnc(ticket);
                 return ResultOutputDto.Successed;
@@ -142,7 +158,9 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var quote = input.TicketQuote.MapTo<TicketQuote>();
+                var quote =await _ticketQuoteManager.GetTicketQuoteByIdAsync(input.TicketQuote.Id);
+                quote.IsDisplay = input.TicketQuote.IsDisplay;
+                quote.Quote = input.TicketQuote.Quote;
                 await _ticketQuoteManager.UpdateTicketQuoteAsync(quote);
                 return ResultOutputDto.Successed;
             }

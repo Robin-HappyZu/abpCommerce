@@ -567,6 +567,7 @@
     <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SetRolePermissionsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TicketQuotesEditViewModel.cs" />
     <Compile Include="Areas\Mobile\Controllers\AccountController.cs" />
     <Compile Include="Areas\Mobile\Controllers\ActivityController.cs" />
     <Compile Include="Areas\Mobile\Controllers\CustomizeController.cs" />
