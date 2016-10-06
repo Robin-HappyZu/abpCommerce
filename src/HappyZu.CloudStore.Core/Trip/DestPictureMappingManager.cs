@@ -7,7 +7,6 @@ using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
 using Abp.Linq.Extensions;
-using HappyZu.CloudStore.UploadFiles;
 
 namespace HappyZu.CloudStore.Trip
 {

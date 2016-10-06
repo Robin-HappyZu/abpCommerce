@@ -114,6 +114,10 @@
     <Compile Include="FAQ\Dto\GetDetailListInput.cs" />
     <Compile Include="FAQ\FAQAppService.cs" />
     <Compile Include="FAQ\IFAQAppService.cs" />
+    <Compile Include="FileManager\Dto\FileItemDto.cs" />
+    <Compile Include="FileManager\Dto\FileItemInput.cs" />
+    <Compile Include="FileManager\Dto\FileItemMappingDto.cs" />
+    <Compile Include="FileManager\Dto\GetPagedFileItemInput.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />
@@ -147,6 +151,8 @@
     <Compile Include="Trip\Dto\DestAttributeRecordDto.cs" />
     <Compile Include="Trip\Dto\DestCityDto.cs" />
     <Compile Include="Trip\Dto\DestDto.cs" />
+    <Compile Include="Trip\Dto\DestPictureMappingDto.cs" />
+    <Compile Include="Trip\Dto\DestPictureMappingInput.cs" />
     <Compile Include="Trip\Dto\DestProvinceDto.cs" />
     <Compile Include="Trip\Dto\DetachDestAttributeRecordInput.cs" />
     <Compile Include="Trip\Dto\DetachTicketAttributeRecordInput.cs" />
@@ -177,6 +183,7 @@
     <Compile Include="Trip\IDestAppService.cs" />
     <Compile Include="Trip\PaymentAppSerivce.cs" />
     <Compile Include="Trip\TicketAppService.cs" />
+    <Compile Include="FileManager\IUploadFileService.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\Dto\UserLoginInput.cs" />
     <Compile Include="Users\IUserAppService.cs" />

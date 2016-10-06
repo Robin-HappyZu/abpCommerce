@@ -234,7 +234,7 @@
                                                     </table>
                                                 </div>
                                                 <div>
-                                                    <a class="btn red" href="@Url.Action("TicketCreate","Destination",new {area="Mobile",destId=Model.Id,returnUrl=Request.RawUrl},true)"> 添加门票 </a>
+                                                    <a class="btn red" href="@Url.Action("TicketCreate","Destination",new {area="Admin",destId=Model.Id,returnUrl=Request.RawUrl},true)"> 添加门票 </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,33 +250,38 @@
                             <div class="must-save" data-bind="visible:IsCreate">
                                 必须保存后才能再进行下一步操作
                             </div>
-                            <div class="table-scrollable" data-bind="visible:!IsCreate()">
-                                <table class="table table-striped table-bordered table-advance table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>
-                                            缩略图
-                                        </th>
-                                        <th>
-                                            排序
-                                        </th>
-                                        <th> </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="javascript:;"> RedBull </a>
-                                        </td>
-                                        <td> </td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div data-bind="visible:!IsCreate()">
+                                <div>
+                                    <button class="btn green-meadow" data-bind="click:openUploadModal"> 上传图片集 </button>
+                                </div>
+                                <div class="table-scrollable">
+                                    <table class="table table-striped table-bordered table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    缩略图
+                                                </th>
+                                                <th>
+                                                    排序
+                                                </th>
+                                                <th> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <a href="javascript:;"> RedBull </a>
+                                                </td>
+                                                <td> </td>
+                                                <td>
+                                                    <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
+                                                        <i class="fa fa-edit"></i> Edit
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -341,3 +346,5 @@
         <button type="button" class="btn green save-location">确认位置</button>
     </div>
 </div>
+
+<div id="upload-pic" class="modal fade" tabindex="-1"></div>

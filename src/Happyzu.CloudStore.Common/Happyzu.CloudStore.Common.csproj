@@ -114,6 +114,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\AreaRegistrationBase.cs" />
+    <Compile Include="Media\FileSystemStorageProvider.cs" />
+    <Compile Include="Media\IMediaService.cs" />
+    <Compile Include="Media\IStorageFile.cs" />
+    <Compile Include="Media\IStorageFolder.cs" />
+    <Compile Include="Media\IStorageProvider.cs" />
+    <Compile Include="Media\MediaFile.cs" />
+    <Compile Include="Media\MediaFolder.cs" />
+    <Compile Include="Media\MediaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\Domain\DomainData.cs" />
     <Compile Include="Routing\Domain\DomainRoute.cs" />
@@ -130,6 +138,9 @@
     <Compile Include="Theming\SessionThemeResover.cs" />
     <Compile Include="Theming\ThemeManager.cs" />
     <Compile Include="Theming\ViewEngine\ThemeableRazorViewEngine.cs" />
+    <Compile Include="Validation\Argument.cs" />
+    <Compile Include="Validation\PathValidation.cs" />
+    <Compile Include="Validation\StringFormatMethodAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

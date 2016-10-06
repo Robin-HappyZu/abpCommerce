@@ -7,7 +7,7 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Services;
 using Abp.Linq.Extensions;
 
-namespace HappyZu.CloudStore.UploadFiles
+namespace HappyZu.CloudStore.FileManager
 {
     public class FileItemManager : IDomainService
     {

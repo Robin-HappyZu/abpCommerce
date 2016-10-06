@@ -292,7 +292,7 @@
                     function (data) {
                         if (data.success) {
                             if (edit) {
-                                window.location = "@Url.Action("TicketEdit","Destination",new {area="Mobile"},true)/" + data.result.id + '?returnUrl=' + _this.ReturnUrl();
+                                window.location = "@Url.Action("TicketEdit","Destination",new {area= "Admin" },true)/" + data.result.id + '?returnUrl=' + _this.ReturnUrl();
                             } else {
                                 window.location = _this.ReturnUrl();
                             }

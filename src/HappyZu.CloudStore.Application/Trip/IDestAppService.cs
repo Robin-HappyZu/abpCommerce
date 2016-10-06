@@ -63,5 +63,11 @@ namespace HappyZu.CloudStore.Trip
         Task<List<DestAttributeRecordDto>> GetAllAttributeRecordByDestIdAsync(int destId);
 
         #endregion
+
+        #region 景点图集
+
+        Task<ResultOutputDto> AddDestPictureMapping(DestPictureMappingInput input);
+
+        #endregion
     }
 }

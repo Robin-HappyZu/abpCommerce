@@ -4,9 +4,9 @@ using System.Data.Entity;
 using Abp.Zero.EntityFramework;
 using HappyZu.CloudStore.Authorization.Roles;
 using HappyZu.CloudStore.FAQ;
+using HappyZu.CloudStore.FileManager;
 using HappyZu.CloudStore.MultiTenancy;
 using HappyZu.CloudStore.Trip;
-using HappyZu.CloudStore.UploadFiles;
 using HappyZu.CloudStore.Users;
 
 namespace HappyZu.CloudStore.EntityFramework

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Abp.Domain.Entities;
+using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
 
-namespace HappyZu.CloudStore.Trip
+namespace HappyZu.CloudStore.Trip.Dto
 {
-    [Table("Trip_Dest_Picture_Mapping")]
-    public class DestPictureMapping : Entity
+    [AutoMapFrom(typeof(DestPictureMapping))]
+    public class DestPictureMappingDto:EntityDto
     {
         public int DestId { get; set; }
 
