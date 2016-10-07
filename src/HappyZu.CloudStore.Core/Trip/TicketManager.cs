@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
@@ -24,6 +25,11 @@ namespace HappyZu.CloudStore.Trip
         public async Task AddTicketAsync(Ticket ticket)
         {
             await _ticketRepository.InsertAsync(ticket);
+        }
+
+        public async Task<int> AddTicketAndGetIdAsync(Ticket ticket)
+        {
+            return await _ticketRepository.InsertAndGetIdAsync(ticket);
         }
 
         public async Task UpdateTicketAysnc(Ticket ticket)
@@ -61,6 +67,32 @@ namespace HappyZu.CloudStore.Trip
             }
 
             return query.PageBy(request).ToList();
+        }
+
+        public Task<IReadOnlyList<Ticket>> QuerysListAsync(Func<IQueryable<Ticket>, IQueryable<Ticket>> query, IPagedResultRequest request)
+        {
+            if (request.MaxResultCount <= 0)
+            {
+                request.MaxResultCount = int.MaxValue;
+            }
+            var list = query == null ?
+                _ticketRepository.GetAll().OrderBy(p => p.Id).PageBy(request).ToList() :
+                _ticketRepository.Query(query).PageBy(request).ToList();
+            return Task.FromResult((IReadOnlyList<Ticket>)list);
+        }
+
+        public Task<IReadOnlyList<Ticket>> QuerysListAsync(IPagedResultRequest request)
+        {
+            return QuerysListAsync(null, request);
+        }
+
+        public Task<int> QueryCountAsync(Func<IQueryable<Ticket>, IQueryable<Ticket>> query)
+        {
+            var count = query != null ?
+                    _ticketRepository.Query(query).Count() :
+                    _ticketRepository.Count();
+
+            return Task.FromResult(count);
         }
 
         public async Task<IList<Ticket>> GetTicketsByDestIdAsync(int destId = 0)

@@ -12,5 +12,9 @@ namespace HappyZu.CloudStore.Trip.Dto
         public int MaxResultCount { get; set; }
         public int SkipCount { get; set; }
         public int TicketId { get; set; }
+        /// <summary>
+        /// 是否显示
+        /// </summary>
+        public bool IsDisplay { get; set; }
     }
 }

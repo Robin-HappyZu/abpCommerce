@@ -109,7 +109,14 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         public async Task<ActionResult> DestEdit(EditDestViewModel vm)
         {
             var output = await _destAppService.GetDestByIdAsync(vm.Id);
+            var ticketType = await _ticketAppService.GetTicketTypeListAsync(vm.Id);
+            var tickets = await _ticketAppService.GetPagedTicketsAsync(new GetPagedTicketsInput()
+            {
+                DestId = vm.Id
+            });
             vm.Dest = output;
+            vm.TicketTypes = ticketType.Items;
+            vm.Tickets = tickets.Items;
             return View(vm);
         }
 
@@ -378,6 +385,98 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                 Dest = dest
             };
             return View(vm);
+        }
+
+        [HttpPost,ActionName("TicketCreate")]
+        public async Task<JsonResult> TicketCreatePost(AddTicketInput input)
+        {
+            var result = await _ticketAppService.AddTicketAsync(input);
+
+            return Json(new { success = result.Status,id=result.EntityId });
+        }
+
+        public async Task<ActionResult> TicketEdit(int id)
+        {
+            var ticket = await _ticketAppService.GetTicketByIdAsync(id);
+            var vm=new EditTicketViewModel();
+            if (ticket != null)
+            {
+                vm.Ticket = ticket;
+                var dest = await _destAppService.GetDestByIdAsync(ticket.DestId);
+                vm.Dest = dest;
+            }
+
+            return View(vm);
+        }
+
+        [HttpPost, ActionName("TicketEdit")]
+        public async Task<JsonResult> TicketEditPost(UpdateTicketInput input)
+        {
+            var result = await _ticketAppService.UpdateTicketAsync(input);
+
+            return Json(new { success = result.Status, id = result.EntityId });
+        }
+        #endregion
+
+        #region 门票报价
+
+        public async Task<JsonResult> TicketQuotesEdit(TicketQuotesEditViewModel vm)
+        {
+            var tq = vm.TicketQuotes;
+
+            await _ticketAppService.UpdateTicketQuoteTypeAsync(new UpdateTicketInput()
+            {
+                Ticket = new TicketDto()
+                {
+                    Id = vm.TicketId,
+                    QuotesType = (QuotesType) vm.QuotesType
+                }
+            });
+
+            var oldTq = await _ticketAppService.GetTicketQuotesByTicketId(vm.TicketId);
+
+            foreach (var item in tq)
+            {
+                if (oldTq.TotalCount==0 || !oldTq.Items.Any(q=>q.Year==item.Year && q.Day==item.Day && q.Month==item.Month))
+                {
+                    await _ticketAppService.AddTicketQuoteAsync(new AddTicketQuoteInput()
+                    {
+                        TicketQuote = item
+                    });
+                }
+            }
+
+            if (oldTq.TotalCount>0)
+            {
+                foreach (var item in oldTq.Items)
+                {
+
+                    var firstOrDefault = tq.FirstOrDefault(
+                     q => q.Year == item.Year && q.Day == item.Day && q.Month == item.Month);
+                    if (firstOrDefault == null)
+                    {
+                        item.IsDisplay = false;
+                        firstOrDefault = item;
+                    }
+                    else
+                    {
+                        firstOrDefault.Id = item.Id;
+                    }
+
+                    await _ticketAppService.UpdateTicketQuoteAsync(new UpdateTicketQuoteInput()
+                    {
+                        TicketQuote = firstOrDefault
+                    });
+                }
+            }
+            return Json(null);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> GetTicketQuotes(int ticketId)
+        {
+            var oldTq = await _ticketAppService.GetTicketQuotesByTicketId(ticketId);
+            return Json(oldTq);
         }
         #endregion
 

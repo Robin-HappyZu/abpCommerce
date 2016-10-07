@@ -40,14 +40,14 @@
                             <i class="fa fa-floppy-o"></i>
                             保存
                         </button>
-                        <button type="submit" name="save-continue" class="btn blue">
+                        <button type="submit" name="save-continue" class="btn blue" data-loading-text="正在保存..." data-bind="click:submitAndEdit">
                             <i class="fa fa-floppy-o"></i>
                             保存并继续编辑
                         </button>
                     </div>
                 </div>
                 <div class="portlet-body">
-                    @using (Html.BeginForm("CityCreate", "Destination", FormMethod.Post, new { id = "uiform" }))
+                    @using (Html.BeginForm("TicketCreate", "Destination", FormMethod.Post, new { id = "uiform" }))
                     {
                         @Html.Partial("_TicketCreateOrEdit", Model)
                     }
@@ -83,34 +83,34 @@
 
 @section scripts{
     <script>
-        $(function() {
+        $(function () {
             if (jQuery().datepicker) {
                 $('#pricedaterange')
                     .daterangepicker({
-                            "locale": {
-                                "format": "MM/DD/YYYY",
-                                "separator": " - ",
-                                "applyLabel": "确认",
-                                "cancelLabel": "取消",
-                                "fromLabel": "From",
-                                "toLabel": "To",
-                                "customRangeLabel": "Custom",
-                                "weekLabel": "W",
-                                "daysOfWeek": [
-                                    "日", "一", "二", "三", "四", "五", "六"
-                                ],
-                                "monthNames": [
-                                    "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"
-                                ],
-                                "firstDay": 1
-                            },
-                            opens: (App.isRTL() ? 'right' : 'left'),
-                            format: 'YYYY-MM-DD',
-                            separator: ' 至 ',
-                            minDate: moment(),
-                            maxDate: moment().add(6, 'months').format('L')
-
+                        "locale": {
+                            "format": "MM/DD/YYYY",
+                            "separator": " - ",
+                            "applyLabel": "确认",
+                            "cancelLabel": "取消",
+                            "fromLabel": "From",
+                            "toLabel": "To",
+                            "customRangeLabel": "Custom",
+                            "weekLabel": "W",
+                            "daysOfWeek": [
+                                "日", "一", "二", "三", "四", "五", "六"
+                            ],
+                            "monthNames": [
+                                "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"
+                            ],
+                            "firstDay": 1
                         },
+                        opens: (App.isRTL() ? 'right' : 'left'),
+                        format: 'YYYY-MM-DD',
+                        separator: ' 至 ',
+                        minDate: moment(),
+                        maxDate: moment().add(6, 'months').format('L')
+
+                    },
                         showPriceDateRange);
             };
 
@@ -155,14 +155,15 @@
             vm.EndDate(end.format('YYYY-MM-DD'));
         }
 
-        $('#ticket-type-manager').on('hide.bs.modal', function() {
+        $('#ticket-type-manager').on('hide.bs.modal', function () {
             $('.save-ticket-type').button('reset');
             App.stopPageLoading();
             vm.TicketTypeDisplayOrder('');
             vm.TicketTypeName('');
         });
 
-        var ViewModel = function(returnUrl) {
+
+        var ViewModel = function (returnUrl) {
             var _this = this;
             this.Name = ko.observable('');
             this.TypeId = ko.observable('');
@@ -182,7 +183,7 @@
             this.AgentPrice = ko.observable(0);
             this.MarketPrice = ko.observable(0);
             this.CostPrice = ko.observable(0);
-            this.Inventory = ko.observable(0);
+            this.Inventory = ko.observable(-1);
             this.QuotesType = ko.observable(0);
 
             this.TicketTypeName = ko.observable('');
@@ -190,11 +191,11 @@
             this.ReturnUrl = ko.observable(returnUrl);
             this.TicketTypes = ko.observableArray([]);
 
-            this.showAddTicketTypeMoble = function() {
+            this.showAddTicketTypeMoble = function () {
                 $('#ticket-type-manager').modal('show');
             };
 
-            this.addTicketType = function(data, event) {
+            this.addTicketType = function (data, event) {
                 var url = '@Url.Action("TicketTypeCreate", "Destination", new {area = "Mobile", DestId = Model.Dest.Id}, true)';
                 var params = [];
                 params.push({ name: "Name", value: _this.TicketTypeName() });
@@ -202,34 +203,34 @@
                 App.startPageLoading({ animate: true });
                 var $btn = $(event.target);
                 $btn.button("loading");
-                $.post(url, params, function(data) {
-                        if (data.success) {
-                            $('#ticket-type-manager').modal('hide');
-                            App.stopPageLoading();
-                            _this.loadTicketTypeList();
-                            return;
-                        } else {
-                            App.alert({
-                                container: '',
-                                place: 'append', // append or prepent in container
-                                type: 'danger', // alert's type
-                                message: data.error.message, // alert's message
-                                close: true, // make alert closable
-                                reset: true, // close all previouse alerts first
-                                focus: true, // auto scroll to the alert after shown
-                                icon: 'warning' // put icon before the message
-                            });
-                        };
-                        $btn.button('reset');
+                $.post(url, params, function (data) {
+                    if (data.success) {
+                        $('#ticket-type-manager').modal('hide');
                         App.stopPageLoading();
-                    },
+                        _this.loadTicketTypeList();
+                        return;
+                    } else {
+                        App.alert({
+                            container: '',
+                            place: 'append', // append or prepent in container
+                            type: 'danger', // alert's type
+                            message: data.error.message, // alert's message
+                            close: true, // make alert closable
+                            reset: true, // close all previouse alerts first
+                            focus: true, // auto scroll to the alert after shown
+                            icon: 'warning' // put icon before the message
+                        });
+                    };
+                    $btn.button('reset');
+                    App.stopPageLoading();
+                },
                     'json');
             }
 
-            this.loadTicketTypeList = function() {
+            this.loadTicketTypeList = function () {
                 var url = '@Url.Action("GetTicketType", "Destination", new {area = "Mobile", DestId = Model.Dest.Id}, true)';
                 App.startPageLoading({ animate: true });
-                $.post(url, {}, function(data) {
+                $.post(url, {}, function (data) {
                     if (data.success) {
                         var list = data.result.list;
                         _this.TicketTypes([]);
@@ -250,25 +251,51 @@
                         });
                     };
                     App.stopPageLoading();
-                }, 'json');
-
-                App.stopPageLoading();
+                },'json');
             }
 
-            this.submit = function(data, event) {
+            this.submitAndEdit = function (data, event) {
+                _this.postData(data, event, true);
+            }
+
+            this.submit = function (data, event) {
+                _this.postData(data, event, false);
+            }
+
+            this.postData = function (data, event, edit) {
                 var url = $('#uiform').attr("action");
                 var params = [];
-                @*params.push({ name: "@Html.NameFor(m=>m.City.Name)", value: _this.Name() });
-                params.push({ name: "@Html.NameFor(m=>m.City.ProvinceId)", value: '@Model.ProvinceId' });
-                params.push({ name: "@Html.NameFor(m=>m.ProvinceId)", value: '@Model.ProvinceId' });*@
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.DestId)", value: '@Model.Dest.Id' });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.Name)", value: _this.Name() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.TypeId)", value: _this.TypeId() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.Points)", value: _this.Points() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.Description)", value: _this.Description() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.MustAdvance)", value: _this.MustAdvance() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.AdvanceBookingDays)", value: _this.AdvanceBookingDays() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.EndTime)", value: _this.EndTime() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.CanPayFrontMoney)", value: _this.CanPayFrontMoney() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.UsePoints)", value: _this.UsePoints() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.StartDate)", value: _this.StartDate() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.EndDate)", value: _this.EndDate() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.Price)", value: _this.Price() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.AgentPrice)", value: _this.AgentPrice() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.MarketPrice)", value: _this.MarketPrice() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.CostPrice)", value: _this.CostPrice() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.Inventory)", value: _this.Inventory() });
+                params.push({ name: "@Html.NameFor(m=>m.Ticket.QuotesType)", value: _this.QuotesType() });
+
                 App.startPageLoading({ animate: true });
                 var $btn = $(event.target);
                 $btn.button("loading");
                 $.post(url,
                     params,
-                    function(data) {
+                    function (data) {
                         if (data.success) {
-                            window.location = _this.ReturnUrl();
+                            if (edit) {
+                                window.location = "@Url.Action("TicketEdit","Destination",new {area= "Admin" },true)/" + data.result.id + '?returnUrl=' + _this.ReturnUrl();
+                            } else {
+                                window.location = _this.ReturnUrl();
+                            }
                             return;
                         } else {
                             App.alert({
@@ -286,6 +313,11 @@
                         App.stopPageLoading();
                     },
                     'json');
+
+            }
+
+            this.UpdateTicketQuote=function(data,event) {
+               
 
             }
         };

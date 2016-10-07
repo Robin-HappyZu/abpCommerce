@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.TypeId)">门票类型</label>
                                         <div class="col-md-9">
-                                            <select class="tickettype-select form-control input-medium input-inline" data-show-subtext="true" data-bind="optionsCaption:'请选择类型...',options:TicketTypes,optionsText:'name',optionsValue:'id',value:TypeId">
+                                            <select class="tickettype-select form-control input-medium input-inline" data-show-subtext="true" data-bind="optionsCaption:'请选择类型...',options:TicketTypes,optionsText:'name',optionsValue:'id',value:TypeId,valueAllowUnset: true">
                                             </select>
                                             <a href="javascript:;" class="btn green" data-bind="click:showAddTicketTypeMoble">添加类型</a>
                                         </div>
@@ -55,7 +55,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" data-bind="visible:MustAdvance">
                                         
                                         <div class="col-md-9 col-md-offset-3">
                                             <div class="form-inline">
@@ -98,7 +98,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" data-bind="visible:CanPayFrontMoney">
                                     <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.FrontMoneyPrice)">订金金额</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control input-small" id="@Html.IdFor(m => m.Ticket.FrontMoneyPrice)" data-bind="value:FrontMoneyPrice">
@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" data-bind="visible:CanUsePoint">
                                     <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.UsePoints)">使用数量</label>
                                     <div class="col-md-9 ">
                                         <input type="text" class="form-control input-xsmall " id="@Html.IdFor(m => m.Ticket.UsePoints)" data-bind="value:UsePoints">
@@ -140,7 +140,7 @@
                                     <label class="control-label col-md-3">报价有效期</label>
                                     <div class="col-md-9">
                                         <div class="input-group input-large" id="pricedaterange">
-                                            <input type="text" class="form-control" data-bind="DateRange">
+                                            <input type="text" class="form-control" data-bind="value:DateRange">
                                             <span class="input-group-btn">
                                                 <button class="btn default date-range-toggle" type="button">
                                                     <i class="fa fa-calendar"></i>
@@ -179,184 +179,86 @@
                                     <label class="control-label col-md-3" for="@Html.IdFor(m => m.Ticket.Inventory)">库存</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control input-inline input-xsmall " id="@Html.IdFor(m => m.Ticket.Inventory)" data-bind="value:Inventory"> <span class="help-inline"> -1表示不限 </span>
-                                        @Html.HiddenFor(m=>m.Ticket.QuotesType,new {data_bind= "value:QuotesType" })
+                                        @Html.HiddenFor(m => m.Ticket.QuotesType, new {data_bind = "value:QuotesType"})
                                     </div>
                                 </div>
-                                <div class="tabbable-custom ">
-                                    <ul class="nav nav-tabs ">
-                                        <li class="active">
-                                            <a href="#tab_all_day" data-toggle="tab"> 所有日期 </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab_week" data-toggle="tab"> 按星期 </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab_day" data-toggle="tab"> 指定号数 </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab_date" data-toggle="tab"> 指定日期 </a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="tab_all_day">
-                                            <p class="muted"><span data-bind="text:DateRange"></span>所有日期
-                                            </p>
-                                            <div>
-                                                <button type="button" class="btn btn-success">更新报价</button>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab_week">
-                                            <div class="clearfix check-week">
-                                                <div class="btn-group" data-toggle="buttons">
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周一
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周二
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周三
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周四
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周五
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周六
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 周日
-                                                    </label>
+                                @if (Model.Ticket.Id>0)
+                                {
+                                    <div class="tabbable-custom ">
+                                        <ul class="nav nav-tabs ">
+                                            <li class="active">
+                                                <a href="#tab_all_day" data-toggle="tab"> 所有日期 </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_week" data-toggle="tab"> 按星期 </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_day" data-toggle="tab"> 指定号数 </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_date" data-toggle="tab"> 指定日期 </a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab_all_day">
+                                                <p class="muted"><span data-bind="text:DateRange"></span>所有日期
+                                                </p>
+                                                <div>
+                                                    <button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="0" class="btn btn-success">更新报价</button>
                                                 </div>
                                             </div>
-                                            <div><button type="button" class="btn btn-success">更新报价</button>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab_day">
-                                            <div class="clearfix check-week">
-                                                <div class="btn-group" data-toggle="buttons">
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 1
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 2
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 3
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 4
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 5
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 6
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 7
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 8
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 9
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 10
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 11
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 12
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 13
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 14
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 15
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 16
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 17
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 18
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 19
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 20
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 21
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 22
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 23
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 24
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 25
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 26
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 27
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 28
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 29
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 30
-                                                    </label>
-                                                    <label class="btn btn-default">
-                                                        <input type="checkbox" class="toggle"> 31
-                                                    </label>
+                                            <div class="tab-pane" id="tab_week">
+                                                <div class="clearfix check-week">
+                                                    <div class="btn-group" data-toggle="buttons" data-bind="foreach:WeekTabs">
+                                                        <label class="btn btn-default" data-bind="css: {active:Active},click:$parent.changeChooes">
+                                                            <input type="checkbox" class="toggle"> <span data-bind="text:Text"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div><button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="1" class="btn btn-success">更新报价</button>
                                                 </div>
                                             </div>
-                                            <div><button type="button" class="btn btn-success">更新报价</button>
+                                            <div class="tab-pane" id="tab_day">
+                                                <div class="clearfix check-week">
+                                                    <div class="clearfix check-week">
+                                                        <div class="btn-group" data-toggle="buttons" data-bind="foreach:DayTabs">
+                                                            <label class="btn btn-default" data-bind="css: {active:Active},click:$parent.changeChooes">
+                                                                <input type="checkbox" class="toggle"> <span data-bind="text:Text"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div><button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="2" class="btn btn-success">更新报价</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab_date">
-                                            <div class="clearfix">
-                                                <div class="input-group input-medium date date-picker pull-left" id="datePicker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-                                                    <input type="text" class="form-control" readonly>
-                                                    <span class="input-group-btn">
+                                            <div class="tab-pane" id="tab_date">
+                                                <div class="clearfix">
+                                                    <div class="input-group input-medium date date-picker pull-left" id="datePicker" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
+                                                        <input type="text" class="form-control" readonly data-bind="value:CustomDate">
+                                                        <span class="input-group-btn">
                                                         <button class="btn default" type="button">
                                                             <i class="fa fa-calendar"></i>
                                                         </button>
                                                     </span>
+                                                    </div>
+                                                    <button type="button" data-bind="click:addDateToTags" class="btn blue pull-left margin-left-10">添加日期</button>
                                                 </div>
-                                                <button type="button" class="btn blue pull-left margin-left-10">添加日期</button>
-                                            </div>
-                                            <div class="clearfix margin-top-10 tagsinput-full">
-                                                <input class="custom-date" type="text"/>
-                                            </div>
-                                            <div>
-                                                <button type="button" class="btn btn-success">更新报价</button>
+                                                <div class="clearfix margin-top-10 tagsinput-full">
+                                                    <input class="custom-date" type="text"/>
+                                                </div>
+                                                <div>
+                                                    <button type="button" data-bind="click:UpdateTicketQuote" data-quote-type="3" class="btn btn-success">更新报价</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <button type="button" class="btn red"><i class="fa fa-eye"></i> 预览报价</button>
+                                    <button type="button" class="btn red"><i class="fa fa-eye"></i> 预览报价</button>
+                                    <button type="button" data-loading-text="正在保存报价..." data-bind="click:saveTicketQuotes" class="btn blue-sharp"><i class="fa fa-save"></i> 保存报价</button>
+                                }
+                                else
+                                {
+                                    <div class="text-danger">保存后再进行设置报价具体内容</div>
+                                }
                             </div>
                         </div>
                     </div>

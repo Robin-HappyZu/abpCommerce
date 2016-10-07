@@ -50,7 +50,7 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// <summary>
         /// 预付款金额
         /// </summary>
-        public bool FrontMoneyPrice { get; set; }
+        public double FrontMoneyPrice { get; set; }
 
         /// <summary>
         /// 可以使用积分
@@ -106,6 +106,7 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// 报价类型
         /// </summary>
         public QuotesType QuotesType { get; set; }
+        
 
         public bool IsDeleted { get; set; }
         public string MetaTitle { get; set; }

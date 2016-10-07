@@ -65,3 +65,9 @@
 .tagsinput-full .bootstrap-tagsinput{
     display:block;
 }
+.tagsinput-full .bootstrap-tagsinput .tag{
+    margin-bottom: 2px;
+    margin-top: 2px;
+    line-height: 16px;
+    display: -webkit-inline-box;
+}

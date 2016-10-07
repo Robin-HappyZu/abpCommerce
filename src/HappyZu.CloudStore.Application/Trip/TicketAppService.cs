@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
@@ -32,8 +33,8 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var ticket = input.Ticket.MapTo<Ticket>();
-                await _ticketManager.AddTicketAsync(ticket);
-                return ResultOutputDto.Successed;
+                var id = await _ticketManager.AddTicketAndGetIdAsync(ticket);
+                return ResultOutputDto.Success(id);
             }
             catch (Exception e)
             {
@@ -45,7 +46,43 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var ticket = input.Ticket.MapTo<Ticket>();
+                var ticket = await _ticketManager.GetTicketByIdAsync(input.Ticket.Id);
+
+                ticket.AdvanceBookingDays = input.Ticket.AdvanceBookingDays;
+                ticket.AgentPrice = input.Ticket.AgentPrice;
+                ticket.CanPayFrontMoney = input.Ticket.CanPayFrontMoney;
+                ticket.CanUsePoint = input.Ticket.CanUsePoint;
+                ticket.CostPrice = input.Ticket.CostPrice;
+                ticket.Description = input.Ticket.Description;
+                ticket.EndTime = input.Ticket.EndTime;
+                ticket.EndDate = input.Ticket.EndDate;
+                ticket.FrontMoneyPrice = input.Ticket.FrontMoneyPrice;
+                ticket.Inventory = input.Ticket.Inventory;
+                ticket.MarketPrice = input.Ticket.MarketPrice;
+                ticket.MustAdvance = input.Ticket.MustAdvance;
+                ticket.Name = input.Ticket.Name;
+                ticket.Points = input.Ticket.Points;
+                ticket.Price = input.Ticket.Price;
+                ticket.TypeId = input.Ticket.TypeId;
+                ticket.UsePoints = input.Ticket.UsePoints;
+
+                await _ticketManager.UpdateTicketAysnc(ticket);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
+        }
+
+        public async Task<ResultOutputDto> UpdateTicketQuoteTypeAsync(UpdateTicketInput input)
+        {
+            try
+            {
+                var ticket = await _ticketManager.GetTicketByIdAsync(input.Ticket.Id);
+
+                ticket.QuotesType = input.Ticket.QuotesType;
+
                 await _ticketManager.UpdateTicketAysnc(ticket);
                 return ResultOutputDto.Successed;
             }
@@ -86,7 +123,8 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var count = await _ticketManager.GetDestTicketsCountAsync(input.DestId);
-                var tickets =  _ticketManager.GetPagedTickets(input.DestId, input);
+                
+                var tickets = await _ticketManager.QuerysListAsync(m=>m.Where(x=>x.DestId==input.DestId).OrderBy(x=>x.Id), input);
 
                 return new PagedResultDto<TicketDto>()
                 {
@@ -94,7 +132,7 @@ namespace HappyZu.CloudStore.Trip
                     Items = tickets.MapTo<List<TicketDto>>()
                 };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new PagedResultDto<TicketDto>()
                 {
@@ -122,7 +160,9 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var quote = input.TicketQuote.MapTo<TicketQuote>();
+                var quote =await _ticketQuoteManager.GetTicketQuoteByIdAsync(input.TicketQuote.Id);
+                quote.IsDisplay = input.TicketQuote.IsDisplay;
+                quote.Quote = input.TicketQuote.Quote;
                 await _ticketQuoteManager.UpdateTicketQuoteAsync(quote);
                 return ResultOutputDto.Successed;
             }
@@ -163,7 +203,30 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(input.TicketId);
-                var quotes = _ticketQuoteManager.GetPagedTicketQuotesByTicketId(input.TicketId, input);
+                var quotes = _ticketQuoteManager.GetPagedTicketQuotesByTicketId(input.TicketId,input);
+
+                return new PagedResultDto<TicketQuoteDto>()
+                {
+                    TotalCount = count,
+                    Items = quotes.MapTo<List<TicketQuoteDto>>()
+                };
+            }
+            catch (Exception)
+            {
+                return new PagedResultDto<TicketQuoteDto>()
+                {
+                    TotalCount = 0,
+                    Items = new List<TicketQuoteDto>()
+                };
+            }
+        }
+
+        public async Task<IPagedResult<TicketQuoteDto>> GetTicketQuotesByTicketId(int ticketId)
+        {
+            try
+            {
+                var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(ticketId);
+                var quotes = await _ticketQuoteManager.GetTicketQuotesByTicketIdAsync(ticketId);
 
                 return new PagedResultDto<TicketQuoteDto>()
                 {

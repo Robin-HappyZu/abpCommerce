@@ -2,6 +2,7 @@
 
 
 @using Abp.Json
+@using Senparc.Weixin.HttpUtility
 @{
     ViewBag.Title = "编辑景点";
 }
@@ -71,23 +72,31 @@
 <div class="clearfix">
 </div>
 @section style_plugins{
-    <link href="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" />
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" />
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
+<link href="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" />
 }
 @section script_plugins{
-    <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.min.js"></script>
-    <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/moment.min.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.min.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js"></script>
     <script src="http://api.map.baidu.com/api?v=2.0&ak=SARIdZ6EA22D6Si5luRMjCYU"></script>
 }
 @section scripts{
     <script>
         $(function() {
+            $.fn.modal.defaults.spinner = $.fn.modalmanager.defaults.spinner = 
+            '<div class="loading-spinner" style="width: 200px; margin-left: -100px;">' +
+              '<div class="progress progress-striped active">' +
+                '<div class="progress-bar" style="width: 100%;"></div>' +
+              '</div>' +
+            '</div>';
+
             $(".input-booking-notice").summernote({
                 height: 300,
                 dialogsInBody: true,
@@ -202,6 +211,9 @@
             return div.innerHTML;
         }
 
+        /*上传图片*/
+        var uploadModal = $('#upload-pic');
+
         var ViewModel = function(title, subject, introduce, feature, openTime, isPublished, publishDateTime, displayOrder,
             destType, provinceId, cityId, address, lng, lat, supplierId, supplier, bookingNotice, agreement, metaTitle,
             metaKeywords, metaDescription, returnUrl) {
@@ -231,6 +243,9 @@
             this.MetaDescription = ko.observable(metaDescription);
             this.ReturnUrl = ko.observable(returnUrl);
             this.IsCreate=ko.observable(false);
+
+            this.TicketTypes = ko.observableArray(@Html.Raw(Model.TicketTypes.ToJsonString()));
+            this.Tickets = ko.observableArray(@Html.Raw(Model.Tickets.ToJsonString()));
 
             this.submit = function(data, event) {
                 var url = $('#uiform').attr("action");
@@ -346,6 +361,32 @@
                     };
                 }, 'json');
             };
+
+            this.ShowTicketType=function(data) {
+
+                var types = _this.TicketTypes();
+                for (var i = 0; i < types.length; i++) {
+                    if (types[i].Id==data.TypeId) {
+                        return types[i].Name;
+                    }
+                }
+
+                return '';
+            }
+            
+            this.ShowTicketEdit=function(data) {
+                
+                return '<a href="@Url.Action("TicketEdit","Destination",new {area= "Admin" },true)/'+data.Id+'?returnUrl=@Request.RawUrl.HtmlEncode()" class="btn btn-outline btn-circle btn-sm purple"><i class="fa fa-edit"></i> 编辑</a>';
+            }
+
+            //上传图片
+            this.openUploadModal=function() {
+                $('body').modalmanager('loading');
+ 
+                uploadModal.load('@Url.Action("Index","UploadFile",new {area="Admin"},true)', '', function(){
+                    uploadModal.modal();
+                });
+            }
         };
 
         var vm = new ViewModel("@Model.Dest.Title", "@Model.Dest.Subject", "@Model.Dest.Introduce", "@Model.Dest.Feature",

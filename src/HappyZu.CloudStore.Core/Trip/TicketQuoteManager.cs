@@ -61,7 +61,33 @@ namespace HappyZu.CloudStore.Trip
             }
 
             return query.PageBy(request).ToList();
-        } 
+        }
+
+        public Task<IReadOnlyList<TicketQuote>> QuerysListAsync(Func<IQueryable<TicketQuote>, IQueryable<TicketQuote>> query, IPagedResultRequest request)
+        {
+            if (request.MaxResultCount<=0)
+            {
+                request.MaxResultCount=int.MaxValue;
+            }
+            var list = query == null ?
+                _ticketQuoteRepository.GetAll().OrderBy(p => p.Id).PageBy(request).ToList() :
+                _ticketQuoteRepository.Query(query).PageBy(request).ToList();
+            return Task.FromResult((IReadOnlyList<TicketQuote>)list);
+        }
+
+        public Task<IReadOnlyList<TicketQuote>> QuerysListAsync(IPagedResultRequest request)
+        {
+            return QuerysListAsync(null, request);
+        }
+
+        public Task<int> QueryCountAsync(Func<IQueryable<TicketQuote>, IQueryable<TicketQuote>> query)
+        {
+            var count = query != null ?
+                    _ticketQuoteRepository.Query(query).Count() :
+                    _ticketQuoteRepository.Count();
+
+            return Task.FromResult(count);
+        }
 
         public async Task<IList<TicketQuote>> GetTicketQuotesByTicketIdAsync(int ticketId)
         {

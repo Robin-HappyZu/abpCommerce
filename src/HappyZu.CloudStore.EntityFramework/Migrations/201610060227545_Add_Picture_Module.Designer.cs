@@ -7,13 +7,13 @@ namespace HappyZu.CloudStore.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Update_Ticket_Entity1 : IMigrationMetadata
+    public sealed partial class Add_Picture_Module : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Update_Ticket_Entity1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_Picture_Module));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609301530443_Update_Ticket_Entity1"; }
+            get { return "201610060227545_Add_Picture_Module"; }
         }
         
         string IMigrationMetadata.Source
