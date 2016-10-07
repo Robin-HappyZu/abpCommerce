@@ -68,6 +68,10 @@ namespace HappyZu.CloudStore.Trip
 
         Task<ResultOutputDto> AddDestPictureMapping(DestPictureMappingInput input);
 
+        Task<ResultOutputDto> RemoveDestPictureMapping(DestPictureMappingInput input);
+
+        Task<ResultOutputDto> SetDefaultDestPicture(DestPictureMappingInput input);
+
         #endregion
     }
 }
