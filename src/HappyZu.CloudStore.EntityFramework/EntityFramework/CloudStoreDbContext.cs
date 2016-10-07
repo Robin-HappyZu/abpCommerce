@@ -44,6 +44,8 @@ namespace HappyZu.CloudStore.EntityFramework
         public virtual IDbSet<PaymentRecord> PaymentRecords { get; set; }
 
         public virtual IDbSet<DestPictureMapping> DestPictrueMapping { get; set; }
+
+        public virtual IDbSet<ETicket> ETickets { get; set; } 
         #endregion
 
         #region UploadFile

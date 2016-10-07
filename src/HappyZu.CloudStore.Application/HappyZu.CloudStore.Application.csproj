@@ -61,6 +61,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="IdGen, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IdGen.1.3.1\lib\net45\IdGen.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -156,6 +160,7 @@
     <Compile Include="Trip\Dto\DestProvinceDto.cs" />
     <Compile Include="Trip\Dto\DetachDestAttributeRecordInput.cs" />
     <Compile Include="Trip\Dto\DetachTicketAttributeRecordInput.cs" />
+    <Compile Include="Trip\Dto\ETicketDto.cs" />
     <Compile Include="Trip\Dto\GetDestCitiesInput.cs" />
     <Compile Include="Trip\Dto\GetDestProvincesInput.cs" />
     <Compile Include="Trip\Dto\GetDestsInput.cs" />
@@ -171,7 +176,9 @@
     <Compile Include="Trip\Dto\UpdateTicketInput.cs" />
     <Compile Include="Trip\Dto\UpdateTicketOrderInput.cs" />
     <Compile Include="Trip\Dto\UpdateTicketQuoteInput.cs" />
+    <Compile Include="Trip\ETicketAppService.cs" />
     <Compile Include="Trip\IAttributeAppService.cs" />
+    <Compile Include="Trip\IETicketAppService.cs" />
     <Compile Include="Trip\IPaymentAppService.cs" />
     <Compile Include="Trip\ITicketAppService.cs" />
     <Compile Include="Trip\Dto\TicketDto.cs" />
@@ -184,6 +191,7 @@
     <Compile Include="Trip\PaymentAppSerivce.cs" />
     <Compile Include="Trip\TicketAppService.cs" />
     <Compile Include="FileManager\IUploadFileService.cs" />
+    <Compile Include="Trip\UniqueIdManager.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\Dto\UserLoginInput.cs" />
     <Compile Include="Users\IUserAppService.cs" />

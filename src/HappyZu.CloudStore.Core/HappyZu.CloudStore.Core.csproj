@@ -123,6 +123,8 @@
     <Compile Include="Trip\DestMananger.cs" />
     <Compile Include="Trip\DestPictureMapping.cs" />
     <Compile Include="Trip\DestPictureMappingManager.cs" />
+    <Compile Include="Trip\ETicket.cs" />
+    <Compile Include="Trip\ETicketManager.cs" />
     <Compile Include="Trip\PaymentRecord.cs" />
     <Compile Include="Trip\PaymentRecordManager.cs" />
     <Compile Include="Trip\Quote.cs" />
