@@ -369,5 +369,10 @@ namespace HappyZu.CloudStore.Trip
                 return new List<DestAttributeRecordDto>();
             }
         }
+
+        public Task<ResultOutputDto> AddDestPictureMapping(DestPictureMappingInput input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

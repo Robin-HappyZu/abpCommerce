@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201610060227545_Add_Picture_Module.Designer.cs">
       <DependentUpon>201610060227545_Add_Picture_Module.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610070218138_Create_E_Ticket.cs" />
+    <Compile Include="Migrations\201610070218138_Create_E_Ticket.Designer.cs">
+      <DependentUpon>201610070218138_Create_E_Ticket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="CloudStoreDataModule.cs" />
@@ -331,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610060227545_Add_Picture_Module.resx">
       <DependentUpon>201610060227545_Add_Picture_Module.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610070218138_Create_E_Ticket.resx">
+      <DependentUpon>201610070218138_Create_E_Ticket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
