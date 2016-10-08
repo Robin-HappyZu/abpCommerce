@@ -54,9 +54,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                         var fileName = Path.Combine(path, newfilename);
                         file.SaveAs(fileName);
 
-                        var result = await _fileItemManager.AddFileItem(new FileItemInput());
-
-                        return Json(new { error = false, message = strFileName,id= result.EntityId });
+                        return Json(new { error = false, message = strFileName });
                     }
                     catch (Exception ex)
                     {
