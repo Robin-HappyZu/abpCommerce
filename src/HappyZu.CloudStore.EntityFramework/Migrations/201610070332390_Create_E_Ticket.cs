@@ -20,7 +20,7 @@ namespace HappyZu.CloudStore.Migrations
                         Description = c.String(),
                         CreateOn = c.DateTime(nullable: false),
                         IsChecked = c.Boolean(nullable: false),
-                        CheckedOn = c.DateTime(nullable: false),
+                        CheckedOn = c.DateTime(),
                         CheckerId = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

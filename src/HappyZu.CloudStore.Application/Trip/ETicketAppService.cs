@@ -31,7 +31,7 @@ namespace HappyZu.CloudStore.Trip
             eTicket.TicketorderItemId = ticketOrderItemId;
             eTicket.Description = description;
             eTicket.SerialNo = _uniqueIdManager.CreateId();
-
+            eTicket.CreateOn = DateTime.UtcNow;
             var source = $"{ticketId}|{ticketOrderId}|{ticketOrderItemId}|{eTicket.SerialNo}";
 
             eTicket.Hash = GetMd5Hash(source);
@@ -40,7 +40,7 @@ namespace HappyZu.CloudStore.Trip
             await _eTicketManager.InsertETicketAsync(eTicket);
         }
 
-        public async Task<bool> CheckInAsync(int serialNo, string hash, int checkerId)
+        public async Task<bool> CheckInAsync(long serialNo, string hash, int checkerId)
         {
             var eTicket = await _eTicketManager.GetETicketBySerialNoAndHashAsync(serialNo, hash);
             if (eTicket == null || eTicket.IsChecked) return false;
@@ -53,7 +53,7 @@ namespace HappyZu.CloudStore.Trip
             return true;
         }
 
-        public async Task<bool> IsValidAsync(int serialNo, string hash)
+        public async Task<bool> IsValidAsync(long serialNo, string hash)
         {
             var eTicket = await _eTicketManager.GetETicketBySerialNoAndHashAsync(serialNo, hash);
             return eTicket != null && !eTicket.IsChecked;
@@ -76,7 +76,7 @@ namespace HappyZu.CloudStore.Trip
             var data = _md5Hash.ComputeHash(Encoding.UTF8.GetBytes(source));
 
             var builder = new StringBuilder();
-            foreach (byte t in data)
+            foreach (var t in data)
             {
                 builder.Append(t.ToString("x2"));
             }

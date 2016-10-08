@@ -13,7 +13,7 @@ namespace HappyZu.CloudStore.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201610070218138_Create_E_Ticket"; }
+            get { return "201610070332390_Create_E_Ticket"; }
         }
         
         string IMigrationMetadata.Source

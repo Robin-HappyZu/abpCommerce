@@ -24,7 +24,7 @@ namespace HappyZu.CloudStore.Trip
             await _eTicketRepository.UpdateAsync(eTicket);
         }
 
-        public async Task<ETicket> GetETicketBySerialNoAndHashAsync(int serailNo, string hash)
+        public async Task<ETicket> GetETicketBySerialNoAndHashAsync(long serailNo, string hash)
         {
             return await _eTicketRepository.FirstOrDefaultAsync(
                         eTicket => eTicket.SerialNo == serailNo && eTicket.Hash == hash);
@@ -38,6 +38,11 @@ namespace HappyZu.CloudStore.Trip
         public async Task<IList<ETicket>> GetETicketsByTicketOrderIdAsync(int ticketOrderId)
         {
             return await _eTicketRepository.GetAllListAsync(eTicket => eTicket.TicketOrderId == ticketOrderId);
+        }
+
+        public async Task<int> GetETicketsCountByTicketOrderIdAsync(int ticketOrderId)
+        {
+            return await _eTicketRepository.CountAsync(eTicket => eTicket.TicketOrderId == ticketOrderId);
         }
     }
 }
