@@ -56,16 +56,16 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 
                         var result = await _fileItemManager.AddFileItem(new FileItemInput());
 
-                        return Json(new { error = false, message = strFileName }, JsonRequestBehavior.AllowGet);
+                        return Json(new { error = false, message = strFileName,id= result.EntityId });
                     }
                     catch (Exception ex)
                     {
-                        return Json(new { error = true, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                        return Json(new { error = true, message = ex.Message });
                     }
                    
                 }
             }
-            return Json(new { error = true, message = "请选择文件！" }, JsonRequestBehavior.AllowGet);
+            return Json(new { error = true, message = "请选择文件！" });
         }
     }
 }

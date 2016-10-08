@@ -19,7 +19,7 @@ namespace HappyZu.CloudStore.Web
                 config.ThemeResolver = new CookiesThemeResover();
             });
 
-            //RegisterWeixinPay();
+            RegisterWeixinPay();
 
             base.Application_Start(sender, e);
         }

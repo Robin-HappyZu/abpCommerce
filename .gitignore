@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /src/HappyZu.CloudStore.Web/App_Data/Logs
+/src/HappyZu.CloudStore.Web/Media/

@@ -3,10 +3,96 @@
     <h4 class="modal-title">上传图片</h4>
 </div>
 <div class="modal-body">
-    
+    <div class="form form-horizontal">
+        <div class="form-body">
+            <div class="form-group">
+                <label class="col-md-3 control-label">分类图片</label>
+                <div class="col-md-9">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-new thumbnail pull-left" data-trigger="fileinput" style="width: 34px; height: 34px;">
+                            <img src="/Content/pages/img/bg-white.png" />
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail pull-left" data-trigger="fileinput" style="width: 34px; height: 34px;">
+                        </div>
+                        <div class="pull-left">
+                            <span class="btn default btn-file">
+                                <span class="fileinput-new">
+                                    选择图片
+                                </span>
+                                <span class="fileinput-exists">
+                                    修改图片
+                                </span>
+                                <input type="file" name="File" id="_File" />
+                                <input type="hidden" name="" value="" id="" />
+
+                            </span>
+                            <a href="#" class="btn red fileinput-exists" data-dismiss="fileinput">
+                                移除图片
+                            </a>
+                            <a class="btn green fileinput-exists upload-btn" href="javascript:;" data-fileinput="_File">上传</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="modal-footer">
     <div class="pull-left choose-location"></div>
     <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
     <button type="button" class="btn green save-picture-mapping">保存</button>
 </div>
+<script>
+    $(function() {
+        $('body').append('<input id="fileupload" class="hide" type="file" name="files[]" data-url="@Url.Action("Index", new {controller="UploadFile"})">');
+      
+
+        $('#fileupload').fileupload({
+            autoUpload: false, formData: [
+           {
+               name: 'dir',
+               value: 'Upload'
+           }, {
+               name: verificationToken.attr("name"),
+               value: verificationToken.val()
+           }
+            ]
+        }).on("fileuploaddone", function (e, data) {
+            var path = '';
+            var id = 0;
+            if (data.result.success && !data.result.result.error) {
+                path = data.result.result.message;
+                id = data.result.result.id;
+            }
+
+            var fileinput = data.fileInput;
+            var fileupload = fileinput.parent().parent().parent(".fileinput");
+            fileinput.siblings(":input[type='hidden']").val(path);
+            fileupload.removeClass("fileinput-exists");
+            fileupload.addClass("fileinput-new");
+            var img = fileupload.children('.thumbnail.fileinput-new').find("img");
+            if (img.length > 0) {
+                img.attr("src", path);
+            }
+            else {
+                fileupload.children(".thumbnail").append("<img src='" + path + "' />");
+            }
+        }).on("fileuploadsend", function (e, data) {
+            //alert(data);
+        });
+
+        $('.fileinput')
+            .on("click",
+                '.upload-btn',
+                function() {
+                    var $this = $(this);
+                    var input = $("#" + $this.attr("data-fileinput"));
+                    $('#fileupload')
+                        .fileupload('send',
+                        {
+                            fileInput: input
+                        });
+                });
+    })
+</script>
