@@ -28,7 +28,7 @@ namespace HappyZu.CloudStore.Trip
         // 是否已经检票
         public bool IsChecked { get; set; }
         // 检票时间
-        public DateTime CheckedOn { get; set; }
+        public DateTime? CheckedOn { get; set; }
         // 检票员Id
         public long CheckerId { get; set; }
     }

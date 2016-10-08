@@ -12,9 +12,9 @@ namespace HappyZu.CloudStore.Trip
     {
         Task CreateETicketAsync(int ticketId, int ticketOrderId, int ticketOrderItemId, string description);
 
-        Task<bool> CheckInAsync(int serialNo, string hash, int checkerId);
+        Task<bool> CheckInAsync(long serialNo, string hash, int checkerId);
 
-        Task<bool> IsValidAsync(int serialNo, string hash);
+        Task<bool> IsValidAsync(long serialNo, string hash);
 
         Task<IList<ETicketDto>> GetETicketsByTicketOrderIdAsync(int ticketOrderId);
 

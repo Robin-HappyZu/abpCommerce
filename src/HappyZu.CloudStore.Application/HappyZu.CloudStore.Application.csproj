@@ -177,6 +177,7 @@
     <Compile Include="Trip\Dto\UpdateTicketOrderInput.cs" />
     <Compile Include="Trip\Dto\UpdateTicketQuoteInput.cs" />
     <Compile Include="Trip\ETicketAppService.cs" />
+    <Compile Include="Trip\Events\OrderPaidEventData.cs" />
     <Compile Include="Trip\IAttributeAppService.cs" />
     <Compile Include="Trip\IETicketAppService.cs" />
     <Compile Include="Trip\IPaymentAppService.cs" />

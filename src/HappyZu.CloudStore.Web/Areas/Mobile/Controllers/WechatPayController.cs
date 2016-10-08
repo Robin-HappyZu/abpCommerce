@@ -130,6 +130,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
                 // 获取订单, 修改订单状态
                 
+                // 发布付款成功事件
             }
             else
             {
