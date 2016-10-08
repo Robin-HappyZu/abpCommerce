@@ -51,6 +51,18 @@ namespace HappyZu.CloudStore.Trip
             return Task.FromResult((IReadOnlyList<DestPictureMapping>)list);
         }
 
+        public Task<IReadOnlyList<DestPictureMapping>> QuerysListAsync(Func<IQueryable<DestPictureMapping>, IQueryable<DestPictureMapping>> query, Func<DestPictureMapping, DestPictureMapping> select, IPagedResultRequest request)
+        {
+            if (request.MaxResultCount <= 0)
+            {
+                request.MaxResultCount = int.MaxValue;
+            }
+            var list = query == null ?
+                _pictrueMappingRepository.GetAll().OrderBy(p => p.Id).PageBy(request).ToList() :
+                _pictrueMappingRepository.Query(query).PageBy(request).Select(select).ToList();
+            return Task.FromResult((IReadOnlyList<DestPictureMapping>)list);
+        }
+
         public Task<IReadOnlyList<DestPictureMapping>> QuerysListAsync(IPagedResultRequest request)
         {
             return QuerysListAsync(null, request);

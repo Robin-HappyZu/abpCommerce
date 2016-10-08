@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using HappyZu.CloudStore.Common.Dto;
+using HappyZu.CloudStore.FileManager.Dto;
 using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
@@ -71,7 +72,8 @@ namespace HappyZu.CloudStore.Trip
         Task<ResultOutputDto> RemoveDestPictureMapping(DestPictureMappingInput input);
 
         Task<ResultOutputDto> SetDefaultDestPicture(DestPictureMappingInput input);
-
+        
+        Task<IPagedResult<FileItemMappingDto>> GetPagedDestPicturesAsync(GetPagedFileItemInput input);
         #endregion
     }
 }

@@ -9,7 +9,5 @@ namespace HappyZu.CloudStore.FileManager
     public interface IUploadFileService : IApplicationService
     {
         Task<ResultOutputDto> AddFileItem(FileItemInput input);
-
-        Task<IPagedResult<FileItemMappingDto>> GetPagedFileItemsAsync(GetPagedFileItemInput input);
     }
 }

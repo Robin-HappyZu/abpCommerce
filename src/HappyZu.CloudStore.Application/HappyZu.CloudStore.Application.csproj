@@ -122,6 +122,7 @@
     <Compile Include="FileManager\Dto\FileItemInput.cs" />
     <Compile Include="FileManager\Dto\FileItemMappingDto.cs" />
     <Compile Include="FileManager\Dto\GetPagedFileItemInput.cs" />
+    <Compile Include="FileManager\UploadFileService.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />

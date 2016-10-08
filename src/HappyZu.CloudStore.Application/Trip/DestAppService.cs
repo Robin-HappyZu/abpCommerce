@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using HappyZu.CloudStore.Common.Dto;
+using HappyZu.CloudStore.FileManager;
+using HappyZu.CloudStore.FileManager.Dto;
 using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
@@ -14,13 +16,19 @@ namespace HappyZu.CloudStore.Trip
     {
         private readonly DestLocationManager _destLocationManager;
         private readonly DestMananger _destMananger;
+        private readonly DestPictureMappingManager _pictureMappingManager;
+        private readonly FileItemManager _fileItemManager;
 
-        public DestAppService(DestMananger destMananger, DestLocationManager destLocationManager)
+        public DestAppService(DestMananger destMananger, DestLocationManager destLocationManager, 
+            DestPictureMappingManager pictureMappingManager, FileItemManager fileItemManager)
         {
             _destMananger = destMananger;
             _destLocationManager = destLocationManager;
+            _pictureMappingManager = pictureMappingManager;
+            _fileItemManager = fileItemManager;
         }
 
+        #region 景点目的地省份城市管理
         /// <summary>
         /// 获取景点省份列表
         /// </summary>
@@ -206,6 +214,10 @@ namespace HappyZu.CloudStore.Trip
             }
         }
 
+        #endregion
+
+        #region 景点管理
+
         public async Task<IPagedResult<DestDto>> GetDestsByLocationAsync(GetDestsInput input)
         {
             try
@@ -328,6 +340,9 @@ namespace HappyZu.CloudStore.Trip
                 return ResultOutputDto.Exception(e);
             }
         }
+        #endregion
+
+        #region 景点属性
 
         public async Task<ResultOutputDto> AttachDestAttributeRecordAsync(AttachDestAttributeRecordInput input)
         {
@@ -370,19 +385,84 @@ namespace HappyZu.CloudStore.Trip
             }
         }
 
-        public Task<ResultOutputDto> AddDestPictureMapping(DestPictureMappingInput input)
+        #endregion
+
+        #region 景点图片集
+
+        public async Task<ResultOutputDto> AddDestPictureMapping(DestPictureMappingInput input)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = input.DestPictureMapping.MapTo<DestPictureMapping>();
+                await _pictureMappingManager.AddAsync(entity);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
-        public Task<ResultOutputDto> RemoveDestPictureMapping(DestPictureMappingInput input)
+        public async Task<ResultOutputDto> RemoveDestPictureMapping(DestPictureMappingInput input)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _pictureMappingManager.RemoveByIdAsync(input.DestPictureMapping.Id);
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
 
-        public Task<ResultOutputDto> SetDefaultDestPicture(DestPictureMappingInput input)
+        public async Task<ResultOutputDto> SetDefaultDestPicture(DestPictureMappingInput input)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var entity=await _pictureMappingManager.GetByIdAsync(input.DestPictureMapping.Id);
+                if (entity==null)
+                {
+                    return ResultOutputDto.Successed;
+                }
+
+                entity.IsDefault = true;
+                await _pictureMappingManager.UpdateAsync(entity);
+
+                var oldDefault =
+                    await
+                        _pictureMappingManager.QuerysListAsync(q => q.Where(x => x.IsDefault && x.Id != entity.Id),
+                            new PagedResultRequestDto());
+                foreach (var item in oldDefault)
+                {
+                    item.IsDefault = false;
+                    await _pictureMappingManager.UpdateAsync(item);
+                }
+                return ResultOutputDto.Successed;
+            }
+            catch (Exception e)
+            {
+                return ResultOutputDto.Exception(e);
+            }
         }
+        
+        public async Task<IPagedResult<FileItemMappingDto>> GetPagedDestPicturesAsync(GetPagedFileItemInput input)
+        {
+            try
+            {
+                var ids =await _pictureMappingManager.QuerysListAsync(m => m.Where(x => x.DestId == input.MappingId),x=>new DestPictureMapping()
+                {
+                    FileId = x.FileId
+                }, input);
+                var list =await _fileItemManager.QuerysListAsync(m => m.Where(x => ids.Select(id=>id.FileId).ToList().Contains(x.Id)),input);
+                return new PagedResultDto<FileItemMappingDto>(list.Count, list.MapTo<List<FileItemMappingDto>>());
+            }
+            catch (Exception)
+            {
+                return new PagedResultDto<FileItemMappingDto>(0, new List<FileItemMappingDto>());
+            }
+        }
+        #endregion
     }
 }

@@ -18,9 +18,9 @@ namespace HappyZu.CloudStore.FileManager
             _fileItemRepository = fileItemRepository;
         }
 
-        public async Task AddAsync(FileItem entity)
+        public async Task<int> AddAsync(FileItem entity)
         {
-            await _fileItemRepository.InsertAsync(entity);
+            return await _fileItemRepository.InsertAndGetIdAsync(entity);
         }
 
         public async Task UpdateAsync(FileItem entity)
