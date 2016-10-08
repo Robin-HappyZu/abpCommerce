@@ -28,6 +28,11 @@ namespace HappyZu.CloudStore.Trip
             await _ticketOrderRepository.InsertAsync(ticketOrder);
         }
 
+        public async Task<int> AddTicketOrderAndGetIdAsync(TicketOrder ticketOrder)
+        {
+            return await _ticketOrderRepository.InsertAndGetIdAsync(ticketOrder);
+        }
+
         public async Task UpdateTicketOrderAsync(TicketOrder ticketOrder)
         {
             await _ticketOrderRepository.UpdateAsync(ticketOrder);

@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Web.Mvc;
 using System.Xml.Linq;
+using HappyZu.CloudStore.Trip;
 using HappyZu.CloudStore.Web.Areas.Mobile.Filters;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.WechatPay;
 using Senparc.Weixin.MP;
@@ -12,6 +13,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 {
     public class WechatPayController : Controller
     {
+        private readonly IPaymentAppService _paymentAppService;
         private static TenPayV3Info _tenPayV3Info;
 
         public static TenPayV3Info TenPayV3Info
@@ -24,11 +26,25 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             }
         }
 
+        public WechatPayController(IPaymentAppService paymentAppService)
+        {
+            _paymentAppService = paymentAppService;
+        }
+
         [WechatAuthFilter]
         // GET: Mobile/WechatPay
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult UserTag()
+        {
+            var token = "tJi48kx8a0lzq8ig6_PAeS_XzaClRRrPg9ab3YVn6HBuf2iplJQbfJwv3rpxmP9ImpBv8hkGBKRzgvMjeoiBfR0NzRVUe3l5XMRq4zJ5Wi-_wTD6FMlVjDN6glEW7oqjWNPgABAPGI";
+
+            var res = UserTagApi.Get(token, 2);
+
+            return Content(res.next_openid);
         }
 
         /// <summary>
@@ -126,11 +142,8 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             if (responseHandler.IsTenpaySign())
             {
                 res = "success";
-                // 正确的订单处理流程
-
-                // 获取订单, 修改订单状态
-                
                 // 发布付款成功事件
+                _paymentAppService.OrderPaidAsync(tradeNo, "test_no", 200);
             }
             else
             {

@@ -12,7 +12,7 @@ using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
 {
-    public class TicketAppService : ITicketAppService
+    public class TicketAppService : CloudStoreAppServiceBase, ITicketAppService
     {
         private readonly TicketManager _ticketManager;
         private readonly TicketQuoteManager _ticketQuoteManager;
@@ -249,8 +249,17 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var order = input.TicketOrder.MapTo<TicketOrder>();
+                order.OrderNo = Guid.NewGuid().ToString("N").ToUpper();
+
                 var orderItems = input.TicketOrderItems.MapTo<List<TicketOrderItem>>();
-                await _ticketOrderManager.AddTicketOrderAsync(order);
+                var orderId = await _ticketOrderManager.AddTicketOrderAndGetIdAsync(order);
+                await UnitOfWorkManager.Current.SaveChangesAsync();
+
+                foreach (var item in orderItems)
+                {
+                    item.TicketOrderId = orderId;
+                    item.TicketOrderItemNo = Guid.NewGuid().ToString("N").ToUpper();
+                }
                 await _ticketOrderManager.AddTicketOrderDetailsAsync(orderItems);
                 return ResultOutputDto.Successed;
             }

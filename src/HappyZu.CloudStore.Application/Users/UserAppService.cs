@@ -61,11 +61,6 @@ namespace HappyZu.CloudStore.Users
             user.Password = new PasswordHasher().HashPassword(input.Password);
             user.IsEmailConfirmed = true;
 
-            using (var uow = UnitOfWorkManager.Begin())
-            {
-                await UnitOfWorkManager.Current.SaveChangesAsync();
-                uow.Complete();
-            }
             await UserManager.CreateAsync(user);
             await UnitOfWorkManager.Current.SaveChangesAsync();
         }

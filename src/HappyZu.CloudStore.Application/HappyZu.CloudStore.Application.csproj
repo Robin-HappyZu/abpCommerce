@@ -178,6 +178,7 @@
     <Compile Include="Trip\Dto\UpdateTicketQuoteInput.cs" />
     <Compile Include="Trip\ETicketAppService.cs" />
     <Compile Include="Trip\Events\OrderPaidEventData.cs" />
+    <Compile Include="Trip\Events\PaymentHandler.cs" />
     <Compile Include="Trip\IAttributeAppService.cs" />
     <Compile Include="Trip\IETicketAppService.cs" />
     <Compile Include="Trip\IPaymentAppService.cs" />
@@ -189,7 +190,7 @@
     <Compile Include="Trip\Dto\UpdateDestInput.cs" />
     <Compile Include="Trip\Dto\UpdateDestProvinceInput.cs" />
     <Compile Include="Trip\IDestAppService.cs" />
-    <Compile Include="Trip\PaymentAppSerivce.cs" />
+    <Compile Include="Trip\PaymentAppService.cs" />
     <Compile Include="Trip\TicketAppService.cs" />
     <Compile Include="FileManager\IUploadFileService.cs" />
     <Compile Include="Trip\UniqueIdManager.cs" />

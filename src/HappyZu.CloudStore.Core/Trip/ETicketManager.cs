@@ -39,5 +39,10 @@ namespace HappyZu.CloudStore.Trip
         {
             return await _eTicketRepository.GetAllListAsync(eTicket => eTicket.TicketOrderId == ticketOrderId);
         }
+
+        public async Task<int> GetETicketsCountByTicketOrderIdAsync(int ticketOrderId)
+        {
+            return await _eTicketRepository.CountAsync(eTicket => eTicket.TicketOrderId == ticketOrderId);
+        }
     }
 }
