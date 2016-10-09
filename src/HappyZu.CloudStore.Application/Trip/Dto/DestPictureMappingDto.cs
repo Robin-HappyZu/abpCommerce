@@ -8,7 +8,7 @@ using Abp.AutoMapper;
 
 namespace HappyZu.CloudStore.Trip.Dto
 {
-    [AutoMapFrom(typeof(DestPictureMapping))]
+    [AutoMap(typeof(DestPictureMapping))]
     public class DestPictureMappingDto:EntityDto
     {
         public int DestId { get; set; }

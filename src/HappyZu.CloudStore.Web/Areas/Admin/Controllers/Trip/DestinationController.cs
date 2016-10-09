@@ -119,9 +119,14 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             {
                 DestId = vm.Id
             });
+            var pictures = await _destAppService.GetPagedDestPicturesAsync(new GetPagedFileItemInput()
+            {
+                MappingId = vm.Id
+            });
             vm.Dest = output;
             vm.TicketTypes = ticketType.Items;
             vm.Tickets = tickets.Items;
+            vm.Pictures = pictures.Items;
             return View(vm);
         }
 
@@ -517,12 +522,14 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                     DestPictureMapping = new DestPictureMappingDto
                     {
                         DestId = vm.Id,
-                        FileId = result.EntityId ?? 0
+                        FileId = result.EntityId ?? 0,
+                        DisplayOrder = vm.DisplayOrder,
+                        IsDefault = vm.IsDefault
                     }
                 });
-                return Json(output);
+                return Json(new {success= output.Status,id=output.EntityId });
             }
-            return Json(null);
+            return Json(new{success=false});
         }
         #endregion
     }

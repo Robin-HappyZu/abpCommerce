@@ -8,7 +8,7 @@ using Abp.AutoMapper;
 
 namespace HappyZu.CloudStore.FileManager.Dto
 {
-    [AutoMapFrom(typeof(FileItem))]
+    [AutoMap(typeof(FileItem))]
     public class FileItemDto :EntityDto
     {
         public string Path { get; set; }

@@ -277,9 +277,10 @@
             this.MetaDescription = ko.observable(metaDescription);
             this.ReturnUrl = ko.observable(returnUrl);
             this.IsCreate = ko.observable(false);
-            
+
             this.TicketTypes = ko.observableArray(@Html.Raw(Model.TicketTypes.ToJsonString()));
             this.Tickets = ko.observableArray(@Html.Raw(Model.Tickets.ToJsonString()));
+            this.Pictures = ko.observableArray(@Html.Raw(Model.Pictures.ToJsonString()));
 
             this.submit = function(data, event) {
                 var url = $('#uiform').attr("action");
@@ -429,11 +430,13 @@
                 $('body').modalmanager('loading');
 
                 uploadModal.load('@Url.Action("Index", "UploadFile", new {area = "Admin"}, true)',
-                        '',
-                        function() {
-                            uploadModal.modal();
-                        });
+                    '',
+                    function() {
+                        uploadModal.modal();
+                    });
             }
+
+
         };
 
         var vm = new ViewModel("@Model.Dest.Title",
@@ -461,6 +464,65 @@
 
         ko.applyBindings(vm);
 
+        $(function() {
+            $('#upload-pic').on('click','.save-picture-mapping', function(event) {
+                var $btn = $(event.target);
+                $btn.button('loading');
+                var url = '@Url.Action("AddDestPicture", "Destination", new {area = "Admin"}, true)';
+                var params = [];
+                params.push({ name: "Id", value: @Model.Dest.Id });
+                params.push({ name: "DisplayOrder", value: uvm.DisplayOrder() });
+                params.push({ name: "IsDefault", value: uvm.IsDefault() });
+                params.push({ name: "FileItem.Path", value: uvm.Path() });
+                params.push({ name: "FileItem.SEOFileName", value: uvm.SEOFileName() });
+                params.push({ name: "FileItem.AltAttribute", value: uvm.AltAttribute() });
+                params.push({ name: "FileItem.TitleAttribute", value: uvm.TitleAttribute() });
 
+                App.blockUI({ target: 'body', animate: true });
+                $.post(url,
+                    params,
+                    function(data) {
+                        App.unblockUI('body');
+                        $btn.button('reset');
+                        if (data.success) {
+                            if (data.result.success) {
+                                vm.Pictures.push({ "FileItem": 
+                                    { "Path": uvm.Path(), 
+                                    "MimeType": null, 
+                                    "SEOFileName": uvm.SEOFileName(),
+                                    "AltAttribute": uvm.AltAttribute(),
+                                    "TitleAttribute": uvm.TitleAttribute()}, 
+                                    "IsDefault": uvm.IsDefault(),
+                                    "DisplayOrder": uvm.DisplayOrder() , 
+                                    "Id": data.result.id });
+                                uploadModal.modal('hide');
+                            } else {
+                                App.alert({
+                                    container: '',
+                                    place: 'append', // append or prepent in container
+                                    type: 'danger', // alert's type
+                                    message: '服务器端错误数据未成功保存！', // alert's message
+                                    close: true, // make alert closable
+                                    reset: true, // close all previouse alerts first
+                                    focus: true, // auto scroll to the alert after shown
+                                    icon: 'warning' // put icon before the message
+                                });
+                            }
+                        } else {
+                            App.alert({
+                                container: '',
+                                place: 'append', // append or prepent in container
+                                type: 'danger', // alert's type
+                                message: data.error.message, // alert's message
+                                close: true, // make alert closable
+                                reset: true, // close all previouse alerts first
+                                focus: true, // auto scroll to the alert after shown
+                                icon: 'warning' // put icon before the message
+                            });
+                        };
+                    },
+                    'json');
+            });
+        });
     </script>
 }

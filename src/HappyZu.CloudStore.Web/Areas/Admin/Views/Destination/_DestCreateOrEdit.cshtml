@@ -268,17 +268,19 @@
                                                     缩略图
                                                 </th>
                                                 <th>
-                                                    排序
+                                                    默认
                                                 </th>
                                                 <th> </th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody data-bind="foreach:Pictures">
                                             <tr>
                                                 <td>
-                                                    <a href="javascript:;"> RedBull </a>
+                                                    <img data-bind="attr:{src:FileItem.Path}" width="80" height="80"/>
                                                 </td>
-                                                <td> </td>
+                                                <td>
+                                                    <span data-bind="text:IsDefault"></span>
+                                                </td>
                                                 <td>
                                                     <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-edit"></i> Edit

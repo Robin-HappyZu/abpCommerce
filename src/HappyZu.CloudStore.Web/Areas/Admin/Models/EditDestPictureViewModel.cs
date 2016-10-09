@@ -10,6 +10,9 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Models
     {
         public int Id { get; set; }
 
+        public int DisplayOrder { get; set; }
+
+        public bool IsDefault { get; set; }
         public FileItemDto FileItem { get; set; }
     }
 }

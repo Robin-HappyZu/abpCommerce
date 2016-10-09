@@ -24,6 +24,11 @@ namespace HappyZu.CloudStore.Trip
             await _pictrueMappingRepository.InsertAsync(entity);
         }
 
+        public async Task<int> AddAndGetIdAsync(DestPictureMapping entity)
+        {
+            return await _pictrueMappingRepository.InsertAndGetIdAsync(entity);
+        }
+
         public async Task UpdateAsync(DestPictureMapping entity)
         {
             await _pictrueMappingRepository.UpdateAsync(entity);

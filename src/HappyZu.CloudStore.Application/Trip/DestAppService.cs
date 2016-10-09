@@ -394,8 +394,8 @@ namespace HappyZu.CloudStore.Trip
             try
             {
                 var entity = input.DestPictureMapping.MapTo<DestPictureMapping>();
-                await _pictureMappingManager.AddAsync(entity);
-                return ResultOutputDto.Successed;
+                var id=await _pictureMappingManager.AddAndGetIdAsync(entity);
+                return ResultOutputDto.Success(id);
             }
             catch (Exception e)
             {
@@ -451,14 +451,29 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var ids =await _pictureMappingManager.QuerysListAsync(m => m.Where(x => x.DestId == input.MappingId),x=>new DestPictureMapping()
+                var ids =await _pictureMappingManager.QuerysListAsync(m => m.Where(x => x.DestId == input.MappingId).OrderBy(x=>x.DisplayOrder).ThenBy(x=>x.Id),x=>new DestPictureMapping()
                 {
-                    FileId = x.FileId
+                    FileId = x.FileId,
+                    Id=x.Id,
+                    IsDefault = x.IsDefault,
+                    DisplayOrder = x.DisplayOrder
                 }, input);
-                var list =await _fileItemManager.QuerysListAsync(m => m.Where(x => ids.Select(id=>id.FileId).ToList().Contains(x.Id)),input);
-                return new PagedResultDto<FileItemMappingDto>(list.Count, list.MapTo<List<FileItemMappingDto>>());
+                var idlist = ids.Select(x => x.FileId);
+                var list =await _fileItemManager.QuerysListAsync(m => m.Where(x => idlist.Contains(x.Id)).OrderBy(x=>x.Id),input);
+
+                var maplist=list.MapTo<List<FileItemDto>>();
+                var resultList= (from item in maplist
+                    let destPicture = ids.FirstOrDefault(x => x.FileId == item.Id)
+                    select new FileItemMappingDto()
+                    {
+                        FileItem = item, Id = destPicture.Id,
+                        DisplayOrder = destPicture.DisplayOrder,
+                        IsDefault = destPicture.IsDefault
+                    }).ToList();
+
+                return new PagedResultDto<FileItemMappingDto>(list.Count, resultList);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new PagedResultDto<FileItemMappingDto>(0, new List<FileItemMappingDto>());
             }

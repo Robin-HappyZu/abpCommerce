@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using HappyZu.CloudStore.FileManager.Dto;
 using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Web.Areas.Admin.Models
@@ -12,6 +13,8 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Models
         {
             Dest = new DestDto();
             TicketTypes=new List<TicketTypeDto>();
+            Pictures = new List<FileItemMappingDto>();
+            Tickets = new List<TicketDto>();
         }
 
         public int Id { get; set; }
@@ -20,5 +23,6 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Models
         public IReadOnlyList<TicketTypeDto> TicketTypes { get; set; }
 
         public IReadOnlyList<TicketDto> Tickets { get; set; }
+        public IReadOnlyList<FileItemMappingDto> Pictures { get; set; }
     }
 }

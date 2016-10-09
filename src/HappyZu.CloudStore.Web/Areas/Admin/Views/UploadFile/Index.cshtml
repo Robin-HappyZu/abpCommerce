@@ -58,7 +58,7 @@
     <div class="modal-footer">
         <div class="pull-left choose-location"></div>
         <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
-        <button type="button" class="btn green save-picture-mapping">保存</button>
+        <button type="button" data-loading-text="保存中..." class="btn green save-picture-mapping">保存</button>
     </div>
 </div>
 <script>
@@ -68,6 +68,8 @@
         this.AltAttribute = ko.observable();
         this.TitleAttribute = ko.observable();
         this.MimeType = ko.observable();
+        this.IsDefault = ko.observable(false);
+        this.DisplayOrder = ko.observable(0);
         this.Path = ko.observable();
     }
     var uvm = new UploadViewModel();
