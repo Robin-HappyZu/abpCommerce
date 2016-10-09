@@ -1,110 +1,122 @@
-﻿<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-    <h4 class="modal-title">上传图片</h4>
-</div>
-<div class="modal-body">
-    <div id="upload-form" class="form form-horizontal">
-        <div class="form-body">
-            <div class="form-group">
-                <label class="col-md-3 control-label">图片</label>
-                <div class="col-md-9">
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <div class="fileinput-new thumbnail pull-left" data-trigger="fileinput" style="width: 34px; height: 34px;">
-                            <img src="/Content/pages/img/bg-white.png" />
-                        </div>
-                        <div class="fileinput-preview fileinput-exists thumbnail pull-left" data-trigger="fileinput" style="width: 34px; height: 34px;">
-                        </div>
-                        <div class="pull-left">
-                            <span class="btn default btn-file">
-                                <span class="fileinput-new">
-                                    选择图片
+﻿<div id="upload-form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">上传图片</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form form-horizontal">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">图片</label>
+                    <div class="col-md-9">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail pull-left" data-trigger="fileinput" style="width: 34px; height: 34px;">
+                                <img src="~/areas/admin/Content/pages/img/bg-white.png" />
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail pull-left" data-trigger="fileinput" style="width: 34px; height: 34px;">
+                            </div>
+                            <div class="pull-left">
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">
+                                        选择图片
+                                    </span>
+                                    <span class="fileinput-exists">
+                                        修改图片
+                                    </span>
+                                    <input type="file" name="my.File" id="my_File" />
                                 </span>
-                                <span class="fileinput-exists">
-                                    修改图片
-                                </span>
-                                <input type="file" name="my.File" id="my_File" />
-                            </span>
-                            <a href="#" class="btn red fileinput-exists" data-dismiss="fileinput">
-                                移除图片
-                            </a>
-                            <a class="btn green fileinput-exists upload-btn" href="javascript:;" data-fileinput="my_File">上传</a>
+                                <a href="#" class="btn red fileinput-exists" data-dismiss="fileinput">
+                                    移除图片
+                                </a>
+                                <a class="btn green fileinput-exists upload-btn" href="javascript:;" data-fileinput="my_File">上传</a>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">名称</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" data-bind="text:SEOFileName"/>    
+                <div class="form-group">
+                    <label class="col-md-3 control-label">名称</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" data-bind="value:SEOFileName" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">提示</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" data-bind="text:AltAttribute" />
+                <div class="form-group">
+                    <label class="col-md-3 control-label">提示</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" data-bind="value:AltAttribute" />
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">标题</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" data-bind="text:TitleAttribute" />
+                <div class="form-group">
+                    <label class="col-md-3 control-label">标题</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" data-bind="value:TitleAttribute" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal-footer">
-    <div class="pull-left choose-location"></div>
-    <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
-    <button type="button" class="btn green save-picture-mapping">保存</button>
+    <div class="modal-footer">
+        <div class="pull-left choose-location"></div>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
+        <button type="button" class="btn green save-picture-mapping">保存</button>
+    </div>
 </div>
 <script>
-    $(function() {
-        $('body')
-            .append('<input id="fileupload" class="hide" type="file" name="files[]" data-url="@Url.Action("Index", new {controller="UploadFile"})">');
-        var verificationToken = $('@Html.AntiForgeryToken()');
 
-        $('#fileupload')
-            .fileupload({
-                autoUpload: false,
-                formData: [
-                    {
-                        name: 'dir',
-                        value: 'Upload'
-                    }, {
-                        name: verificationToken.attr("name"),
-                        value: verificationToken.val()
-                    }
-                ]
-            })
-            .on("fileuploaddone",
-                function(e, data) {
-                    var path = '';
-                    if (data.result.success && !data.result.result.error) {
-                        path = data.result.result.message;
-                        uvm.Path(path);
-                    }
-                    var fileinput = data.fileInput;
-                    var fileupload = fileinput.parent().parent().parent(".fileinput");
-                    fileupload.removeClass("fileinput-exists");
-                    fileupload.addClass("fileinput-new");
-                    var img = fileupload.children('.thumbnail.fileinput-new').find("img");
-                    if (img.length > 0) {
-                        img.attr("src", path);
-                    } else {
-                        fileupload.children(".thumbnail").append("<img src='" + path + "' />");
-                    }
-                })
-            .on("fileuploadsend",
-                function(e, data) {
-                    //alert(data);
-                });
+    var UploadViewModel = function () {
+        this.SEOFileName = ko.observable();
+        this.AltAttribute = ko.observable();
+        this.TitleAttribute = ko.observable();
+        this.MimeType = ko.observable();
+        this.Path = ko.observable();
+    }
+    var uvm = new UploadViewModel();
+
+    $(function () {
+        if ($('#fileupload').length<=0) {
+            $('body')
+                .append('<input id="fileupload" class="hide" type="file" name="files[]" data-url="@Url.Action("Index", new {controller="UploadFile"})">');
+            $('#fileupload')
+                    .fileupload({
+                        autoUpload: false,
+                        formData: [
+                            {
+                                name: 'dir',
+                                value: 'Upload'
+                            }
+                        ]
+                    })
+                    .on("fileuploaddone",
+                        function (e, data) {
+                            App.unblockUI('#upload-form');
+                            var path = '';
+                            if (data.result.success && !data.result.result.error) {
+                                path = data.result.result.message;
+                                uvm.Path(path);
+                            }
+                            var fileinput = data.fileInput;
+                            var fileupload = fileinput.parent().parent().parent(".fileinput");
+                            fileupload.removeClass("fileinput-exists");
+                            fileupload.addClass("fileinput-new");
+                            var img = fileupload.children('.thumbnail.fileinput-new').find("img");
+                            if (img.length > 0) {
+                                img.attr("src", path);
+                            } else {
+                                fileupload.children(".thumbnail").append("<img src='" + path + "' />");
+                            }
+                        })
+                    .on("fileuploadsend",
+                        function (e, data) {
+                            App.blockUI({ target: '#upload-form', animate: true });
+                        });
+        }
+
+
 
         $('.fileinput')
             .on("click",
                 '.upload-btn',
-                function() {
+                function () {
                     var $this = $(this);
                     var input = $("#" + $this.attr("data-fileinput"));
                     $('#fileupload')
@@ -113,18 +125,8 @@
                             fileInput: input
                         });
                 });
+    
+        ko.applyBindings(uvm, document.getElementById('upload-form'));
     });
 
-    var UploadViewModel = function() {
-        var _this = this;
-        this.SEOFileName = ko.observable();
-        this.AltAttribute = ko.observable();
-        this.TitleAttribute = ko.observable();
-        this.MimeType = ko.observable();
-        this.Path = ko.observable();
-    }
-
-    var uvm = new UploadViewModel();
-
-    ko.applyBindings(vm, $('#upload-form')[0]);
 </script>

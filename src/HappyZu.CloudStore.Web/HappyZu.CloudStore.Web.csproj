@@ -320,6 +320,7 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css" />
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
+    <Content Include="Areas\Admin\content\global\plugins\knockout-3.4.0.js" />
     <Content Include="Areas\Admin\content\layouts\layout\css\custom.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -571,6 +572,7 @@
     <Compile Include="Areas\Admin\Models\DataTableOptionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DestCityViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditDestCityViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\EditDestPictureViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditDestViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditTicketViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetDestsViewModel.cs" />

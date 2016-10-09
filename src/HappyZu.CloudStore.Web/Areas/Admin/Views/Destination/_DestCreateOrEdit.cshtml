@@ -204,6 +204,8 @@
                                             <div class="must-save" data-bind="visible:IsCreate">
                                                 必须保存后才能再进行下一步操作
                                             </div>
+                                            @if (Model.Dest.Id>0)
+                                            {
                                             <div data-bind="visible:!IsCreate()">
                                                 <div class="table-scrollable">
                                                     <table class="table table-bordered table-hover">
@@ -237,6 +239,8 @@
                                                     <a class="btn red" href="@Url.Action("TicketCreate","Destination",new {area="Admin",destId=Model.Id,returnUrl=Request.RawUrl},true)"> 添加门票 </a>
                                                 </div>
                                             </div>
+
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -250,6 +254,8 @@
                             <div class="must-save" data-bind="visible:IsCreate">
                                 必须保存后才能再进行下一步操作
                             </div>
+                            @if (Model.Dest.Id>0)
+                            {
                             <div data-bind="visible:!IsCreate()">
                                 <div>
                                     <button class="btn green-meadow" data-bind="click:openUploadModal"> 上传图片集 </button>
@@ -283,6 +289,8 @@
                                     </table>
                                 </div>
                             </div>
+
+                            }
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Abp.Web.Models;
+using HappyZu.CloudStore.FileManager;
+using HappyZu.CloudStore.FileManager.Dto;
 using HappyZu.CloudStore.Trip;
 using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Web.Areas.Admin.Models;
@@ -16,10 +18,13 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
     {
         private readonly IDestAppService _destAppService;
         private readonly ITicketAppService _ticketAppService;
-        public DestinationController(IDestAppService destAppService, ITicketAppService ticketAppService)
+        private readonly IUploadFileService _uploadFileService;
+        public DestinationController(IDestAppService destAppService, ITicketAppService ticketAppService,
+            IUploadFileService uploadFileService)
         {
             _destAppService = destAppService;
             _ticketAppService = ticketAppService;
+            _uploadFileService = uploadFileService;
         }
 
         #region 景区管理
@@ -495,5 +500,30 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         }
         #endregion
 
+        #region 景区图片管理
+
+        [HttpPost]
+        public async Task<JsonResult> AddDestPicture(EditDestPictureViewModel vm)
+        {
+            var input = new FileItemInput()
+            {
+                FileItem=vm.FileItem
+            };
+            var result =await _uploadFileService.AddFileItem(input);
+            if (result.EntityId>0)
+            {
+                var output=await _destAppService.AddDestPictureMapping(new DestPictureMappingInput
+                {
+                    DestPictureMapping = new DestPictureMappingDto
+                    {
+                        DestId = vm.Id,
+                        FileId = result.EntityId ?? 0
+                    }
+                });
+                return Json(output);
+            }
+            return Json(null);
+        }
+        #endregion
     }
 }
