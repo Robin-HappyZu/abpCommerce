@@ -113,6 +113,20 @@ namespace HappyZu.CloudStore.Trip
             }
         }
 
+        public async Task<DestCityDto> GetDefaultCity()
+        {
+            try
+            {
+                var city = await _destLocationManager.GetDefaultCity();
+
+                return city.MapTo<DestCityDto>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public async Task<ResultOutputDto> AddDestProvinceAsync(AddDestProvinceInput input)
         {
             try
@@ -222,8 +236,8 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var count = await _destMananger.GetDestsCountAsync(input.ProvinceId, input.CityId);
-                var dests = _destMananger.GetDestsByLocation(input.ProvinceId, input.CityId, input);
+                var count = await _destMananger.QueryCountAsync(x=>x.Where(i=>i.CityId==input.CityId));
+                var dests =await _destMananger.QuerysListAsync(x => x.Where(i => i.CityId == input.CityId).OrderBy(o=>o.DisplayOrder).ThenByDescending(o=>o.Id), input);
                 return new PagedResultDto<DestDto>()
                 {
                     TotalCount = count,

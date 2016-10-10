@@ -80,6 +80,13 @@ namespace HappyZu.CloudStore.Trip
             return await _destCityRepository.GetAsync(cityId);
         }
 
+        public Task<DestCity> GetDefaultCity()
+        {
+            var city = _destCityRepository.GetAll().OrderBy(x=>x.Id).FirstOrDefault();
+
+            return Task.FromResult(city);
+        }
+
         public async Task RemoveDestCityAsync(int cityId)
         {
             await _destCityRepository.DeleteAsync(cityId);

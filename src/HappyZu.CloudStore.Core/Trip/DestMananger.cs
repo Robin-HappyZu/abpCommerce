@@ -59,6 +59,11 @@ namespace HappyZu.CloudStore.Trip
 
         public Task<IReadOnlyList<Dest>> QuerysListAsync(Func<IQueryable<Dest>, IQueryable<Dest>> query,IPagedResultRequest request)
         {
+            if (request.MaxResultCount<=0)
+            {
+                request.MaxResultCount = int.MaxValue;
+            }
+
             var list= query==null ? 
                 _destRepository.GetAll().OrderBy(p=>p.Id).PageBy(request).ToList() :
                 _destRepository.Query(query).PageBy(request).ToList();
