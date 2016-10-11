@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using HappyZu.CloudStore.Trip;
+using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 {
     public class HomeController : MobileControllerBase
     {
+        private readonly IDestAppService _destAppService;
+
+        public HomeController(IDestAppService destAppService)
+        {
+            _destAppService = destAppService;
+        }
+
         // GET: Mobile/Home
         public ActionResult Index()
         {
@@ -41,6 +51,35 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 }
             };
             return View();
+        }
+
+        public async Task<JsonResult> GetElites(int start,int length)
+        {
+            var city = Request.Cookies.Get("city");
+            var cityid = 0;
+            if (city!=null)
+            {
+                int.TryParse(city.Value, out cityid);
+            }
+            if (cityid==0)
+            {
+                var cityDto=await _destAppService.GetDefaultCity();
+                if (cityDto!=null)
+                {
+                    Response.Cookies.Add(new HttpCookie("city", cityDto.Id.ToString()));
+                    cityid = cityDto.Id;
+                }
+            }
+            var input = new GetDestsInput()
+            {
+                SkipCount=start,
+                MaxResultCount=length,
+                CityId= cityid
+            };
+
+            var result=await _destAppService.GetDestsByLocationAsync(input);
+
+            return Json(result,JsonRequestBehavior.AllowGet);
         }
     }
 }
