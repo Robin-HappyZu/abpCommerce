@@ -313,9 +313,32 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var count = await _ticketOrderManager.GetTicketOrdersCountAsync();
-                var orders = _ticketOrderManager.GetPagedTicketOrders(input);
+                //TODO : need to be fixed
+                var count = await _ticketOrderManager.GetTicketOrdersCountAsync(null);
+                var orders = _ticketOrderManager.GetTicketOrdersAsync(null, input);
 
+                return new PagedResultDto<TicketOrderDto>()
+                {
+                    TotalCount = count,
+                    Items = orders.MapTo<List<TicketOrderDto>>()
+                };
+            }
+            catch (Exception)
+            {
+                return new PagedResultDto<TicketOrderDto>()
+                {
+                    TotalCount = 0,
+                    Items = new List<TicketOrderDto>()
+                };
+            }
+        }
+
+        public async Task<IPagedResult<TicketOrderDto>> GetTicketOrdersAsync(GetPagedTicketOrdersInput input)
+        {
+            try
+            {
+                var count = await _ticketOrderManager.GetTicketOrdersCountAsync(null);
+                var orders = await _ticketOrderManager.GetTicketOrdersAsync(null, input);
                 return new PagedResultDto<TicketOrderDto>()
                 {
                     TotalCount = count,
@@ -352,14 +375,6 @@ namespace HappyZu.CloudStore.Trip
                         break;
                 }
             }
-        }
-
-        private async Task ProcessTicketOrderPaidAsync(TicketOrder order)
-        {
-            if (order == null)
-                throw new ArgumentNullException("order");
-
-            // 发布订单付款事件
         }
 
         public bool CanCancelTicketOrder(TicketOrder order)
