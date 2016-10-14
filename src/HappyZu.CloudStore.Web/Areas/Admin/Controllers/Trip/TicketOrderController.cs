@@ -71,9 +71,11 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return Json(vm, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult OrderDetail(int orderId)
+        public async Task<ActionResult> OrderDetail(int orderId)
         {
-            return View();
+            var orderItems = await _ticketAppService.GetTicketOrderItemsByTicketOrderIdAsync(orderId);
+            ViewBag.Items = orderItems;
+            return PartialView();
         }
 
         public JsonResult GetTicketOrderItems()

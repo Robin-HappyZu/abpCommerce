@@ -547,5 +547,12 @@ namespace HappyZu.CloudStore.Trip
                 return ResultOutputDto.Exception(e);
             }
         }
+
+        public async Task<IList<TicketOrderItemDto>> GetTicketOrderItemsByTicketOrderIdAsync(int ticketOrderId)
+        {
+            var items = await _ticketOrderManager.GetTicketOrderDetailsByTicketOrderIdAsync(ticketOrderId);
+
+            return items.MapTo<List<TicketOrderItemDto>>();
+        }
     }
 }

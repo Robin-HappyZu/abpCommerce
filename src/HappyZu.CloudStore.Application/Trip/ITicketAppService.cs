@@ -89,5 +89,11 @@ namespace HappyZu.CloudStore.Trip
 
         Task<ResultOutputDto> RemoveTicketTypeAsync(int id);
         #endregion
+
+        #region 门票订单明细
+
+        Task<IList<TicketOrderItemDto>> GetTicketOrderItemsByTicketOrderIdAsync(int ticketOrderId);
+
+        #endregion
     }
 }
