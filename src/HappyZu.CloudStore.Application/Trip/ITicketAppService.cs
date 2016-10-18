@@ -53,6 +53,8 @@ namespace HappyZu.CloudStore.Trip
 
         Task<IPagedResult<TicketOrderDto>> GetPagedTicketOrdersByTicektId(GetPagedTicketOrdersInput input);
 
+        Task<IPagedResult<TicketOrderDto>> GetTicketOrdersAsync(GetPagedTicketOrdersInput input);
+
         bool CanCancelTicketOrder(TicketOrder order);
 
         Task<ResultOutputDto> CancelTicketOrderAsync(TicketOrder order, bool notifyCustomer);
@@ -86,6 +88,12 @@ namespace HappyZu.CloudStore.Trip
         Task<ResultOutputDto> AddTicketTypeAsync(AddTicketTypeInput input);
 
         Task<ResultOutputDto> RemoveTicketTypeAsync(int id);
+        #endregion
+
+        #region 门票订单明细
+
+        Task<IList<TicketOrderItemDto>> GetTicketOrderItemsByTicketOrderIdAsync(int ticketOrderId);
+
         #endregion
     }
 }

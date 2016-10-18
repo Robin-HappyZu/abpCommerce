@@ -1,0 +1,258 @@
+﻿@using HappyZu.CloudStore.Trip
+@{
+    ViewBag.Title = "门票订单";
+}
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("Index","Dashboard",new {area="Admin"},true)">控制面板</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <span>@ViewBag.Title</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+<!-- END PAGE HEADER-->
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="zone zone-content">
+            <div class="portlet solid no-padding portlet-box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        @ViewBag.Title
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit portlet-datatable bordered">
+            <div class="portlet-body">
+                <div class="table-container">
+                    <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_ajax">
+                        <thead>
+                            <tr class="heading">
+                                <th scope="col"><input class="group-checkable" type="checkbox"></th>
+                                <th scope="col">编号</th>
+                                <th scope="col">状态</th>
+                                <th scope="col">联系人</th>
+                                <th scope="col">电话</th>
+                                <th scope="col">邮箱</th>
+                                <th scope="col">下单时间</th>
+                                <th scope="col">已核销</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal container fade" id="Order-Detail" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">订单详情</h4>
+            </div>
+            <div class="modal-body" id="orderitems">
+                <div id="itemTable"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script_plugins{
+    <script src="~/Areas/Admin/content/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="~/Areas/Admin/content/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="~/Areas/Admin/content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="~/Areas/Admin/content/global/plugins/moment.min.js"></script>
+}
+
+@section scripts{
+    <script>
+        var lastTicketOrderId = -1;
+        var loadTicketOrderDetail = function(id) {
+            var detailUrl = '@Url.Action("OrderDetail", "TicketOrder", new {area = "Mobile"}, true)';
+            var params = [];
+            params.push({ name: "orderId", value: id });
+            $.post(detailUrl, params, function (data) {
+                var divTable = $('#itemTable');
+                divTable.append(data);
+            },"text");
+        };
+
+        $('#Order-Detail')
+            .on('show.bs.modal',
+                function(e) {
+                    var btn = $(e.relatedTarget),
+                        id = btn.data("id");
+                    if (lastTicketOrderId != id) {
+                        // 请求订单详情页面
+                        lastTicketOrderId = id;
+                        var divTable = $('#itemTable');
+                        divTable.text("");
+                        loadTicketOrderDetail(id);
+                    }
+                });
+    </script>
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script>
+        var TableDatatablesAjax = function() {
+
+            //var initPickers = function() {
+            //    //init date pickers
+            //    $('.date-picker').datepicker({
+            //        rtl: App.isRTL(),
+            //        autoclose: true
+            //    });
+            //}
+
+            var handleRecords = function() {
+
+                var grid = new Datatable();
+
+                grid.init({
+                    src: $("#datatable_ajax"),
+                    onSuccess: function(grid, response) {
+                        // grid:        grid object+1
+                        // response:    json object of server side ajax response
+                        // execute some code after table records loaded
+                    },
+                    onError: function(grid) {
+                        // execute some code on network or other general error
+                    },
+                    onDataLoad: function(grid) {
+                        // execute some code on ajax data load
+                    },
+                    loadingMessage: '正在加载...',
+                    dataTable: {
+                        // here you can define a typical datatable settings from http://datatables.net/usage/options
+
+                        // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
+                        // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
+                        // So when dropdowns used the scrollable div should be removed.
+                        //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
+                        "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+
+                        "lengthMenu": [
+                            [10, 20, 50, 100, 150, -1],
+                            [10, 20, 50, 100, 150, "All"] // change per page values here
+                        ],
+                        "pageLength": 10, // default record count per page
+                        "ajax": {
+                            "url": "@Url.Action("GetTicketOrders", "TicketOrder", new {area = "Admin"}, true)", // ajax source
+                        },
+                        "columns": [
+                            { "data": "Id" },
+                            { "data": "OrderNo" },
+                            { "data": "Status" },
+                            { "data": "Contact" },
+                            { "data": "Mobile" },
+                            { "data": "Email" },
+                            { "data": "CreationTime", "type": "date"},
+                            { "data": "IsVerification" }
+                        ],
+                        "columnDefs": [
+                            {
+                                orderable: false, //禁用排序
+                                targets: [0, 1, 2, 3] //指定的列
+                            }, {
+                                render: function(data, type, row) {
+                                    return '<input type="checkbox" name="id[]" value="' + data + '">';
+                                },
+                                targets: 0
+                            }, {
+                                render: function(data, type, row) {
+                                    return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                                },
+                                targets : 6
+                            }, {
+                                render: function(data, type, row) {
+                                    @*var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("OrderDetail", new {controller = "TicketOrder"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-details"></i> 详情</a> ';*@
+                                    var btns = '<a class="btn btn-sm btn-outline blue" href="#Order-Detail" data-id="' + row.Id + '" data-toggle="modal">详情</a> ';
+                                    return btns;
+                                },
+                                targets: 8
+                            }
+                        ],
+                        "order": [
+                        ] // set first column as a default sort by asc
+                    }
+                });
+
+                // handle group actionsubmit button click
+                grid.getTableWrapper().on('click', '.table-group-action-submit', function(e) {
+                    e.preventDefault();
+                    var action = $(".table-group-action-input", grid.getTableWrapper());
+                    if (action.val() !== "" && grid.getSelectedRowsCount() > 0) {
+                        grid.setAjaxParam("customActionType", "group_action");
+                        grid.setAjaxParam("customActionName", action.val());
+                        grid.setAjaxParam("id", grid.getSelectedRows());
+                        grid.getDataTable().ajax.reload();
+                        grid.clearAjaxParams();
+                    } else if (action.val() === "") {
+                        App.alert({
+                            type: 'danger',
+                            icon: 'warning',
+                            message: '请选择操作类型',
+                            container: grid.getTableWrapper(),
+                            place: 'prepend'
+                        });
+                    } else if (grid.getSelectedRowsCount() === 0) {
+                        App.alert({
+                            type: 'danger',
+                            icon: 'warning',
+                            message: '没有选择记录',
+                            container: grid.getTableWrapper(),
+                            place: 'prepend'
+                        });
+                    }
+                });
+
+                //grid.setAjaxParam("customActionType", "group_action");
+                //grid.getDataTable().ajax.reload();
+                //grid.clearAjaxParams();
+            }
+
+
+            return {
+                //main function to initiate the module
+                init: function() {
+                    //initPickers();
+                    handleRecords();
+                }
+            };
+        }();
+
+        jQuery(document).ready(function() {
+            TableDatatablesAjax.init();
+
+            //$('.advanced-search').click(function () {
+            //    var searchPortletBody = $('.portlet-search');
+            //    if (searchPortletBody.hasClass('hide')) {
+            //        searchPortletBody.removeClass('hide');
+            //    } else {
+            //        searchPortletBody.addClass('hide');
+            //    }
+            //});
+        });
+    </script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+}

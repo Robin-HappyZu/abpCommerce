@@ -73,5 +73,10 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// 已核销
         /// </summary>
         public bool IsVerification { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreationTime { get; set; }
     }
 }
