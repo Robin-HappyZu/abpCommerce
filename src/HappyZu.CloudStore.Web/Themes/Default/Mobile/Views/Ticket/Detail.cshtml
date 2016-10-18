@@ -1,198 +1,150 @@
-﻿
+﻿@using Abp.Extensions
+@using Happyzu.CloudStore.Common.StringUtils
+@model HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest.DetailViewModel
 <div class="content native-scroll">
     <div class="dest-box">
         <div class="dest-pictures">
-            <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" width="100">
-            <div class="pictures-num">9张</div>
+            <img src="@(Model.Pictures.Items.FirstOrDefault() != null ? Model.Pictures.Items.FirstOrDefault().FileItem.Path : "")" width="100">
+            <div class="pictures-num">@(Model.Pictures.TotalCount)张</div>
         </div>
         <div class="dest-content">
             <div class="dest-info">
-                <a href="#">景点介绍</a>
+                <a href="javascript:;" class="open-about">景点介绍</a>
             </div>
             <div class="dest-opentime">
                 <div class="opentime-text">营业时间：</div>
-                <div class="opentime-value">周一至周五 上午10：00-晚上10点 周末：上午9：00-晚上9：30</div>
+                <div class="opentime-value">@Model.Dest.OpenTime</div>
             </div>
         </div>
     </div>
     <div class="dest-location">
         <a href="javascript:;" class="dest-address">
-            湖南省长沙市岳麓区步步高梅溪新天地
+            @(Model.Province.Name)@(Model.City.Name)@(Model.Dest.Address)
         </a>
     </div>
     <div class="ticket-detail-box">
         <div class="ticket-detail-header">
             <span class="rectangle-blue"></span> 门票
         </div>
-        <dl class="ticket-detail-list">
-            <dt class="ticket-title">特惠推荐</dt>
-            <dd>
-                <div class="ticket-item-info">
-                    <div class="ticket-item-title">“室内跳伞飞行体验”单项 室内跳伞飞行体验 室内跳伞飞行体验 室内跳伞飞行体验</div>
-                    <div class="ticket-item-box">
-                        <label class="ticket-item-tag">今日票</label>
-                        <label class="ticket-item-tag">今日票</label>
-                    </div>
-                    <div class="ticket-item-detailed">
-                        <a href="javascript:;">购买须知</a>
-                    </div>
-                </div>
-                <div class="ticket-item-price-box">
-                    <div class="ticket-item-price">
-                        <div class="old-price"><dfn>$</dfn><span>200</span></div>
-                        <div class="price"><dfn>$</dfn><span>200</span></div>
-                    </div>
-                    <div class="ticket-book-content">
-                        <a href="@Url.Action("TicketOrder","Ticket",new {area="Mobile"},true)" class="ticket-book-btn">
-                            <span class="online-peyment">在线支付</span>
-                            <span class="book-btn-text">预订</span>
-                        </a>
-                    </div>
-                </div>
-            </dd>
-            <dd>
-                <div class="ticket-item-info">
-                    <div class="ticket-item-title">太空精灵</div>
-                    <div class="ticket-item-box">
-                        <label class="ticket-item-tag">今日票</label>
-                        <label class="ticket-item-tag">今日票</label>
-                    </div>
-                    <div class="ticket-item-detailed">
-                        <a href="javascript:;">购买须知</a>
-                    </div>
-                </div>
-                <div class="ticket-item-price-box">
-                    <div class="ticket-item-price">
-                        <div class="old-price"><dfn>$</dfn><span>200</span></div>
-                        <div class="price"><dfn>$</dfn><span>200</span></div>
-                    </div>
-                    <div class="ticket-book-content">
-                        <a href="javascript:;" class="ticket-book-btn">
-                            <span class="online-peyment">在线支付</span>
-                            <span class="book-btn-text">预订</span>
-                        </a>
-                    </div>
-                </div>
-            </dd>
-        </dl>
-        <dl class="ticket-detail-list">
-            <dt class="ticket-title">成人票</dt>
-            <dd>
-                <div class="ticket-item-info">
-                    <div class="ticket-item-title">“室内跳伞飞行体验”单项 室内跳伞飞行体验 室内跳伞飞行体验 室内跳伞飞行体验</div>
-                    <div class="ticket-item-box">
-                        <label class="ticket-item-tag">今日票</label>
-                        <label class="ticket-item-tag">今日票</label>
-                    </div>
-                    <div class="ticket-item-detailed">
-                        <a href="javascript:;">购买须知</a>
-                    </div>
-                </div>
-                <div class="ticket-item-price-box">
-                    <div class="ticket-item-price">
-                        <div class="old-price"><dfn>$</dfn><span>200</span></div>
-                        <div class="price"><dfn>$</dfn><span>200</span></div>
-                    </div>
-                    <div class="ticket-book-content">
-                        <a href="javascript:;" class="ticket-book-btn">
-                            <span class="online-peyment">在线支付</span>
-                            <span class="book-btn-text">预订</span>
-                        </a>
-                    </div>
-                </div>
-            </dd>
-            <dd>
-                <div class="ticket-item-info">
-                    <div class="ticket-item-title">太空精灵</div>
-                    <div class="ticket-item-box">
-                        <label class="ticket-item-tag">今日票</label>
-                        <label class="ticket-item-tag">今日票</label>
-                    </div>
-                    <div class="ticket-item-detailed">
-                        <a href="javascript:;">购买须知</a>
-                    </div>
-                </div>
-                <div class="ticket-item-price-box">
-                    <div class="ticket-item-price">
-                        <div class="old-price"><dfn>$</dfn><span>200</span></div>
-                        <div class="price"><dfn>$</dfn><span>200</span></div>
-                    </div>
-                    <div class="ticket-book-content">
-                        <a href="javascript:;" class="ticket-book-btn">
-                            <span class="online-peyment">在线支付</span>
-                            <span class="book-btn-text">预订</span>
-                        </a>
-                    </div>
-                </div>
-            </dd>
-        </dl>
-        <dl class="ticket-detail-list">
-            <dt class="ticket-title">儿童票</dt>
-            <dd>
-                <div class="ticket-item-info">
-                    <div class="ticket-item-title">“室内跳伞飞行体验”单项 室内跳伞飞行体验 室内跳伞飞行体验 室内跳伞飞行体验</div>
-                    <div class="ticket-item-box">
-                        <label class="ticket-item-tag">今日票</label>
-                        <label class="ticket-item-tag">今日票</label>
-                    </div>
-                    <div class="ticket-item-detailed">
-                        <a href="javascript:;">购买须知</a>
-                    </div>
-                </div>
-                <div class="ticket-item-price-box">
-                    <div class="ticket-item-price">
-                        <div class="old-price"><dfn>$</dfn><span>200</span></div>
-                        <div class="price"><dfn>$</dfn><span>200</span></div>
-                    </div>
-                    <div class="ticket-book-content">
-                        <a href="javascript:;" class="ticket-book-btn">
-                            <span class="online-peyment">在线支付</span>
-                            <span class="book-btn-text">预订</span>
-                        </a>
-                    </div>
-                </div>
-            </dd>
-            <dd>
-                <div class="ticket-item-info">
-                    <div class="ticket-item-title">太空精灵</div>
-                    <div class="ticket-item-box">
-                        <label class="ticket-item-tag">今日票</label>
-                        <label class="ticket-item-tag">今日票</label>
-                    </div>
-                    <div class="ticket-item-detailed">
-                        <a href="javascript:;">购买须知</a>
-                    </div>
-                </div>
-                <div class="ticket-item-price-box">
-                    <div class="ticket-item-price">
-                        <div class="old-price"><dfn>$</dfn><span>200</span></div>
-                        <div class="price"><dfn>$</dfn><span>200</span></div>
-                    </div>
-                    <div class="ticket-book-content">
-                        <a href="javascript:;" class="ticket-book-btn">
-                            <span class="online-peyment">在线支付</span>
-                            <span class="book-btn-text">预订</span>
-                        </a>
-                    </div>
-                </div>
-            </dd>
-        </dl>
+        <div data-bind="template: { name: 'ticket-list', foreach: TicketList }">
+            
+        </div>
     </div>
 
     <div class="ticket-booking-notice">
         <div class="booking-notice-title">
-            门票预定说明
+            门票预订说明
         </div>
         <div class="booking-notice-content">
-            门票预定说明门票预定说明<br>门票预定说明门票预定说明门票预定说明门
-            票预定说明门票预定说明门票预定说明门票预定说明门票预定说明门票
-            预定说明门票预定说明门票预定说明门票预定说明门票预定说明 
-            门票预定说明门票预定说明门票预定说明门票预定说明门票预定说明门
-            票预定说明门票预定说明门票预定说明门票预定说明门票预定说明门票
-            预定说明门票预定说明门票预定说明门票预定说明门票预定说明 
-            门票预定说明门票预定说明门票预定说明门票预定说明门票预定说明门
-            票预定说明门票预定说明门票预定说明门票预定说明门票预定说明门票
-            预定说明门票预定说明门票预定说明门票预定说明门票预定说明
+            @Html.Raw(Model.Dest.BookingNotice.RemoveHtmlTag().NormalizeLineEndings())
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/Themes/Default/Mobile/content/plugins/knockout-3.4.0.js"></script>
+    <script src="~/Themes/Default/Mobile/content/plugins/sui/js/sm-extend.min.js"></script>
+
+    <script type="text/html" id="ticket-list">
+        <dl class="ticket-detail-list" data-bind="visible:Tickets().length>0">
+            <dt class="ticket-title" data-bind="text:TicketType.Name"></dt>
+            <div data-bind="template: { name: 'ticket-list-item', foreach: Tickets }"></div>
+        </dl>
+    </script>
+
+    <script type="text/html" id="ticket-list-item">
+        <dd>
+            <div class="ticket-item-info">
+                <div class="ticket-item-title" data-bind="text:Name"></div>
+                <div class="ticket-item-box">
+                    <label class="ticket-item-tag" data-bind="visible:!MustAdvance">今日票</label>
+                    <label class="ticket-item-tag" data-bind="visible:MustAdvance,text:'提前'+AdvanceBookingDays+'天预订'"></label>
+                </div>
+                <div class="ticket-item-detailed">
+                    <a href="javascript:;">购买须知</a>
+                </div>
+            </div>
+            <div class="ticket-item-price-box">
+                <div class="ticket-item-price">
+                    <div class="old-price"><dfn>$</dfn><span data-bind="text:MarketPrice"></span></div>
+                    <div class="price"><dfn>$</dfn><span data-bind="text:Price"></span></div>
+                </div>
+                <div class="ticket-book-content">
+                    <a data-bind="attr:{href:'@Url.Action("TicketOrder", "Ticket", new {area = "Mobile"}, true)/'+Id}" class="ticket-book-btn">
+                        <span class="online-peyment">在线支付</span>
+                        <span class="book-btn-text">预订</span>
+                    </a>
+                </div>
+            </div>
+        </dd>
+    </script>
+
+    <script>
+        var pictures = @Html.Raw(Json.Encode(Model.Pictures));
+        var tickettype = @Html.Raw(Json.Encode(Model.TicketTypes));
+        var tickets = @Html.Raw(Json.Encode(Model.Tickets));
+        var dest=@Html.Raw(Json.Encode(Model.Dest));
+
+        var TicketListItem = function(type) {
+            this.TicketType = type;
+            this.Tickets = ko.observableArray([]);
+        }
+
+        var ViewModel = function() {
+            var _this = this;
+            this.TicketList = ko.observableArray([]);
+
+            this.reload = function() {
+                if (tickettype != null && tickettype.TotalCount > 0) {
+                    for (var i = 0; i < tickettype.Items.length; i++) {
+                        var item = new TicketListItem(tickettype.Items[i]);
+                        if (tickets.TotalCount > 0) {
+                            for (var j = 0; j < tickets.Items.length; j++) {
+                                if (tickets.Items[j].TypeId === item.TicketType.Id) {
+                                    item.Tickets.push(tickets.Items[j]);
+                                }
+                            }
+                        }
+                        _this.TicketList.push(item);
+                    }
+                }
+            }
+        }
+
+        var vm = new ViewModel();
+
+        ko.applyBindings(vm);
+
+        $(function() {
+            vm.reload();
+
+            $(document).on('click','.open-about', function () {
+                var about = $('#about_page');
+                if (about.length<=0) {
+                    $('div.page-group').append('<div class="page" id="about_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">景点介绍</h1></header><div class="content native-scroll"><div id="about-content" class="content-block margin-top-10"></div></div></div>');
+                    $('#about-content').html(dest.Introduce);
+                }
+                $('div.page-group .page').removeClass('page-current');
+                $('#about_page').addClass('page-current');
+            });
+            $(document).on('click', '#about_page a.back', function() {
+                $('#about_page').removeClass('page-current');
+                $('div.page-group .page:not([id])').addClass('page-current');
+            });
+
+            $(document).on('click','.booking-notice-content', function () {
+                var bookingNoticePage = $('#booking_notice_page');
+                if (bookingNoticePage.length<=0) {
+                    $('div.page-group').append('<div class="page" id="booking_notice_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">预订说明</h1></header><div class="content native-scroll"><div id="booking-notice-content" class="content-block margin-top-10"></div></div></div>');
+                    $('#booking-notice-content').html(dest.BookingNotice);
+                }
+                $('div.page-group .page').removeClass('page-current');
+                $('#booking_notice_page').addClass('page-current');
+            });
+            $(document).on('click', '#booking_notice_page a.back', function() {
+                $('#booking_notice_page').removeClass('page-current');
+                $('div.page-group .page:not([id])').addClass('page-current');
+            });
+        });
+    </script>
+}
