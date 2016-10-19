@@ -139,7 +139,7 @@
         $(function() {
             var spin = $('.ticket-quantity .qty-input').TouchSpin({ min: 1, max: 99 });
             
-            $(document).on("touchspin.on.min", function () {
+            $(document).on("touchspin.on.min", '.qty-input', function () {
                 $.toast("最少要购买1份");
             });
 
