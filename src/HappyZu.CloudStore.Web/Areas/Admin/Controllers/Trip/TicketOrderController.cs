@@ -90,6 +90,8 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpPost]
+        [WrapResult(WrapOnSuccess = false, WrapOnError = false)]
         public async Task<JsonResult> GetETickets(GetETicketsViewModel model)
         {
             var input = new GetPagedETicketsInput()

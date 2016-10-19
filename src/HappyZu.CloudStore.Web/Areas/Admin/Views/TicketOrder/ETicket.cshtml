@@ -1,4 +1,4 @@
-﻿
+﻿@using HappyZu.CloudStore.Trip
 @{
     ViewBag.Title = "电子票";
 }
@@ -41,12 +41,10 @@
                             <tr class="heading">
                                 <th scope="col"><input class="group-checkable" type="checkbox"></th>
                                 <th scope="col">编号</th>
-                                <th scope="col">状态</th>
-                                <th scope="col">联系人</th>
-                                <th scope="col">电话</th>
-                                <th scope="col">邮箱</th>
-                                <th scope="col">下单时间</th>
-                                <th scope="col">已核销</th>
+                                <th scope="col">门票</th>
+                                <th scope="col">订单编号</th>
+                                <th scope="col">是否核销</th>
+                                <th scope="col">核销时间</th>
                                 <th scope="col">操作</th>
                             </tr>
                         </thead>
@@ -66,7 +64,8 @@
     <script src="~/Areas/Admin/content/global/plugins/moment.min.js"></script>
 }
 
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
+@section scripts{
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script>
         var TableDatatablesAjax = function() {
             var handleRecords = function() {
@@ -101,7 +100,7 @@
                         ],
                         "pageLength": 10, // default record count per page
                         "ajax": {
-                            "url": "@Url.Action("ETicket", "TicketOrder", new {area = "Admin"}, true)", // ajax source
+                            "url": "@Url.Action("GetETickets", "TicketOrder", new {area = "Admin"}, true)", // ajax source
                         },
                         "columns": [
                             { "data": "Id" },
