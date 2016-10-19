@@ -598,6 +598,7 @@
     <Compile Include="Areas\Mobile\Controllers\ToursController.cs" />
     <Compile Include="Areas\Mobile\Controllers\WechatPayController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Areas\Mobile\Models\Dest\DetailViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\FootMenuViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\HeaderViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\WechatPay\WechatPayParamModel.cs" />
@@ -666,6 +667,7 @@
     <Content Include="Themes\Default\Mobile\Views\Ticket\TicketOrder.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\ChoosePayment.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\PaymentSuccess.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Ticket\DestAbout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

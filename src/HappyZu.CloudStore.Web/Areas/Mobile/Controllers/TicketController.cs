@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using HappyZu.CloudStore.Trip;
+using HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
 using HappyZu.CloudStore.Web.Controllers;
 
@@ -14,6 +17,14 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
     /// </summary>
     public class TicketController : MobileControllerBase
     {
+        private readonly IDestAppService _destAppService;
+        private readonly ITicketAppService _ticketAppService;
+        public TicketController(IDestAppService destAppService, ITicketAppService ticketAppService)
+        {
+            _destAppService = destAppService;
+            _ticketAppService = ticketAppService;
+        }
+
         // GET: Mobile/Ticket
         #region 门票列表
         public ActionResult Index()
@@ -53,9 +64,35 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #region 门票详情
 
-        public ActionResult Detail()
+        public async Task<ViewResult> Detail(int id)
         {
-            ViewBag.Title = "飞行家室内飞行体验馆";
+
+            var dest = await _destAppService.GetDestByIdAsync(id);
+            var tickets = await _ticketAppService.GetPagedTicketsAsync(new Trip.Dto.GetPagedTicketsInput
+            {
+                DestId = dest.Id
+            });
+            var ticketType = await _ticketAppService.GetTicketTypeListAsync(dest.Id);
+            var pictures = await _destAppService.GetPagedDestPicturesAsync(new FileManager.Dto.GetPagedFileItemInput
+            {
+                MappingId=dest.Id,
+                MaxResultCount=10
+            });
+            var city = await _destAppService.GetDestCityByIdAsync(dest.CityId);
+            var province = await _destAppService.GetDestProvinceByIdAsync(dest.ProvinceId);
+
+            var vm = new DetailViewModel()
+            {
+                Dest = dest,
+                Tickets = tickets,
+                TicketTypes=ticketType,
+                Pictures=pictures,
+                City=city,
+                Province=province
+            };
+
+            ViewBag.Title = dest.Title;
+
             ViewBag.HeaderBar = new HeaderViewModel()
             {
                 ShowTitle = true,
@@ -82,7 +119,14 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                     }
                 }
             };
-            return View();
+
+            return View(vm);
+        }
+
+        public async Task<PartialViewResult> DestAbout(int id)
+        {
+            var dest = await _destAppService.GetDestByIdAsync(id);
+            return PartialView(dest);
         }
         #endregion
 

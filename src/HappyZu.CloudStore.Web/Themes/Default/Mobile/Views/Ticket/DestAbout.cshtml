@@ -1,0 +1,13 @@
+﻿@model HappyZu.CloudStore.Trip.Dto.DestDto
+
+<header class="bar bar-nav header-nav">
+    <a class="button button-link button-nav pull-left back" href="javascript:;">
+        <span class="icon icon-left"></span>
+    </a>
+    <h1 class="title">景点介绍</h1>
+</header>
+<div class="content native-scroll">
+    <div class="content-block margin-top-10">
+        @Html.Raw(Model.Introduce)
+    </div>
+</div>

@@ -99,6 +99,7 @@ body {
 
 
 .top50{ padding-top: 50px;}
+.margin-top-10{margin-top:10px;}
 .bar{ z-index: 999;}
 .text-danger{color:#990000}
 /*Header Bar*/
@@ -1045,7 +1046,7 @@ input, button, select, textarea {
     overflow: hidden;
     font-size: 12px;
     position: relative;
-
+    word-wrap: break-word;
 }
 .ticket-booking-notice .booking-notice-content:after {
     content: "\e60f";
