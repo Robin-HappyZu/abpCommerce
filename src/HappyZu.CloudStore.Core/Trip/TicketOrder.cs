@@ -97,5 +97,10 @@ namespace HappyZu.CloudStore.Trip
         /// 用户ID
         /// </summary>
         public long? CreatorUserId { get; set; }
+
+        /// <summary>
+        /// 代理商ID
+        /// </summary>
+        public long? AgentId { get; set; }
     }
 }

@@ -36,5 +36,10 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// 总价
         /// </summary>
         public decimal Price { get; set; }
+
+        /// <summary>
+        /// 代理ID
+        /// </summary>
+        public long? AgentId { get; set; }
     }
 }
