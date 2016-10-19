@@ -204,8 +204,26 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(input.TicketId);
-                var quotes = _ticketQuoteManager.GetPagedTicketQuotesByTicketId(input.TicketId,input);
+                Func<IQueryable<TicketQuote>, IQueryable<TicketQuote>> query = null;
+               
+                var now = DateTime.Now;
+                if (input.Year > 0 && input.Month > 0)
+                {
+                    query = q => q.Where(x => x.IsDisplay == input.IsDisplay &&
+                                     x.TicketId == input.TicketId &&
+                                     x.Year == input.Year && x.Month == input.Month)
+                                     .OrderBy(x => x.Year).ThenBy(x => x.Month).ThenBy(x => x.Day);
+                }
+                else
+                {
+                    query = q => q.Where(x => x.IsDisplay == input.IsDisplay &&
+                                     x.TicketId == input.TicketId &&
+                                     (x.Year > now.Year || (x.Year == now.Year && x.Month > now.Month) ||
+                                     (x.Year == now.Year && x.Month == now.Month && x.Day >= now.Day)))
+                                     .OrderBy(x => x.Year).ThenBy(x => x.Month).ThenBy(x => x.Day);
+                }
+                var count = await _ticketQuoteManager.QueryCountAsync(query);
+                var quotes =await _ticketQuoteManager.QuerysListAsync(query, input);
 
                 return new PagedResultDto<TicketQuoteDto>()
                 {

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using HappyZu.CloudStore.Trip;
+using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
 using HappyZu.CloudStore.Web.Controllers;
@@ -153,9 +154,16 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             };
 
             var ticketEntity = await _ticketAppService.GetTicketByIdAsync(ticket);
+            var ticketQuotes = await _ticketAppService.GetPagedTicketQuotesByTicektId(new GetPagedTicketQuotesInput()
+            {
+                TicketId = ticket,
+                MaxResultCount = 3,
+                IsDisplay = true
+            });
             var vm = new TicketOrderViewModel
             {
-                Ticket = ticketEntity
+                Ticket = ticketEntity,
+                TicketQuotes = ticketQuotes.Items
             };
             return View(vm);
         }

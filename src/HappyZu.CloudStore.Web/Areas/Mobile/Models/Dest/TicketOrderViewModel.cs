@@ -10,5 +10,6 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest
     {
         public TicketDto Ticket { get; set; }
 
+        public IReadOnlyList<TicketQuoteDto> TicketQuotes { get; set; } 
     }
 }
