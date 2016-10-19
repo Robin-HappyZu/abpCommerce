@@ -132,7 +132,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #region 订单填写
 
-        public ActionResult TicketOrder()
+        public ActionResult TicketOrder(int id)
         {
             ViewBag.Title = "订单填写";
             ViewBag.HeaderBar = new HeaderViewModel()
@@ -147,7 +147,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                         Name = "TicketDetail",
                         //DisplayName = "长沙",
                         Icon = "icon icon-left",
-                        Url = Url.Action("Detail","Ticket", new {area="Mobile"},true)
+                        Url = Url.Action("Detail","Ticket", new {area="Mobile",id=id},true)
                     }
                 }
             };

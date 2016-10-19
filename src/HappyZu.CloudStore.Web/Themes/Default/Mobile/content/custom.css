@@ -13,6 +13,7 @@ body {
     font-family: Arial,"Lucida Grande",Verdana,"Microsoft YaHei",hei;
 }  
 
+.foot-clear{ clear: both; height:44px;}
 .iconfont {
   font-family:"iconfont" !important;
   font-style:normal;
