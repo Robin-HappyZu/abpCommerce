@@ -41,5 +41,8 @@ namespace HappyZu.CloudStore.Trip
         /// 总价
         /// </summary>
         public decimal Price { get; set; }
+
+        [ForeignKey("TicketId")]
+        public virtual Ticket Ticket { get; set; }
     }
 }

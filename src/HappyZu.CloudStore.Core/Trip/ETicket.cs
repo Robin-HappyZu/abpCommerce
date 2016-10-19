@@ -31,5 +31,8 @@ namespace HappyZu.CloudStore.Trip
         public DateTime? CheckedOn { get; set; }
         // 检票员Id
         public long CheckerId { get; set; }
+
+        [ForeignKey("TicketId")]
+        public virtual Ticket Ticket { get; set; }
     }
 }

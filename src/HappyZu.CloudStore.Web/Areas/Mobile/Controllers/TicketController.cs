@@ -132,7 +132,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #region 订单填写
 
-        public ActionResult TicketOrder(int id)
+        public async Task<ViewResult> TicketOrder(int id,int ticket)
         {
             ViewBag.Title = "订单填写";
             ViewBag.HeaderBar = new HeaderViewModel()
@@ -151,7 +151,13 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                     }
                 }
             };
-            return View();
+
+            var ticketEntity = await _ticketAppService.GetTicketByIdAsync(ticket);
+            var vm = new TicketOrderViewModel
+            {
+                Ticket = ticketEntity
+            };
+            return View(vm);
         }
         #endregion
 
