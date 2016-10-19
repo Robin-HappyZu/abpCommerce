@@ -165,6 +165,7 @@
     <Compile Include="Trip\Dto\GetDestCitiesInput.cs" />
     <Compile Include="Trip\Dto\GetDestProvincesInput.cs" />
     <Compile Include="Trip\Dto\GetDestsInput.cs" />
+    <Compile Include="Trip\Dto\GetPagedETicketsInput.cs" />
     <Compile Include="Trip\Dto\GetPagedTicketOrdersInput.cs" />
     <Compile Include="Trip\Dto\GetPagedTicketQuotesInput.cs" />
     <Compile Include="Trip\Dto\GetPagedTicketsInput.cs" />

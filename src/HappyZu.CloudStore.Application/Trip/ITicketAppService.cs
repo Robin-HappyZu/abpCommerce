@@ -94,6 +94,7 @@ namespace HappyZu.CloudStore.Trip
 
         Task<IList<TicketOrderItemDto>> GetTicketOrderItemsByTicketOrderIdAsync(int ticketOrderId);
 
+        Task<IPagedResult<ETicketDto>> GetETicketsAsync(GetPagedETicketsInput input);
         #endregion
     }
 }

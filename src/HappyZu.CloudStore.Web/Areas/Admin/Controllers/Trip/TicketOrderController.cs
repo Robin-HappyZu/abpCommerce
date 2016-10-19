@@ -78,9 +78,55 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return PartialView();
         }
 
-        public JsonResult GetTicketOrderItems()
+        //public JsonResult GetTicketOrderItems()
+        //{
+        //    var vm = new DataTableJsonViewModel();
+
+        //    return Json(vm, JsonRequestBehavior.AllowGet);
+        //}
+
+        public ActionResult ETicket()
         {
-            var vm = new DataTableJsonViewModel();
+            return View();
+        }
+
+        public async Task<JsonResult> GetETickets(GetETicketsViewModel model)
+        {
+            var input = new GetPagedETicketsInput()
+            {
+                MaxResultCount = model.length,
+                SkipCount = model.start
+            };
+
+            var output = await _ticketAppService.GetETicketsAsync(input);
+
+            var vm = new DataTableJsonViewModel()
+            {
+                draw = model.draw,
+                customActionMessage = "",
+                customActionStatus = "OK"
+            };
+
+            try
+            {
+                vm.recordsFiltered = vm.recordsTotal = output.TotalCount;
+                vm.data = output.Items.Select(x => new
+                {
+                    x.Id,
+                    x.SerialNo,
+                    x.TicketId,
+                    x.TicketOrderId,
+                    x.IsChecked,
+                    x.CheckedOn
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                vm.customActionMessage = ex.Message;
+                vm.customActionStatus = "";
+            }
+
+            if (vm.data == null) vm.data = new List<object>();
 
             return Json(vm, JsonRequestBehavior.AllowGet);
         }

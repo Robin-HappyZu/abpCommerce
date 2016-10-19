@@ -18,14 +18,16 @@ namespace HappyZu.CloudStore.Trip
         private readonly TicketQuoteManager _ticketQuoteManager;
         private readonly TicketOrderManager _ticketOrderManager;
         private readonly TicketTypeManager _ticketTypeManager;
+        private readonly ETicketManager _eTicketManager;
 
         public TicketAppService(TicketManager ticketManager, TicketQuoteManager ticketQuoteManager,
-            TicketOrderManager ticketOrderManager, TicketTypeManager ticketTypeManager)
+            TicketOrderManager ticketOrderManager, TicketTypeManager ticketTypeManager, ETicketManager eTicketManager)
         {
             _ticketManager = ticketManager;
             _ticketOrderManager = ticketOrderManager;
             _ticketTypeManager = ticketTypeManager;
             _ticketQuoteManager = ticketQuoteManager;
+            _eTicketManager = eTicketManager;
         }
 
         public async Task<ResultOutputDto> AddTicketAsync(AddTicketInput input)
@@ -553,6 +555,29 @@ namespace HappyZu.CloudStore.Trip
             var items = await _ticketOrderManager.GetTicketOrderDetailsByTicketOrderIdAsync(ticketOrderId);
 
             return items.MapTo<List<TicketOrderItemDto>>();
+        }
+
+        public async Task<IPagedResult<ETicketDto>> GetETicketsAsync(GetPagedETicketsInput input)
+        {
+            try
+            {
+                var count = await _eTicketManager.GetETicketsCountAsync(null);
+                var items = await _eTicketManager.GetETicketsAsync(null, input);
+
+                return new PagedResultDto<ETicketDto>()
+                {
+                    TotalCount = count,
+                    Items = items.MapTo<List<ETicketDto>>()
+                };
+            }
+            catch (Exception)
+            {
+                return new PagedResultDto<ETicketDto>()
+                {
+                    TotalCount = 0,
+                    Items = new List<ETicketDto>()
+                };
+            }
         }
     }
 }

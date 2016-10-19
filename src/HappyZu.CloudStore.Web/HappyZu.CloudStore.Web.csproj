@@ -459,6 +459,7 @@
     <Content Include="Areas\Admin\Views\UploadFile\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TicketOrder\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TicketOrder\OrderDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\TicketOrder\ETicket.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -580,6 +581,7 @@
     <Compile Include="Areas\Admin\Models\EditDestViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditTicketViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetDestsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\GetETicketsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetRolesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetTicketOrdersViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
