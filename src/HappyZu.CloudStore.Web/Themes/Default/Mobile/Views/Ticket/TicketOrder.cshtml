@@ -18,7 +18,7 @@
                         取票人
                     </div>
                     <div class="row-value no-border">
-                        <input class="qty-input" value="" placeholder="需要填写1个取票人"/>
+                        <input class="qty-input" data-bind="value:Contact" placeholder="需要填写1个取票人"/>
                     </div>
                 </div>
             </div>
@@ -28,10 +28,9 @@
                         联系手机
                     </div>
                     <div class="row-value no-border">
-                        <input class="qty-input" value="" placeholder="接收确认短信"/>
+                        <input class="qty-input" data-bind="value:Mobile" placeholder="接收确认短信"/>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -51,17 +50,21 @@
         </div>
         <div class="col-25">
             <div class="confirm-order-btn">
-                <a href="@Url.Action("ChoosePayment","Ticket",new {area="Mobile"},true)" class="button button-big button-fill button-warning">去支付</a>
+                <a href="@Url.Action("ChoosePayment", "Ticket", new {area = "Mobile"}, true)" class="button button-big button-fill button-warning">去支付</a>
             </div>
         </div>
     </div>
 </div>
+    @section styles{
+        <link href="~/Themes/Default/Mobile/content/plugins/zepto.calendar.css" rel="stylesheet" />
+    }
 @section scripts{
     <script src="~/Themes/Default/Mobile/content/plugins/knockout-3.4.0.js"></script>
     <script src="~/Themes/Default/Mobile/content/plugins/moment.min.js"></script>
     <script src="~/Themes/Default/Mobile/content/plugins/zepto.cookie.min.js"></script>
     <script src="~/Themes/Default/Mobile/content/plugins/sui/js/sm-extend.min.js"></script>
     <script src="~/Themes/Default/Mobile/content/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="~/Themes/Default/Mobile/content/plugins/zepto.calendar.js"></script>
     <script type="text/html" id="ticket-template">
         <div class="card">
             <div class="card-header">
@@ -70,7 +73,7 @@
                 </div>
                 <div class="header-active">
                     <a href="javascript:;" class="ticket-description">购买须知</a>
-                    <a href="javascript:;" data-bind="visible:$parent.Tickets().length>1" class="remove-ticket"><span class="iconfont icon-delete"></span></a>
+                    <a href="javascript:;" data-bind="visible:$parent.Tickets().length>1,click:$root.removeTicket" class="remove-ticket"><span class="iconfont icon-delete"></span></a>
                 </div>
             </div>
             <div class="card-content">
@@ -92,9 +95,16 @@
         </div>
     </script>
     <script type="text/html" id="ticket-quotes">
-        <div class="choose-date " data-bind="css: { selected: Selected },click:$root.ChangeDate">
-            <div class="choose-item" data-bind="css: { more: $index()>1 }">
-                <label data-bind="text:$root.DateName($data)"></label>
+        <div class="choose-date " data-bind="css: { selected: Selected }">
+            <div class="choose-item" data-bind="visible: $index()<2,click:$root.ChangeDate">
+                <label data-bind="text:DateName"></label>
+                <div class="price">
+                    <dfn>$</dfn>
+                    <span data-bind="text:Quote.Price"></span>
+                </div>
+            </div>
+            <div class="choose-item more" data-bind="visible: $index()>1,click:$root.showCalendar">
+                <label data-bind="text:DateName"></label>
                 <div class="price">
                     <dfn>$</dfn>
                     <span data-bind="text:Quote.Price"></span>
@@ -107,19 +117,28 @@
         var Ticket = function(ticket) {
             $.extend(this, ticket);
             this.Quantity = ko.observable(1);
+            this.SelectedQuote = ko.observable();
             this.Quotes = ko.observableArray([]);
         };
 
         var QuoteModel = function(quote) {
             $.extend(this, quote);
-            this.Selected = ko.observable(false);;
+            var $this=this;
+            this.Selected = ko.observable(false);
+            this.DateName = ko.observable();
         };
 
+        var closePage=function(currentPage) {
+            $(currentPage).removeClass('page-current');
+            $('div.page-group .page:not([id])').addClass('page-current');
+            
+        }
         var ViewModel = function() {
             var $this = this;
             $this.Contact = ko.observable('');
             $this.Mobile = ko.observable('');
             $this.Tickets = ko.observableArray([]);
+            $this.SelectedTicket = ko.observable();
             $this.load = function() {
                 var ticket = new Ticket(ticketVM.Ticket);
                 for (var i = 0; i < ticketVM.TicketQuotes.length; i++) {
@@ -127,11 +146,15 @@
                     if (i === 0) {
                         quote.Selected(true);
                     }
+                    quote.DateName($this.DateName(quote,i));
                     ticket.Quotes.push(quote);
                 }
                 $this.Tickets.push(ticket);
+                $('.ticket-quantity .qty-input').TouchSpin({ min: 1, max: 99 });
             };
-            $this.DateName = function(data) {
+           
+            $this.DateName = function(data,index) {
+                
                 if (moment().isSame(data.Year + '-' + data.Month + '-' + data.Day, 'Day')) {
                     return '今日';
                 }
@@ -139,56 +162,138 @@
                     return '明日';
                 }
 
-                if (data.Selected()) {
+
+                if (data.Selected() || index<2) {
                     return data.Month + '月' + data.Day + '日';
                 } else {
                     return '更多日期';
                 }
             };
-            $this.ChangeDate=function(data,index) {
+
+            $this.GetTicketById=function(id) {
                 var tickets = $this.Tickets();
                 for (var i = 0; i < tickets.length; i++) {
-                    var ticket = tickets[i];
-                    if (ticket.Id===data.TicketId) {
-                        var quotes = ticket.Quotes();
-                        for (var j = 0; j < quotes.length; j++) {
-                            if (quotes[j].Id===data.Id) {
-                                quotes[j].Selected(true);
-                            } else {
-                                quotes[j].Selected(false);
-                            }
-                        }
+                    if (tickets[i].Id===id) {
+                        return tickets[i];
                     }
                 }
+                return null;
+            }
+            $this.ChangeDate = function(data) {
+
+                var ticket = $this.GetTicketById(data.TicketId);
+                if (ticket !=null ) {
+                    ticket.SelectedQuote(data);
+                    var quotes = ticket.Quotes();
+                    for (var j = 0; j < quotes.length; j++) {
+                        if (quotes[j].Id === data.Id) {
+                            quotes[j].Selected(true);
+                        } else {
+                            quotes[j].Selected(false);
+                        }
+                        quotes[j].DateName($this.DateName(quotes[j],j));
+                    }
+                }
+            };
+            $this.removeTicket = function(data) {
+                $.confirm('确定要删除吗?',
+                    function() {
+                        $this.Tickets.remove(data);
+                    });
+            };
+
+            $this.showCalendar = function(data) {
+                var about = $('#calendar_page');
+                if (about.length <= 0) {
+                    $('div.page-group')
+                        .append('<div class="page" id="calendar_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">选择使用日期</h1></header><div class="content native-scroll"><div class="md_container"></div></div></div>');
+                }
+                var tickets = $this.Tickets();
+                var ticket = null;
+                for (var i = 0; i < tickets.length; i++) {
+                    ticket = tickets[i];
+                }
+                var selectedDate = moment();
+                if (ticket.SelectedQuote()!=null) {
+                    selectedDate=moment(ticket.SelectedQuote().Year+'-'+ticket.SelectedQuote().Month+'-'+ticket.SelectedQuote().Day,'YYYY-MM-DD');
+                }
+                $this.SelectedTicket(ticket);
+                
+                $('div.page-group .page').removeClass('page-current');
+                $('#calendar_page').addClass('page-current');
+                $('#calendar_page .md_container')
+                    .mdater(
+                    {
+                        minDate: moment(ticket.StartDate).startOf('month').toDate(),
+                        maxDate: moment(ticket.EndDate).endOf('month').toDate(),
+                        callback:function(date) {
+                            var ticket= $this.SelectedTicket();
+                            $this.SelectedTicket(null);
+                            closePage('#calendar_page');
+                            //alert(moment(date).format('YYYY-MM-DD'));
+                            var quote=ticket.SelectedQuote();
+                            
+                            var quotes=ticket.Quotes();
+                            var hasQuote = false;
+                            for (var i = 0; i < quotes.length; i++) {
+                                if (moment(quotes[i].Year + '-' + quotes[i].Month + '-' + quotes[i].Day, 'YYYY-MM-DD').isSame(date)) {
+                                    hasQuote = true;
+                                    quotes[i].Selected(true);
+                                    ticket.SelectedQuote(quotes[i]);
+                                } else {
+                                    quotes[i].Selected(false);
+                                }
+                                quotes[i].DateName($this.DateName(quotes[i],i));
+                            }
+                            if (hasQuote) {
+                                return;
+                            }
+                            quote = quotes[2];
+                            quote.Year = moment(date,'YYYY-MM-DD').year();
+                            quote.Month = moment(date,'YYYY-MM-DD').month()+1;
+                            quote.Day = moment(date,'YYYY-MM-DD').date();
+                            ticket.SelectedQuote(quote);
+                            quote.Selected(true);
+                            quotes[2] = quote;
+                            quote.DateName($this.DateName(quote,2));
+                            ticket.Quotes(quotes);
+                            $this.ChangeDate(quote);
+                        },
+                        value:selectedDate.format('YYYY-MM-DD')
+                    });
             }
         };
 
         var vm = new ViewModel();
-
         ko.applyBindings(vm);
 
         $(function() {
             vm.load();
-            var spin = $('.ticket-quantity .qty-input').TouchSpin({ min: 1, max: 99 });
 
-            $(document).on("touchspin.on.min", '.qty-input', function() {
-                $.toast("最少要购买1份");
-            });
+            $(document)
+                .on("touchspin.on.min",
+                    '.qty-input',
+                    function() {
+                        $.toast("最少要购买1份");
+                    });
 
-            $('.order-details-btn').on('click', function() {
-                var $this = $(this);
-                if (!$this.hasClass('selected')) {
-                    $this.addClass('selected');
-                } else {
-                    $this.removeClass('selected');
-                }
-            });
+            $('.order-details-btn')
+                .on('click',
+                    function() {
+                        var $this = $(this);
+                        if (!$this.hasClass('selected')) {
+                            $this.addClass('selected');
+                        } else {
+                            $this.removeClass('selected');
+                        }
+                    });
 
-            $(document).on('click', '.remove-ticket', function() {
-                $.confirm('确定要删除吗?', function() {
-                    $.alert('You clicked Ok button');
-                });
-            });
-        })
+            $(document)
+                .on('click',
+                    '#calendar_page a.back',
+                    function() {
+                        closePage('#calendar_page');
+                    });
+        });
     </script>
 }
