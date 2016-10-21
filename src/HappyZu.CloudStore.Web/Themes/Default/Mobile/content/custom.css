@@ -1145,6 +1145,9 @@ input, button, select, textarea {
   -webkit-flex-shrink: 1;
           flex-shrink: 1;
 }
+.form-row.right .row-value {
+    text-align: right;
+}
 
 .ticket-quantity .input-group{
     float: right;
@@ -1275,6 +1278,15 @@ input, button, select, textarea {
 .payment-box .sublist a.order-details-btn{
     color: #666666;
     font-size: 12px;
+}
+
+.bar.payment-list {
+    z-index:997;
+}
+.bar.payment-list.show {
+    bottom:44px;
+    max-height: 8.8rem;
+    overflow-y: auto;
 }
 
 .confirm-order-btn .button-fill.button-big {

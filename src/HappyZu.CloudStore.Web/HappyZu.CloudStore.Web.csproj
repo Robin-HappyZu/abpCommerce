@@ -602,6 +602,7 @@
     <Compile Include="Areas\Mobile\Controllers\WechatPayController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\DetailViewModel.cs" />
+    <Compile Include="Areas\Mobile\Models\Dest\GetQuotesViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\TicketOrderViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\FootMenuViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\HeaderViewModel.cs" />

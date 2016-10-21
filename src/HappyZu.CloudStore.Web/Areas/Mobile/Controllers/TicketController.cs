@@ -133,13 +133,16 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #region 门票报价
 
-        public async Task<JsonResult> GetQuotesByTicketId(int id)
+        public async Task<JsonResult> GetQuotesByTicket(GetQuotesViewModel vm )
         {
             var quotes = await _ticketAppService.GetPagedTicketQuotesByTicektId(new GetPagedTicketQuotesInput
             {
-                TicketId = id
+                TicketId = vm.Id,
+                MaxDate=vm.MaxDate,
+                MinDate=vm.MinDate,
+                IsDisplay=true
             });
-            return Json(null);
+            return Json(quotes);
         }
         #endregion
 

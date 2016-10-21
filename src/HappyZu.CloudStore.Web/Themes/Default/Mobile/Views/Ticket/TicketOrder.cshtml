@@ -36,12 +36,22 @@
     </div>
     <div class="foot-clear"></div>
 </div>
+<div class="bar bar-footer payment-list transactions">
+    <div class="payment-content" data-bind="foreach:Tickets">
+        <div class="form-row right">
+            <div class="row-text" data-bind="text:Name">
+            </div>
+            <div class="row-value" data-bind="text:ShowQuantity">
+            </div>
+        </div>
+    </div>
+</div>
 <div class="bar bar-footer data-choose payment-box">
     <div class="row no-gutter">
         <div class="col-75">
             <div class="payment-subtotal">
                 <div class="subtotal">
-                    <label>总额：</label><dfn>$</dfn><span>200</span>
+                    <label>总额：</label><dfn>￥</dfn><span data-bind="text:TotalPrice">0</span>
                 </div>
                 <div class="sublist">
                     <a href="javascript:;" class="order-details-btn">明细 <span class="iconfont icon-arrow-down transactions"></span></a>
@@ -107,7 +117,7 @@
                 <label data-bind="text:DateName"></label>
                 <div class="price">
                     <dfn>$</dfn>
-                    <span data-bind="text:Quote.Price"></span>
+                    <span data-bind="text:MorePrice"></span>
                 </div>
             </div>
         </div>
@@ -116,22 +126,28 @@
         var ticketVM = @Html.Raw(Json.Encode(Model));
         var Ticket = function(ticket) {
             $.extend(this, ticket);
+            var $this=this;
             this.Quantity = ko.observable(1);
             this.SelectedQuote = ko.observable();
             this.Quotes = ko.observableArray([]);
+            this.AllQuotes=ko.observableArray([]);
+            this.ShowQuantity = ko.pureComputed(function() {
+                return '￥'+$this.SelectedQuote().Quote.Price + 'x' + $this.Quantity();
+            }, this);
         };
 
         var QuoteModel = function(quote) {
             $.extend(this, quote);
-            var $this=this;
+            var $this = this;
             this.Selected = ko.observable(false);
             this.DateName = ko.observable();
+            this.MorePrice = ko.observable(this.Quote.Price);
         };
 
-        var closePage=function(currentPage) {
+        var closePage = function(currentPage) {
             $(currentPage).removeClass('page-current');
             $('div.page-group .page:not([id])').addClass('page-current');
-            
+
         }
         var ViewModel = function() {
             var $this = this;
@@ -145,16 +161,17 @@
                     var quote = new QuoteModel(ticketVM.TicketQuotes[i]);
                     if (i === 0) {
                         quote.Selected(true);
+                        ticket.SelectedQuote(quote);
                     }
-                    quote.DateName($this.DateName(quote,i));
+                    quote.DateName($this.DateName(quote, i));
                     ticket.Quotes.push(quote);
                 }
                 $this.Tickets.push(ticket);
                 $('.ticket-quantity .qty-input').TouchSpin({ min: 1, max: 99 });
             };
-           
-            $this.DateName = function(data,index) {
-                
+
+            $this.DateName = function(data, index) {
+
                 if (moment().isSame(data.Year + '-' + data.Month + '-' + data.Day, 'Day')) {
                     return '今日';
                 }
@@ -163,17 +180,17 @@
                 }
 
 
-                if (data.Selected() || index<2) {
+                if (data.Selected() || index < 2) {
                     return data.Month + '月' + data.Day + '日';
                 } else {
                     return '更多日期';
                 }
             };
 
-            $this.GetTicketById=function(id) {
+            $this.GetTicketById = function(id) {
                 var tickets = $this.Tickets();
                 for (var i = 0; i < tickets.length; i++) {
-                    if (tickets[i].Id===id) {
+                    if (tickets[i].Id === id) {
                         return tickets[i];
                     }
                 }
@@ -182,7 +199,7 @@
             $this.ChangeDate = function(data) {
 
                 var ticket = $this.GetTicketById(data.TicketId);
-                if (ticket !=null ) {
+                if (ticket != null) {
                     ticket.SelectedQuote(data);
                     var quotes = ticket.Quotes();
                     for (var j = 0; j < quotes.length; j++) {
@@ -191,7 +208,7 @@
                         } else {
                             quotes[j].Selected(false);
                         }
-                        quotes[j].DateName($this.DateName(quotes[j],j));
+                        quotes[j].DateName($this.DateName(quotes[j], j));
                     }
                 }
             };
@@ -201,6 +218,29 @@
                         $this.Tickets.remove(data);
                     });
             };
+
+            $this.BuildQuoteData=function(items) {
+                $('.md_datearea li:not([class~="disabled"])')
+                           .each(function(index, item) {
+                               var ditem = null;
+                               var xindex = 0;
+                               for (var i = 0; i < items.length; i++) {
+                                   ditem = items[i];
+                                   if (moment(ditem.dateTime).isSame(moment({year:$(item).data('year'),month:$(item).data('month'),date:$(item).data('day')}),'day')) {
+                                       xindex=i;
+                                       break;
+                                   }
+                                   ditem = null;
+                               }
+                               if (ditem != null) {
+                                   $(item).data('index', xindex);
+                                   $(item).children('span').html('￥' + ditem.quote.price);
+
+                               } else {
+                                   $(item).addClass('disabled');
+                               }
+                           });
+            }
 
             $this.showCalendar = function(data) {
                 var about = $('#calendar_page');
@@ -214,63 +254,109 @@
                     ticket = tickets[i];
                 }
                 var selectedDate = moment();
-                if (ticket.SelectedQuote()!=null) {
-                    selectedDate=moment(ticket.SelectedQuote().Year+'-'+ticket.SelectedQuote().Month+'-'+ticket.SelectedQuote().Day,'YYYY-MM-DD');
+                if (ticket.SelectedQuote() != null) {
+                    selectedDate = moment(ticket.SelectedQuote().Year +
+                        '-' +
+                        ticket.SelectedQuote().Month +
+                        '-' +
+                        ticket.SelectedQuote().Day,
+                        'YYYY-MM-DD');
                 }
                 $this.SelectedTicket(ticket);
-                
+
                 $('div.page-group .page').removeClass('page-current');
                 $('#calendar_page').addClass('page-current');
                 var minDate = moment(ticket.StartDate),
                     maxDate = moment(ticket.EndDate);
-                if (moment().isAfter(minDate,'day')) {
+                if (moment().isAfter(minDate, 'day')) {
                     minDate = moment();
                 }
 
-                var url=
-
+                var url = '@Url.Action("GetQuotesByTicket", "Ticket", new {area = "Mobile"})';
 
                 $('#calendar_page .md_container')
                     .mdater(
                     {
                         minDate: minDate.toDate(),
                         maxDate: maxDate.toDate(),
-                        callback:function(date) {
-                            var ticket= $this.SelectedTicket();
+                        callback: function(index,date) {
+                            var ticket = $this.SelectedTicket();
                             $this.SelectedTicket(null);
                             closePage('#calendar_page');
-                            //alert(moment(date).format('YYYY-MM-DD'));
-                            var quote=ticket.SelectedQuote();
-                            
-                            var quotes=ticket.Quotes();
+
+                            var quotes = ticket.Quotes();
                             var hasQuote = false;
                             for (var i = 0; i < quotes.length; i++) {
-                                if (moment(quotes[i].Year + '-' + quotes[i].Month + '-' + quotes[i].Day, 'YYYY-MM-DD').isSame(date)) {
+                                if (moment(quotes[i].Year + '-' + quotes[i].Month + '-' + quotes[i].Day, 'YYYY-MM-DD')
+                                    .isSame(date)) {
                                     hasQuote = true;
                                     quotes[i].Selected(true);
                                     ticket.SelectedQuote(quotes[i]);
                                 } else {
                                     quotes[i].Selected(false);
                                 }
-                                quotes[i].DateName($this.DateName(quotes[i],i));
+                                quotes[i].DateName($this.DateName(quotes[i], i));
                             }
                             if (hasQuote) {
                                 return;
                             }
-                            quote = quotes[2];
-                            quote.Year = moment(date,'YYYY-MM-DD').year();
-                            quote.Month = moment(date,'YYYY-MM-DD').month()+1;
-                            quote.Day = moment(date,'YYYY-MM-DD').date();
+
+                            var oquote = ticket.AllQuotes()[index];
+                            var quote = quotes[2];
+                            quote.DateTime = oquote.dateTime;
+                            quote.Day = oquote.day;
+                            quote.Id = oquote.id;
+                            quote.Month = oquote.month;
+                            quote.Year = oquote.year;
+                            quote.Week = oquote.week;
+                            quote.Quote.MarketPrice=oquote.quote.marketPrice;
+                            quote.Quote.Price=oquote.quote.price;
+                            quote.Quote.CostPrice=oquote.quote.costPrice;
+                            quote.Quote.AgentPrice=oquote.quote.agentPrice;
+                            quote.Quote.Inventory=oquote.quote.inventory;
+                            quote.MorePrice(quote.Quote.Price);
                             ticket.SelectedQuote(quote);
                             quote.Selected(true);
-                            quotes[2] = quote;
-                            quote.DateName($this.DateName(quote,2));
-                            ticket.Quotes(quotes);
+                            quote.DateName($this.DateName(quote, 2));
                             $this.ChangeDate(quote);
                         },
-                        value:selectedDate.format('YYYY-MM-DD')
+                        value: selectedDate.format('YYYY-MM-DD')
                     });
+
+                if (ticket.AllQuotes().length<=0) {
+                    $.showPreloader();
+                    $.post(url,
+                     { id: ticket.Id, minDate: minDate.format('YYYY-MM-DD'), maxDate: maxDate.format('YYYY-MM-DD') },
+                     function(data, status, xhr) {
+                         $.hidePreloader();
+                         if (!data.success) {
+                             return;
+                         }
+                         var items = data.result.items;
+                         for (var i = 0; i < items.length; i++) {
+                             ticket.AllQuotes.push(items[i]);
+                         }
+                         $this.BuildQuoteData(items);
+                     },
+                     'json');  
+                } else {
+                    $this.BuildQuoteData(ticket.AllQuotes());
+                }
+               
             }
+
+            $this.TotalPrice = ko.pureComputed(function() {
+                var tickets = $this.Tickets();
+                var total = 0;
+                for (var i = 0; i < tickets.length; i++) {
+                    if (tickets[i].SelectedQuote()!=null) {
+                        total += tickets[i].Quantity() * tickets[i].SelectedQuote().Quote.Price;    
+                    }
+                }
+                return total;
+            }, this);
+
+            
         };
 
         var vm = new ViewModel();
@@ -292,8 +378,10 @@
                         var $this = $(this);
                         if (!$this.hasClass('selected')) {
                             $this.addClass('selected');
+                            $('.payment-list').addClass('show');
                         } else {
                             $this.removeClass('selected');
+                            $('.payment-list').removeClass('show');
                         }
                     });
 

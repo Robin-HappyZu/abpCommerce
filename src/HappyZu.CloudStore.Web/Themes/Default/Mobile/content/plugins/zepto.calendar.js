@@ -65,9 +65,9 @@
             _showPanel: function (container) {
                 this.refreshView();
             },
-            _hidePanel: function () {
-                if (option.callback!=null) {
-                    option.callback(this.value.year+'-'+(this.value.month+1)+'-'+this.value.date);
+            _hidePanel: function (index) {
+                if (option.callback != null) {
+                    option.callback(index,this.value.year + '-' + (this.value.month + 1) + '-' + this.value.date);
                 }
             },
             //保存上一次选择的数据
@@ -200,10 +200,11 @@
                         _this.value.year = $this.data('year');
                         _this.value.month = $this.data('month');
                         _this.value.date = $this.data('day');
+                        var index = $this.data('index');
                         _this.saveCheckedDate();
                         $('.md_content li').removeClass('current');
                         $this.addClass('current');
-                        _this._hidePanel();
+                        _this._hidePanel(index);
                     }
                 });
             }
