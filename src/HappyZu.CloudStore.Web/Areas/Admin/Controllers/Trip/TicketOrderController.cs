@@ -100,6 +100,15 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                 SkipCount = model.start
             };
 
+            if (model.SerialNo > 0)
+            {
+                input.SerialNo = model.SerialNo;
+            }
+            if (model.TicketOrderId > 0)
+            {
+                input.TicketOrderId = model.TicketOrderId;
+            }
+
             var output = await _ticketAppService.GetETicketsAsync(input);
 
             var vm = new DataTableJsonViewModel()
@@ -116,7 +125,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                 {
                     x.Id,
                     x.SerialNo,
-                    x.TicketId,
+                    TicketName = x.Ticket.Name,
                     x.TicketOrderId,
                     x.IsChecked,
                     x.CheckedOn

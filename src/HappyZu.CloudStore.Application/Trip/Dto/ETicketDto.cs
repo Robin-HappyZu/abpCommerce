@@ -23,6 +23,8 @@ namespace HappyZu.CloudStore.Trip.Dto
         // 是否已经检票
         public bool IsChecked { get; set; }
         // 检票时间
-        public DateTime CheckedOn { get; set; }
+        public DateTime? CheckedOn { get; set; }
+
+        public TicketDto Ticket { get; set; }
     }
 }
