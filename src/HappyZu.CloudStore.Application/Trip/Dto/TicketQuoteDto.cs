@@ -1,4 +1,5 @@
-﻿using Abp.Application.Services.Dto;
+﻿using System;
+using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 
 namespace HappyZu.CloudStore.Trip.Dto
@@ -11,6 +12,7 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// </summary>
         public int TicketId { get; set; }
 
+        public DateTime DateTime { get; set; }
         /// <summary>
         /// 日
         /// </summary>

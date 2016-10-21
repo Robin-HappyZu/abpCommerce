@@ -12,11 +12,10 @@ namespace HappyZu.CloudStore.Trip.Dto
         public int MaxResultCount { get; set; }
         public int SkipCount { get; set; }
         public int TicketId { get; set; }
-
-        public int Year { get; set; }
-
-        public int Month { get; set; }
         
+        public DateTime? MaxDate { get; set; }
+
+        public DateTime? MinDate { get; set; }
         /// <summary>
         /// 是否显示
         /// </summary>

@@ -133,10 +133,10 @@
                     if (y == this.value.year && m == this.value.month && this.value.date == j) {
                         current = 'current';
                     }
-                    dayStr += '<li class="' + current + '" data-day="' + j + '" data-month="' + m + '" data-year="' + y + '">' + j + '<span>￥100</span></li>';
+                    dayStr += '<li class="' + current + '" data-day="' + j + '" data-month="' + m + '" data-year="' + y + '">' + j + '<span></span></li>';
                 }
                 for (var k = endDay + 1; k <= currentMonthDays; k++) {
-                    dayStr += '<li class="disabled" data-day="' + k + '"> </li>';
+                    dayStr += '<li class="disabled" data-day="' + k + '">' + k + '</li>';
                 }
 
                 //再补上下个月的开始几天

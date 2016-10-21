@@ -207,20 +207,29 @@ namespace HappyZu.CloudStore.Trip
                 Func<IQueryable<TicketQuote>, IQueryable<TicketQuote>> query = null;
                
                 var now = DateTime.Now;
-                if (input.Year > 0 && input.Month > 0)
+                if (input.MaxDate!=null && input.MinDate != null)
+                {
+                    query = q => q.Where(x => x.IsDisplay == input.IsDisplay && 
+                                     x.TicketId == input.TicketId && x.DateTime>=input.MinDate && x.DateTime<=input.MaxDate)
+                                     .OrderBy(x => x.DateTime);
+                }
+                else if (input.MaxDate != null)
                 {
                     query = q => q.Where(x => x.IsDisplay == input.IsDisplay &&
-                                     x.TicketId == input.TicketId &&
-                                     x.Year == input.Year && x.Month == input.Month)
-                                     .OrderBy(x => x.Year).ThenBy(x => x.Month).ThenBy(x => x.Day);
+                                     x.TicketId == input.TicketId && x.DateTime >= DateTime.Now.AddDays(-1) && x.DateTime <= input.MaxDate)
+                                     .OrderBy(x => x.DateTime);
+                }
+                else if (input.MinDate != null)
+                {
+                    query = q => q.Where(x => x.IsDisplay == input.IsDisplay &&
+                                     x.TicketId == input.TicketId && x.DateTime >= input.MinDate)
+                                     .OrderBy(x => x.DateTime);
                 }
                 else
                 {
                     query = q => q.Where(x => x.IsDisplay == input.IsDisplay &&
-                                     x.TicketId == input.TicketId &&
-                                     (x.Year > now.Year || (x.Year == now.Year && x.Month > now.Month) ||
-                                     (x.Year == now.Year && x.Month == now.Month && x.Day >= now.Day)))
-                                     .OrderBy(x => x.Year).ThenBy(x => x.Month).ThenBy(x => x.Day);
+                                     x.TicketId == input.TicketId)
+                                     .OrderBy(x => x.DateTime);
                 }
                 var count = await _ticketQuoteManager.QueryCountAsync(query);
                 var quotes =await _ticketQuoteManager.QuerysListAsync(query, input);

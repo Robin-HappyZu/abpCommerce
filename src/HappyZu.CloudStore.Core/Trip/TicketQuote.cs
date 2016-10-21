@@ -17,6 +17,10 @@ namespace HappyZu.CloudStore.Trip
         public int TicketId { get; set; }
 
         /// <summary>
+        /// 日期
+        /// </summary>
+        public DateTime DateTime { get; set; }
+        /// <summary>
         ///     日
         /// </summary>
         public int Day { get; set; }

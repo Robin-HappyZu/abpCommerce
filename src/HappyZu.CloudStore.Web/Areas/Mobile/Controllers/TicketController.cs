@@ -131,6 +131,18 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         }
         #endregion
 
+        #region 门票报价
+
+        public async Task<JsonResult> GetQuotesByTicketId(int id)
+        {
+            var quotes = await _ticketAppService.GetPagedTicketQuotesByTicektId(new GetPagedTicketQuotesInput
+            {
+                TicketId = id
+            });
+            return Json(null);
+        }
+        #endregion
+
         #region 订单填写
 
         public async Task<ViewResult> TicketOrder(int id,int ticket)

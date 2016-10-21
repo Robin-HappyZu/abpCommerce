@@ -221,11 +221,20 @@
                 
                 $('div.page-group .page').removeClass('page-current');
                 $('#calendar_page').addClass('page-current');
+                var minDate = moment(ticket.StartDate),
+                    maxDate = moment(ticket.EndDate);
+                if (moment().isAfter(minDate,'day')) {
+                    minDate = moment();
+                }
+
+                var url=
+
+
                 $('#calendar_page .md_container')
                     .mdater(
                     {
-                        minDate: moment(ticket.StartDate).startOf('month').toDate(),
-                        maxDate: moment(ticket.EndDate).endOf('month').toDate(),
+                        minDate: minDate.toDate(),
+                        maxDate: maxDate.toDate(),
                         callback:function(date) {
                             var ticket= $this.SelectedTicket();
                             $this.SelectedTicket(null);
