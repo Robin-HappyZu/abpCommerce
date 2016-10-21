@@ -13,6 +13,7 @@ body {
     font-family: Arial,"Lucida Grande",Verdana,"Microsoft YaHei",hei;
 }  
 
+.foot-clear{ clear: both; height:44px;}
 .iconfont {
   font-family:"iconfont" !important;
   font-style:normal;
@@ -1072,7 +1073,7 @@ input, button, select, textarea {
 
 .confirm-order .card .card-header .header-active{
     position: absolute;
-    right: 0;
+    right: 5px;
     top: 50%;
     line-height: 1rem;
     margin-top: -0.5rem;
@@ -1086,7 +1087,7 @@ input, button, select, textarea {
 }
  .header-active .remove-ticket {
      color: #999999;
-     padding: 5px 8px;
+     padding: 5px;
  }
 .confirm-order .card .card-header .header-title {
     font-size: 15px;

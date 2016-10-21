@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using HappyZu.CloudStore.Trip;
+using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
 using HappyZu.CloudStore.Web.Controllers;
@@ -132,7 +133,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #region 订单填写
 
-        public ActionResult TicketOrder()
+        public async Task<ViewResult> TicketOrder(int id,int ticket)
         {
             ViewBag.Title = "订单填写";
             ViewBag.HeaderBar = new HeaderViewModel()
@@ -147,11 +148,24 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                         Name = "TicketDetail",
                         //DisplayName = "长沙",
                         Icon = "icon icon-left",
-                        Url = Url.Action("Detail","Ticket", new {area="Mobile"},true)
+                        Url = Url.Action("Detail","Ticket", new {area="Mobile",id=id},true)
                     }
                 }
             };
-            return View();
+
+            var ticketEntity = await _ticketAppService.GetTicketByIdAsync(ticket);
+            var ticketQuotes = await _ticketAppService.GetPagedTicketQuotesByTicektId(new GetPagedTicketQuotesInput()
+            {
+                TicketId = ticket,
+                MaxResultCount = 3,
+                IsDisplay = true
+            });
+            var vm = new TicketOrderViewModel
+            {
+                Ticket = ticketEntity,
+                TicketQuotes = ticketQuotes.Items
+            };
+            return View(vm);
         }
         #endregion
 

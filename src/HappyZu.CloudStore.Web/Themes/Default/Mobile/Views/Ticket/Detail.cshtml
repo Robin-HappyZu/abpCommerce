@@ -26,7 +26,7 @@
         <div class="ticket-detail-header">
             <span class="rectangle-blue"></span> 门票
         </div>
-        <div data-bind="template: { name: 'ticket-list', foreach: TicketList }">
+        <div data-bind="template: { name: 'ticket-list', foreach:TicketList }">
             
         </div>
     </div>
@@ -61,7 +61,7 @@
                     <label class="ticket-item-tag" data-bind="visible:MustAdvance,text:'提前'+AdvanceBookingDays+'天预订'"></label>
                 </div>
                 <div class="ticket-item-detailed">
-                    <a href="javascript:;">购买须知</a>
+                    <a href="javascript:;" data-bind="click:$root.openTicketNotice">购买须知</a>
                 </div>
             </div>
             <div class="ticket-item-price-box">
@@ -70,7 +70,7 @@
                     <div class="price"><dfn>$</dfn><span data-bind="text:Price"></span></div>
                 </div>
                 <div class="ticket-book-content">
-                    <a data-bind="attr:{href:'@Url.Action("TicketOrder", "Ticket", new {area = "Mobile"}, true)/'+Id}" class="ticket-book-btn">
+                    <a data-bind="attr:{href:'@Url.Action("TicketOrder", "Ticket", new {area = "Mobile"}, true)/'+DestId+'?ticket='+Id}" class="ticket-book-btn">
                         <span class="online-peyment">在线支付</span>
                         <span class="book-btn-text">预订</span>
                     </a>
@@ -83,7 +83,7 @@
         var pictures = @Html.Raw(Json.Encode(Model.Pictures));
         var tickettype = @Html.Raw(Json.Encode(Model.TicketTypes));
         var tickets = @Html.Raw(Json.Encode(Model.Tickets));
-        var dest=@Html.Raw(Json.Encode(Model.Dest));
+        var dest = @Html.Raw(Json.Encode(Model.Dest));
 
         var TicketListItem = function(type) {
             this.TicketType = type;
@@ -108,7 +108,10 @@
                         _this.TicketList.push(item);
                     }
                 }
-            }
+            };
+            this.openTicketNotice = function(data) {
+                alert(data.Description);
+            };
         }
 
         var vm = new ViewModel();
@@ -118,33 +121,47 @@
         $(function() {
             vm.reload();
 
-            $(document).on('click','.open-about', function () {
-                var about = $('#about_page');
-                if (about.length<=0) {
-                    $('div.page-group').append('<div class="page" id="about_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">景点介绍</h1></header><div class="content native-scroll"><div id="about-content" class="content-block margin-top-10"></div></div></div>');
-                    $('#about-content').html(dest.Introduce);
-                }
-                $('div.page-group .page').removeClass('page-current');
-                $('#about_page').addClass('page-current');
-            });
-            $(document).on('click', '#about_page a.back', function() {
-                $('#about_page').removeClass('page-current');
-                $('div.page-group .page:not([id])').addClass('page-current');
-            });
+            $(document)
+                .on('click',
+                    '.open-about',
+                    function() {
+                        var about = $('#about_page');
+                        if (about.length <= 0) {
+                            $('div.page-group')
+                                .append('<div class="page" id="about_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">景点介绍</h1></header><div class="content native-scroll"><div id="about-content" class="content-block margin-top-10"></div></div></div>');
+                            $('#about-content').html(dest.Introduce);
+                        }
+                        $('div.page-group .page').removeClass('page-current');
+                        $('#about_page').addClass('page-current');
+                    });
+            $(document)
+                .on('click',
+                    '#about_page a.back',
+                    function() {
+                        $('#about_page').removeClass('page-current');
+                        $('div.page-group .page:not([id])').addClass('page-current');
+                    });
 
-            $(document).on('click','.booking-notice-content', function () {
-                var bookingNoticePage = $('#booking_notice_page');
-                if (bookingNoticePage.length<=0) {
-                    $('div.page-group').append('<div class="page" id="booking_notice_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">预订说明</h1></header><div class="content native-scroll"><div id="booking-notice-content" class="content-block margin-top-10"></div></div></div>');
-                    $('#booking-notice-content').html(dest.BookingNotice);
-                }
-                $('div.page-group .page').removeClass('page-current');
-                $('#booking_notice_page').addClass('page-current');
-            });
-            $(document).on('click', '#booking_notice_page a.back', function() {
-                $('#booking_notice_page').removeClass('page-current');
-                $('div.page-group .page:not([id])').addClass('page-current');
-            });
+            $(document)
+                .on('click',
+                    '.booking-notice-content',
+                    function() {
+                        var bookingNoticePage = $('#booking_notice_page');
+                        if (bookingNoticePage.length <= 0) {
+                            $('div.page-group')
+                                .append('<div class="page" id="booking_notice_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">预订说明</h1></header><div class="content native-scroll"><div id="booking-notice-content" class="content-block margin-top-10"></div></div></div>');
+                            $('#booking-notice-content').html(dest.BookingNotice);
+                        }
+                        $('div.page-group .page').removeClass('page-current');
+                        $('#booking_notice_page').addClass('page-current');
+                    });
+            $(document)
+                .on('click',
+                    '#booking_notice_page a.back',
+                    function() {
+                        $('#booking_notice_page').removeClass('page-current');
+                        $('div.page-group .page:not([id])').addClass('page-current');
+                    });
         });
     </script>
 }

@@ -435,6 +435,9 @@
     <Content Include="Areas\Admin\Views\Travel\EditTravel.cshtml" />
     <Content Include="Themes\Default\Mobile\content\jquery.bootstrap-touchspin.min.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\knockout-3.4.0.js" />
+    <Content Include="Themes\Default\Mobile\content\plugins\zepto.calendar.js" />
+    <Content Include="Themes\Default\Mobile\content\plugins\moment.min.js" />
+    <Content Include="Themes\Default\Mobile\content\plugins\zepto.cookie.min.js" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\Provinces.cshtml" />
@@ -599,6 +602,7 @@
     <Compile Include="Areas\Mobile\Controllers\WechatPayController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\DetailViewModel.cs" />
+    <Compile Include="Areas\Mobile\Models\Dest\TicketOrderViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\FootMenuViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\HeaderViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\WechatPay\WechatPayParamModel.cs" />
@@ -668,6 +672,7 @@
     <Content Include="Themes\Default\Mobile\Views\Ticket\ChoosePayment.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\PaymentSuccess.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\DestAbout.cshtml" />
+    <Content Include="Themes\Default\Mobile\content\plugins\zepto.calendar.css" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
