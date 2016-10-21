@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using Abp.Collections.Extensions;
 using HappyZu.CloudStore.Common.Dto;
 using HappyZu.CloudStore.Entities;
 using HappyZu.CloudStore.Trip.Dto;
@@ -561,8 +563,35 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var count = await _eTicketManager.GetETicketsCountAsync(null);
-                var items = await _eTicketManager.GetETicketsAsync(null, input);
+                Func<IQueryable<ETicket>, IQueryable<ETicket>> query = null;
+                if (input.SerialNo > 0 && input.TicketOrderId >  0 )
+                {                    
+                    query = t =>
+                    {
+                        return t.Where(o => o.SerialNo == input.SerialNo && o.TicketOrderId == input.TicketOrderId);
+                    };
+                }
+                else
+                {
+                    if (input.SerialNo > 0)
+                    {
+                        query = t =>
+                        {
+                            return t.Where(o => o.SerialNo == input.SerialNo);
+                        };
+                    }
+
+                    if (input.TicketOrderId > 0)
+                    {
+                        query = t =>
+                        {
+                            return t.Where(o => o.TicketOrderId == input.TicketOrderId);
+                        };
+                    }
+                }
+
+                var count = await _eTicketManager.GetETicketsCountAsync(query);
+                var items = await _eTicketManager.GetETicketsAsync(query, input);
 
                 return new PagedResultDto<ETicketDto>()
                 {

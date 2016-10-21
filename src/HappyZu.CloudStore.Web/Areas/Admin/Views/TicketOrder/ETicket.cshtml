@@ -25,6 +25,44 @@
                     <div class="caption">
                         @ViewBag.Title
                     </div>
+
+                </div>
+                <div class="portlet-body portlet-search">
+                    <div class="portlet light bordered ">
+                        <div class="portlet-body">
+                            <form action="#" class="form-horizontal">
+                                <div class="form-body">
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">电子票编号</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="SerialNo" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">订单编号</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="TicketOrderId">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-2">
+                                            <div class="form-actions">
+                                                <button class="btn green btn-block" id="btnSearch">搜索</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,117 +105,63 @@
 @section scripts{
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script>
-        var TableDatatablesAjax = function() {
-            var handleRecords = function() {
-                var grid = new Datatable();
-
-                grid.init({
-                    src: $("#datatable_ajax"),
-                    onSuccess: function(grid, response) {
-                        // grid:        grid object+1
-                        // response:    json object of server side ajax response
-                        // execute some code after table records loaded
-                    },
-                    onError: function(grid) {
-                        // execute some code on network or other general error
-                    },
-                    onDataLoad: function(grid) {
-                        // execute some code on ajax data load
-                    },
-                    loadingMessage: '正在加载...',
-                    dataTable: {
-                        // here you can define a typical datatable settings from http://datatables.net/usage/options
-
-                        // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
-                        // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
-                        // So when dropdowns used the scrollable div should be removed.
-                        //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
-                        "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
-
-                        "lengthMenu": [
-                            [10, 20, 50, 100, 150, -1],
-                            [10, 20, 50, 100, 150, "All"] // change per page values here
-                        ],
-                        "pageLength": 10, // default record count per page
-                        "ajax": {
-                            "url": "@Url.Action("GetETickets", "TicketOrder", new {area = "Admin"}, true)", // ajax source
-                        },
-                        "columns": [
-                            { "data": "Id" },
-                            { "data": "SerialNo" },
-                            { "data": "TicketId" },
-                            { "data": "TicketOrderId" },
-                            { "data": "IsChecked" },
-                            { "data": "CheckedOn" }
-                        ],
-                        "columnDefs": [
-                            {
-                                orderable: false, //禁用排序
-                                targets: [0, 1, 2, 3] //指定的列
-                            }, {
-                                render: function(data, type, row) {
-                                    return '<input type="checkbox" name="id[]" value="' + data + '">';
-                                },
-                                targets: 0
-                            }, {
-                                render: function(data, type, row) {
-                                    return moment(data).format('YYYY-MM-DD hh:mm:ss');
-                                },
-                                targets : 5
-                            }, {
-                                render: function(data, type, row) {
-                                    var btns = '<a class="btn btn-sm btn-outline blue" href="#Order-Detail" data-id="' + row.Id + '" data-toggle="modal">详情</a> ';
-                                    return btns;
-                                },
-                                targets: 6
-                            }
-                        ],
-                        "order": [
-                        ] // set first column as a default sort by asc
-                    }
-                });
-
-                // handle group actionsubmit button click
-                grid.getTableWrapper().on('click', '.table-group-action-submit', function(e) {
-                    e.preventDefault();
-                    var action = $(".table-group-action-input", grid.getTableWrapper());
-                    if (action.val() !== "" && grid.getSelectedRowsCount() > 0) {
-                        grid.setAjaxParam("customActionType", "group_action");
-                        grid.setAjaxParam("customActionName", action.val());
-                        grid.setAjaxParam("id", grid.getSelectedRows());
-                        grid.getDataTable().ajax.reload();
-                        grid.clearAjaxParams();
-                    } else if (action.val() === "") {
-                        App.alert({
-                            type: 'danger',
-                            icon: 'warning',
-                            message: '请选择操作类型',
-                            container: grid.getTableWrapper(),
-                            place: 'prepend'
-                        });
-                    } else if (grid.getSelectedRowsCount() === 0) {
-                        App.alert({
-                            type: 'danger',
-                            icon: 'warning',
-                            message: '没有选择记录',
-                            container: grid.getTableWrapper(),
-                            place: 'prepend'
-                        });
-                    }
-                });
-            }
-
-
-            return {
-                //main function to initiate the module
-                init: function() {
-                    handleRecords();
-                }
-            };
-        }();
+        var grid = new Datatable();
 
         jQuery(document).ready(function() {
-            TableDatatablesAjax.init();
+            grid.init({
+                src: $("#datatable_ajax"),
+                loadingMessage: '正在加载...',
+                dataTable: {
+                    "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+                    "lengthMenu": [
+                        [10, 20, 50, 100, 150, -1],
+                        [10, 20, 50, 100, 150, "All"] // change per page values here
+                    ],
+                    "pageLength": 10, // default record count per page
+                    "ajax": {
+                        "url": "@Url.Action("GetETickets", "TicketOrder", new {area = "Admin"}, true)", // ajax source
+                    },
+                    "columns": [
+                        { "data": "Id" },
+                        { "data": "SerialNo" },
+                        { "data": "TicketName" },
+                        { "data": "TicketOrderId" },
+                        { "data": "IsChecked" },
+                        { "data": "CheckedOn" }
+                    ],
+                    "columnDefs": [
+                        {
+                            orderable: false, //禁用排序
+                            targets: [0, 1, 2, 3] //指定的列
+                        }, {
+                            render: function(data, type, row) {
+                                return '<input type="checkbox" name="id[]" value="' + data + '">';
+                            },
+                            targets: 0
+                        }, {
+                            render: function(data, type, row) {
+                                return moment(data).format('YYYY-MM-DD hh:mm:ss');
+                            },
+                            targets: 5
+                        }, {
+                            render: function(data, type, row) {
+                                var btns = '<a class="btn btn-sm btn-outline blue" href="#Order-Detail" data-id="' + row.Id + '" data-toggle="modal">详情</a> ';
+                                return btns;
+                            },
+                            targets: 6
+                        }
+                    ],
+                    "order": [
+                    ] // set first column as a default sort by asc
+                }
+            });
+
+            $("#btnSearch").click(function() {
+                grid.setAjaxParam("SerialNo", $("#SerialNo").val());
+                grid.setAjaxParam("TicketOrderId", $("#TicketOrderId").val());
+                grid.getDataTable().ajax.reload();
+                //grid.clearAjaxParams();
+            });
         });
     </script>
 <!-- END PAGE LEVEL SCRIPTS -->

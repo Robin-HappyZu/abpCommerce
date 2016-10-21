@@ -7,5 +7,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Models
 {
     public class GetETicketsViewModel : DataTableOptionViewModel
     {
+        public long SerialNo { get; set; }
+        public int TicketOrderId { get; set; }
     }
 }
