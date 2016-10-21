@@ -1,14 +1,16 @@
 ﻿@model HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest.TicketOrderViewModel
-
+    @using Abp.Json
 <div class="content native-scroll confirm-order">
     <div data-bind="template:{name:'ticket-template',foreach:Tickets}"></div>
-    <div class="card">
-        <div class="card-content">
-            <div class="card-content-inner text-center">
-                <a href="javascript:;" class=""><span class="iconfont icon-add"></span> 同时购买该景区其他门票</a>
+    <a href="javascript:;" data-bind="click:openAllTickets" class="">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-content-inner text-center">
+                    <span class="iconfont icon-add"></span> 同时购买该景区其他门票
+                </div>
             </div>
         </div>
-    </div>
+    </a>
     <div class="card">
         <div class="card-header">取票信息</div>
         <div class="card-content">
@@ -39,7 +41,7 @@
 <div class="bar bar-footer payment-list transactions">
     <div class="payment-content" data-bind="foreach:Tickets">
         <div class="form-row right">
-            <div class="row-text" data-bind="text:Name">
+            <div class="row-text" data-bind="text:name">
             </div>
             <div class="row-value" data-bind="text:ShowQuantity">
             </div>
@@ -78,7 +80,7 @@
     <script type="text/html" id="ticket-template">
         <div class="card">
             <div class="card-header">
-                <div class="header-title" data-bind="text:Name">
+                <div class="header-title" data-bind="text:name">
 
                 </div>
                 <div class="header-active">
@@ -110,7 +112,7 @@
                 <label data-bind="text:DateName"></label>
                 <div class="price">
                     <dfn>$</dfn>
-                    <span data-bind="text:Quote.Price"></span>
+                    <span data-bind="text:quote.price"></span>
                 </div>
             </div>
             <div class="choose-item more" data-bind="visible: $index()>1,click:$root.showCalendar">
@@ -122,17 +124,65 @@
             </div>
         </div>
     </script>
+    <script type="text/html" id="ticket-list">
+        <dl class="ticket-detail-list" data-bind="visible:Tickets().length>0">
+            <dt class="ticket-title" data-bind="text:TicketType.name"></dt>
+            <div data-bind="template: { name: 'ticket-list-item', foreach: Tickets }"></div>
+        </dl>
+    </script>
+
+    <script type="text/html" id="ticket-list-item">
+        <dd>
+            <div class="ticket-item-info">
+                <div class="ticket-item-title" data-bind="text:name"></div>
+                <div class="ticket-item-box">
+                    <label class="ticket-item-tag" data-bind="visible:!mustAdvance">今日票</label>
+                    <label class="ticket-item-tag" data-bind="visible:mustAdvance,text:'提前'+advanceBookingDays+'天预订'"></label>
+                </div>
+                <div class="ticket-item-detailed">
+                    <a href="javascript:;" data-bind="click:$root.openTicketNotice">购买须知</a>
+                </div>
+            </div>
+            <div class="ticket-item-price-box">
+                <div class="ticket-item-price">
+                    <div class="old-price"><dfn>$</dfn><span data-bind="text:marketPrice"></span></div>
+                    <div class="price"><dfn>$</dfn><span data-bind="text:price"></span></div>
+                </div>
+                <div class="ticket-book-content">
+                    <a data-bind="click:$root.checkTicket,attr:{'ticketid':id}" class="ticket-book-btn">
+                        <span class="online-peyment">在线支付</span>
+                        <span class="book-btn-text">预订</span>
+                    </a>
+                </div>
+            </div>
+        </dd>
+    </script>
     <script>
-        var ticketVM = @Html.Raw(Json.Encode(Model));
+        var ticketsPage = $('#tickets_page');
+        if (ticketsPage.length <= 0) {
+            $('div.page-group')
+                .append('<div class="page" id="tickets_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">全部门票</h1></header><div class="content native-scroll"><div id="tickets-content" class="ticket-detail-box"></div></div></div>');
+            $('#tickets-content').html('<div data-bind="template:{name:\'ticket-list\',foreach:AllTickets}"></div>');
+        }
+        var ticketVM = @Html.Raw(Model.ToJsonString(true));
+
+        var TicketListItem = function(type) {
+            this.TicketType = type;
+            this.Tickets = ko.observableArray([]);
+        }
+
         var Ticket = function(ticket) {
             $.extend(this, ticket);
-            var $this=this;
+            var $this = this;
             this.Quantity = ko.observable(1);
             this.SelectedQuote = ko.observable();
             this.Quotes = ko.observableArray([]);
-            this.AllQuotes=ko.observableArray([]);
+            this.AllQuotes = ko.observableArray([]);
             this.ShowQuantity = ko.pureComputed(function() {
-                return '￥'+$this.SelectedQuote().Quote.Price + 'x' + $this.Quantity();
+                if ($this.SelectedQuote()!=null) {
+                    return '￥' + $this.SelectedQuote().quote.price + 'x' + $this.Quantity();
+                }
+                return '￥0'+ 'x' + $this.Quantity();
             }, this);
         };
 
@@ -141,7 +191,7 @@
             var $this = this;
             this.Selected = ko.observable(false);
             this.DateName = ko.observable();
-            this.MorePrice = ko.observable(this.Quote.Price);
+            this.MorePrice = ko.observable(this.quote.price);
         };
 
         var closePage = function(currentPage) {
@@ -154,11 +204,12 @@
             $this.Contact = ko.observable('');
             $this.Mobile = ko.observable('');
             $this.Tickets = ko.observableArray([]);
+            $this.AllTickets = ko.observableArray([]);
             $this.SelectedTicket = ko.observable();
             $this.load = function() {
-                var ticket = new Ticket(ticketVM.Ticket);
-                for (var i = 0; i < ticketVM.TicketQuotes.length; i++) {
-                    var quote = new QuoteModel(ticketVM.TicketQuotes[i]);
+                var ticket = new Ticket(ticketVM.ticket);
+                for (var i = 0; i < ticketVM.ticketQuotes.length; i++) {
+                    var quote = new QuoteModel(ticketVM.ticketQuotes[i]);
                     if (i === 0) {
                         quote.Selected(true);
                         ticket.SelectedQuote(quote);
@@ -172,16 +223,16 @@
 
             $this.DateName = function(data, index) {
 
-                if (moment().isSame(data.Year + '-' + data.Month + '-' + data.Day, 'Day')) {
+                if (moment().isSame(data.year + '-' + data.month + '-' + data.day, 'Day')) {
                     return '今日';
                 }
-                if (moment().add(1, 'days').isSame(data.Year + '-' + data.Month + '-' + data.Day, 'Day')) {
+                if (moment().add(1, 'days').isSame(data.year + '-' + data.month + '-' + data.day, 'Day')) {
                     return '明日';
                 }
 
 
                 if (data.Selected() || index < 2) {
-                    return data.Month + '月' + data.Day + '日';
+                    return data.month + '月' + data.day + '日';
                 } else {
                     return '更多日期';
                 }
@@ -190,7 +241,7 @@
             $this.GetTicketById = function(id) {
                 var tickets = $this.Tickets();
                 for (var i = 0; i < tickets.length; i++) {
-                    if (tickets[i].Id === id) {
+                    if (tickets[i].id === id) {
                         return tickets[i];
                     }
                 }
@@ -198,12 +249,12 @@
             }
             $this.ChangeDate = function(data) {
 
-                var ticket = $this.GetTicketById(data.TicketId);
+                var ticket = $this.GetTicketById(data.ticketId);
                 if (ticket != null) {
                     ticket.SelectedQuote(data);
                     var quotes = ticket.Quotes();
                     for (var j = 0; j < quotes.length; j++) {
-                        if (quotes[j].Id === data.Id) {
+                        if (quotes[j].id === data.id) {
                             quotes[j].Selected(true);
                         } else {
                             quotes[j].Selected(false);
@@ -219,27 +270,27 @@
                     });
             };
 
-            $this.BuildQuoteData=function(items) {
+            $this.BuildQuoteData = function(items) {
                 $('.md_datearea li:not([class~="disabled"])')
-                           .each(function(index, item) {
-                               var ditem = null;
-                               var xindex = 0;
-                               for (var i = 0; i < items.length; i++) {
-                                   ditem = items[i];
-                                   if (moment(ditem.dateTime).isSame(moment({year:$(item).data('year'),month:$(item).data('month'),date:$(item).data('day')}),'day')) {
-                                       xindex=i;
-                                       break;
-                                   }
-                                   ditem = null;
-                               }
-                               if (ditem != null) {
-                                   $(item).data('index', xindex);
-                                   $(item).children('span').html('￥' + ditem.quote.price);
+                    .each(function(index, item) {
+                        var ditem = null;
+                        var xindex = 0;
+                        for (var i = 0; i < items.length; i++) {
+                            ditem = items[i];
+                            if (moment(ditem.dateTime).isSame(moment({ year: $(item).data('year'), month: $(item).data('month'), date: $(item).data('day') }), 'day')) {
+                                xindex = i;
+                                break;
+                            }
+                            ditem = null;
+                        }
+                        if (ditem != null) {
+                            $(item).data('index', xindex);
+                            $(item).children('span').html('￥' + ditem.quote.price);
 
-                               } else {
-                                   $(item).addClass('disabled');
-                               }
-                           });
+                        } else {
+                            $(item).addClass('disabled');
+                        }
+                    });
             }
 
             $this.showCalendar = function(data) {
@@ -255,19 +306,19 @@
                 }
                 var selectedDate = moment();
                 if (ticket.SelectedQuote() != null) {
-                    selectedDate = moment(ticket.SelectedQuote().Year +
+                    selectedDate = moment(ticket.SelectedQuote().year +
                         '-' +
-                        ticket.SelectedQuote().Month +
+                        ticket.SelectedQuote().month +
                         '-' +
-                        ticket.SelectedQuote().Day,
+                        ticket.SelectedQuote().day,
                         'YYYY-MM-DD');
                 }
                 $this.SelectedTicket(ticket);
 
                 $('div.page-group .page').removeClass('page-current');
                 $('#calendar_page').addClass('page-current');
-                var minDate = moment(ticket.StartDate),
-                    maxDate = moment(ticket.EndDate);
+                var minDate = moment(ticket.startDate),
+                    maxDate = moment(ticket.endDate);
                 if (moment().isAfter(minDate, 'day')) {
                     minDate = moment();
                 }
@@ -279,7 +330,7 @@
                     {
                         minDate: minDate.toDate(),
                         maxDate: maxDate.toDate(),
-                        callback: function(index,date) {
+                        callback: function(index, date) {
                             var ticket = $this.SelectedTicket();
                             $this.SelectedTicket(null);
                             closePage('#calendar_page');
@@ -287,7 +338,7 @@
                             var quotes = ticket.Quotes();
                             var hasQuote = false;
                             for (var i = 0; i < quotes.length; i++) {
-                                if (moment(quotes[i].Year + '-' + quotes[i].Month + '-' + quotes[i].Day, 'YYYY-MM-DD')
+                                if (moment(quotes[i].year + '-' + quotes[i].month + '-' + quotes[i].day, 'YYYY-MM-DD')
                                     .isSame(date)) {
                                     hasQuote = true;
                                     quotes[i].Selected(true);
@@ -303,18 +354,8 @@
 
                             var oquote = ticket.AllQuotes()[index];
                             var quote = quotes[2];
-                            quote.DateTime = oquote.dateTime;
-                            quote.Day = oquote.day;
-                            quote.Id = oquote.id;
-                            quote.Month = oquote.month;
-                            quote.Year = oquote.year;
-                            quote.Week = oquote.week;
-                            quote.Quote.MarketPrice=oquote.quote.marketPrice;
-                            quote.Quote.Price=oquote.quote.price;
-                            quote.Quote.CostPrice=oquote.quote.costPrice;
-                            quote.Quote.AgentPrice=oquote.quote.agentPrice;
-                            quote.Quote.Inventory=oquote.quote.inventory;
-                            quote.MorePrice(quote.Quote.Price);
+                            quote = $.extend(quote, oquote);
+                            quote.MorePrice(quote.quote.price);
                             ticket.SelectedQuote(quote);
                             quote.Selected(true);
                             quote.DateName($this.DateName(quote, 2));
@@ -323,40 +364,141 @@
                         value: selectedDate.format('YYYY-MM-DD')
                     });
 
-                if (ticket.AllQuotes().length<=0) {
+                if (ticket.AllQuotes().length <= 0) {
                     $.showPreloader();
                     $.post(url,
-                     { id: ticket.Id, minDate: minDate.format('YYYY-MM-DD'), maxDate: maxDate.format('YYYY-MM-DD') },
-                     function(data, status, xhr) {
-                         $.hidePreloader();
-                         if (!data.success) {
-                             return;
-                         }
-                         var items = data.result.items;
-                         for (var i = 0; i < items.length; i++) {
-                             ticket.AllQuotes.push(items[i]);
-                         }
-                         $this.BuildQuoteData(items);
-                     },
-                     'json');  
+                        { id: ticket.id, minDate: minDate.format('YYYY-MM-DD'), maxDate: maxDate.format('YYYY-MM-DD') },
+                        function(data, status, xhr) {
+                            $.hidePreloader();
+                            if (!data.success) {
+                                return;
+                            }
+                            var items = data.result.items;
+                            for (var i = 0; i < items.length; i++) {
+                                ticket.AllQuotes.push(items[i]);
+                            }
+                            $this.BuildQuoteData(items);
+                        },
+                        'json');
                 } else {
                     $this.BuildQuoteData(ticket.AllQuotes());
                 }
-               
+
             }
 
             $this.TotalPrice = ko.pureComputed(function() {
                 var tickets = $this.Tickets();
                 var total = 0;
                 for (var i = 0; i < tickets.length; i++) {
-                    if (tickets[i].SelectedQuote()!=null) {
-                        total += tickets[i].Quantity() * tickets[i].SelectedQuote().Quote.Price;    
+                    if (tickets[i].SelectedQuote() != null) {
+                        total += tickets[i].Quantity() * tickets[i].SelectedQuote().quote.price;
                     }
                 }
                 return total;
             }, this);
 
-            
+            $this.loadAllTickets = function() {
+                var url = '@Url.Action("GetTicketsByDest", "Ticket", new {area = "Mobile"}, true)';
+                var params = { id: @Model.Ticket.DestId };
+                $.showPreloader();
+                $.post(url, params, function(data) {
+                    $.hidePreloader();
+                    if (data.success) {
+                        var tickettype = data.result.ticketType;
+                        var tickets = data.result.tickets;
+                        if (tickettype != null && tickettype.totalCount > 0) {
+                            for (var i = 0; i < tickettype.items.length; i++) {
+                                var item = new TicketListItem(tickettype.items[i]);
+                                if (tickets.totalCount > 0) {
+                                    for (var j = 0; j < tickets.items.length; j++) {
+                                        if (tickets.items[j].typeId === item.TicketType.id) {
+                                            item.Tickets.push(tickets.items[j]);
+                                        }
+                                    }
+                                }
+                                $this.AllTickets.push(item);
+                            }
+                        }
+
+                        $this.canChecked();
+                    }
+                }, 'json');
+            }
+
+            $this.openAllTickets = function() {
+                if ($this.AllTickets().length <= 0) {
+                    $this.loadAllTickets();
+                }
+                $('div.page-group .page').removeClass('page-current');
+                $('#tickets_page').addClass('page-current');
+                $this.canChecked();
+            }
+
+            $this.canChecked=function(data) {
+
+                var tickets = $this.Tickets();
+
+                $('.ticket-book-btn').removeClass('disabled');
+                for (var i = 0; i < tickets.length; i++) {
+                    $('.ticket-book-btn[ticketid="' + tickets[i].id + '"]').addClass('disabled');
+                }
+
+                return true;
+            };
+
+            $this.checkTicket = function(data) {
+                var tickets = $this.Tickets();
+                for (var i = 0; i < tickets.length; i++) {
+                    if (tickets[i].id===data.id) {
+                        $.toast("已经添加了这个票种");
+                        return;
+                    }
+                }
+
+                var ticket = new Ticket(data);
+                $this.Tickets.push(ticket);
+                $('.ticket-quantity .qty-input').TouchSpin({ min: 1, max: 99 });
+
+                var minDate = moment(ticket.startDate),
+                   maxDate = moment(ticket.endDate);
+                if (moment().isAfter(minDate, 'day')) {
+                    minDate = moment();
+                }
+
+                var url = '@Url.Action("GetQuotesByTicket", "Ticket", new {area = "Mobile"})';
+                $.showPreloader();
+                $.post(url,
+                    { id: ticket.id, minDate: minDate.format('YYYY-MM-DD'), maxDate: maxDate.format('YYYY-MM-DD') },
+                    function(data, status, xhr) {
+                        $.hidePreloader();
+                        if (!data.success) {
+                            return;
+                        }
+                        var items = data.result.items;
+                        for (var i = 0; i < items.length; i++) {
+                            ticket.AllQuotes.push(items[i]);
+                            if (i<3) {
+                                var quote = new QuoteModel(items[i]);
+                                if (i === 0) {
+                                    quote.Selected(true);
+                                    ticket.SelectedQuote(quote);
+                                }
+                                quote.DateName($this.DateName(quote, i));
+                                ticket.Quotes.push(quote);
+                            }
+                        }
+                        $this.BuildQuoteData(items);
+                    },
+                    'json');
+
+                closePage('#tickets_page');
+            }
+
+            $this.openTicketNotice = function(data) {
+
+            }
+
+
         };
 
         var vm = new ViewModel();
@@ -378,10 +520,10 @@
                         var $this = $(this);
                         if (!$this.hasClass('selected')) {
                             $this.addClass('selected');
-                            $('.payment-list').addClass('show');
+                            $('.payment-list').addClass('show').height(vm.Tickets().length*44);
                         } else {
                             $this.removeClass('selected');
-                            $('.payment-list').removeClass('show');
+                            $('.payment-list').removeClass('show').height(44);
                         }
                     });
 
@@ -391,6 +533,13 @@
                     function() {
                         closePage('#calendar_page');
                     });
+            $(document)
+                .on('click',
+                    '#tickets_page a.back',
+                    function() {
+                        closePage('#tickets_page');
+                    });
         });
+
     </script>
 }

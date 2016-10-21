@@ -78,5 +78,10 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// 创建时间
         /// </summary>
         public DateTime CreationTime { get; set; }
+        
+        /// <summary>
+        /// 代理ID
+        /// </summary>
+        public long? AgentId { get; set; }
     }
 }

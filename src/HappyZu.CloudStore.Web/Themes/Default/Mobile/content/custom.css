@@ -1,12 +1,11 @@
 ﻿@font-face {
   font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1474204508_2966132.eot'); /* IE9*/
-  src: url('//at.alicdn.com/t/font_1474204508_2966132.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_1474204508_2966132.woff') format('woff'), /* chrome、firefox */
-  url('//at.alicdn.com/t/font_1474204508_2966132.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('//at.alicdn.com/t/font_1474204508_2966132.svg#iconfont') format('svg'); /* iOS 4.1- */
-}
-                                
+  src: url('//at.alicdn.com/t/font_1477062352_8186293.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1477062352_8186293.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1477062352_8186293.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1477062352_8186293.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1477062352_8186293.svg#iconfont') format('svg'); /* iOS 4.1- */
+}             
          
 body {
     font-size: 14px;
@@ -35,7 +34,7 @@ body {
 .icon-send:before { content: "\e60a"; }
 .icon-list:before { content: "\e60b"; }
 .icon-scan:before { content: "\e60c"; }
-.icon-settings1:before { content: "\e60d"; }
+.icon-setting:before { content: "\e60d"; }
 .icon-question:before { content: "\e60e"; }
 .icon-right:before { content: "\e60f"; }
 .icon-cart:before { content: "\e610"; }
@@ -63,12 +62,14 @@ body {
 .icon-mac:before { content: "\e61c"; }
 .icon-windows:before { content: "\e61d"; }
 .icon-android:before { content: "\e61e"; }
+.icon-wechat:before { content: "\e64d"; }
 .icon-travel1:before { content: "\e62b"; }
 .icon-youshanwanshui:before { content: "\e62c"; }
 .icon-add1:before { content: "\e61f"; }
 .icon-move:before { content: "\e620"; }
 .icon-up:before { content: "\e647"; }
 .icon-lvyoujiang:before { content: "\e62d"; }
+.icon-weixinzhifu:before { content: "\e64c"; }
 .icon-travelno:before { content: "\e62e"; }
 .icon-iconsirenmoshi:before { content: "\e62f"; }
 .icon-dazheyouhui:before { content: "\e639"; }
@@ -77,6 +78,7 @@ body {
 .icon-wuliu:before { content: "\e626"; }
 .icon-xinshixin:before { content: "\e63b"; }
 .icon-xin:before { content: "\e63c"; }
+.icon-wechat1:before { content: "\e64e"; }
 .icon-my-tuikuantuihuo:before { content: "\e625"; }
 .icon-coupon:before { content: "\e622"; }
 .icon-travel2:before { content: "\e630"; }
@@ -548,11 +550,16 @@ input, button, select, textarea {
 .profile .background .nickname{ line-height: 28px;text-align: center;color: #ffffff; padding-bottom: 30px;font-size: 16px;}
 .img-circle{  border-radius: 50%;}
 
-.quick-link{ text-align: center;padding-top: 10px;background-color: #ffffff;color: #666666; font-size: 12px; line-height: 36px;}
+.quick-link{ text-align: center;padding-top: 10px;padding-left: 15px;padding-right: 15px;background-color: #ffffff;color: #666666; font-size: 12px; line-height: 36px;}
 .quick-link a{color: #ffffff;display: block;width: 50px;margin: auto;height: 50px;line-height: 44px;font-size: 32px;border-radius: 50%; }
 .quick-link .cart a{ background-color: #00ccff; }
 .quick-link .favorites a{ background-color: #cc9933;}
 .quick-link .coupon a{ background-color: #cc3333;}
+.quick-link .item:nth-of-type(1) a {background-color: #70a0ef;}
+.quick-link .item:nth-of-type(2) a {background-color: #17d2c3;}
+.quick-link .item:nth-of-type(3) a {background-color: #43beeb;}
+.quick-link .item:nth-of-type(4) a {background-color: #ffb525;}
+.quick-link .item:nth-of-type(5) a {background-color: #7bcb25;}
 
 .nav-link{ text-align: center;padding-top: 10px;background-color: #ffffff;color: #666666; font-size: 12px; line-height: 32px;}
 .nav-link a{color: #ffffff;display: block;width: 40px;margin: auto;height: 40px;line-height: 34px;font-size: 26px;border-radius: 50%; }
@@ -1027,6 +1034,15 @@ input, button, select, textarea {
     border-radius: 0 0 2px 2px;
     background: #ff5a00;
 }
+
+.ticket-book-btn.disabled .online-peyment {
+    background-color: #eeeeee !important;
+    color: #B1B1B1;
+}
+.ticket-book-btn.disabled .book-btn-text {
+    background-color: #b1b1b1 !important;
+}
+
 .ticket-booking-notice {
     background-color: #ffffff;
     margin-top: 15px;
@@ -1177,7 +1193,7 @@ input, button, select, textarea {
     position: absolute;
     color: #099fde;
     right: -2px;
-    bottom: -10px;
+    bottom: -11px;
     font-size: 22px;
 }
 

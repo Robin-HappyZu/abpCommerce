@@ -433,6 +433,7 @@
     <Content Include="Areas\Admin\Views\Travel\Travelers.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\TravelOrders.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\EditTravel.cshtml" />
+    <Content Include="Themes\Default\Mobile\content\images\qrcode.jpg" />
     <Content Include="Themes\Default\Mobile\content\jquery.bootstrap-touchspin.min.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\knockout-3.4.0.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.calendar.js" />
@@ -674,6 +675,7 @@
     <Content Include="Themes\Default\Mobile\Views\Ticket\PaymentSuccess.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\DestAbout.cshtml" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.calendar.css" />
+    <Content Include="Themes\Default\Mobile\Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

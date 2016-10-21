@@ -27,7 +27,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         }
 
         // GET: Mobile/Ticket
-        #region 门票列表
+        #region 景点列表
         public ActionResult Index()
         {
             ViewBag.Title = "长沙";
@@ -52,7 +52,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                     {
                         Name = "Search",
                         //DisplayName = "个人中心",
-                        Icon = "icon icon-search",
+                        Icon = "icon icon-me",
                         Url = Url.Action("Index","Account", new {area="Mobile",type="empty"},true)
                     }
                 }
@@ -63,7 +63,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #endregion
 
-        #region 门票详情
+        #region 景点详情
 
         public async Task<ViewResult> Detail(int id)
         {
@@ -115,7 +115,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                     {
                         Name = "Favorites",
                         //DisplayName = "个人中心",
-                        Icon = "icon icon-star",
+                        Icon = "icon iconfont icon-like",
                         Url = Url.Action("Index","Account", new {area="Mobile",type="empty"},true)
                     }
                 }
@@ -128,6 +128,19 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         {
             var dest = await _destAppService.GetDestByIdAsync(id);
             return PartialView(dest);
+        }
+        #endregion
+
+        #region 门票列表
+
+        public async Task<JsonResult> GetTicketsByDest(int id)
+        {
+            var tickets = await _ticketAppService.GetPagedTicketsAsync(new GetPagedTicketsInput()
+            {
+                DestId = id
+            });
+            var ticketType = await _ticketAppService.GetTicketTypeListAsync(id);
+            return Json(new{tickets= tickets,ticketType=ticketType});
         }
         #endregion
 
@@ -173,6 +186,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             {
                 TicketId = ticket,
                 MaxResultCount = 3,
+                MinDate = DateTime.Today,
                 IsDisplay = true
             });
             var vm = new TicketOrderViewModel

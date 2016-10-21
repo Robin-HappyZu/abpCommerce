@@ -1,0 +1,76 @@
+﻿<div class="content native-scroll">
+    <div class="list-block">
+        <ul>
+            <!-- Text inputs -->
+            <li>
+                <div class="item-content">
+                    <div class="item-media"><i class="icon icon-form-name"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title label">用户名</div>
+                        <div class="item-input">
+                            <input type="text" data-bind="value:UsernameOrEmailAddress" placeholder="用户名/邮箱">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item-content">
+                    <div class="item-media"><i class="icon icon-form-password"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title label">密码</div>
+                        <div class="item-input">
+                            <input type="password" data-bind="value:Password" placeholder="密码" class="">
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="content-block">
+        <div class="row">
+            <div class="col-100"><a href="javascript:;" data-bind="click:login" class="button button-big button-fill button-success">登录</a></div>
+        </div>
+    </div>
+    <div class="content-block">
+        <div class="row">
+            <div class="col-100 text-center">
+                <img src="~/Themes/Default/Mobile/content/images/qrcode.jpg" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-100 text-center">
+                长按二维码关注 环球舱服务号 免登陆
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Themes/Default/Mobile/content/plugins/knockout-3.4.0.js"></script>
+    <script>
+        var ViewModel = function() {
+            var $this = this;
+            $this.UsernameOrEmailAddress = ko.observable();
+            $this.Password = ko.observable();
+            $this.login = function() {
+                var url = '@Url.Action("Login", "Account", new {area = "Mobile"}, true)';
+                var params = {
+                    UsernameOrEmailAddress: $this.UsernameOrEmailAddress(),
+                    Password: $this.Password(),
+                    returnUrl:'@Request["ReturnUrl"]'
+                }
+                $.showPreloader('正在登录');
+                $.post(url, params, function(data) {
+                    $.hidePreloader();
+                    if (data.success) {
+                        window.location = data.targetUrl;
+                    } else {
+                        $.alert(data.message);
+                    }
+                }, 'json');
+            }
+        }
+
+        var vm = new ViewModel();
+        ko.applyBindings(vm);
+    </script>
+}
