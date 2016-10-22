@@ -38,7 +38,8 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">电子票编号</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" id="SerialNo" />
+                                                    <input type="text" class="form-control" id="SerialNo" ime-mode:disabled
+onkeydown="if(event.keyCode==13)event.keyCode=9" onKeypress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false" />
                                                 </div>
                                             </div>
                                         </div>
@@ -47,7 +48,8 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">订单编号</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" id="TicketOrderId">
+                                                    <input type="text" class="form-control" id="TicketOrderId" ime-mode:disabled"
+onkeydown="if(event.keyCode==13)event.keyCode=9" onKeypress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false">
                                                 </div>
                                             </div>
                                         </div>
@@ -156,11 +158,13 @@
                 }
             });
 
-            $("#btnSearch").click(function() {
-                grid.setAjaxParam("SerialNo", $("#SerialNo").val());
-                grid.setAjaxParam("TicketOrderId", $("#TicketOrderId").val());
+            $("#btnSearch").click(function () {
+                var serialNo = $("#SerialNo").val() - 0;
+                var ticketOrderId = $("#TicketOrderId").val() - 0;
+
+                grid.setAjaxParam("SerialNo", serialNo);
+                grid.setAjaxParam("TicketOrderId", ticketOrderId);
                 grid.getDataTable().ajax.reload();
-                //grid.clearAjaxParams();
             });
         });
     </script>

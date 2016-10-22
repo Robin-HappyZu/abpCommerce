@@ -595,7 +595,7 @@ namespace HappyZu.CloudStore.Trip
                 {                    
                     query = t =>
                     {
-                        return t.Where(o => o.SerialNo == input.SerialNo && o.TicketOrderId == input.TicketOrderId);
+                        return t.Where(o => o.SerialNo == input.SerialNo && o.TicketOrderId == input.TicketOrderId).OrderBy(o=>o.Id);
                     };
                 }
                 else
@@ -604,7 +604,7 @@ namespace HappyZu.CloudStore.Trip
                     {
                         query = t =>
                         {
-                            return t.Where(o => o.SerialNo == input.SerialNo);
+                            return t.Where(o => o.SerialNo == input.SerialNo).OrderBy(o => o.Id);
                         };
                     }
 
@@ -612,7 +612,7 @@ namespace HappyZu.CloudStore.Trip
                     {
                         query = t =>
                         {
-                            return t.Where(o => o.TicketOrderId == input.TicketOrderId);
+                            return t.Where(o => o.TicketOrderId == input.TicketOrderId).OrderBy(o => o.Id);
                         };
                     }
                 }
