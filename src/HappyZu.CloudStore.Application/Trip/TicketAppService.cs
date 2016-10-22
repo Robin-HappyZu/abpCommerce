@@ -21,15 +21,17 @@ namespace HappyZu.CloudStore.Trip
         private readonly TicketOrderManager _ticketOrderManager;
         private readonly TicketTypeManager _ticketTypeManager;
         private readonly ETicketManager _eTicketManager;
+        private readonly DestMananger _destManager;
 
         public TicketAppService(TicketManager ticketManager, TicketQuoteManager ticketQuoteManager,
-            TicketOrderManager ticketOrderManager, TicketTypeManager ticketTypeManager, ETicketManager eTicketManager)
+            TicketOrderManager ticketOrderManager, TicketTypeManager ticketTypeManager, ETicketManager eTicketManager, DestMananger destManager)
         {
             _ticketManager = ticketManager;
             _ticketOrderManager = ticketOrderManager;
             _ticketTypeManager = ticketTypeManager;
             _ticketQuoteManager = ticketQuoteManager;
             _eTicketManager = eTicketManager;
+            _destManager = destManager;
         }
 
         public async Task<ResultOutputDto> AddTicketAsync(AddTicketInput input)
@@ -302,7 +304,9 @@ namespace HappyZu.CloudStore.Trip
                 foreach (var item in input.Tickets)
                 {
                     var ticket = await _ticketManager.GetTicketByIdAsync(item.TicketId);
+                    var dest = await _destManager.GetDestByIdAsync(ticket.DestId);
                     var quote = await _ticketQuoteManager.GetTicketQuoteByIdAsync(item.TicketQuoteId);
+                    order.DestName = dest.Title;
 
                     orderItems.Add(new TicketOrderItem()
                     {
@@ -328,7 +332,7 @@ namespace HappyZu.CloudStore.Trip
 
                 // 添加订单明细
                 await _ticketOrderManager.AddTicketOrderDetailsAsync(orderItems);
-                return ResultOutputDto.Successed;
+                return ResultOutputDto.Success(orderId);
             }
             catch (Exception e)
             {

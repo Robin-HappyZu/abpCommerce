@@ -1,10 +1,11 @@
-﻿
+﻿@model HappyZu.CloudStore.Trip.Dto.TicketOrderDto
+
 <div class="content native-scroll">
     <div class="order-info">
-        <div class="info-body">长沙飞行家室内飞行体验馆长沙飞行家室内飞行体验馆长沙飞行家室内飞行体验馆长沙飞行家室内飞行体验馆</div>
+        <div class="info-body">@Model.DestName 门票</div>
         <div class="order-total">
-            <label>实付金额：</label>
-            <dfn>$</dfn><span>200</span>
+            <label>订单金额：</label>
+            <dfn>￥</dfn><span>@Model.TotalAmount</span>
         </div>
     </div>
     <div class="payment-success">支付成功</div>

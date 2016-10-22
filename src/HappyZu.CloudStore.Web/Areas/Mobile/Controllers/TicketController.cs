@@ -10,6 +10,9 @@ using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
 using HappyZu.CloudStore.Web.Controllers;
+using Abp.Extensions;
+using Abp.UI;
+using HappyZu.CloudStore.Web.Areas.Mobile.Models;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 {
@@ -200,6 +203,39 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #region 生成订单
 
+        public async Task<JsonResult> ConfirmTicketOrder(ConfirmTicketOrderViewModel vm)
+        {
+            var agent = Request.Cookies.Get("agent");
+
+            if (string.IsNullOrWhiteSpace(vm.Mobile)||string.IsNullOrWhiteSpace(vm.Contact))
+            {
+                throw new UserFriendlyException("取票人和联系电话不能为空", "取票人或联系电话信息错误");
+            }
+
+            if (vm.Tickets==null || vm.Tickets.Count<1)
+            {
+                throw new UserFriendlyException("必须选择1种门票", "门票信息错误");
+            }
+
+            var input = new AddTicketOrderInput()
+            {
+                Tickets=vm.Tickets,
+                Mobile=vm.Mobile,
+                Contact=vm.Contact,
+                Remark=vm.Remark
+            };
+            if (agent != null)
+            {
+                var agentid = 0;
+                if (int.TryParse(agent.Value, out agentid))
+                {
+                    input.AgentId = agentid;
+                }
+            }
+            var result = await _ticketAppService.AddTicketOrderAsync(input);
+            return Json(result);
+
+        }
         #endregion
 
         #region 生成订单失败
@@ -208,7 +244,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #region 选择支付方式
 
-        public ActionResult ChoosePayment()
+        public async Task<ViewResult> ChoosePayment(int id)
         {
             ViewBag.Title = "支付方式";
             ViewBag.HeaderBar = new HeaderViewModel()
@@ -216,18 +252,20 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 ShowTitle = true,
                 Title = ViewBag.Title,
                 ShowSearchBar = false,
-                LeftButtonItems = new[]
+                RightButtonItems = new[]
                 {
                     new BarButtonItem()
                     {
                         Name = "TicketOrder",
                         //DisplayName = "长沙",
-                        Icon = "icon icon-left",
-                        Url = Url.Action("TicketOrder","Ticket", new {area="Mobile"},true)
+                        Icon = "icon icon-me",
+                        Url = Url.Action("Index","Account", new {area="Mobile"},true)
                     }
                 }
             };
-            return View();
+            var order = await _ticketAppService.GetTicketOrderByIdAsync(id);
+
+            return View(order);
         }
         #endregion
 
@@ -241,7 +279,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #region 支付成功
 
-        public ActionResult PaymentSuccess()
+        public async Task<ViewResult> PaymentSuccess(int id)
         {
             ViewBag.Title = "支付成功";
             ViewBag.HeaderBar = new HeaderViewModel()
@@ -260,15 +298,37 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                     }
                 }
             };
-            return View();
+
+            var order = await _ticketAppService.GetTicketOrderByIdAsync(id);
+
+            return View(order);
         }
         #endregion
 
         #region 支付失败
 
-        public ActionResult PaymentFail()
+        public async Task<ViewResult> PaymentFail(int id)
         {
-            return View();
+            ViewBag.Title = "支付失败";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                RightButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "Account",
+                        //DisplayName = "长沙",
+                        Icon = "icon icon-me",
+                        Url = Url.Action("Index","Account", new {area="Mobile"},true)
+                    }
+                }
+            };
+            var order = await _ticketAppService.GetTicketOrderByIdAsync(id);
+
+            return View(order);
         }
         #endregion
     }

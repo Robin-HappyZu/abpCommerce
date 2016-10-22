@@ -439,6 +439,7 @@
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.calendar.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\moment.min.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.cookie.min.js" />
+    <None Include="Themes\Default\Mobile\Views\Account\AboutUs.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\Provinces.cshtml" />
@@ -602,6 +603,7 @@
     <Compile Include="Areas\Mobile\Controllers\ToursController.cs" />
     <Compile Include="Areas\Mobile\Controllers\WechatPayController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Areas\Mobile\Models\ConfirmTicketOrderViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\DetailViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\GetQuotesViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\TicketOrderViewModel.cs" />
@@ -676,6 +678,8 @@
     <Content Include="Themes\Default\Mobile\Views\Ticket\DestAbout.cshtml" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.calendar.css" />
     <Content Include="Themes\Default\Mobile\Views\Account\Login.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Ticket\PaymentFail.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Account\Agreement.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

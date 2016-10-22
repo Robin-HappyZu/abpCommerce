@@ -62,7 +62,8 @@
         </div>
         <div class="col-25">
             <div class="confirm-order-btn">
-                <a href="@Url.Action("ChoosePayment", "Ticket", new {area = "Mobile"}, true)" class="button button-big button-fill button-warning">去支付</a>
+                <a href="javascript:;" data-bind="click:confirmOrder" class="button button-big button-fill button-warning">去支付</a>
+                @*@Url.Action("ChoosePayment", "Ticket", new { area = "Mobile" }, true)*@
             </div>
         </div>
     </div>
@@ -177,11 +178,12 @@
             this.Quotes = ko.observableArray([]);
             this.AllQuotes = ko.observableArray([]);
             this.ShowQuantity = ko.pureComputed(function() {
-                if ($this.SelectedQuote()!=null) {
-                    return '￥' + $this.SelectedQuote().quote.price + 'x' + $this.Quantity();
-                }
-                return '￥0'+ 'x' + $this.Quantity();
-            }, this);
+                    if ($this.SelectedQuote() != null) {
+                        return '￥' + $this.SelectedQuote().quote.price + 'x' + $this.Quantity();
+                    }
+                    return '￥0' + 'x' + $this.Quantity();
+                },
+                this);
         };
 
         var QuoteModel = function(quote) {
@@ -275,7 +277,13 @@
                         var xindex = 0;
                         for (var i = 0; i < items.length; i++) {
                             ditem = items[i];
-                            if (moment(ditem.dateTime).isSame(moment({ year: $(item).data('year'), month: $(item).data('month'), date: $(item).data('day') }), 'day')) {
+                            if (moment(ditem.dateTime)
+                                .isSame(moment({
+                                        year: $(item).data('year'),
+                                        month: $(item).data('month'),
+                                        date: $(item).data('day')
+                                    }),
+                                    'day')) {
                                 xindex = i;
                                 break;
                             }
@@ -385,42 +393,46 @@
             }
 
             $this.TotalPrice = ko.pureComputed(function() {
-                var tickets = $this.Tickets();
-                var total = 0;
-                for (var i = 0; i < tickets.length; i++) {
-                    if (tickets[i].SelectedQuote() != null) {
-                        total += tickets[i].Quantity() * tickets[i].SelectedQuote().quote.price;
+                    var tickets = $this.Tickets();
+                    var total = 0;
+                    for (var i = 0; i < tickets.length; i++) {
+                        if (tickets[i].SelectedQuote() != null) {
+                            total += tickets[i].Quantity() * tickets[i].SelectedQuote().quote.price;
+                        }
                     }
-                }
-                return total;
-            }, this);
+                    return total;
+                },
+                this);
 
             $this.loadAllTickets = function() {
                 var url = '@Url.Action("GetTicketsByDest", "Ticket", new {area = "Mobile"}, true)';
                 var params = { id: @Model.Ticket.DestId };
                 $.showPreloader();
-                $.post(url, params, function(data) {
-                    $.hidePreloader();
-                    if (data.success) {
-                        var tickettype = data.result.ticketType;
-                        var tickets = data.result.tickets;
-                        if (tickettype != null && tickettype.totalCount > 0) {
-                            for (var i = 0; i < tickettype.items.length; i++) {
-                                var item = new TicketListItem(tickettype.items[i]);
-                                if (tickets.totalCount > 0) {
-                                    for (var j = 0; j < tickets.items.length; j++) {
-                                        if (tickets.items[j].typeId === item.TicketType.id) {
-                                            item.Tickets.push(tickets.items[j]);
+                $.post(url,
+                    params,
+                    function(data) {
+                        $.hidePreloader();
+                        if (data.success) {
+                            var tickettype = data.result.ticketType;
+                            var tickets = data.result.tickets;
+                            if (tickettype != null && tickettype.totalCount > 0) {
+                                for (var i = 0; i < tickettype.items.length; i++) {
+                                    var item = new TicketListItem(tickettype.items[i]);
+                                    if (tickets.totalCount > 0) {
+                                        for (var j = 0; j < tickets.items.length; j++) {
+                                            if (tickets.items[j].typeId === item.TicketType.id) {
+                                                item.Tickets.push(tickets.items[j]);
+                                            }
                                         }
                                     }
+                                    $this.AllTickets.push(item);
                                 }
-                                $this.AllTickets.push(item);
                             }
-                        }
 
-                        $this.canChecked();
-                    }
-                }, 'json');
+                            $this.canChecked();
+                        }
+                    },
+                    'json');
             }
 
             $this.openAllTickets = function() {
@@ -432,7 +444,7 @@
                 $this.canChecked();
             }
 
-            $this.canChecked=function(data) {
+            $this.canChecked = function(data) {
 
                 var tickets = $this.Tickets();
 
@@ -447,7 +459,7 @@
             $this.checkTicket = function(data) {
                 var tickets = $this.Tickets();
                 for (var i = 0; i < tickets.length; i++) {
-                    if (tickets[i].id===data.id) {
+                    if (tickets[i].id === data.id) {
                         $.toast("已经添加了这个票种");
                         return;
                     }
@@ -458,7 +470,7 @@
                 $('.ticket-quantity .qty-input').TouchSpin({ min: 1, max: 99 });
 
                 var minDate = moment(ticket.startDate),
-                   maxDate = moment(ticket.endDate);
+                    maxDate = moment(ticket.endDate);
                 if (moment().isAfter(minDate, 'day')) {
                     minDate = moment();
                 }
@@ -475,7 +487,7 @@
                         var items = data.result.items;
                         for (var i = 0; i < items.length; i++) {
                             ticket.AllQuotes.push(items[i]);
-                            if (i<3) {
+                            if (i < 3) {
                                 var quote = new QuoteModel(items[i]);
                                 if (i === 0) {
                                     quote.Selected(true);
@@ -496,7 +508,39 @@
 
             }
 
+            $this.confirmOrder = function() {
+                var url = '@Url.Action("ConfirmTicketOrder", "Ticket", new {area = "Mobile"}, true)';
 
+                var params = { Mobile: $this.Mobile(), Contact: $this.Contact, Tickets: [] };
+
+                var tickets = $this.Tickets();
+
+                for (var i = 0; i < tickets.length; i++) {
+                    var ticket = tickets[i];
+                    var quote = ticket.SelectedQuote();
+                    params.Tickets.push({ TicketId: ticket.id, TicketQuoteId: quote.id, Quantity: ticket.Quantity() });
+                }
+                $.showPreloader('正在创建订单');
+                $.post(url,
+                    params,
+                    function(data) {
+                        $.hidePreloader();
+                        if (data.success) {
+                            if (data.result.entityId>0) {
+                                window
+                                    .location =
+                                    '@Url.Action("ChoosePayment", "Ticket", new { area = "Mobile" }, true)/' +
+                                    data.result.entityId;
+
+                                return;
+                            }
+                            $.toast("订单生成错误,请稍后重试!");
+                        } else {
+                            $.toast("操作失败");
+                        }
+                    },
+                    'json');
+            };
         };
 
         var vm = new ViewModel();
@@ -518,7 +562,7 @@
                         var $this = $(this);
                         if (!$this.hasClass('selected')) {
                             $this.addClass('selected');
-                            $('.payment-list').addClass('show').height(vm.Tickets().length*44);
+                            $('.payment-list').addClass('show').height(vm.Tickets().length * 44);
                         } else {
                             $this.removeClass('selected');
                             $('.payment-list').removeClass('show').height(44);

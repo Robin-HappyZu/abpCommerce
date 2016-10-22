@@ -19,6 +19,12 @@ namespace HappyZu.CloudStore.Trip
         public long CustomerId { get; set; }
 
         /// <summary>
+        /// 景点名称
+        /// </summary>
+        [StringLength(128)]
+        public string DestName { get; set; }
+
+        /// <summary>
         /// 订单编号
         /// </summary>
         [StringLength(128)]

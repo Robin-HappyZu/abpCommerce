@@ -72,6 +72,8 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             };
             return View();
         }
+
+        [AbpMvcAuthorize()]
         public ActionResult Settings()
         {
             ViewBag.Title = "设置";
@@ -94,6 +96,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             return View();
         }
 
+        #region 用户登陆/注销
         public ActionResult Login()
         {
             ViewBag.Title = "用户登录";
@@ -194,5 +197,56 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             AuthenticationManager.SignOut();
             return RedirectToAction("Login");
         }
+
+        #endregion
+
+        #region 网络服务协议
+
+        public ActionResult Agreement()
+        {
+            ViewBag.Title = "网络服务协议";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "historyback",
+                        Icon = "icon icon-left",
+                        Url = "javascript:window.history.back();"
+                    }
+                }
+            };
+
+            return View();
+        }
+        #endregion
+
+        #region 关于我们
+        public ActionResult AboutUs()
+        {
+            ViewBag.Title = "关于我们";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "historyback",
+                        Icon = "icon icon-left",
+                        Url = "javascript:window.history.back();"
+                    }
+                }
+            };
+
+            return View();
+        }
+        #endregion
     }
 }

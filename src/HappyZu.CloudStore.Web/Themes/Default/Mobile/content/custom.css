@@ -556,11 +556,16 @@ input, button, select, textarea {
 .quick-link .cart a{ background-color: #00ccff; }
 .quick-link .favorites a{ background-color: #cc9933;}
 .quick-link .coupon a{ background-color: #cc3333;}
-.quick-link .item:nth-of-type(1) a {background-color: #70a0ef;}
+/*.quick-link .item:nth-of-type(1) a {background-color: #70a0ef;}
 .quick-link .item:nth-of-type(2) a {background-color: #17d2c3;}
 .quick-link .item:nth-of-type(3) a {background-color: #43beeb;}
 .quick-link .item:nth-of-type(4) a {background-color: #ffb525;}
-.quick-link .item:nth-of-type(5) a {background-color: #7bcb25;}
+.quick-link .item:nth-of-type(5) a {background-color: #7bcb25;}*/
+.quick-link .item:nth-of-type(1) a {background-color: #70a0ef;}
+.quick-link .item:nth-of-type(2) a {background-color: #CCC;}
+.quick-link .item:nth-of-type(3) a {background-color: #CCC;}
+.quick-link .item:nth-of-type(4) a {background-color: #CCC;}
+.quick-link .item:nth-of-type(5) a {background-color: #CCC;}
 
 .nav-link{ text-align: center;padding-top: 10px;background-color: #ffffff;color: #666666; font-size: 12px; line-height: 32px;}
 .nav-link a{color: #ffffff;display: block;width: 40px;margin: auto;height: 40px;line-height: 34px;font-size: 26px;border-radius: 50%; }
