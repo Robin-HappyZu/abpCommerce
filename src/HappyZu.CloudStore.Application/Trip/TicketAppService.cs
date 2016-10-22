@@ -256,8 +256,11 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var count = await _ticketQuoteManager.GetTicketQuotesCountAsync(ticketId);
-                var quotes = await _ticketQuoteManager.GetTicketQuotesByTicketIdAsync(ticketId);
+                Func<IQueryable<TicketQuote>, IQueryable<TicketQuote>> query =  q => q.Where(x => x.IsDisplay  &&
+                                    x.TicketId == ticketId)
+                                    .OrderBy(x => x.DateTime); 
+                var count = await _ticketQuoteManager.QueryCountAsync(query);
+                var quotes = await _ticketQuoteManager.QuerysListAsync(query,new PagedResultRequestDto());
 
                 return new PagedResultDto<TicketQuoteDto>()
                 {

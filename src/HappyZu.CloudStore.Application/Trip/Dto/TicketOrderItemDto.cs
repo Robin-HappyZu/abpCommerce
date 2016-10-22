@@ -37,9 +37,5 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// </summary>
         public decimal Price { get; set; }
 
-        /// <summary>
-        /// 代理ID
-        /// </summary>
-        public long? AgentId { get; set; }
     }
 }
