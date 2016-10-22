@@ -94,12 +94,12 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 最低价格
         /// </summary>
-        public double MinPrice { get; set; }
+        public decimal MinPrice { get; set; }
 
         /// <summary>
         /// 最高价格
         /// </summary>
-        public double MaxPrice { get; set; }
+        public decimal MaxPrice { get; set; }
         
         /// <summary>
         /// 预定须知

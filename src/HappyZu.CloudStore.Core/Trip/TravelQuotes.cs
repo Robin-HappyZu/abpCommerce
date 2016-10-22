@@ -55,7 +55,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 单房差
         /// </summary>
-        public double SingleSupplement { get; set; }
+        public decimal SingleSupplement { get; set; }
 
         /// <summary>
         /// 销售量
