@@ -10,10 +10,6 @@ namespace HappyZu.CloudStore.Trip
 {
     public interface IPaymentAppService : IApplicationService
     {   
-        //Task AddPaymentRecordAsync(AddPaymentRecordInput input);
-
-        //Task<TicketOrder> GetTicketOrderByPaymentIdAsync(int paymentId);
-
         Task OrderPaidAsync(string tradeNo, string transactionNo, decimal amount);
     }
 }

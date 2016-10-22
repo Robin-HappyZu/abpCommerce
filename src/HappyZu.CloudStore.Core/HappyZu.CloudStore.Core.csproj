@@ -116,6 +116,7 @@
     <Compile Include="Authorization\Roles\Role.cs" />
     <Compile Include="Authorization\Roles\RoleManager.cs" />
     <Compile Include="Authorization\Roles\RoleStore.cs" />
+    <Compile Include="Trip\ApplyStatus.cs" />
     <Compile Include="Trip\DestAttribute.cs" />
     <Compile Include="Trip\DestAttributeManager.cs" />
     <Compile Include="Trip\DestAttributeRecord.cs" />
@@ -128,6 +129,8 @@
     <Compile Include="Trip\PaymentRecord.cs" />
     <Compile Include="Trip\PaymentRecordManager.cs" />
     <Compile Include="Trip\Quote.cs" />
+    <Compile Include="Trip\RefundRecord.cs" />
+    <Compile Include="Trip\RefundStatus.cs" />
     <Compile Include="Trip\TicketAttribute.cs" />
     <Compile Include="Trip\TicketAttributeManager.cs" />
     <Compile Include="Trip\TicketAttributeRecord.cs" />

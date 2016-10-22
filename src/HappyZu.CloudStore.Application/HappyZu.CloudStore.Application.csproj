@@ -185,6 +185,7 @@
     <Compile Include="Trip\IAttributeAppService.cs" />
     <Compile Include="Trip\IETicketAppService.cs" />
     <Compile Include="Trip\IPaymentAppService.cs" />
+    <Compile Include="Trip\IRefundAppService.cs" />
     <Compile Include="Trip\ITicketAppService.cs" />
     <Compile Include="Trip\Dto\TicketDto.cs" />
     <Compile Include="Trip\Dto\TicketOrderDto.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Trip\Dto\UpdateDestProvinceInput.cs" />
     <Compile Include="Trip\IDestAppService.cs" />
     <Compile Include="Trip\PaymentAppService.cs" />
+    <Compile Include="Trip\RefundAppService.cs" />
     <Compile Include="Trip\TicketAppService.cs" />
     <Compile Include="FileManager\IUploadFileService.cs" />
     <Compile Include="Trip\UniqueIdManager.cs" />
