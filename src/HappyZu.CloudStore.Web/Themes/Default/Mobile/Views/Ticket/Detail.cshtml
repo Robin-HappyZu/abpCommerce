@@ -40,7 +40,10 @@
         </div>
     </div>
 </div>
-
+@section styles{
+    
+<link href="~/Themes/Default/Mobile/content/plugins/sui/css/sm-extend.min.css" rel="stylesheet" />
+}
 @section scripts{
     <script src="~/Themes/Default/Mobile/content/plugins/knockout-3.4.0.js"></script>
     <script src="~/Themes/Default/Mobile/content/plugins/sui/js/sm-extend.min.js"></script>
@@ -89,6 +92,7 @@
             this.TicketType = type;
             this.Tickets = ko.observableArray([]);
         }
+
 
         var ViewModel = function() {
             var _this = this;
@@ -162,6 +166,19 @@
                         $('#booking_notice_page').removeClass('page-current');
                         $('div.page-group .page:not([id])').addClass('page-current');
                     });
+            var photos = [];
+            for (var i = 0; i < pictures.Items.length; i++) {
+                //photos.push({ url: pictures.Items[i].Path, caption: pictures.Items[i].TitleAttribute });
+                photos.push(pictures.Items[i].FileItem.Path);
+            }
+            var myPhotoBrowserCaptions = $.photoBrowser({
+                photos: photos,
+                type: 'popup'
+            });
+
+            $(document).on('click','.dest-pictures',function () {
+                myPhotoBrowserCaptions.open();
+            });
         });
     </script>
 }
