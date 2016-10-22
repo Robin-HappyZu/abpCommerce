@@ -13,17 +13,29 @@ namespace HappyZu.CloudStore.FAQ
 {
     public class FAQAppService:CloudStoreAppServiceBase,IFAQAppService
     {
-        private readonly IFAQManager _faqManager;
-        public FAQAppService(IFAQManager faqManager)
+        private readonly FAQManager _faqManager;
+        public FAQAppService(FAQManager faqManager)
         {
             _faqManager = faqManager;
         }
 
-        public async Task<ListResultDto<FAQDetailDto>> GetDetailListAsync(GetDetailListInput input)
+        public async Task<IPagedResult<FAQDetailDto>> GetDetailListAsync(GetDetailListInput input)
         {
-            var list=await _faqManager.GetAllByCategoryIdAsync(input.CategoryId);
+            Func<IQueryable<FAQDetail>, IQueryable<FAQDetail>> query =
+                q => q.Where(x => x.CategoryId == input.CategoryId).OrderBy(x=>x.Sort).ThenBy(x=>x.Id);
+            if (input.CategoryId==0)
+            {
+                query = null;
+            }
+            var list=await _faqManager.QuerysListAsync(query,input);
+            var count = await _faqManager.QueryCountAsync(query);
+            var result=new PagedResultDto<FAQDetailDto>()
+            {
+                TotalCount = count,
+                Items = list.MapTo<List<FAQDetailDto>>()
+            };
 
-            return new ListResultDto<FAQDetailDto>(list.MapTo<List<FAQDetailDto>>());
+            return result;
         }
 
         public async Task<FAQDetailDto> GetDetailByIdAsync(EntityDto input)

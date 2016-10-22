@@ -596,6 +596,7 @@
     <Compile Include="Areas\Mobile\Controllers\AccountController.cs" />
     <Compile Include="Areas\Mobile\Controllers\ActivityController.cs" />
     <Compile Include="Areas\Mobile\Controllers\CustomizeController.cs" />
+    <Compile Include="Areas\Mobile\Controllers\FaqController.cs" />
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mobile\Controllers\LayoutController.cs" />
     <Compile Include="Areas\Mobile\Controllers\MobileControllerBase.cs" />
@@ -680,6 +681,11 @@
     <Content Include="Themes\Default\Mobile\Views\Account\Login.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\PaymentFail.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Account\Agreement.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Account\Complaints.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Account\Recommend.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Faq\Index.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Faq\List.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Faq\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -711,9 +717,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Mobile\Models\FAQ\" />
     <Folder Include="Areas\Mobile\Views\Account\" />
     <Folder Include="Areas\Mobile\Views\Activity\" />
     <Folder Include="Areas\Mobile\Views\Customize\" />
+    <Folder Include="Areas\Mobile\Views\Faq\" />
     <Folder Include="Areas\Mobile\Views\Layout\" />
     <Folder Include="Areas\Mobile\Views\Tours\" />
     <Folder Include="Areas\Web\Models\" />

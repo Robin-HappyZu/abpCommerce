@@ -14,7 +14,7 @@ namespace HappyZu.CloudStore.FAQ
     {
         #region 帮助详情
 
-        Task<ListResultDto<FAQDetailDto>> GetDetailListAsync(GetDetailListInput input);
+        Task<IPagedResult<FAQDetailDto>> GetDetailListAsync(GetDetailListInput input);
 
         Task<FAQDetailDto> GetDetailByIdAsync(EntityDto input);
 

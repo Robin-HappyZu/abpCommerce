@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using Abp.Auditing;
 using Abp.Authorization.Users;
+using Abp.Runtime.Session;
 using Abp.UI;
 using Abp.Web.Models;
 using Abp.Web.Mvc.Authorization;
@@ -43,8 +44,9 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         // GET: Mobile/Account
         [AbpMvcAuthorize()]
-        public ActionResult Index()
+        public async Task<ViewResult> Index()
         {
+            var user = await _userManager.GetUserByIdAsync(AbpSession.GetUserId());
             ViewBag.Title = "个人中心";
             ViewBag.HeaderBar = new HeaderViewModel()
             {
@@ -70,7 +72,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                     }
                 }
             };
-            return View();
+            return View(user);
         }
 
         [AbpMvcAuthorize()]
@@ -88,7 +90,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                     {
                         Name = "historyback",
                         Icon = "icon icon-left",
-                        Url = "javascript:window.history.back();"
+                        Url = Url.Action("Index","Account", new {area="Mobile"},true)
                     }
                 }
             };
@@ -245,6 +247,54 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 }
             };
 
+            return View();
+        }
+        #endregion
+
+        #region 投诉建议
+
+        public ActionResult Complaints()
+        {
+            ViewBag.Title = "投诉建议";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "historyback",
+                        Icon = "icon icon-left",
+                        Url = "javascript:window.history.back();"
+                    }
+                }
+            };
+            return View();
+        }
+        #endregion
+
+        #region 推荐给好友
+
+        public ActionResult Recommend()
+        {
+            ViewBag.Title = "推荐给好友";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "historyback",
+                        Icon = "icon icon-left",
+                        Url = "javascript:window.history.back();"
+                    }
+                }
+            };
             return View();
         }
         #endregion

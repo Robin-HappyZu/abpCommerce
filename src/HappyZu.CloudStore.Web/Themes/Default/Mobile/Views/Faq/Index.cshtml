@@ -1,0 +1,19 @@
+﻿@model Abp.Application.Services.Dto.ListResultDto<HappyZu.CloudStore.FAQ.Dto.FAQCategoryListDto>
+
+
+<div class="content native-scroll">
+    <div class="list-block no-margin">
+        <ul>
+            @foreach(var item in Model.Items)
+            {
+                <li>
+                    <a href="@Url.Action("List","Faq",new {area="Mobile",id=item.Id},true)" class="item-content item-link">
+                        <div class="item-inner">
+                            <div class="item-title">@item.Name</div>
+                        </div>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

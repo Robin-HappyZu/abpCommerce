@@ -33,7 +33,8 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         {
             var input=new GetDetailListInput()
             {
-                CategoryId = 1
+                MaxResultCount = option.length,
+                SkipCount = option.start
             };
             var output = await _faqAppService.GetDetailListAsync(input);
             var vm = new DataTableJsonViewModel()

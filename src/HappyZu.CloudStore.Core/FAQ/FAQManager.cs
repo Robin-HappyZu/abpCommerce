@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Abp.Domain.Services;
 using Abp.Domain.Uow;
+using Abp.Linq.Extensions;
 using Abp.UI;
 
 namespace HappyZu.CloudStore.FAQ
 {
-    public class FAQManager :IFAQManager
+    public class FAQManager : IDomainService
     {
         private readonly IRepository<FAQCategory> _repositoryCategory;
         private readonly IRepository<FAQDetail> _repositoryDetail;
@@ -90,6 +93,33 @@ namespace HappyZu.CloudStore.FAQ
         public async Task<IReadOnlyList<FAQCategory>> GetAllCategorysAsync()
         {
             return await _repositoryCategory.GetAllListAsync(category => category.IsEnable && !category.IsDeleted);
+        }
+
+
+        public Task<IReadOnlyList<FAQDetail>> QuerysListAsync(Func<IQueryable<FAQDetail>, IQueryable<FAQDetail>> query, IPagedResultRequest request)
+        {
+            if (request.MaxResultCount <= 0)
+            {
+                request.MaxResultCount = int.MaxValue;
+            }
+            var list = query == null ?
+                _repositoryDetail.GetAll().OrderBy(p => p.Id).PageBy(request).ToList() :
+                _repositoryDetail.Query(query).PageBy(request).ToList();
+            return Task.FromResult((IReadOnlyList<FAQDetail>)list);
+        }
+
+        public Task<IReadOnlyList<FAQDetail>> QuerysListAsync(IPagedResultRequest request)
+        {
+            return QuerysListAsync(null, request);
+        }
+
+        public Task<int> QueryCountAsync(Func<IQueryable<FAQDetail>, IQueryable<FAQDetail>> query)
+        {
+            var count = query != null ?
+                    _repositoryDetail.Query(query).Count() :
+                    _repositoryDetail.Count();
+
+            return Task.FromResult(count);
         }
     }
 }

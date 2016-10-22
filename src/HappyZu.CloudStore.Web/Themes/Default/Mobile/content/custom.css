@@ -11,7 +11,7 @@ body {
     font-size: 14px;
     font-family: Arial,"Lucida Grande",Verdana,"Microsoft YaHei",hei;
 }  
-
+.list-block-label.copyright{ font-size: 12px;}
 .foot-clear{ clear: both; height:44px;}
 .iconfont {
   font-family:"iconfont" !important;
@@ -576,6 +576,9 @@ input, button, select, textarea {
 .nav-link .item:nth-of-type(4) a {background-color: #ffb525;}
 .nav-link .item:nth-of-type(5) a {background-color: #7bcb25;}
 
+.list-block.no-margin {
+    margin: 0;
+}
 .list-block .item-content:after {
     content: '';
     position: absolute;
@@ -1365,4 +1368,8 @@ input, button, select, textarea {
     background-color: #ffffff;
     margin-top: 1rem;
     padding: 2rem 0;
+}
+
+.content-block-title.small {
+    margin-top: 0.5rem;
 }

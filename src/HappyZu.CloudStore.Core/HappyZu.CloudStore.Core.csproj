@@ -108,7 +108,6 @@
     <Compile Include="FAQ\FAQCategory.cs" />
     <Compile Include="FAQ\FAQDetail.cs" />
     <Compile Include="FAQ\FAQManager.cs" />
-    <Compile Include="FAQ\IFAQManager.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />
     <Compile Include="MultiTenancy\TenantManager.cs" />

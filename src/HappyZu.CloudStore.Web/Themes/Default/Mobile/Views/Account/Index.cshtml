@@ -1,13 +1,13 @@
-﻿
+﻿@model HappyZu.CloudStore.Users.User
 
 <div class="content native-scroll">
     <div class="profile">
         <div class="background">
             <div class="img-box">
-                <img class="img-circle" src="~/Themes/Default/Mobile/content/images/head.jpg"/>
+                <img class="img-circle" src="~/Themes/Default/Mobile/content/images/head.jpg" />
             </div>
             <div class="nickname">
-                小狼狗
+                @Model.Name
             </div>
         </div>
     </div>
@@ -30,36 +30,36 @@
         </div>
     </div>
     @*<div class="list-block has-white-title">
-        <ul>
-            <li class="item-content item-link">
-                <div class="item-inner">
-                    <div class="item-title">全部订单</div>
-                </div>
-            </li>
-        </ul>
-        <div class="order-list">
-            <a href="javascript:;">
-                <div class="icon iconfont icon-pay"></div>
-                待付款
-            </a>
-            <a href="javascript:;">
-                <div class="icon iconfont icon-send"></div>
-                待发货
-            </a>
-            <a href="javascript:;">
-                <div class="icon iconfont icon-wuliu"></div>
-                待收货
-            </a>
-            <a href="javascript:;">
-                <div class="icon iconfont icon-pingjia"></div>
-                待评价
-            </a>
-            <a href="javascript:;">
-                <div class="icon iconfont icon-my-tuikuantuihuo"></div>
-                退换货
-            </a>
-        </div>
-    </div>*@
+            <ul>
+                <li class="item-content item-link">
+                    <div class="item-inner">
+                        <div class="item-title">全部订单</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="order-list">
+                <a href="javascript:;">
+                    <div class="icon iconfont icon-pay"></div>
+                    待付款
+                </a>
+                <a href="javascript:;">
+                    <div class="icon iconfont icon-send"></div>
+                    待发货
+                </a>
+                <a href="javascript:;">
+                    <div class="icon iconfont icon-wuliu"></div>
+                    待收货
+                </a>
+                <a href="javascript:;">
+                    <div class="icon iconfont icon-pingjia"></div>
+                    待评价
+                </a>
+                <a href="javascript:;">
+                    <div class="icon iconfont icon-my-tuikuantuihuo"></div>
+                    退换货
+                </a>
+            </div>
+        </div>*@
     <div class="list-block has-white-title">
         <ul>
             <li class="item-content item-link">
@@ -68,35 +68,39 @@
                 </div>
             </li>
             @*<li class="item-content item-link">
-                <div class="item-inner">
-                    <div class="item-title">我的积分</div>
-                </div>
-            </li>*@
+                    <div class="item-inner">
+                        <div class="item-title">我的积分</div>
+                    </div>
+                </li>*@
         </ul>
     </div>
     <div class="list-block has-white-title">
         <ul>
-            <li class="item-content item-link">
-                <a href="@Url.Action("Index", "Faq")">
+            <li>
+                <a href="@Url.Action("Index", "Faq")" class="item-content item-link">
                     <div class="item-inner">
                         <div class="item-title">帮助中心</div>
                     </div>
                 </a>
             </li>
-            <li class="item-content item-link">
-                <a href="@Url.Action("Index", "Faq")">
+            <li>
+                <a href="@Url.Action("Complaints", "Account")" class="item-content item-link">
                     <div class="item-inner">
                         <div class="item-title">投诉建议</div>
                     </div>
                 </a>
             </li>
-            <li class="item-content item-link">
-                <a href="@Url.Action("Index", "Faq")">
+            <li>
+                <a href="@Url.Action("Recommend", "Account")" class="item-content item-link">
                     <div class="item-inner">
                         <div class="item-title">推荐给好友</div>
                     </div>
                 </a>
             </li>
         </ul>
+        <div class="list-block-label copyright">
+            <div class="text-center">Copyright &copy; 湖南美传视界文化传媒有限公司</div>
+            <div class="text-center">Power by 长沙乐族信息科技有限公司</div>
+        </div>
     </div>
 </div>
