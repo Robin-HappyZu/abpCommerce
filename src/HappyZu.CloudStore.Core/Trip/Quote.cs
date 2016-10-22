@@ -14,22 +14,22 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 市场价
         /// </summary>
-        public double MarketPrice { get; set; }
+        public decimal MarketPrice { get; set; }
 
         /// <summary>
         /// 商城价
         /// </summary>
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         /// <summary>
         /// 成本价
         /// </summary>
-        public double CostPrice { get; set; }
+        public decimal CostPrice { get; set; }
 
         /// <summary>
         /// 代理商价格
         /// </summary>
-        public double AgentPrice { get; set; }
+        public decimal AgentPrice { get; set; }
 
         /// <summary>
         /// 库存

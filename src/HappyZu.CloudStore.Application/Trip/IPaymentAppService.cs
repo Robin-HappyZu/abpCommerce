@@ -14,6 +14,6 @@ namespace HappyZu.CloudStore.Trip
 
         //Task<TicketOrder> GetTicketOrderByPaymentIdAsync(int paymentId);
 
-        Task OrderPaidAsync(string tradeNo, string transactionNo, double amount);
+        Task OrderPaidAsync(string tradeNo, string transactionNo, decimal amount);
     }
 }
