@@ -29,7 +29,7 @@ namespace HappyZu.CloudStore.Trip
             return null;
         }
 
-        public async Task OrderPaidAsync(string tradeNo, string transactionNo, double amount)
+        public async Task OrderPaidAsync(string tradeNo, string transactionNo, decimal amount)
         {
             await EventBus.TriggerAsync(new OrderPaidEventData()
             {

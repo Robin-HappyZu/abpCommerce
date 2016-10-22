@@ -38,7 +38,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 成人报价
         /// </summary>
-        public double AdultPrice { get; set; }
+        public decimal AdultPrice { get; set; }
 
         /// <summary>
         /// 儿童数量
@@ -48,7 +48,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 儿童报价
         /// </summary>
-        public double ChildPrice { get; set; }
+        public decimal ChildPrice { get; set; }
 
         /// <summary>
         /// 老人数量
@@ -58,27 +58,27 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 老人报价
         /// </summary>
-        public double OldManPrice { get; set; }
+        public decimal OldManPrice { get; set; }
 
         /// <summary>
         /// 单房差
         /// </summary>
-        public double SingleSupplement { get; set; }
+        public decimal SingleSupplement { get; set; }
 
         /// <summary>
         /// 保险费
         /// </summary>
-        public double InsurancePremium { get; set; }
+        public decimal InsurancePremium { get; set; }
 
         /// <summary>
         /// 订单总价
         /// </summary>
-        public double TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
 
         /// <summary>
         /// 实收金额
         /// </summary>
-        public double PaidAmount { get; set; }
+        public decimal PaidAmount { get; set; }
 
         /// <summary>
         /// 联系人

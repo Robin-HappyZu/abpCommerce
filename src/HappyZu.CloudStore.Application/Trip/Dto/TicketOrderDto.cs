@@ -32,17 +32,17 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// <summary>
         /// 保险费
         /// </summary>
-        public double InsurancePremium { get; set; }
+        public decimal InsurancePremium { get; set; }
 
         /// <summary>
         /// 订单总价
         /// </summary>
-        public double TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
 
         /// <summary>
         /// 实收金额
         /// </summary>
-        public double PaidAmount { get; set; }
+        public decimal PaidAmount { get; set; }
 
         /// <summary>
         /// 联系人

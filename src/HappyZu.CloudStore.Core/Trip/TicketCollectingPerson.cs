@@ -80,7 +80,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 保险费
         /// </summary>
-        public double Insurance { get; set; }
+        public decimal Insurance { get; set; }
 
         /// <summary>
         /// 保险Id

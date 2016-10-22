@@ -11,6 +11,6 @@ namespace HappyZu.CloudStore.Trip.Events
     {
         public string TradeNo { get; set; }
         public string TransactionNo { get; set; }
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
     }
 }

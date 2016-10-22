@@ -28,6 +28,11 @@ namespace HappyZu.CloudStore.Trip
         public int TicketId { get; set; }
 
         /// <summary>
+        /// 门票名称
+        /// </summary>
+        public string TicketName { get; set; }
+
+        /// <summary>
         /// 数量
         /// </summary>
         public int Quantity { get; set; }
@@ -42,7 +47,9 @@ namespace HappyZu.CloudStore.Trip
         /// </summary>
         public decimal Price { get; set; }
 
-        [ForeignKey("TicketId")]
-        public virtual Ticket Ticket { get; set; }
+        /// <summary>
+        /// 使用日期
+        /// </summary>
+        public DateTime Date { get; set; }
     }
 }

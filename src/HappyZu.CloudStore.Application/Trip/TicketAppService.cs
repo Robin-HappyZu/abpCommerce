@@ -282,18 +282,51 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var order = input.TicketOrder.MapTo<TicketOrder>();
-                order.OrderNo = Guid.NewGuid().ToString("N").ToUpper();
-
-                var orderItems = input.TicketOrderItems.MapTo<List<TicketOrderItem>>();
-                var orderId = await _ticketOrderManager.AddTicketOrderAndGetIdAsync(order);
-                await UnitOfWorkManager.Current.SaveChangesAsync();
-
-                foreach (var item in orderItems)
+                var order = new TicketOrder()
                 {
-                    item.TicketOrderId = orderId;
-                    item.TicketOrderItemNo = Guid.NewGuid().ToString("N").ToUpper();
+                    OrderNo = Guid.NewGuid().ToString("N").ToUpper(),
+                    Contact = input.Contact,
+                    Remark = input.Remark,
+                    Mobile = input.Mobile,
+                    AgentId = input.AgentId
+                };
+
+                if (AbpSession.UserId != null) order.CustomerId = AbpSession.UserId.Value;
+                order.Count = input.Tickets.Sum(item => item.Quantity);
+                
+                
+
+                var orderItems = new List<TicketOrderItem>();
+
+                // 订单明细
+                foreach (var item in input.Tickets)
+                {
+                    var ticket = await _ticketManager.GetTicketByIdAsync(item.TicketId);
+                    var quote = await _ticketQuoteManager.GetTicketQuoteByIdAsync(item.TicketQuoteId);
+
+                    orderItems.Add(new TicketOrderItem()
+                    {
+                        TicketOrderItemNo = Guid.NewGuid().ToString("N").ToUpper(),
+                        TicketId = ticket.Id,
+                        TicketName = ticket.Name,
+                        Quantity = item.Quantity,
+                        UnitPrice = quote.Quote.Price,
+                        Price = item.Quantity * quote.Quote.Price,
+                        Date = quote.DateTime
+                    });
                 }
+
+                order.TotalAmount = orderItems.Sum(item => item.Price);
+
+                // 添加订单
+                var orderId = await _ticketOrderManager.AddTicketOrderAndGetIdAsync(order);
+
+                foreach (var orderItem in orderItems)
+                {
+                    orderItem.TicketOrderId = orderId;
+                }
+
+                // 添加订单明细
                 await _ticketOrderManager.AddTicketOrderDetailsAsync(orderItems);
                 return ResultOutputDto.Successed;
             }
@@ -598,7 +631,7 @@ namespace HappyZu.CloudStore.Trip
                 {                    
                     query = t =>
                     {
-                        return t.Where(o => o.SerialNo == input.SerialNo && o.TicketOrderId == input.TicketOrderId);
+                        return t.Where(o => o.SerialNo == input.SerialNo && o.TicketOrderId == input.TicketOrderId).OrderBy(o=>o.Id);
                     };
                 }
                 else
@@ -607,7 +640,7 @@ namespace HappyZu.CloudStore.Trip
                     {
                         query = t =>
                         {
-                            return t.Where(o => o.SerialNo == input.SerialNo);
+                            return t.Where(o => o.SerialNo == input.SerialNo).OrderBy(o => o.Id);
                         };
                     }
 
@@ -615,7 +648,7 @@ namespace HappyZu.CloudStore.Trip
                     {
                         query = t =>
                         {
-                            return t.Where(o => o.TicketOrderId == input.TicketOrderId);
+                            return t.Where(o => o.TicketOrderId == input.TicketOrderId).OrderBy(o => o.Id);
                         };
                     }
                 }

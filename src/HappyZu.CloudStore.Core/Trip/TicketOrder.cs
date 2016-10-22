@@ -16,7 +16,7 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 客户ID
         /// </summary>
-        public int CustomerId { get; set; }
+        public long CustomerId { get; set; }
 
         /// <summary>
         /// 订单编号
@@ -37,17 +37,17 @@ namespace HappyZu.CloudStore.Trip
         /// <summary>
         /// 保险费
         /// </summary>
-        public double InsurancePremium { get; set; }
+        public decimal InsurancePremium { get; set; }
 
         /// <summary>
         /// 订单总价
         /// </summary>
-        public double TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
 
         /// <summary>
         /// 实收金额
         /// </summary>
-        public double PaidAmount { get; set; }
+        public decimal PaidAmount { get; set; }
 
         /// <summary>
         /// 联系人

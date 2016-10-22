@@ -152,6 +152,7 @@
     <Compile Include="Trip\Dto\AddTicketTypeInput.cs" />
     <Compile Include="Trip\Dto\AttachDestAttributeRecordInput.cs" />
     <Compile Include="Trip\Dto\AttachTicketAttributeRecordInput.cs" />
+    <Compile Include="Trip\Dto\CreateTicketOrderDto.cs" />
     <Compile Include="Trip\Dto\DestAttributeDto.cs" />
     <Compile Include="Trip\Dto\DestAttributeRecordDto.cs" />
     <Compile Include="Trip\Dto\DestCityDto.cs" />
