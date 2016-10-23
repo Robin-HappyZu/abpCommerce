@@ -408,8 +408,39 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
-                var count = await _ticketOrderManager.GetTicketOrdersCountAsync(null);
-                var orders = await _ticketOrderManager.GetTicketOrdersAsync(null, input);
+                Func<IQueryable<TicketOrder>, IQueryable<TicketOrder>> query=null;
+                if (input.UserId>0)
+                {
+                    if (input.OrderStatus != null)
+                    {
+                        query = q =>q.Where(x => x.CustomerId == input.UserId && x.Status==input.OrderStatus)
+                                                     .OrderByDescending(x => x.CreationTime)
+                                                     .ThenByDescending(x => x.Id);
+                    }
+                    else
+                    {
+                        query = q => q.Where(x => x.CustomerId == input.UserId)
+                             .OrderByDescending(x => x.CreationTime)
+                             .ThenByDescending(x => x.Id);
+                    }
+                }
+                else
+                {
+                    if (input.OrderStatus != null)
+                    {
+                        query = q => q.Where(x => x.Status == input.OrderStatus)
+                                                     .OrderByDescending(x => x.CreationTime)
+                                                     .ThenByDescending(x => x.Id);
+                    }
+                    else
+                    {
+                        query = q => q.OrderByDescending(x => x.CreationTime)
+                             .ThenByDescending(x => x.Id);
+                    }
+                }
+                
+                var count = await _ticketOrderManager.GetTicketOrdersCountAsync(query);
+                var orders = await _ticketOrderManager.GetTicketOrdersAsync(query, input);
                 return new PagedResultDto<TicketOrderDto>()
                 {
                     TotalCount = count,

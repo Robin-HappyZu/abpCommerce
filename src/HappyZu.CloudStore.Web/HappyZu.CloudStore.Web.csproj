@@ -606,6 +606,7 @@
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
     <Compile Include="Areas\Mobile\Models\ConfirmTicketOrderViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\DetailViewModel.cs" />
+    <Compile Include="Areas\Mobile\Models\Dest\GetMyTicketsViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\GetQuotesViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\TicketOrderViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Layout\FootMenuViewModel.cs" />
@@ -686,6 +687,7 @@
     <Content Include="Themes\Default\Mobile\Views\Faq\Index.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Faq\List.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Faq\Detail.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Account\MyTickets.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

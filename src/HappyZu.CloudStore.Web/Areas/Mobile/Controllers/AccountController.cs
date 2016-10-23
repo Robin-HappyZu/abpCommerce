@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using Abp.Extensions;
 using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Runtime.Session;
@@ -13,8 +14,12 @@ using Abp.UI;
 using Abp.Web.Models;
 using Abp.Web.Mvc.Authorization;
 using HappyZu.CloudStore.Authorization;
+using HappyZu.CloudStore.Entities;
 using HappyZu.CloudStore.MultiTenancy;
+using HappyZu.CloudStore.Trip;
+using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Users;
+using HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
 using HappyZu.CloudStore.Web.Controllers;
 using HappyZu.CloudStore.Web.Models.Account;
@@ -27,11 +32,14 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
     {
         private readonly LogInManager _logInManager;
         private readonly UserManager _userManager;
+        private readonly ITicketAppService _ticketAppService;
 
-        public AccountController(LogInManager logInManager, UserManager userManager)
+
+        public AccountController(LogInManager logInManager, UserManager userManager, ITicketAppService ticketAppService)
         {
             _logInManager = logInManager;
             _userManager = userManager;
+            _ticketAppService = ticketAppService;
         }
 
         private IAuthenticationManager AuthenticationManager
@@ -43,7 +51,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         }
 
         // GET: Mobile/Account
-        [AbpMvcAuthorize()]
+        [AbpMvcAuthorize]
         public async Task<ViewResult> Index()
         {
             var user = await _userManager.GetUserByIdAsync(AbpSession.GetUserId());
@@ -75,7 +83,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             return View(user);
         }
 
-        [AbpMvcAuthorize()]
+        [AbpMvcAuthorize]
         public ActionResult Settings()
         {
             ViewBag.Title = "设置";
@@ -296,6 +304,53 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 }
             };
             return View();
+        }
+        #endregion
+
+        #region 我的门票
+        [AbpMvcAuthorize]
+        public ActionResult MyTickets()
+        {
+            ViewBag.Title = "我的门票";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "historyback",
+                        Icon = "icon icon-left",
+                        Url = Url.Action("Index","Account", new {area="Mobile"},true)
+                    }
+                }
+            };
+            return View();
+        }
+
+        public async Task<JsonResult> GetMyTickets(GetMyTicketsViewModel vm)
+        {
+            var input = new GetPagedTicketOrdersInput()
+            {
+                UserId=AbpSession.GetUserId(),
+                MaxResultCount=vm.Length,
+                SkipCount=vm.Start
+            };
+            if (!string.IsNullOrWhiteSpace(vm.Status))
+            {
+                try
+                {
+                    input.OrderStatus = vm.Status.ToEnum<OrderStatus>();
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
+            var result = await _ticketAppService.GetTicketOrdersAsync(input);
+            return Json(result);
         }
         #endregion
     }

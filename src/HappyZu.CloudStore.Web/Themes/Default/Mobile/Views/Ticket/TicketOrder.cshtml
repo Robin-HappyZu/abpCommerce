@@ -305,11 +305,7 @@
                     $('div.page-group')
                         .append('<div class="page" id="calendar_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">选择使用日期</h1></header><div class="content native-scroll"><div class="md_container"></div></div></div>');
                 }
-                var tickets = $this.Tickets();
-                var ticket = null;
-                for (var i = 0; i < tickets.length; i++) {
-                    ticket = tickets[i];
-                }
+                var ticket = $this.GetTicketById(data.ticketId);
                 var selectedDate = moment();
                 if (ticket.SelectedQuote() != null) {
                     selectedDate = moment(ticket.SelectedQuote().year +
