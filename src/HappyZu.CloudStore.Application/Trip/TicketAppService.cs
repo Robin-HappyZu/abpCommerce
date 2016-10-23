@@ -332,6 +332,8 @@ namespace HappyZu.CloudStore.Trip
 
                 // 添加订单明细
                 await _ticketOrderManager.AddTicketOrderDetailsAsync(orderItems);
+
+                order.Status=OrderStatus.Paying;
                 return ResultOutputDto.Success(orderId);
             }
             catch (Exception e)

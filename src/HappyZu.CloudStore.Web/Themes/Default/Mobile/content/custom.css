@@ -1,12 +1,12 @@
 ﻿@font-face {
   font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1477062352_8186293.eot'); /* IE9*/
-  src: url('//at.alicdn.com/t/font_1477062352_8186293.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_1477062352_8186293.woff') format('woff'), /* chrome、firefox */
-  url('//at.alicdn.com/t/font_1477062352_8186293.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('//at.alicdn.com/t/font_1477062352_8186293.svg#iconfont') format('svg'); /* iOS 4.1- */
-}             
-         
+  src: url('//at.alicdn.com/t/font_1477235562_8558102.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1477235562_8558102.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1477235562_8558102.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1477235562_8558102.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1477235562_8558102.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+                                      
 body {
     font-size: 14px;
     font-family: Arial,"Lucida Grande",Verdana,"Microsoft YaHei",hei;
@@ -44,6 +44,7 @@ body {
 .icon-redpacket:before { content: "\e614"; }
 .icon-infofill:before { content: "\e615"; }
 .icon-info:before { content: "\e616"; }
+.icon-more:before { content: "\e64f"; }
 .icon-share:before { content: "\e617"; }
 .icon-service:before { content: "\e618"; }
 .icon-add:before { content: "\e646"; }
@@ -67,8 +68,10 @@ body {
 .icon-youshanwanshui:before { content: "\e62c"; }
 .icon-add1:before { content: "\e61f"; }
 .icon-move:before { content: "\e620"; }
+.icon-youji:before { content: "\e651"; }
 .icon-up:before { content: "\e647"; }
 .icon-lvyoujiang:before { content: "\e62d"; }
+.icon-fanchuan2:before { content: "\e652"; }
 .icon-weixinzhifu:before { content: "\e64c"; }
 .icon-travelno:before { content: "\e62e"; }
 .icon-iconsirenmoshi:before { content: "\e62f"; }
@@ -80,8 +83,10 @@ body {
 .icon-xin:before { content: "\e63c"; }
 .icon-wechat1:before { content: "\e64e"; }
 .icon-my-tuikuantuihuo:before { content: "\e625"; }
+.icon-hollow:before { content: "\e653"; }
 .icon-coupon:before { content: "\e622"; }
 .icon-travel2:before { content: "\e630"; }
+.icon-more1:before { content: "\e650"; }
 .icon-arrow-left:before { content: "\e648"; }
 .icon-arrow-down:before { content: "\e649"; }
 .icon-arrow-up:before { content: "\e64a"; }
@@ -100,7 +105,7 @@ body {
 .icon-guoneiyou:before { content: "\e637"; }
 .icon-tubulvyou:before { content: "\e638"; }
 
-
+.icon.big{ font-size: 62px;}
 .top50{ padding-top: 50px;}
 .margin-top-10{margin-top:10px;}
 .bar{ z-index: 999;}
@@ -1373,3 +1378,25 @@ input, button, select, textarea {
 .content-block-title.small {
     margin-top: 0.5rem;
 }
+
+.buttons-tab.small-tab .button{
+    font-size: .6rem;
+}
+.item-content.small {
+    font-size: .7rem;
+}
+.item-content.small .button{
+    font-size: .6rem;
+    line-height: 1.1rem;
+    height: 1.1rem;
+    margin-bottom: .4rem;
+    display: inline-block;
+}
+.item-content.myticket-item .item-subtitle,
+.item-content.myticket-item .item-status {
+    font-size: .5rem;
+    width: 50%;
+}
+.item-content.myticket-item a:not(.button){ color: #999999;}
+.item-content.myticket-item .item-title a{ color: initial;}
+.item-content.myticket-item .item-after{ text-align: right;}
