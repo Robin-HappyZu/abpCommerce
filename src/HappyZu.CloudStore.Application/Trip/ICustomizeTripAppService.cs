@@ -6,14 +6,14 @@ using HappyZu.CloudStore.Trip.Dto;
 
 namespace HappyZu.CloudStore.Trip
 {
-    interface ICustomizeTripAppService : IApplicationService
+    public interface ICustomizeTripAppService : IApplicationService
     {
-        Task<ResultOutputDto> SubmitCustomization(CustomizeTripDto input);
+        Task<ResultOutputDto> SubmitCustomizationAsync(CustomizeTripDto input);
 
         Task<IList<CustomizeTripDto>> GetCustomizationsByCustomerIdAsync(long customerId);
 
-        Task<ResultOutputDto> RemoveCustomizations(IList<int> idList);
+        Task<ResultOutputDto> RemoveCustomizationsAsync(IList<int> idList);
 
-        Task<ResultOutputDto> UpdateCustomization(CustomizeTripDto trip);
+        Task<ResultOutputDto> UpdateCustomizationAsync(CustomizeTripDto trip);
     }
 }

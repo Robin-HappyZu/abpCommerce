@@ -4,10 +4,14 @@ using HappyZu.CloudStore.Common.Dto;
 
 namespace HappyZu.CloudStore.Trip
 {
-    interface IRefundAppService : IApplicationService
+    public interface IRefundAppService : IApplicationService
     {
         Task<ResultOutputDto> SubmitRefundRequestAsync(int ticketOrderId);
 
         Task<ResultOutputDto> ApproveRefundRequestAsync(int ticketOrderId);
+
+        Task<ResultOutputDto> CloseRefundRequestAsync(int ticketOrderId);
+
+        Task<ResultOutputDto> CompleteRefundRequestAsync(int ticketOrderId);
     }
 }

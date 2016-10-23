@@ -17,7 +17,7 @@ namespace HappyZu.CloudStore.Trip
             _customizeTripRepository = customizeTripRepository;
         }
 
-        public async Task<ResultOutputDto> SubmitCustomization(CustomizeTripDto trip)
+        public async Task<ResultOutputDto> SubmitCustomizationAsync(CustomizeTripDto trip)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace HappyZu.CloudStore.Trip
             }
         }
 
-        public async Task<ResultOutputDto> RemoveCustomizations(IList<int> idList)
+        public async Task<ResultOutputDto> RemoveCustomizationsAsync(IList<int> idList)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace HappyZu.CloudStore.Trip
             }
         }
 
-        public async Task<ResultOutputDto> UpdateCustomization(CustomizeTripDto trip)
+        public async Task<ResultOutputDto> UpdateCustomizationAsync(CustomizeTripDto trip)
         {
             try
             {
