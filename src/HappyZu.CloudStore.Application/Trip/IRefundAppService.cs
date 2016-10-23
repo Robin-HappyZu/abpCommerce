@@ -7,5 +7,7 @@ namespace HappyZu.CloudStore.Trip
     interface IRefundAppService : IApplicationService
     {
         Task<ResultOutputDto> SubmitRefundRequestAsync(int ticketOrderId);
+
+        Task<ResultOutputDto> ApproveRefundRequestAsync(int ticketOrderId);
     }
 }

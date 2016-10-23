@@ -13,7 +13,6 @@ namespace HappyZu.CloudStore.EntityFramework
 {
     public class CloudStoreDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
-        //TODO: Define an IDbSet for your Entities...
 
         #region FAQ
         public virtual IDbSet<FAQCategory> FAQCategories { get; set; }
@@ -46,6 +45,9 @@ namespace HappyZu.CloudStore.EntityFramework
         public virtual IDbSet<DestPictureMapping> DestPictrueMapping { get; set; }
 
         public virtual IDbSet<ETicket> ETickets { get; set; } 
+
+        public virtual IDbSet<RefundRecord> RefundRecords { get; set; }
+        public virtual IDbSet<CustomizeTrip> CustomizeTrips { get; set; } 
         #endregion
 
         #region UploadFile

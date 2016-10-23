@@ -139,6 +139,7 @@
     <Compile Include="Roles\IRoleAppService.cs" />
     <Compile Include="Roles\Dto\UpdateRolePermissionsInput.cs" />
     <Compile Include="Trip\AttributeAppService.cs" />
+    <Compile Include="Trip\CustomizeTripAppService.cs" />
     <Compile Include="Trip\DestAppService.cs" />
     <Compile Include="Trip\Dto\AddDestAttributeInput.cs" />
     <Compile Include="Trip\Dto\AddDestCityInput.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Trip\Dto\AttachDestAttributeRecordInput.cs" />
     <Compile Include="Trip\Dto\AttachTicketAttributeRecordInput.cs" />
     <Compile Include="Trip\Dto\CreateTicketOrderDto.cs" />
+    <Compile Include="Trip\Dto\CustomizeTripDto.cs" />
     <Compile Include="Trip\Dto\DestAttributeDto.cs" />
     <Compile Include="Trip\Dto\DestAttributeRecordDto.cs" />
     <Compile Include="Trip\Dto\DestCityDto.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="Trip\Events\OrderPaidEventData.cs" />
     <Compile Include="Trip\Events\PaymentHandler.cs" />
     <Compile Include="Trip\IAttributeAppService.cs" />
+    <Compile Include="Trip\ICustomizeTripAppService.cs" />
     <Compile Include="Trip\IETicketAppService.cs" />
     <Compile Include="Trip\IPaymentAppService.cs" />
     <Compile Include="Trip\IRefundAppService.cs" />

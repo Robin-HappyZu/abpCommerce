@@ -116,6 +116,7 @@
     <Compile Include="Authorization\Roles\RoleManager.cs" />
     <Compile Include="Authorization\Roles\RoleStore.cs" />
     <Compile Include="Trip\ApplyStatus.cs" />
+    <Compile Include="Trip\CustomizeTrip.cs" />
     <Compile Include="Trip\DestAttribute.cs" />
     <Compile Include="Trip\DestAttributeManager.cs" />
     <Compile Include="Trip\DestAttributeRecord.cs" />
