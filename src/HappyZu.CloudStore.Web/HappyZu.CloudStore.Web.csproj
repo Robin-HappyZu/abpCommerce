@@ -694,6 +694,9 @@
     <Content Include="Themes\Default\Mobile\Views\Faq\Detail.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Account\MyTickets.cshtml" />
     <Content Include="Themes\Default\Web\Views\Home\Index.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Tours\Index.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Activity\Index.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Account\MyTicketDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

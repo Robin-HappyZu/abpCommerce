@@ -353,5 +353,29 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             return Json(result);
         }
         #endregion
+
+        #region 我的门票详情
+
+        public ActionResult MyTicketDetail(int id)
+        {
+            ViewBag.Title = "门票详情";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "historyback",
+                        Icon = "icon icon-left",
+                        Url = "javascript:window.history.back();"
+                    }
+                }
+            };
+            return View();
+        }
+        #endregion
     }
 }
