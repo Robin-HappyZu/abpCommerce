@@ -14,14 +14,11 @@
 
     <link rel="shortcut icon" href="~/favicon.ico">
 
-    <title>Themes Layout CloudStore</title>
-
-    @Styles.Render("~/Bundles/vendor/css")
-    @Styles.Render("~/Bundles/css")
-
+    <title>环球舱旅行网</title>
     <!-- View specific styles -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     @RenderSection("styles", required: false)
-
+    <link href="~/Themes/Default/Web/content/custom.css" rel="stylesheet" />
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -30,28 +27,15 @@
         <script src="@Url.Content("~/Scripts/others/respond.min.js")"></script>
     <![endif]-->
 
-    @Scripts.Render("~/Bundles/vendor/js/top")
 
 </head>
 <body>
 
-    <div class="container">
-        @RenderBody()
-    </div>
-
-    @Scripts.Render("~/Bundles/vendor/js/bottom")
-    @Scripts.Render("~/Bundles/js")
-
-    <script>
-        //Localizing momentjs
-        moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
-    </script>
-
-    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
-    <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
-    <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
+    @RenderBody()
 
 
+    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <!-- View specific scripts -->
     @RenderSection("scripts", required: false)
 </body>
