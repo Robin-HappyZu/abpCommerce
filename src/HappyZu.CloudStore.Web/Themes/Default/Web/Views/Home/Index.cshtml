@@ -1,0 +1,72 @@
+﻿<div class="mark">
+    <div class="qrcode">
+        <img src="~/Themes/Default/Web/content/images/qrcode.jpg"/>
+    </div>
+    <div class="title text-center">
+        微信扫描关注：环球舱服务号
+    </div>
+    <div class="btn btn-danger closeQRcode">关闭</div>
+</div>
+<div class="navbar">
+    <div class="container">
+        <div class="navbar-header">
+            <img src="~/Themes/Default/Web/content/images/logo.jpg"/>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right hidden-sm">
+                <li><a href="javascript:;" class="showQRcode">关注微信公众号</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="banner">
+    <div class="spaceship">
+        <div class="body"></div>
+        <div class="window"></div>
+        <div class="fins"></div>
+        <div class="rocket"></div>
+        <div class="fireWrapper">
+            <div class="fire">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <div class="btn btn-danger fly">立即起飞</div>
+</div>
+@section styles{
+<link href="~/Themes/Default/Web/content/spaceship.css" rel="stylesheet" />
+}
+@section scripts{
+    <script>
+        $(function() {
+            $('.btn.fly')
+                .mouseover(function() {
+                    $('.spaceship').addClass('in');
+                });
+            $('.btn.fly')
+                .mouseout(function () {
+                    $('.spaceship').removeClass('in');
+                    $('.spaceship').addClass('out');
+                    setTimeout(function () {
+                        $('.spaceship').hide();
+                        $('.spaceship').removeClass('out');
+                        $('.spaceship').show();
+                    }, 500);
+                });
+            $('.btn.fly,.showQRcode')
+                .click(function() {
+                    $('.mark').show();
+                });
+            $('.btn.closeQRcode')
+                .click(function () {
+                    $('.mark').hide();
+                });
+            
+        })
+    </script>
+}

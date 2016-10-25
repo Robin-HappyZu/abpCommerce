@@ -12,15 +12,15 @@
         </div>
     </a>
     <div class="card">
-        <div class="card-header">取票信息</div>
+        <div class="card-header">联系方式</div>
         <div class="card-content">
             <div class="card-content-inner form-list">
                 <div class="form-row">
                     <div class="row-text">
-                        取票人
+                        联系人
                     </div>
                     <div class="row-value no-border">
-                        <input class="qty-input" data-bind="value:Contact" placeholder="需要填写1个取票人"/>
+                        <input class="qty-input" data-bind="value:Contact" placeholder="需要填写1个联系人"/>
                     </div>
                 </div>
             </div>
@@ -305,11 +305,7 @@
                     $('div.page-group')
                         .append('<div class="page" id="calendar_page"><header class="bar bar-nav header-nav"><a class="button button-link button-nav pull-left back" href="javascript:;"><span class="icon icon-left"></span></a><h1 class="title">选择使用日期</h1></header><div class="content native-scroll"><div class="md_container"></div></div></div>');
                 }
-                var tickets = $this.Tickets();
-                var ticket = null;
-                for (var i = 0; i < tickets.length; i++) {
-                    ticket = tickets[i];
-                }
+                var ticket = $this.GetTicketById(data.ticketId);
                 var selectedDate = moment();
                 if (ticket.SelectedQuote() != null) {
                     selectedDate = moment(ticket.SelectedQuote().year +
