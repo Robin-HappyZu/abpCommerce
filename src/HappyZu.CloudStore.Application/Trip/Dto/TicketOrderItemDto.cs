@@ -23,6 +23,11 @@ namespace HappyZu.CloudStore.Trip.Dto
         public int TicketId { get; set; }
 
         /// <summary>
+        /// 门票名称
+        /// </summary>
+        public string TicketName { get; set; }
+
+        /// <summary>
         /// 数量
         /// </summary>
         public int Quantity { get; set; }
@@ -37,5 +42,9 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// </summary>
         public decimal Price { get; set; }
 
+        /// <summary>
+        /// 使用日期
+        /// </summary>
+        public DateTime Date { get; set; }
     }
 }

@@ -128,7 +128,7 @@
     <Compile Include="Routing\Extensions\LinkExtensions.cs" />
     <Compile Include="Routing\Extensions\UrlExtensions.cs" />
     <Compile Include="Settings\SystemSettingProvider.cs" />
-    <Compile Include="StringUtils\StringExtensions.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="Theming\Attributes\LayoutAttribute.cs" />
     <Compile Include="Theming\Attributes\ThemeAttribute.cs" />
     <Compile Include="Theming\Configuration\IThemingConfiguration.cs" />

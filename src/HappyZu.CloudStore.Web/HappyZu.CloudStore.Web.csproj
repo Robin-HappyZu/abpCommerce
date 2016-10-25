@@ -433,6 +433,7 @@
     <Content Include="Areas\Admin\Views\Travel\Travelers.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\TravelOrders.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\EditTravel.cshtml" />
+    <Content Include="Themes\Default\Mobile\content\images\dz.jpg" />
     <Content Include="Themes\Default\Mobile\content\images\qrcode.jpg" />
     <Content Include="Themes\Default\Mobile\content\jquery.bootstrap-touchspin.min.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\knockout-3.4.0.js" />
@@ -440,6 +441,7 @@
     <Content Include="Themes\Default\Mobile\content\plugins\moment.min.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.cookie.min.js" />
     <None Include="Themes\Default\Mobile\Views\Account\AboutUs.cshtml" />
+    <Content Include="Themes\Default\Mobile\content\plugins\zepto.form.min.js" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Destination\Provinces.cshtml" />
@@ -609,6 +611,7 @@
     <Compile Include="Areas\Mobile\Controllers\ToursController.cs" />
     <Compile Include="Areas\Mobile\Controllers\WechatPayController.cs" />
     <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Areas\Mobile\Models\Account\MyTicketDetailViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\ConfirmTicketOrderViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\DetailViewModel.cs" />
     <Compile Include="Areas\Mobile\Models\Dest\GetMyTicketsViewModel.cs" />
@@ -697,6 +700,8 @@
     <Content Include="Themes\Default\Mobile\Views\Tours\Index.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Activity\Index.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Account\MyTicketDetail.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Customize\Index.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Customize\MyCustomize.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

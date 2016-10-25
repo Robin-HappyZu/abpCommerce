@@ -19,6 +19,7 @@ using HappyZu.CloudStore.MultiTenancy;
 using HappyZu.CloudStore.Trip;
 using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Users;
+using HappyZu.CloudStore.Web.Areas.Mobile.Models.Account;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
 using HappyZu.CloudStore.Web.Controllers;
@@ -52,7 +53,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         // GET: Mobile/Account
         [AbpMvcAuthorize]
-        public async Task<ViewResult> Index()
+        public async Task<ActionResult> Index()
         {
             var user = await _userManager.GetUserByIdAsync(AbpSession.GetUserId());
             ViewBag.Title = "个人中心";
@@ -355,8 +356,8 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         #endregion
 
         #region 我的门票详情
-
-        public ActionResult MyTicketDetail(int id)
+        [AbpMvcAuthorize]
+        public async Task<ActionResult> MyTicketDetail(int id)
         {
             ViewBag.Title = "门票详情";
             ViewBag.HeaderBar = new HeaderViewModel()
@@ -374,7 +375,20 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                     }
                 }
             };
-            return View();
+            var userId = AbpSession.GetUserId();
+            var order = await _ticketAppService.GetTicketOrderByIdAsync(id, userId);
+            if (order==null)
+            {
+                throw new UserFriendlyException(404, "您访问的订单不存在");
+            }
+            var orderItems = await _ticketAppService.GetTicketOrderItemsByTicketOrderIdAsync(order.Id);
+
+            var vm = new MyTicketDetailViewModel()
+            {
+                TicektOrder = order,
+                OrderItems = orderItems
+            };
+            return View(vm);
         }
         #endregion
     }

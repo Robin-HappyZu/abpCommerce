@@ -50,6 +50,8 @@ namespace HappyZu.CloudStore.Trip
 
         Task<TicketOrderDto> GetTicketOrderByIdAsync(int ticektOrderId);
 
+        Task<TicketOrderDto> GetTicketOrderByIdAsync(int ticektOrderId, long userId);
+
         Task<IPagedResult<TicketOrderDto>> GetPagedTicketOrdersByTicektId(GetPagedTicketOrdersInput input);
 
         Task<IPagedResult<TicketOrderDto>> GetTicketOrdersAsync(GetPagedTicketOrdersInput input);

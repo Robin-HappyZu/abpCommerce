@@ -569,7 +569,7 @@ input, button, select, textarea {
 .quick-link .item:nth-of-type(5) a {background-color: #7bcb25;}*/
 .quick-link .item:nth-of-type(1) a {background-color: #70a0ef;}
 .quick-link .item:nth-of-type(2) a {background-color: #CCC;}
-.quick-link .item:nth-of-type(3) a {background-color: #CCC;}
+.quick-link .item:nth-of-type(3) a {background-color: #43beeb;}
 .quick-link .item:nth-of-type(4) a {background-color: #CCC;}
 .quick-link .item:nth-of-type(5) a {background-color: #CCC;}
 
@@ -1417,15 +1417,17 @@ input, button, select, textarea {
     font-size:.7rem;
 }
 
-.dest-info,.info-card  {
+.myticket-dest-info,.info-card  {
     border-top: 1px #dfdfdf solid;
     border-bottom: 1px #dfdfdf solid;
     background-color:#fff;
     clear: left;
     margin-top:10px;
 }
-.dest-info .dest-title,.info-card .card-title{ padding:0 15px; line-height:1.6rem;border-bottom: 1px #dfdfdf solid;font-size:.7rem;}
-.dest-info .dest-body,.info-card .card-body{ padding:5px 15px;}
+.myticket-dest-info .dest-title,.info-card .card-title{ padding:0 15px; line-height:1.6rem;border-bottom: 1px #dfdfdf solid;font-size:.7rem;}
+.myticket-dest-info .dest-body,.info-card .card-body{ padding:5px 15px;}
 
-.dest-info .dest-title{line-height:2rem;font-size:.9rem;}
-.dest-info .dest-body .row{ padding: 5px 0;}
+.myticket-dest-info .dest-title{line-height:2rem;font-size:.9rem;}
+.myticket-dest-info .dest-body .row{ padding: 5px 0;}
+
+.customize-banner img{ width:100%;}

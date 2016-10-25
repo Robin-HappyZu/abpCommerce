@@ -1,5 +1,5 @@
 ﻿@using Abp.Extensions
-@using Happyzu.CloudStore.Common.StringUtils
+@using StringExtensions = Happyzu.CloudStore.Common.Utils.StringExtensions
 @model HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest.DetailViewModel
 <div class="content native-scroll">
     <div class="dest-box">
@@ -36,7 +36,10 @@
             门票预订说明
         </div>
         <div class="booking-notice-content">
-            @Html.Raw(Model.Dest.BookingNotice.RemoveHtmlTag().NormalizeLineEndings())
+            @if (!string.IsNullOrWhiteSpace(Model.Dest.BookingNotice))
+            {
+                @Html.Raw(StringExtensions.RemoveHtmlTag(Model.Dest.BookingNotice).NormalizeLineEndings())
+            }
         </div>
     </div>
 </div>

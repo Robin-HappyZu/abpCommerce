@@ -382,6 +382,26 @@ namespace HappyZu.CloudStore.Trip
             }
         }
 
+        public async Task<TicketOrderDto> GetTicketOrderByIdAsync(int ticektOrderId, long userId)
+        {
+            try
+            {
+                var order = await _ticketOrderManager.GetTicketOrdersAsync(q=>q.Where(x=>x.Id== ticektOrderId && x.CustomerId==userId).OrderBy(x=>x.Id),new PagedResultRequestDto
+                {
+                    MaxResultCount=1
+                });
+                if (order.Count<=0)
+                {
+                    return null;
+                }
+                return order.FirstOrDefault().MapTo<TicketOrderDto>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public async Task<IPagedResult<TicketOrderDto>> GetPagedTicketOrdersByTicektId(GetPagedTicketOrdersInput input)
         {
             try
