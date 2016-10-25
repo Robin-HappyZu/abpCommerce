@@ -22,9 +22,11 @@ namespace HappyZu.CloudStore.Trip
         private readonly TicketTypeManager _ticketTypeManager;
         private readonly ETicketManager _eTicketManager;
         private readonly DestMananger _destManager;
+        private readonly IUniqueIdManager _uniqueIdManager;
 
         public TicketAppService(TicketManager ticketManager, TicketQuoteManager ticketQuoteManager,
-            TicketOrderManager ticketOrderManager, TicketTypeManager ticketTypeManager, ETicketManager eTicketManager, DestMananger destManager)
+            TicketOrderManager ticketOrderManager, TicketTypeManager ticketTypeManager, ETicketManager eTicketManager, 
+            DestMananger destManager, IUniqueIdManager uniqueIdManager)
         {
             _ticketManager = ticketManager;
             _ticketOrderManager = ticketOrderManager;
@@ -32,6 +34,7 @@ namespace HappyZu.CloudStore.Trip
             _ticketQuoteManager = ticketQuoteManager;
             _eTicketManager = eTicketManager;
             _destManager = destManager;
+            _uniqueIdManager = uniqueIdManager;
         }
 
         public async Task<ResultOutputDto> AddTicketAsync(AddTicketInput input)
@@ -286,7 +289,7 @@ namespace HappyZu.CloudStore.Trip
             {
                 var order = new TicketOrder()
                 {
-                    OrderNo = Guid.NewGuid().ToString("N").ToUpper(),
+                    OrderNo = _uniqueIdManager.CreateId().ToString(),
                     Contact = input.Contact,
                     Remark = input.Remark,
                     Mobile = input.Mobile,
@@ -310,7 +313,7 @@ namespace HappyZu.CloudStore.Trip
 
                     orderItems.Add(new TicketOrderItem()
                     {
-                        TicketOrderItemNo = Guid.NewGuid().ToString("N").ToUpper(),
+                        TicketOrderItemNo = _uniqueIdManager.CreateId().ToString(),
                         TicketId = ticket.Id,
                         TicketName = ticket.Name,
                         Quantity = item.Quantity,
