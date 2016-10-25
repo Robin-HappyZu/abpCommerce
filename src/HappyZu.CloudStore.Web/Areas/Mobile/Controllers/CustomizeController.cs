@@ -26,6 +26,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             _customizeTripAppService = customizeTripAppService;
         }
 
+        #region 私人定制
         // GET: Mobile/Customize
         public ActionResult Index()
         {
@@ -68,6 +69,9 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             return Json(result);
         }
 
+        #endregion
+
+        #region 我的定制
         [AbpMvcAuthorize]
         public ActionResult MyCustomize()
         {
@@ -89,5 +93,20 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             };
             return View();
         }
+
+        [AbpMvcAuthorize]
+        public async Task<JsonResult> GetMyCustomizes(int start,int length)
+        {
+            var userId = AbpSession.GetUserId();
+            var input=new QueryCustomizationsInput()
+            {
+                CustomerId = userId,
+                SkipCount = start,
+                MaxResultCount = length
+            };
+            var result = await _customizeTripAppService.QueryCustomizationsAsync(input);
+            return Json(result);
+        }
+        #endregion
     }
 }

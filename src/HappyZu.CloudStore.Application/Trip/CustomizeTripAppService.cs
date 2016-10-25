@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
+using Abp.Linq.Extensions;
 using HappyZu.CloudStore.Common.Dto;
 using HappyZu.CloudStore.Trip.Dto;
 
@@ -44,6 +47,36 @@ namespace HappyZu.CloudStore.Trip
             catch (Exception e)
             {
                 return new List<CustomizeTripDto>();
+            }
+        }
+
+        public async Task<IPagedResult<CustomizeTripDto>> QueryCustomizationsAsync(QueryCustomizationsInput input)
+        {
+            try
+            {
+                if (input.MaxResultCount<=0)
+                {
+                    input.MaxResultCount = int.MaxValue;
+                }
+                var count =await _customizeTripRepository.CountAsync(x => x.CustomerId == input.CustomerId);
+                var result =
+                    _customizeTripRepository.Query(q => q.Where(x => x.CustomerId == input.CustomerId))
+                        .OrderByDescending(x => x.Id)
+                        .PageBy(input).ToList();
+
+                return new PagedResultDto<CustomizeTripDto>()
+                {
+                    TotalCount = count,
+                    Items = result.MapTo<IReadOnlyList<CustomizeTripDto>>()
+                };
+            }
+            catch (Exception)
+            {
+                return new PagedResultDto<CustomizeTripDto>()
+                {
+                    TotalCount = 0,
+                    Items = new List<CustomizeTripDto>()
+                };
             }
         }
 

@@ -172,6 +172,7 @@
     <Compile Include="Trip\Dto\GetPagedTicketOrdersInput.cs" />
     <Compile Include="Trip\Dto\GetPagedTicketQuotesInput.cs" />
     <Compile Include="Trip\Dto\GetPagedTicketsInput.cs" />
+    <Compile Include="Trip\Dto\QueryCustomizationsInput.cs" />
     <Compile Include="Trip\Dto\TicketAttributeDto.cs" />
     <Compile Include="Trip\Dto\TicketAttributeRecordDto.cs" />
     <Compile Include="Trip\Dto\TicketOrderItemDto.cs" />
