@@ -440,6 +440,8 @@
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.calendar.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\moment.min.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.cookie.min.js" />
+    <Content Include="config.json" />
+    <Content Include="Areas\Admin\Controllers\FileManager\controller.ashx" />
     <None Include="Themes\Default\Mobile\Views\Account\AboutUs.cshtml" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.form.min.js" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />
@@ -578,6 +580,9 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminControllerBase.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FileManager\controller.ashx.cs">
+      <DependentUpon>controller.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Admin\Controllers\FileManager\UploadFileController.cs" />
     <Compile Include="Areas\Admin\Controllers\Trip\DestinationController.cs" />
     <Compile Include="Areas\Admin\Controllers\FAQController.cs" />

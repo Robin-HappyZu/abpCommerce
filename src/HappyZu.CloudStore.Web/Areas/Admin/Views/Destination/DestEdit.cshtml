@@ -48,10 +48,6 @@
                             <i class="fa fa-floppy-o"></i>
                             保存并继续编辑
                         </button>
-                        <button type="button" name="copyproduct" class="btn green-meadow" data-toggle="modal" data-target="#copyproduct-window">
-                            <i class="fa fa-clone"></i>
-                            复制景点
-                        </button>
                         <span id="product-delete" class="btn red" data-toggle="modal" data-target="#productmodel-delete-confirmation">
                             <i class="fa fa-trash-o"></i>
                             删除
@@ -84,8 +80,11 @@
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
-    <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.min.js"></script>
-    <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js"></script>
+    @*<script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.min.js"></script>
+    <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js"></script>*@
+<script src="~/Areas/Admin/content/global/plugins/ueditor/ueditor.config.js"></script>
+<script src="~/Areas/Admin/content/global/plugins/ueditor/ueditor.all.min.js"></script>
+<script src="~/Areas/Admin/content/global/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
@@ -94,7 +93,9 @@
 }
 @section scripts{
     <script>
+        var ue = null;
         $(function() {
+            ue = UE.getEditor('Dest_Introduce');
             $.fn.modal.defaults.spinner = $.fn.modalmanager.defaults.spinner =
                 '<div class="loading-spinner" style="width: 200px; margin-left: -100px;">' +
                 '<div class="progress progress-striped active">' +
@@ -102,42 +103,42 @@
                 '</div>' +
                 '</div>';
 
-            $(".input-booking-notice")
-                .summernote({
-                    height: 300,
-                    dialogsInBody: true,
-                    placeholder: '预订须知',
-                    lang: "zh-CN",
-                    callbacks: {
-                        onBlur: function() {
-                            vm.BookingNotice($(".input-booking-notice").val());
-                        }
-                    }
-                });
-            $(".input-agreement")
-                .summernote({
-                    height: 300,
-                    dialogsInBody: true,
-                    placeholder: '游玩协议',
-                    lang: "zh-CN",
-                    callbacks: {
-                        onBlur: function(contents, $editable) {
-                            vm.Agreement($(".input-agreement").val());
-                        }
-                    }
-                });
-            $(".input-description")
-                .summernote({
-                    height: 300,
-                    dialogsInBody: true,
-                    placeholder: '景点介绍',
-                    lang: "zh-CN",
-                    callbacks: {
-                        onBlur: function(contents, $editable) {
-                            vm.Introduce($(".input-description").val());
-                        }
-                    }
-                });
+            //$(".input-booking-notice")
+            //    .summernote({
+            //        height: 300,
+            //        dialogsInBody: true,
+            //        placeholder: '预订须知',
+            //        lang: "zh-CN",
+            //        callbacks: {
+            //            onBlur: function() {
+            //                vm.BookingNotice($(".input-booking-notice").val());
+            //            }
+            //        }
+            //    });
+            //$(".input-agreement")
+            //    .summernote({
+            //        height: 300,
+            //        dialogsInBody: true,
+            //        placeholder: '游玩协议',
+            //        lang: "zh-CN",
+            //        callbacks: {
+            //            onBlur: function(contents, $editable) {
+            //                vm.Agreement($(".input-agreement").val());
+            //            }
+            //        }
+            //    });
+            //$(".input-description")
+            //    .summernote({
+            //        height: 300,
+            //        dialogsInBody: true,
+            //        placeholder: '景点介绍',
+            //        lang: "zh-CN",
+            //        callbacks: {
+            //            onBlur: function(contents, $editable) {
+            //                vm.Introduce($(".input-description").val());
+            //            }
+            //        }
+            //    });
 
             if (jQuery().datepicker) {
                 $('.date-picker')
@@ -488,10 +489,10 @@
                             if (data.result.success) {
                                 vm.Pictures.push({ "FileItem": 
                                     { "Path": uvm.Path(), 
-                                    "MimeType": null, 
-                                    "SEOFileName": uvm.SEOFileName(),
-                                    "AltAttribute": uvm.AltAttribute(),
-                                    "TitleAttribute": uvm.TitleAttribute()}, 
+                                        "MimeType": null, 
+                                        "SEOFileName": uvm.SEOFileName(),
+                                        "AltAttribute": uvm.AltAttribute(),
+                                        "TitleAttribute": uvm.TitleAttribute()}, 
                                     "IsDefault": uvm.IsDefault(),
                                     "DisplayOrder": uvm.DisplayOrder() , 
                                     "Id": data.result.id });

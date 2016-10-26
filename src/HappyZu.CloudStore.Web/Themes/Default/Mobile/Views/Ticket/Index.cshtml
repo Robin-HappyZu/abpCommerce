@@ -14,6 +14,35 @@
                                   foreach: items,
                                   as: 'item' }">
             @*<li>
+                    <a href="@Url.Action("Detail","Ticket",new {area="Mobile"},true)" class="item-travel item-content">
+                        <div class="item-media">
+                            <div class="tip-label">
+                                经典必玩
+                            </div>
+                            <img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" width="80">
+                        </div>
+                        <div class="item-inner">
+                            <div class="item-title">【神奇隐水洞 十里水画廊】咸宁隐水洞+大汉皇族村（明清古居）一日游【移步换景溶洞奇观 武汉出发】</div>
+                            <div class="item-tags-box">
+                                <div class="item-tags">
+                                    <label class="tag">明日可用</label>
+                                    <label class="tag">无购物</label>
+                                    <label class="tag">无自费</label>
+                                </div>
+                                <div class="item-tags-after">
+                                    <span class="item-price">$100.00</span> 起
+                                </div>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-info-sales">月销:10000</div>
+                                <div class="item-info-comments">4.5</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>*@
+        </ul>
+        <ul>
+            <li>
                 <a href="@Url.Action("Detail","Ticket",new {area="Mobile"},true)" class="item-travel item-content">
                     <div class="item-media">
                         <div class="tip-label">
@@ -39,9 +68,10 @@
                         </div>
                     </div>
                 </a>
-            </li>*@
+            </li>
         </ul>
     </div>
+   
     <div class="infinite-scroll-preloader" data-bind="visible:loading">
         <div class="preloader"></div>
     </div>
