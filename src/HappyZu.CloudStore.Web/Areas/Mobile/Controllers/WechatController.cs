@@ -19,7 +19,7 @@ using Senparc.Weixin.MP.CommonAPIs;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 {
-    public class WechatController : Controller
+    public class WechatController : MobileControllerBase
     {
         private readonly string appId = ConfigurationManager.AppSettings["ExternalAuth.Wechat.AppId"];
         private readonly string secret = ConfigurationManager.AppSettings["ExternalAuth.Wechat.AppSecret"];
