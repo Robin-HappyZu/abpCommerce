@@ -260,6 +260,10 @@
     <Compile Include="Migrations\201610230758499_Add_Refund_and_CustomizeTrip.Designer.cs">
       <DependentUpon>201610230758499_Add_Refund_and_CustomizeTrip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610310813475_Update_UserEntity_IsSubscribe.cs" />
+    <Compile Include="Migrations\201610310813475_Update_UserEntity_IsSubscribe.Designer.cs">
+      <DependentUpon>201610310813475_Update_UserEntity_IsSubscribe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="CloudStoreDataModule.cs" />
@@ -387,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610230758499_Add_Refund_and_CustomizeTrip.resx">
       <DependentUpon>201610230758499_Add_Refund_and_CustomizeTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610310813475_Update_UserEntity_IsSubscribe.resx">
+      <DependentUpon>201610310813475_Update_UserEntity_IsSubscribe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,12 +10,16 @@ using Abp.Runtime.Caching;
 using HappyZu.CloudStore.Users;
 using HappyZu.CloudStore.Users.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Filters;
+using HappyZu.CloudStore.Wechat.Handler;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Senparc.Weixin;
+using Senparc.Weixin.MP;
 using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using Senparc.Weixin.MP.CommonAPIs;
+using Senparc.Weixin.MP.Entities.Request;
+using Senparc.Weixin.MP.MvcExtension;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 {
@@ -23,6 +27,8 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
     {
         private readonly string appId = ConfigurationManager.AppSettings["ExternalAuth.Wechat.AppId"];
         private readonly string secret = ConfigurationManager.AppSettings["ExternalAuth.Wechat.AppSecret"];
+        private readonly string _token= ConfigurationManager.AppSettings["ExternalAuth.Wechat.ServiceToken"];
+        private readonly string _encodingAesKey = ConfigurationManager.AppSettings["ExternalAuth.Wechat.EncodingAESKey"];
 
         private readonly IUserAppService _userAppService;
         private readonly ICacheManager _cacheManager;
@@ -40,6 +46,8 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             _userAppService = userAppService;
             _cacheManager = cacheManager;
         }
+
+        #region 身份认证
 
         [WechatAuthFilter]
         public ActionResult Index()
@@ -168,6 +176,46 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         public static string CreateRandomPassword()
         {
             return Guid.NewGuid().ToString("N").Truncate(16);
+        }
+        #endregion
+
+        [HttpGet]
+        public Task<ActionResult> Service(string signature, string timestamp, string nonce, string echostr)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                if (CheckSignature.Check(signature, timestamp, nonce, _token))
+                {
+                    return echostr; //返回随机字符串则表示验证通过
+                }
+                else
+                {
+                    return "failed:" + signature + "," + CheckSignature.GetSignature(timestamp, nonce, _token) + "。" +
+                        "如果你在浏览器中看到这句话，说明此地址可以被作为微信公众账号后台的Url，请注意保持Token一致。";
+                }
+            }).ContinueWith<ActionResult>(task => Content(task.Result));
+        }
+        [HttpPost,ActionName("Service")]
+        public Task<ActionResult> ServicePost(PostModel postModel)
+        {
+            return Task.Factory.StartNew<ActionResult>(() =>
+            {
+                if (!CheckSignature.Check(postModel.Signature, postModel.Timestamp, postModel.Nonce, _token))
+                {
+                    return new WeixinResult("参数错误！");
+                }
+
+                postModel.Token = _token;
+                postModel.EncodingAESKey = _encodingAesKey; //根据自己后台的设置保持一致
+                postModel.AppId = appId; //根据自己后台的设置保持一致
+
+                var messageHandler = new CustomMessageHandler(_userAppService,_cacheManager,Request.InputStream, postModel, 10);
+
+                messageHandler.Execute(); //执行微信处理过程
+
+                return new FixWeixinBugWeixinResult(messageHandler);
+
+            }).ContinueWith<ActionResult>(task => task.Result);
         }
     }
 }

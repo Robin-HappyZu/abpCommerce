@@ -30,5 +30,7 @@ namespace HappyZu.CloudStore.Users
         public string UnionID { get; set; }
 
         public string WechatOpenID { get; set; }
+        
+        public bool IsSubscribe { get; set; }
     }
 }

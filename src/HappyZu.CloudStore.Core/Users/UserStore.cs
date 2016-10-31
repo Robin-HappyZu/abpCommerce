@@ -32,6 +32,10 @@ namespace HappyZu.CloudStore.Users
 
         public async Task<User> GetUserByWechatOpenIdAndUnionIdAsync(string wechatOpenId, string unionId)
         {
+            if (string.IsNullOrWhiteSpace(wechatOpenId)&&!string.IsNullOrWhiteSpace(unionId))
+            {
+                return await _userRepository.FirstOrDefaultAsync(user => user.UnionID == unionId);
+            }
             return await _userRepository.FirstOrDefaultAsync(user => user.WechatOpenID == wechatOpenId);
         }
     }

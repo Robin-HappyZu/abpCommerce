@@ -25,6 +25,8 @@ namespace HappyZu.CloudStore.Users.Dto
 
         public string WechatOpenID { get; set; }
 
+        public bool IsSubscribe { get; set; }
+
         public DateTime? LastLoginTime { get; set; }
 
         public bool IsActive { get; set; }
