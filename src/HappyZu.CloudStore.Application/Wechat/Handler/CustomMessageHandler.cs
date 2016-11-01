@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Web;
 using System.Web.Configuration;
+using Abp.Events.Bus;
 using Abp.Runtime.Caching;
 using HappyZu.CloudStore.Users;
 using HappyZu.CloudStore.Wechat.Utilities;
@@ -21,18 +22,18 @@ namespace HappyZu.CloudStore.Wechat.Handler
     public partial class CustomMessageHandler : MessageHandler<CustomMessageContext>
     {
 
-        private string appId = WebConfigurationManager.AppSettings["WeixinAppId"];
-        private string appSecret = WebConfigurationManager.AppSettings["WeixinAppSecret"];
+        private string appId = WebConfigurationManager.AppSettings["ExternalAuth.Wechat.AppId"];
+        private string appSecret = WebConfigurationManager.AppSettings["ExternalAuth.Wechat.AppSecret"];
+        private string domain = WebConfigurationManager.AppSettings["Domain"];
 
         public static object LockObj=new object();
-        private readonly IUserAppService _userAppService;
-        private readonly ICacheManager _cacheManager;
 
-        public CustomMessageHandler(IUserAppService userAppService, ICacheManager cacheManager,Stream inputStream, PostModel postModel,  int maxRecordCount = 0)
+        public IEventBus EventBus { get; set; }
+
+        public CustomMessageHandler(IEventBus eventBus,Stream inputStream, PostModel postModel,  int maxRecordCount = 0)
            : base(inputStream, postModel, maxRecordCount)
         {
-            _userAppService = userAppService;
-            _cacheManager = cacheManager;
+            EventBus = eventBus;
             //这里设置仅用于测试，实际开发可以在外部更全局的地方设置，
             //比如MessageHandler<MessageContext>.GlobalWeixinContext.ExpireMinutes = 3。
             WeixinContext.ExpireMinutes = 3;
@@ -137,7 +138,8 @@ namespace HappyZu.CloudStore.Wechat.Handler
 
             #endregion
 
-            var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
+            //var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
+            //responseMessage.Content = "";
 
             #region 实例代码
             //            if (requestMessage.Content == null)
@@ -283,8 +285,8 @@ namespace HappyZu.CloudStore.Wechat.Handler
             //            }
 
             #endregion
-
-            return responseMessage;
+            //return responseMessage;
+            return null;
         }
         #region 实例代码
 

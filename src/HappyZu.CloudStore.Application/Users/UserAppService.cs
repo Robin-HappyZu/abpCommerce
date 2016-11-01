@@ -44,6 +44,44 @@ namespace HappyZu.CloudStore.Users
             CheckErrors(await UserManager.RemoveFromRoleAsync(userId, roleName));
         }
 
+        public async Task SetUnsubscribe(string openId)
+        {
+            var user = await UserManager.GetUserByWechatOpenIdAndUnionIdAsync(openId, string.Empty);
+
+            if (user != null)
+            {
+                user.IsSubscribe = false;
+            }
+        }
+
+        public async Task SetUnsubscribe(long userId)
+        {
+            var user = await UserManager.GetUserByIdAsync(userId);
+            if (user!=null)
+            {
+                user.IsSubscribe = false;
+            }
+        }
+
+        public async Task SetSubscribe(string openId)
+        {
+            var user = await UserManager.GetUserByWechatOpenIdAndUnionIdAsync(openId,string.Empty);
+
+            if (user != null)
+            {
+                user.IsSubscribe = true;
+            }
+        }
+
+        public async Task SetSubscribe(long userId)
+        {
+            var user = await UserManager.GetUserByIdAsync(userId);
+            if (user != null)
+            {
+                user.IsSubscribe = true;
+            }
+        }
+
         public async Task<ListResultDto<UserDto>> GetUsers()
         {
             var users = await _userRepository.GetAllListAsync();
@@ -52,17 +90,24 @@ namespace HappyZu.CloudStore.Users
                 users.MapTo<List<UserDto>>()
                 );
         }
-
+        
         public async Task CreateUserAsync(CreateUserInput input)
         {
-            var user = input.MapTo<User>();
+            try
+            {
+                var user = input.MapTo<User>();
 
-            user.TenantId = AbpSession.TenantId;
-            user.Password = new PasswordHasher().HashPassword(input.Password);
-            user.IsEmailConfirmed = true;
+                user.TenantId = AbpSession.TenantId;
+                user.Password = new PasswordHasher().HashPassword(input.Password);
+                user.IsEmailConfirmed = true;
 
-            await UserManager.CreateAsync(user);
-            await UnitOfWorkManager.Current.SaveChangesAsync();
+                var identitiy = await UserManager.CreateAsync(user);
+                await UnitOfWorkManager.Current.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
         }
 
         public async Task AddUserLoginAsync(UserLoginInput input)

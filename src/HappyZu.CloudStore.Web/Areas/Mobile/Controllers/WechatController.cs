@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Abp.AutoMapper;
+using Abp.Domain.Uow;
+using Abp.Events.Bus;
 using Abp.Extensions;
 using Abp.Runtime.Caching;
 using HappyZu.CloudStore.Users;
@@ -29,9 +31,11 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         private readonly string secret = ConfigurationManager.AppSettings["ExternalAuth.Wechat.AppSecret"];
         private readonly string _token= ConfigurationManager.AppSettings["ExternalAuth.Wechat.ServiceToken"];
         private readonly string _encodingAesKey = ConfigurationManager.AppSettings["ExternalAuth.Wechat.EncodingAESKey"];
+        private string domain = ConfigurationManager.AppSettings["Domain"];
 
         private readonly IUserAppService _userAppService;
         private readonly ICacheManager _cacheManager;
+
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -132,13 +136,14 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 var input = new CreateUserInput()
                 {
                     UserName = nickName,
-                    EmailAddress = nickName + "@wechat.com",
+                    EmailAddress = nickName + "@"+ domain,
                     IsActive = true,
                     Name = nickName,
                     Surname = nickName,
                     Password = CreateRandomPassword(),
                     UnionID = unionId,
-                    WechatOpenID = openId
+                    WechatOpenID = openId,
+                    IsSubscribe = userInfo2.subscribe != 0
                 };
                 // 创建新用户
                 await _userAppService.CreateUserAsync(input);
@@ -209,7 +214,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 postModel.EncodingAESKey = _encodingAesKey; //根据自己后台的设置保持一致
                 postModel.AppId = appId; //根据自己后台的设置保持一致
 
-                var messageHandler = new CustomMessageHandler(_userAppService,_cacheManager,Request.InputStream, postModel, 10);
+                var messageHandler = new CustomMessageHandler(EventBus,Request.InputStream, postModel, 10);
 
                 messageHandler.Execute(); //执行微信处理过程
 

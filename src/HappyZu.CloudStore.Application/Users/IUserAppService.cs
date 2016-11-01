@@ -15,6 +15,14 @@ namespace HappyZu.CloudStore.Users
 
         Task RemoveFromRole(long userId, string roleName);
 
+        Task SetUnsubscribe(string openId);
+
+        Task SetUnsubscribe(long userId);
+
+        Task SetSubscribe(string openId);
+
+        Task SetSubscribe(long userId);
+
         Task<ListResultDto<UserDto>> GetUsers();
 
         Task CreateUserAsync(CreateUserInput input);

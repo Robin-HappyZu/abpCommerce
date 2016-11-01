@@ -12,6 +12,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Filters
     public class WechatAuthFilterAttribute : AuthorizeAttribute
     {
         private string appId = ConfigurationManager.AppSettings["ExternalAuth.Wechat.AppId"];
+        private string domain = ConfigurationManager.AppSettings["Domain"];
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -37,7 +38,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Filters
 
             // redirect 
             //var redirect = string.Concat("http://", filterContext.HttpContext.Request.Url.Host, "Wechat/AuthCallback");
-            var redirect = string.Concat("http://", "www.hqcang.com/", "Wechat/AuthCallback");
+            var redirect = string.Concat("http://", "m.", domain,"/", "Wechat/AuthCallback");
             var url = OAuthApi.GetAuthorizeUrl(appId, redirect, filterContext.HttpContext.Request.RawUrl, OAuthScope.snsapi_base);
 
             filterContext.Result = new RedirectResult(url);

@@ -224,6 +224,10 @@
     <Compile Include="Users\Dto\ProhibitPermissionInput.cs" />
     <Compile Include="Users\UserAppService.cs" />
     <Compile Include="Users\Dto\UserDto.cs" />
+    <Compile Include="Wechat\Events\SubscribeEventData.cs" />
+    <Compile Include="Wechat\Events\SubscribeHandler.cs" />
+    <Compile Include="Wechat\Events\UnsubscribeEventData.cs" />
+    <Compile Include="Wechat\Events\UnsubscribeHandler.cs" />
     <Compile Include="Wechat\Handler\CustomMessageContext.cs" />
     <Compile Include="Wechat\Handler\CustomMessageHandler.cs" />
     <Compile Include="Wechat\Handler\CustomMessageHandler_Events.cs" />

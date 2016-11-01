@@ -5,11 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Abp.Extensions;
+using HappyZu.CloudStore.Users.Dto;
+using HappyZu.CloudStore.Wechat.Events;
 using HappyZu.CloudStore.Wechat.Utilities;
 using Senparc.Weixin.HttpUtility;
 using Senparc.Weixin.MP;
 using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.Agent;
+using Senparc.Weixin.MP.CommonAPIs;
 using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.MP.Entities;
 
@@ -280,13 +284,13 @@ namespace HappyZu.CloudStore.Wechat.Handler
                 responseMessage.Content += "\r\n============\r\n场景值：" + requestMessage.EventKey;
             }
 
-            var user= _userAppService.GetUserByWechatOpenIdAndUnionIdAsync(requestMessage.FromUserName, string.Empty).Result;
-            
-            if (user == null)
-            {
-                
-            }
 
+            EventBus.Trigger(new SubscribeEventData
+            {
+                OpenId=requestMessage.FromUserName
+            });
+
+            
             return responseMessage;
         }
 
@@ -298,9 +302,18 @@ namespace HappyZu.CloudStore.Wechat.Handler
         /// <returns></returns>
         public override IResponseMessageBase OnEvent_UnsubscribeRequest(RequestMessageEvent_Unsubscribe requestMessage)
         {
-            var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "有空再来";
-            return responseMessage;
+            //var responseMessage = base.CreateResponseMessage<ResponseMessageText>();
+            //responseMessage.Content = "有空再来";
+            //return responseMessage;
+
+
+            EventBus.Trigger(new UnsubscribeEventData
+            {
+                OpenId = requestMessage.FromUserName
+            });
+
+
+            return null;
         }
 
         /// <summary>

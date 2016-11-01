@@ -5,24 +5,53 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using Abp.Extensions;
 using HappyZu.CloudStore.Trip;
 using HappyZu.CloudStore.Trip.Dto;
+using HappyZu.CloudStore.Users;
+using HappyZu.CloudStore.Users.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
+using HappyZu.CloudStore.Wechat.Events;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 {
     public class HomeController : MobileControllerBase
     {
         private readonly IDestAppService _destAppService;
+        private readonly IUserAppService _userAppService;
 
-        public HomeController(IDestAppService destAppService)
+        public HomeController(IDestAppService destAppService, IUserAppService userAppService)
         {
             _destAppService = destAppService;
+            _userAppService = userAppService;
         }
 
         // GET: Mobile/Home
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            //var openid="oJBwJwX5yEpaOAAGb1z6fvlc42oQ";
+
+
+            //await EventBus.TriggerAsync(new SubscribeEventData
+            //{
+            //    OpenId = openid
+            //});
+
+            //var input = new CreateUserInput()
+            //{
+            //    UserName = "随遇而安",
+            //    EmailAddress = "随遇而安@happizu.com",
+            //    IsActive = true,
+            //    Name = "随遇而安",
+            //    Surname = "随遇而安",
+            //    Password = Guid.NewGuid().ToString("N").Truncate(16),
+            //    UnionID = string.Empty,
+            //    WechatOpenID = openid,
+            //    IsSubscribe = true
+            //};
+            //// 创建新用户
+            //await _userAppService.CreateUserAsync(input);
+
             ViewBag.Title = "首页";
             ViewBag.HeaderBar = new HeaderViewModel()
             {
