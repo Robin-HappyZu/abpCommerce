@@ -231,8 +231,10 @@
     <Compile Include="Wechat\Handler\CustomMessageContext.cs" />
     <Compile Include="Wechat\Handler\CustomMessageHandler.cs" />
     <Compile Include="Wechat\Handler\CustomMessageHandler_Events.cs" />
+    <Compile Include="Wechat\IWechatAppService.cs" />
     <Compile Include="Wechat\LocationService.cs" />
     <Compile Include="Wechat\Utilities\Server.cs" />
+    <Compile Include="Wechat\WechatAppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

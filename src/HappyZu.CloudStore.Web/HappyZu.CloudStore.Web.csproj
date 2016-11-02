@@ -616,6 +616,7 @@
     <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
     <Compile Include="Areas\Mobile\Controllers\LayoutController.cs" />
     <Compile Include="Areas\Mobile\Controllers\MobileControllerBase.cs" />
+    <Compile Include="Areas\Mobile\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Mobile\Controllers\TicketController.cs" />
     <Compile Include="Areas\Mobile\Controllers\ToursController.cs" />
     <Compile Include="Areas\Mobile\Controllers\WechatPayController.cs" />
@@ -711,6 +712,7 @@
     <Content Include="Themes\Default\Mobile\Views\Account\MyTicketDetail.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Customize\Index.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Customize\MyCustomize.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Payment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -748,6 +750,7 @@
     <Folder Include="Areas\Mobile\Views\Customize\" />
     <Folder Include="Areas\Mobile\Views\Faq\" />
     <Folder Include="Areas\Mobile\Views\Layout\" />
+    <Folder Include="Areas\Mobile\Views\Payment\" />
     <Folder Include="Areas\Mobile\Views\Tours\" />
     <Folder Include="Areas\Web\Models\" />
     <Folder Include="Views\Wechat\" />

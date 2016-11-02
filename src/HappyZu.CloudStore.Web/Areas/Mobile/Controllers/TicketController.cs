@@ -12,6 +12,7 @@ using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
 using HappyZu.CloudStore.Web.Controllers;
 using Abp.Extensions;
 using Abp.UI;
+using Abp.Web.Mvc.Authorization;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
@@ -203,6 +204,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         #region 生成订单
 
+        [AbpMvcAuthorize]
         public async Task<JsonResult> ConfirmTicketOrder(ConfirmTicketOrderViewModel vm)
         {
             var agent = Request.Cookies.Get("agent");

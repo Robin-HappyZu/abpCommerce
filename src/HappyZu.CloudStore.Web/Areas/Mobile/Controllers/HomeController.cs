@@ -27,30 +27,16 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         }
 
         // GET: Mobile/Home
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            //var openid="oJBwJwX5yEpaOAAGb1z6fvlc42oQ";
+            //var openid = "oJBwJwX5yEpaOAAGb1z6fvlc42oQ";
 
 
             //await EventBus.TriggerAsync(new SubscribeEventData
             //{
             //    OpenId = openid
             //});
-
-            //var input = new CreateUserInput()
-            //{
-            //    UserName = "随遇而安",
-            //    EmailAddress = "随遇而安@happizu.com",
-            //    IsActive = true,
-            //    Name = "随遇而安",
-            //    Surname = "随遇而安",
-            //    Password = Guid.NewGuid().ToString("N").Truncate(16),
-            //    UnionID = string.Empty,
-            //    WechatOpenID = openid,
-            //    IsSubscribe = true
-            //};
-            //// 创建新用户
-            //await _userAppService.CreateUserAsync(input);
+            
 
             ViewBag.Title = "首页";
             ViewBag.HeaderBar = new HeaderViewModel()

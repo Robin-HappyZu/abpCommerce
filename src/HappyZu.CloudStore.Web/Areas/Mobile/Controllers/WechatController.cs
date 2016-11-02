@@ -12,6 +12,7 @@ using Abp.Runtime.Caching;
 using HappyZu.CloudStore.Users;
 using HappyZu.CloudStore.Users.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Filters;
+using HappyZu.CloudStore.Wechat;
 using HappyZu.CloudStore.Wechat.Handler;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
@@ -35,7 +36,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         private readonly IUserAppService _userAppService;
         private readonly ICacheManager _cacheManager;
-
+        private readonly IWechatAppService _wechatAppService;
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -45,10 +46,11 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             }
         }
 
-        public WechatController(IUserAppService userAppService, ICacheManager cacheManager)
+        public WechatController(IUserAppService userAppService, ICacheManager cacheManager, IWechatAppService wechatAppService)
         {
             _userAppService = userAppService;
             _cacheManager = cacheManager;
+            _wechatAppService = wechatAppService;
         }
 
         #region 身份认证
@@ -91,21 +93,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
             var cache = _cacheManager.GetCache("Wechat");
 
-            string appToken = string.Empty;
-            // 获取用户唯一凭据
-            var tokenCache = await cache.GetOrDefaultAsync("ExternalAuth.Wechat.AppAccessToken" );
-            if (tokenCache == null)
-            {
-                var tokenResult = await CommonApi.GetTokenAsync(appId, secret);
-                await
-                    cache.SetAsync("ExternalAuth.Wechat.AppAccessToken", tokenResult.access_token,
-                        TimeSpan.FromSeconds(tokenResult.expires_in));
-                appToken = tokenResult.access_token;
-            }
-            else
-            {
-                appToken = tokenCache.ToString();
-            }
+            string appToken =await _wechatAppService.GetAccessTokenAsync();
 
             // 获取用户信息
             var userInfo2 = CommonApi.GetUserInfo(appToken, openId);

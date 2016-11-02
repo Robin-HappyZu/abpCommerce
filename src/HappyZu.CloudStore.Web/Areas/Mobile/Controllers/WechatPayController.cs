@@ -37,16 +37,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         {
             return View();
         }
-
-        public ActionResult UserTag()
-        {
-            var token = "tJi48kx8a0lzq8ig6_PAeS_XzaClRRrPg9ab3YVn6HBuf2iplJQbfJwv3rpxmP9ImpBv8hkGBKRzgvMjeoiBfR0NzRVUe3l5XMRq4zJ5Wi-_wTD6FMlVjDN6glEW7oqjWNPgABAPGI";
-
-            var res = UserTagApi.Get(token, 2);
-
-            return Content(res.next_openid);
-        }
-
+        
         /// <summary>
         /// 微信统一下单，返回支付参数
         /// </summary>

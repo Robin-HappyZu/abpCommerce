@@ -46,40 +46,46 @@ namespace HappyZu.CloudStore.Users
 
         public async Task SetUnsubscribe(string openId)
         {
-            var user = await UserManager.GetUserByWechatOpenIdAndUnionIdAsync(openId, string.Empty);
+            var user = await _userRepository.FirstOrDefaultAsync(q => q.WechatOpenID == openId);
 
             if (user != null)
             {
                 user.IsSubscribe = false;
             }
+            await _userRepository.UpdateAsync(user);
         }
 
         public async Task SetUnsubscribe(long userId)
         {
-            var user = await UserManager.GetUserByIdAsync(userId);
-            if (user!=null)
+            var user = await _userRepository.FirstOrDefaultAsync(q => q.Id == userId);
+
+            if (user != null)
             {
                 user.IsSubscribe = false;
             }
+            await _userRepository.UpdateAsync(user);
         }
 
         public async Task SetSubscribe(string openId)
         {
-            var user = await UserManager.GetUserByWechatOpenIdAndUnionIdAsync(openId,string.Empty);
+            var user = await _userRepository.FirstOrDefaultAsync(q=>q.WechatOpenID== openId);
 
             if (user != null)
             {
                 user.IsSubscribe = true;
             }
+            await _userRepository.UpdateAsync(user);
         }
 
         public async Task SetSubscribe(long userId)
         {
-            var user = await UserManager.GetUserByIdAsync(userId);
+            var user = await _userRepository.FirstOrDefaultAsync(q => q.Id == userId);
+
             if (user != null)
             {
                 user.IsSubscribe = true;
             }
+            await _userRepository.UpdateAsync(user);
         }
 
         public async Task<ListResultDto<UserDto>> GetUsers()
@@ -101,8 +107,26 @@ namespace HappyZu.CloudStore.Users
                 user.Password = new PasswordHasher().HashPassword(input.Password);
                 user.IsEmailConfirmed = true;
 
-                var identitiy = await UserManager.CreateAsync(user);
+                await UserManager.CreateAsync(user);
                 await UnitOfWorkManager.Current.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
+        }
+
+        public async Task AddUserAsync(CreateUserInput input)
+        {
+            try
+            {
+                var user = input.MapTo<User>();
+
+                user.TenantId = AbpSession.TenantId;
+                user.Password = new PasswordHasher().HashPassword(input.Password);
+                user.IsEmailConfirmed = true;
+
+                await UserManager.AddUserAsync(user);
             }
             catch (Exception ex)
             {
@@ -124,7 +148,15 @@ namespace HappyZu.CloudStore.Users
 
         public async Task<UserDto> GetUserByWechatOpenIdAndUnionIdAsync(string wechatOpenId, string unionId)
         {
-            var user = await UserManager.GetUserByWechatOpenIdAndUnionIdAsync(wechatOpenId, unionId);
+            User user;
+            if (string.IsNullOrWhiteSpace(wechatOpenId) && !string.IsNullOrWhiteSpace(unionId))
+            {
+                user = await _userRepository.FirstOrDefaultAsync(u => u.UnionID == unionId);
+            }
+            else
+            {
+                user = await _userRepository.FirstOrDefaultAsync(u => u.WechatOpenID == wechatOpenId);
+            }
             return user.MapTo<UserDto>();
         }
 

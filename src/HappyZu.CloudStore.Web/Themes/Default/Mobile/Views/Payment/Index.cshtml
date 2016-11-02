@@ -1,0 +1,23 @@
+﻿@model HappyZu.CloudStore.Trip.Dto.TicketOrderDto
+
+<div class="content native-scroll">
+    <div class="order-info">
+        <div class="info-body">@Model.DestName 门票</div>
+        <div class="order-total">
+            <label>订单金额：</label>
+            <dfn>￥</dfn><span>@Model.TotalAmount</span>
+        </div>
+    </div>
+    <div class="list-block">
+        <ul>
+            <li>
+                <a href="@Url.Action("PaymentSuccess","Ticket",new {area="Mobile"},true)" class="item-link item-content">
+                    <div class="item-media"><i class="iconfont" style="color: #00c000; font-size: 28px;">&#xe64c;</i></div>
+                    <div class="item-inner">
+                        <div class="item-title">微信支付</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

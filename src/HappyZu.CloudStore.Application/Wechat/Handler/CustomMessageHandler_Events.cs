@@ -285,7 +285,7 @@ namespace HappyZu.CloudStore.Wechat.Handler
             }
 
 
-            EventBus.Trigger(new SubscribeEventData
+            EventBus.TriggerAsync(new SubscribeEventData
             {
                 OpenId=requestMessage.FromUserName
             });
@@ -307,7 +307,7 @@ namespace HappyZu.CloudStore.Wechat.Handler
             //return responseMessage;
 
 
-            EventBus.Trigger(new UnsubscribeEventData
+            EventBus.TriggerAsync(new UnsubscribeEventData
             {
                 OpenId = requestMessage.FromUserName
             });

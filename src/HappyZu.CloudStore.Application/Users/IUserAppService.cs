@@ -27,6 +27,8 @@ namespace HappyZu.CloudStore.Users
 
         Task CreateUserAsync(CreateUserInput input);
 
+        Task AddUserAsync(CreateUserInput input);
+
         Task AddUserLoginAsync(UserLoginInput input);
 
         Task<ClaimsIdentity> CreateIdentityAsync(User user);

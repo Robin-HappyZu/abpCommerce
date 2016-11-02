@@ -11,32 +11,34 @@
             </div>
         </div>
     </a>
-    <div class="card">
-        <div class="card-header">联系方式</div>
-        <div class="card-content">
-            <div class="card-content-inner form-list">
-                <div class="form-row">
-                    <div class="row-text">
-                        联系人
-                    </div>
-                    <div class="row-value no-border">
-                        <input class="qty-input" data-bind="value:Contact" placeholder="需要填写1个联系人"/>
+    <form id="myform">
+        <div class="card">
+            <div class="card-header">联系方式</div>
+            <div class="card-content">
+                <div class="card-content-inner form-list">
+                    <div class="form-row">
+                        <div class="row-text">
+                            联系人
+                        </div>
+                        <div class="row-value no-border">
+                            <input class="qty-input" name="Contact" data-bind="value:Contact" placeholder="需要填写1个联系人" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-content-inner form-list">
-                <div class="form-row">
-                    <div class="row-text">
-                        联系手机
-                    </div>
-                    <div class="row-value no-border">
-                        <input class="qty-input" data-bind="value:Mobile" placeholder="接收确认短信"/>
+                <div class="card-content-inner form-list">
+                    <div class="form-row">
+                        <div class="row-text">
+                            联系手机
+                        </div>
+                        <div class="row-value no-border">
+                            <input class="qty-input" name="Mobile" data-bind="value:Mobile" placeholder="接收确认短信" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="foot-clear"></div>
+        <div class="foot-clear"></div>
+    </form>
 </div>
 <div class="bar bar-footer payment-list transactions">
     <div class="payment-content" data-bind="foreach:Tickets">
@@ -62,7 +64,7 @@
         </div>
         <div class="col-25">
             <div class="confirm-order-btn">
-                <a href="javascript:;" data-bind="click:confirmOrder" class="button button-big button-fill button-warning">去支付</a>
+                <a href="javascript:;" data-bind="click:SubmitData" class="button button-big button-fill button-warning">去支付</a>
                 @*@Url.Action("ChoosePayment", "Ticket", new { area = "Mobile" }, true)*@
             </div>
         </div>
@@ -78,6 +80,7 @@
     <script src="~/Themes/Default/Mobile/content/plugins/sui/js/sm-extend.min.js"></script>
     <script src="~/Themes/Default/Mobile/content/jquery.bootstrap-touchspin.min.js"></script>
     <script src="~/Themes/Default/Mobile/content/plugins/zepto.calendar.js"></script>
+    <script src="~/Themes/Default/Mobile/content/plugins/zepto.form.min.js"></script>
     <script type="text/html" id="ticket-template">
         <div class="card">
             <div class="card-header">
@@ -155,6 +158,35 @@
                 </div>
             </div>
         </dd>
+    </script>
+    <script>
+        var validConfig = {
+            Contact: {
+                required: '联系人不能为空'
+            },
+            Mobile: {
+                required: '手机号码不能为空',
+                reg: {
+                    exp: /^(0|86|17951)?(13[0-9]|15[012356789]|17[0-9]|18[0-9]|14[57])[0-9]{8}$/,
+                    msg: '请输入正确的手机号码'
+                }
+            }
+        }
+
+        $("#myform")
+            .validate({
+                validConf: validConfig,
+                touch: true,
+                loadingTxt: '正在提交...',
+                defaultTxt: '提交定制',
+                submitBtn: $('.submit-btn'),
+                alertFn: function(msg) {
+                    $.alert(msg);
+                }, // 弹窗提示函数
+                validSuccess: function(json) {
+                    vm.confirmOrder();
+                }
+            });
     </script>
     <script>
         var ticketsPage = $('#tickets_page');
@@ -503,7 +535,9 @@
             $this.openTicketNotice = function(data) {
 
             }
-
+            $this.SubmitData = function() {
+                $('#myform').submit();
+            }
             $this.confirmOrder = function() {
                 var url = '@Url.Action("ConfirmTicketOrder", "Ticket", new {area = "Mobile"}, true)';
 
@@ -532,7 +566,7 @@
                             }
                             $.toast("订单生成错误,请稍后重试!");
                         } else {
-                            $.toast("操作失败");
+                            $.alert(data.error.message);
                         }
                     },
                     'json');
