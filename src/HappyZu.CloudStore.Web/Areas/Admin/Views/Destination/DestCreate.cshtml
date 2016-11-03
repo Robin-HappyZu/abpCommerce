@@ -39,7 +39,7 @@
                             <i class="fa fa-floppy-o"></i>
                             保存
                         </button>
-                        <button type="submit" name="save-continue" class="btn blue">
+                        <button type="submit" name="save-continue" class="btn blue" data-loading-text="正在保存..." data-bind="click:submitAndEdit">
                             <i class="fa fa-floppy-o"></i>
                             保存并继续编辑
                         </button>
@@ -193,7 +193,15 @@
             this.ReturnUrl = ko.observable(returnUrl);
             this.IsCreate=ko.observable(true);
 
+            this.submitAndEdit = function(data, event) {
+                _this.postData(data, event, true);
+            }
+
             this.submit = function(data, event) {
+                _this.postData(data, event, false);
+            }
+
+            this.postData = function(data, event, edit) {
                 var url = $('#uiform').attr("action");
                 var params = [];
                 params.push({ name: "@Html.NameFor(m => m.Dest.Title)", value: _this.Title() });
@@ -222,7 +230,12 @@
                 $btn.button("loading");
                 $.post(url, params, function(data) {
                     if (data.success) {
-                        window.location = _this.ReturnUrl();
+                        if (edit) {
+                            window
+                                .location = "@Url.Action("DestEdit", "Destination", new {area = "Admin"}, true)/" + data.result.id + '?returnUrl=' + _this.ReturnUrl();
+                        } else {
+                            window.location = _this.ReturnUrl();
+                        }
                         return;
                     } else {
                         App.alert({

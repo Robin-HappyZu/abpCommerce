@@ -213,9 +213,10 @@
                 });
             }
 
+            var grid = new Datatable();
+
             var handleRecords = function() {
 
-                var grid = new Datatable();
 
                 grid.init({
                     src: $("#datatable_ajax"),
@@ -266,7 +267,7 @@
                         {
                             render: function(data, type, row) {
                                 var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("DestEdit", new {controller = "Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
-                                    btns += '<a class="btn btn-sm btn-outline red" href="javascript:' + row.Id + ';"><i class="fa fa-trash-o"></i> 删除</a>';
+                                btns += '<a class="btn btn-sm btn-outline red" href="javascript:removeDest(' + row.Id + ');"><i class="fa fa-trash-o"></i> 删除</a>';
                                     return btns;
                                 },
                                 "targets": 3
@@ -306,11 +307,12 @@
                     }
                 });
 
-                grid.setAjaxParam("customActionType", "group_action");
-                grid.getDataTable().ajax.reload();
-                grid.clearAjaxParams();
+                
             }
 
+            var reload = function() {
+                grid.getDataTable().ajax.reload();
+            }
 
             return {
 
@@ -318,8 +320,10 @@
                 init: function() {
                     initPickers();
                     handleRecords();
+                },
+                reload:function() {
+                    reload();
                 }
-
             };
 
         }();
@@ -336,6 +340,37 @@
                 }
             });
         });
+
+        var removeDest = function(id) {
+            if (!confirm('确定要删除此景点吗？')) {
+                return;
+            }
+            var url = '@Url.Action("DestRemove", "Destination", new {area = "Admin"}, true)';
+            var params = {id:id};
+            var $btn = $(this);
+            $btn.button("loading");
+            $.post(url,
+                params,
+                function(data) {
+                    if (data.success) {
+                        TableDatatablesAjax.reload();
+                        return;
+                    } else {
+                        App.alert({
+                            container: '',
+                            place: 'append', // append or prepent in container
+                            type: 'danger', // alert's type
+                            message: data.error.message, // alert's message
+                            close: true, // make alert closable
+                            reset: true, // close all previouse alerts first
+                            focus: true, // auto scroll to the alert after shown
+                            icon: 'warning' // put icon before the message
+                        });
+                    };
+                    $btn.button('reset');
+                },
+                'json');
+        }
     </script>
     <!-- END PAGE LEVEL SCRIPTS -->
 }

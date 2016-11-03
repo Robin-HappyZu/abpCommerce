@@ -101,6 +101,9 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         [HttpPost, ActionName("DestCreate")]
         public async Task<JsonResult> DestCreatePost(EditDestViewModel vm)
         {
+            vm.Dest.Introduce = HttpUtility.HtmlDecode(vm.Dest.Introduce);
+            vm.Dest.BookingNotice = HttpUtility.HtmlDecode(vm.Dest.BookingNotice);
+            vm.Dest.Agreement = HttpUtility.HtmlDecode(vm.Dest.Agreement);
             var input=new AddDestInput()
             {
                 Dest = vm.Dest
