@@ -196,7 +196,7 @@
             };
 
             this.addTicketType = function (data, event) {
-                var url = '@Url.Action("TicketTypeCreate", "Destination", new {area = "Mobile", DestId = Model.Dest.Id}, true)';
+                var url = '@Url.Action("TicketTypeCreate", "Destination", new {area = "Admin", DestId = Model.Dest.Id}, true)';
                 var params = [];
                 params.push({ name: "Name", value: _this.TicketTypeName() });
                 params.push({ name: "DisplayOrder", value: _this.TicketTypeDisplayOrder() });
@@ -228,7 +228,7 @@
             }
 
             this.loadTicketTypeList = function () {
-                var url = '@Url.Action("GetTicketType", "Destination", new {area = "Mobile", DestId = Model.Dest.Id}, true)';
+                var url = '@Url.Action("GetTicketType", "Destination", new {area = "Admin", DestId = Model.Dest.Id}, true)';
                 App.startPageLoading({ animate: true });
                 $.post(url, {}, function (data) {
                     if (data.success) {

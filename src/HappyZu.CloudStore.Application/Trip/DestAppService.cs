@@ -354,6 +354,16 @@ namespace HappyZu.CloudStore.Trip
                 return ResultOutputDto.Exception(e);
             }
         }
+
+        public async Task UpdateDestCoverImage(int id, string coverImage)
+        {
+            var dest = await _destMananger.GetDestByIdAsync(id);
+            if (dest != null)
+            {
+                dest.CoverImage = coverImage;
+                await _destMananger.UpdateDestAsync(dest);
+            }
+        }
         #endregion
 
         #region 景点属性
@@ -421,6 +431,17 @@ namespace HappyZu.CloudStore.Trip
         {
             try
             {
+                var entity = await _pictureMappingManager.GetByIdAsync(input.DestPictureMapping.Id);
+                if (entity == null)
+                {
+                    return ResultOutputDto.Fail(404,"图片不存在");
+                }
+
+                if (entity.IsDefault)
+                {
+                    return ResultOutputDto.Fail(500, "默认图片不能删除");
+                }
+
                 await _pictureMappingManager.RemoveByIdAsync(input.DestPictureMapping.Id);
                 return ResultOutputDto.Successed;
             }
@@ -442,11 +463,13 @@ namespace HappyZu.CloudStore.Trip
                 }
 
                 entity.IsDefault = true;
+                var file =await _fileItemManager.GetByIdAsync(entity.FileId);
+                await UpdateDestCoverImage(entity.DestId, file.Path);
                 await _pictureMappingManager.UpdateAsync(entity);
 
                 var oldDefault =
                     await
-                        _pictureMappingManager.QuerysListAsync(q => q.Where(x => x.IsDefault && x.Id != entity.Id),
+                        _pictureMappingManager.QuerysListAsync(q => q.Where(x => x.IsDefault && x.Id != entity.Id).OrderBy(x=>x.Id),
                             new PagedResultRequestDto());
                 foreach (var item in oldDefault)
                 {

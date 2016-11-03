@@ -146,7 +146,13 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return Json(new { success = output.Status, id = output.EntityId });
         }
 
+        [HttpPost]
+        public async Task<JsonResult> DestRemove(int id)
+        {
+            var result = await _destAppService.RemoveDestAsync(id);
 
+            return Json(new { success = result.Status });
+        }
         /// <summary>
         /// 返回部分视图
         /// </summary>
@@ -385,7 +391,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 
         #endregion
 
-        #region 添加门票
+        #region 门票管理
 
         public async Task<ActionResult> TicketCreate(int destId)
         {
@@ -425,6 +431,14 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             var result = await _ticketAppService.UpdateTicketAsync(input);
 
             return Json(new { success = result.Status, id = result.EntityId });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> TicketRemove(int id)
+        {
+            var result = await _ticketAppService.RemoveTicketAsync(id);
+
+            return Json(new { success = result.Status });
         }
         #endregion
 
@@ -530,6 +544,32 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                 return Json(new {success= output.Status,id=output.EntityId });
             }
             return Json(new{success=false});
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> SetDefaultPicture(int pictureMappingId)
+        {
+            var output = await _destAppService.SetDefaultDestPicture(new DestPictureMappingInput
+            {
+                DestPictureMapping = new DestPictureMappingDto
+                {
+                    Id = pictureMappingId
+                }
+            });
+            return Json(new { success = output.Status});
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> RemovePicture(int pictureMappingId)
+        {
+            var output = await _destAppService.RemoveDestPictureMapping(new DestPictureMappingInput
+            {
+                DestPictureMapping = new DestPictureMappingDto
+                {
+                    Id = pictureMappingId
+                }
+            });
+            return Json(new { success = output.Status });
         }
         #endregion
     }

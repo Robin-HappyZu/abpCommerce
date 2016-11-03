@@ -88,7 +88,7 @@
     <script>
         var lastTicketOrderId = -1;
         var loadTicketOrderDetail = function(id) {
-            var detailUrl = '@Url.Action("OrderDetail", "TicketOrder", new {area = "Mobile"}, true)';
+            var detailUrl = '@Url.Action("OrderDetail", "TicketOrder", new {area = "Admin" }, true)';
             var params = [];
             params.push({ name: "orderId", value: id });
             $.post(detailUrl, params, function (data) {

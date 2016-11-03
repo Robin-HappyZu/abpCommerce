@@ -36,19 +36,19 @@
                         @ViewBag.Title
                     </div>
                     <div class="actions content-edit-box-actions">
-                        <button type="button" onclick="javascript:OpenWindow('/flower-girl-bracelet', 800, 600, true); return false;" class="btn purple">
+                        @*<button type="button" onclick="javascript:OpenWindow('/flower-girl-bracelet', 800, 600, true); return false;" class="btn purple">
                             <i class="fa fa-eye"></i>
                             预览
-                        </button>
+                        </button>*@
                         <button type="submit" name="save" class="btn blue" data-loading-text="正在保存..." data-bind="click:submit">
                             <i class="fa fa-floppy-o"></i>
                             保存
                         </button>
-                        <button type="submit" name="save-continue" class="btn blue">
+                        <button type="submit" name="save-continue" class="btn blue" data-loading-text="正在保存..." data-bind="click:submitAndEdit">
                             <i class="fa fa-floppy-o"></i>
                             保存并继续编辑
                         </button>
-                        <span id="product-delete" class="btn red" data-toggle="modal" data-target="#productmodel-delete-confirmation">
+                        <span id="product-delete" class="btn red" data-toggle="modal" data-loading-text="正在删除..." data-bind="click:removeDest">
                             <i class="fa fa-trash-o"></i>
                             删除
                         </span>
@@ -69,7 +69,7 @@
 </div>
 @section style_plugins{
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
-    <link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" />
+<link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" />
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
     @*<link href="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" />*@
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" />
@@ -80,6 +80,7 @@
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
+<script src="~/Areas/Admin/content/global/plugins/bootbox/bootbox.min.js"></script>
     @*<script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/summernote.min.js"></script>
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js"></script>*@
 <script src="~/Areas/Admin/content/global/plugins/ueditor/ueditor.config.js"></script>
@@ -251,7 +252,15 @@
             this.Tickets = ko.observableArray(@Html.Raw(Model.Tickets.ToJsonString()));
             this.Pictures = ko.observableArray(@Html.Raw(Model.Pictures.ToJsonString()));
 
+            this.submitAndEdit = function(data, event) {
+                _this.postData(data, event, true);
+            }
+
             this.submit = function(data, event) {
+                _this.postData(data, event, false);
+            }
+
+            this.postData = function(data, event, edit) {
                 var url = $('#uiform').attr("action");
                 var params = [];
                 params.push({ name: "@Html.NameFor(m => m.Dest.Title)", value: _this.Title() });
@@ -282,7 +291,14 @@
                     params,
                     function(data) {
                         if (data.success) {
-                            window.location = _this.ReturnUrl();
+                            if (edit) {
+                                window
+                                    .location = "@Url.Action("DestEdit", "Destination", new {area = "Admin"}, true)" +
+                                    '?returnUrl=' +
+                                    _this.ReturnUrl();
+                            } else {
+                                window.location = _this.ReturnUrl();
+                            }
                             return;
                         } else {
                             App.alert({
@@ -303,8 +319,41 @@
 
             };
 
+            this.removeDest = function(data, event) {
+                if (!confirm('确定要删除此景点吗？')) {
+                    return;
+                }
+                var url = '@Url.Action("DestRemove", "Destination", new {area = "Admin"}, true)';
+                var params = {id:@Model.Id};
+                App.startPageLoading({ animate: true });
+                var $btn = $(event.target);
+                $btn.button("loading");
+                $.post(url,
+                    params,
+                    function(data) {
+                        if (data.success) {
+                            window.location = _this.ReturnUrl();
+                            return;
+                        } else {
+                            App.alert({
+                                container: '',
+                                place: 'append', // append or prepent in container
+                                type: 'danger', // alert's type
+                                message: data.error.message, // alert's message
+                                close: true, // make alert closable
+                                reset: true, // close all previouse alerts first
+                                focus: true, // auto scroll to the alert after shown
+                                icon: 'warning' // put icon before the message
+                            });
+                        };
+                        $btn.button('reset');
+                        App.stopPageLoading();
+                    },
+                    'json');
+            }
+
             this.loadProvinces = function() {
-                var provincesUrl = '@Url.Action("GetAllProvinces", "Destination", new {area = "Mobile"}, true)';
+                var provincesUrl = '@Url.Action("GetAllProvinces", "Destination", new {area = "Admin" }, true)';
                 var params = [];
                 params.push({ name: "countryType", value: _this.DestType() });
                 App.blockUI({ target: '.location-portlet-body', animate: true });
@@ -338,7 +387,7 @@
             };
 
             this.loadCities = function() {
-                var citiesUrl = '@Url.Action("GetAllCities", "Destination", new {area = "Mobile"}, true)';
+                var citiesUrl = '@Url.Action("GetAllCities", "Destination", new {area = "Admin" }, true)';
                 var params = [];
                 params.push({ name: "provinceId", value: _this.ProvinceId() });
 
@@ -405,6 +454,73 @@
                     });
             }
 
+            //设置默认图片
+            this.SetDefaultPicture = function($data) {
+                if (!$data.IsDefault && confirm("确定要设置默认图片吗？")) {
+                    var params = { pictureMappingId: $data.Id };
+                    App.blockUI({animate: true });
+                    $.post('@Url.Action("SetDefaultPicture", "Destination", new {area = "Admin"}, true)',
+                        params,
+                        function(data) {
+                            App.unblockUI();
+                            if (data.success) {
+                                var pictures = _this.Pictures();
+                                for (var i = 0; i < pictures.length; i++) {
+
+                                    if (pictures[i].Id !== $data.Id) {
+                                        $('#pic_' + pictures[i].Id + ' span.status').text('false');
+                                        $('#pic_' + pictures[i].Id + ' a.set-default').removeClass('disabled');
+                                        pictures[i].IsDefault = false;
+                                    } else {
+                                        $('#pic_' + pictures[i].Id + ' span.status').text('true');
+                                        $('#pic_' + pictures[i].Id + ' a.set-default').addClass('disabled');
+                                        pictures[i].IsDefault = true;
+                                    }
+                                }
+                                _this.Pictures(pictures);
+                            } else {
+                                App.alert({
+                                    container: '',
+                                    place: 'append', // append or prepent in container
+                                    type: 'danger', // alert's type
+                                    message: data.error.message, // alert's message
+                                    close: true, // make alert closable
+                                    reset: true, // close all previouse alerts first
+                                    focus: true, // auto scroll to the alert after shown
+                                    icon: 'warning' // put icon before the message
+                                });
+                            };
+                        },
+                        'json');
+                }
+            }
+
+            this.RemovePicture = function($data) {
+                if (!$data.IsDefault && confirm("确定要删除图片吗？")) {
+                    var params = { pictureMappingId: $data.Id };
+                    App.blockUI({animate: true });
+                    $.post('@Url.Action("RemovePicture", "Destination", new {area = "Admin"}, true)',
+                        params,
+                        function(data) {
+                            App.unblockUI();
+                            if (data.success) {
+                                _this.Pictures.remove($data);
+                            } else {
+                                App.alert({
+                                    container: '',
+                                    place: 'append', // append or prepent in container
+                                    type: 'danger', // alert's type
+                                    message: data.error.message, // alert's message
+                                    close: true, // make alert closable
+                                    reset: true, // close all previouse alerts first
+                                    focus: true, // auto scroll to the alert after shown
+                                    icon: 'warning' // put icon before the message
+                                });
+                            };
+                        },
+                        'json');
+                }
+            }
 
         };
 
@@ -434,64 +550,71 @@
         ko.applyBindings(vm);
 
         $(function() {
-            $('#upload-pic').on('click','.save-picture-mapping', function(event) {
-                var $btn = $(event.target);
-                $btn.button('loading');
-                var url = '@Url.Action("AddDestPicture", "Destination", new {area = "Admin"}, true)';
-                var params = [];
-                params.push({ name: "Id", value: @Model.Dest.Id });
-                params.push({ name: "DisplayOrder", value: uvm.DisplayOrder() });
-                params.push({ name: "IsDefault", value: uvm.IsDefault() });
-                params.push({ name: "FileItem.Path", value: uvm.Path() });
-                params.push({ name: "FileItem.SEOFileName", value: uvm.SEOFileName() });
-                params.push({ name: "FileItem.AltAttribute", value: uvm.AltAttribute() });
-                params.push({ name: "FileItem.TitleAttribute", value: uvm.TitleAttribute() });
+            $('#upload-pic')
+                .on('click',
+                    '.save-picture-mapping',
+                    function(event) {
+                        var $btn = $(event.target);
+                        $btn.button('loading');
+                        var url = '@Url.Action("AddDestPicture", "Destination", new {area = "Admin"}, true)';
+                        var params = [];
+                        params.push({ name: "Id", value: @Model.Dest.Id });
+                        params.push({ name: "DisplayOrder", value: uvm.DisplayOrder() });
+                        params.push({ name: "IsDefault", value: uvm.IsDefault() });
+                        params.push({ name: "FileItem.Path", value: uvm.Path() });
+                        params.push({ name: "FileItem.SEOFileName", value: uvm.SEOFileName() });
+                        params.push({ name: "FileItem.AltAttribute", value: uvm.AltAttribute() });
+                        params.push({ name: "FileItem.TitleAttribute", value: uvm.TitleAttribute() });
 
-                App.blockUI({ target: 'body', animate: true });
-                $.post(url,
-                    params,
-                    function(data) {
-                        App.unblockUI('body');
-                        $btn.button('reset');
-                        if (data.success) {
-                            if (data.result.success) {
-                                vm.Pictures.push({ "FileItem": 
-                                    { "Path": uvm.Path(), 
-                                        "MimeType": null, 
-                                        "SEOFileName": uvm.SEOFileName(),
-                                        "AltAttribute": uvm.AltAttribute(),
-                                        "TitleAttribute": uvm.TitleAttribute()}, 
-                                    "IsDefault": uvm.IsDefault(),
-                                    "DisplayOrder": uvm.DisplayOrder() , 
-                                    "Id": data.result.id });
-                                uploadModal.modal('hide');
-                            } else {
-                                App.alert({
-                                    container: '',
-                                    place: 'append', // append or prepent in container
-                                    type: 'danger', // alert's type
-                                    message: '服务器端错误数据未成功保存！', // alert's message
-                                    close: true, // make alert closable
-                                    reset: true, // close all previouse alerts first
-                                    focus: true, // auto scroll to the alert after shown
-                                    icon: 'warning' // put icon before the message
-                                });
-                            }
-                        } else {
-                            App.alert({
-                                container: '',
-                                place: 'append', // append or prepent in container
-                                type: 'danger', // alert's type
-                                message: data.error.message, // alert's message
-                                close: true, // make alert closable
-                                reset: true, // close all previouse alerts first
-                                focus: true, // auto scroll to the alert after shown
-                                icon: 'warning' // put icon before the message
-                            });
-                        };
-                    },
-                    'json');
-            });
+                        App.blockUI({ target: 'body', animate: true });
+                        $.post(url,
+                            params,
+                            function(data) {
+                                App.unblockUI('body');
+                                $btn.button('reset');
+                                if (data.success) {
+                                    if (data.result.success) {
+                                        vm.Pictures.push({
+                                            "FileItem":
+                                            {
+                                                "Path": uvm.Path(),
+                                                "MimeType": null,
+                                                "SEOFileName": uvm.SEOFileName(),
+                                                "AltAttribute": uvm.AltAttribute(),
+                                                "TitleAttribute": uvm.TitleAttribute()
+                                            },
+                                            "IsDefault": uvm.IsDefault(),
+                                            "DisplayOrder": uvm.DisplayOrder(),
+                                            "Id": data.result.id
+                                        });
+                                        uploadModal.modal('hide');
+                                    } else {
+                                        App.alert({
+                                            container: '',
+                                            place: 'append', // append or prepent in container
+                                            type: 'danger', // alert's type
+                                            message: '服务器端错误数据未成功保存！', // alert's message
+                                            close: true, // make alert closable
+                                            reset: true, // close all previouse alerts first
+                                            focus: true, // auto scroll to the alert after shown
+                                            icon: 'warning' // put icon before the message
+                                        });
+                                    }
+                                } else {
+                                    App.alert({
+                                        container: '',
+                                        place: 'append', // append or prepent in container
+                                        type: 'danger', // alert's type
+                                        message: data.error.message, // alert's message
+                                        close: true, // make alert closable
+                                        reset: true, // close all previouse alerts first
+                                        focus: true, // auto scroll to the alert after shown
+                                        icon: 'warning' // put icon before the message
+                                    });
+                                };
+                            },
+                            'json');
+                    });
         });
     </script>
 }

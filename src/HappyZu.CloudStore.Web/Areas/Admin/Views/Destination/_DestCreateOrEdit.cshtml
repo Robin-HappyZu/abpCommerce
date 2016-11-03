@@ -274,16 +274,22 @@
                                             </tr>
                                         </thead>
                                         <tbody data-bind="foreach:Pictures">
-                                            <tr>
+                                            <tr data-bind="attr:{id:'pic_'+Id}">
                                                 <td>
                                                     <img data-bind="attr:{src:FileItem.Path}" width="80" height="80"/>
                                                 </td>
                                                 <td>
-                                                    <span data-bind="text:IsDefault"></span>
+                                                    <span class="status" data-bind="text:IsDefault"></span>
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:;" class="btn btn-outline btn-circle btn-sm purple">
-                                                        <i class="fa fa-edit"></i> Edit
+                                                    <a href="javascript:;" data-bind="click:$parent.SetDefaultPicture,css:{disabled:IsDefault}" class="btn btn-outline btn-circle btn-sm blue set-default">
+                                                        <i class="fa fa-circle"></i> 设为默认
+                                                    </a>
+                                                    @*<a href="javascript:;" data-bind="click:$parent.EditPicture" class="btn btn-outline btn-circle btn-sm purple">
+                                                        <i class="fa fa-edit"></i> 编辑
+                                                    </a>*@
+                                                    <a href="javascript:;" data-bind="click:$parent.RemovePicture" class="btn btn-outline btn-circle btn-sm red">
+                                                        <i class="fa fa-trash-o"></i> 删除
                                                     </a>
                                                 </td>
                                             </tr>

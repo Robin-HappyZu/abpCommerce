@@ -243,7 +243,7 @@
             };
 
             this.loadProvinces = function() {
-                var provincesUrl = '@Url.Action("GetAllProvinces", "Destination", new {area = "Mobile"}, true)';
+                var provincesUrl = '@Url.Action("GetAllProvinces", "Destination", new {area = "Admin"}, true)';
                 var params = [];
                 params.push({ name: "countryType", value: _this.DestType() });
                 App.blockUI({ target: '.location-portlet-body', animate: true });
@@ -274,7 +274,7 @@
             };
 
             this.loadCities = function() {
-                var citiesUrl = '@Url.Action("GetAllCities", "Destination", new {area = "Mobile"}, true)';
+                var citiesUrl = '@Url.Action("GetAllCities", "Destination", new {area = "Admin" }, true)';
                 var params = [];
                 params.push({ name: "provinceId", value: _this.ProvinceId() });
 

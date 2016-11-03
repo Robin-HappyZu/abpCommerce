@@ -44,7 +44,7 @@
                             <i class="fa fa-floppy-o"></i>
                             保存并继续编辑
                         </button>
-                        <span id="product-delete" class="btn red" data-toggle="modal" data-target="#productmodel-delete-confirmation">
+                        <span id="product-delete" class="btn red" data-toggle="modal" data-loading-text="正在删除..." data-bind="click:removeTicket">
                             <i class="fa fa-trash-o"></i>
                             删除
                         </span>
@@ -171,7 +171,6 @@
                     vm.TicketTypeName('');
                 });
 
-       
 
         var ViewModel = function(name,
             typeId,
@@ -230,7 +229,7 @@
 
             this.addTicketType = function(data, event) {
                 var url =
-                    '@Url.Action("TicketTypeCreate", "Destination", new {area = "Mobile", DestId = Model.Dest.Id}, true)';
+                    '@Url.Action("TicketTypeCreate", "Destination", new {area = "Admin", DestId = Model.Dest.Id}, true)';
                 var params = [];
                 params.push({ name: "Name", value: _this.TicketTypeName() });
                 params.push({ name: "DisplayOrder", value: _this.TicketTypeDisplayOrder() });
@@ -265,7 +264,7 @@
 
             this.loadTicketTypeList = function() {
                 var url =
-                    '@Url.Action("GetTicketType", "Destination", new {area = "Mobile", DestId = Model.Dest.Id}, true)';
+                    '@Url.Action("GetTicketType", "Destination", new {area = "Admin", DestId = Model.Dest.Id}, true)';
                 App.startPageLoading({ animate: true });
                 $.post(url,
                     {},
@@ -304,6 +303,39 @@
                 _this.postData(data, event, false);
             }
 
+            this.removeTicket = function(data, event) {
+                if (!confirm('确定要删除此门票吗？')) {
+                    return;
+                }
+                var url = '@Url.Action("TicketRemove", "Destination", new {area = "Admin"}, true)';
+                var params = {id:@Model.Ticket.Id};
+                App.startPageLoading({ animate: true });
+                var $btn = $(event.target);
+                $btn.button("loading");
+                $.post(url,
+                    params,
+                    function(data) {
+                        if (data.success) {
+                                window.location = _this.ReturnUrl();
+                            return;
+                        } else {
+                            App.alert({
+                                container: '',
+                                place: 'append', // append or prepent in container
+                                type: 'danger', // alert's type
+                                message: data.error.message, // alert's message
+                                close: true, // make alert closable
+                                reset: true, // close all previouse alerts first
+                                focus: true, // auto scroll to the alert after shown
+                                icon: 'warning' // put icon before the message
+                            });
+                        };
+                        $btn.button('reset');
+                        App.stopPageLoading();
+                    },
+                    'json');
+            }
+
             this.postData = function(data, event, edit) {
                 var url = $('#uiform').attr("action");
                 var params = [];
@@ -335,7 +367,10 @@
                     function(data) {
                         if (data.success) {
                             if (edit) {
-                                window.location = "@Url.Action("TicketEdit", "Destination", new {area = "Mobile"}, true)" + '?returnUrl=' + _this.ReturnUrl();
+                                window
+                                    .location = "@Url.Action("TicketEdit", "Destination", new {area = "Admin"}, true)" +
+                                    '?returnUrl=' +
+                                    _this.ReturnUrl();
                             } else {
                                 window.location = _this.ReturnUrl();
                             }
@@ -395,21 +430,25 @@
             this.NewTicketQuotes = ko.observableArray([]);
             this.CustomDate = ko.observable('');
             this.addDateToTags = function() {
-                if (moment(_this.CustomDate(),'YYYY-MM-DD').isBetween(moment(_this.StartDate(),'YYYY-MM-DD').subtract(1, 'days'),moment(_this.EndDate(),'YYYY-MM-DD').add(1,'days'),'day')) {
+                if (moment(_this.CustomDate(), 'YYYY-MM-DD')
+                    .isBetween(moment(_this.StartDate(), 'YYYY-MM-DD').subtract(1, 'days'),
+                        moment(_this.EndDate(), 'YYYY-MM-DD').add(1, 'days'),
+                        'day')) {
                     $('.custom-date').tagsinput('add', _this.CustomDate());
                 } else {
-                    App.alert({ container: '#tab_date', // alerts parent container 
-                        place: 'prepend', // append or prepent in container 
-                        type: 'danger', // alert's type 
+                    App.alert({
+                        container: '#tab_date', // alerts parent container
+                        place: 'prepend', // append or prepent in container
+                        type: 'danger', // alert's type
                         message: '时间不在允许范围内！', // alert's message
-                        close: true, // make alert closable 
-                        reset: false, // close all previouse alerts first 
-                        focus: true, // auto scroll to the alert after shown 
-                        closeInSeconds: 10, // auto close after defined seconds 
-                        icon:'fa fa-warning' // put icon class before the message 
-                        });
+                        close: true, // make alert closable
+                        reset: false, // close all previouse alerts first
+                        focus: true, // auto scroll to the alert after shown
+                        closeInSeconds: 10, // auto close after defined seconds
+                        icon: 'fa fa-warning' // put icon class before the message
+                    });
                 }
-                
+
             }
 
             this.BuildDays = function() {
@@ -537,7 +576,7 @@
             }
 
             this.saveTicketQuotes = function(itemdata, event) {
-                var url = '@Url.Action("TicketQuotesEdit", "Destination", new {area = "Mobile"}, true)';
+                var url = '@Url.Action("TicketQuotesEdit", "Destination", new {area = "Admin"}, true)';
                 var params = [];
                 params.push({ name: "TicketId", value: '@Model.Ticket.Id' });
                 params.push({ name: "QuotesType", value: _this.QuotesType() });
@@ -546,7 +585,10 @@
                 for (var i = 0; i < ticketQuotes.length; i++) {
                     var item = ticketQuotes[i];
                     params.push({ name: "TicketQuotes[" + i + "].TicketId", value: '@Model.Ticket.Id' });
-                    params.push({ name: "TicketQuotes[" + i + "].DateTime", value: item.Year+'-'+item.Month+'-'+item.Day });
+                    params.push({
+                        name: "TicketQuotes[" + i + "].DateTime",
+                        value: item.Year + '-' + item.Month + '-' + item.Day
+                    });
                     params.push({ name: "TicketQuotes[" + i + "].Day", value: item.Day });
                     params.push({ name: "TicketQuotes[" + i + "].Month", value: item.Month });
                     params.push({ name: "TicketQuotes[" + i + "].Year", value: item.Year });
@@ -591,56 +633,54 @@
             var initTicketQuotes = function(data) {
                 for (var i = 0; i < data.items.length; i++) {
                     var item = data.items[i];
-                    var day = moment({ year: item.year, month: item.month-1, day: item.day });
-                    
+                    var day = moment({ year: item.year, month: item.month - 1, day: item.day });
+
                     switch (_this.QuotesType().toString()) {
-                        case '1':
-                            var weekTabs = _this.WeekTabs();
-                            if (!weekTabs[day.day()].Active()) {
-                                weekTabs[day.day()].Active(true);
-                            }
-                            break;
-                        case '2':
-                            var dayTabs = _this.DayTabs();
-                            if (!dayTabs[day.date()-1].Active()) {
-                                dayTabs[day.date()-1].Active(true);
-                            }
-                            break;
-                        case '3':
-                            $('.custom-date').tagsinput('add', day.format('YYYY-MM-DD'));
-                            break;
-                        default:
+                    case '1':
+                        var weekTabs = _this.WeekTabs();
+                        if (!weekTabs[day.day()].Active()) {
+                            weekTabs[day.day()].Active(true);
+                        }
+                        break;
+                    case '2':
+                        var dayTabs = _this.DayTabs();
+                        if (!dayTabs[day.date() - 1].Active()) {
+                            dayTabs[day.date() - 1].Active(true);
+                        }
+                        break;
+                    case '3':
+                        $('.custom-date').tagsinput('add', day.format('YYYY-MM-DD'));
+                        break;
+                    default:
                     }
                 }
-                
+
             }
 
             this.loadTicketQuotes = function() {
-                var url = '@Url.Action("GetTicketQuotes", "Destination", new {area = "Mobile"}, true)';
+                var url = '@Url.Action("GetTicketQuotes", "Destination", new {area = "Admin"}, true)';
                 var params = [{ name: "TicketId", value: '@Model.Ticket.Id' }];
                 App.startPageLoading({ animate: true });
-                var $btn = $(event.target);
-                $btn.button("loading");
+
                 $.post(url,
                     params,
                     function(data) {
                         if (data.success) {
                             initTicketQuotes(data.result);
                         }
-                        $btn.button('reset');
                         App.stopPageLoading();
                     },
                     'json');
                 switch (_this.QuotesType().toString()) {
-                    case '1':
-                        $('.tabbable-custom a[href="#tab_week"]').tab('show');
-                        break;
-                    case '2':
-                        $('.tabbable-custom a[href="#tab_day"]').tab('show');
-                        break;
-                    case '3':
-                        $('.tabbable-custom a[href="#tab_date"]').tab('show');
-                        break;
+                case '1':
+                    $('.tabbable-custom a[href="#tab_week"]').tab('show');
+                    break;
+                case '2':
+                    $('.tabbable-custom a[href="#tab_day"]').tab('show');
+                    break;
+                case '3':
+                    $('.tabbable-custom a[href="#tab_date"]').tab('show');
+                    break;
                 default:
                 }
             }
