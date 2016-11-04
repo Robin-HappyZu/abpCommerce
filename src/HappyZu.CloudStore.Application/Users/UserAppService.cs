@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.AccessControl;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -9,9 +10,11 @@ using Abp.Authorization.Users;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
+using Abp.Linq.Extensions;
 using HappyZu.CloudStore.Authorization;
 using HappyZu.CloudStore.Authorization.Roles;
 using HappyZu.CloudStore.MultiTenancy;
+using HappyZu.CloudStore.Trip;
 using HappyZu.CloudStore.Users.Dto;
 using Microsoft.AspNet.Identity;
 
@@ -96,7 +99,44 @@ namespace HappyZu.CloudStore.Users
                 users.MapTo<List<UserDto>>()
                 );
         }
-        
+
+        public Task<IPagedResult<UserDto>> QueryUsers(QueryUserInput input)
+        {
+            if (input.MaxResultCount <= 0)
+            {
+                input.MaxResultCount = int.MaxValue;
+            }
+            Func<IQueryable<User>, IQueryable<User>> query = null;
+            if (!string.IsNullOrWhiteSpace(input.UserName) && !string.IsNullOrWhiteSpace(input.NickName))
+            {
+                query = q => q.Where(x => x.UserName == input.UserName && x.Name == input.NickName).OrderByDescending(x => x.CreationTime);
+            }
+            else if (!string.IsNullOrWhiteSpace(input.UserName))
+            {
+                query= q => q.Where(x => x.UserName == input.UserName).OrderByDescending(x => x.CreationTime);
+            }
+            else if (!string.IsNullOrWhiteSpace(input.NickName))
+            {
+                query = q => q.Where(x => x.Name == input.NickName).OrderByDescending(x=>x.CreationTime);
+            }
+
+            var count = query != null ?
+                   _userRepository.Query(query).Count() :
+                   _userRepository.Count();
+
+
+            var list = query == null ?
+                _userRepository.GetAll().OrderBy(p => p.Id).PageBy(input).ToList() :
+                _userRepository.Query(query).PageBy(input).ToList();
+
+            var pageResult = new PagedResultDto<UserDto>
+            {
+                TotalCount = count,
+                Items = list.MapTo<IReadOnlyList<UserDto>>()
+            };
+            return Task.FromResult((IPagedResult<UserDto>)pageResult);
+        }
+
         public async Task CreateUserAsync(CreateUserInput input)
         {
             try

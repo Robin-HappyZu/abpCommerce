@@ -605,6 +605,7 @@
     <Compile Include="Areas\Admin\Models\GetETicketsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetRolesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetTicketOrdersViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\GetUserListViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SetRolePermissionsViewModel.cs" />

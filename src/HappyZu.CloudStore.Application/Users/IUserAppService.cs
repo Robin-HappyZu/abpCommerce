@@ -25,6 +25,8 @@ namespace HappyZu.CloudStore.Users
 
         Task<ListResultDto<UserDto>> GetUsers();
 
+        Task<IPagedResult<UserDto>> QueryUsers(QueryUserInput input);
+
         Task CreateUserAsync(CreateUserInput input);
 
         Task AddUserAsync(CreateUserInput input);

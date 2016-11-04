@@ -213,6 +213,7 @@
     <Compile Include="FileManager\IUploadFileService.cs" />
     <Compile Include="Trip\UniqueIdManager.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
+    <Compile Include="Users\Dto\QueryUserInput.cs" />
     <Compile Include="Users\Dto\UserLoginInput.cs" />
     <Compile Include="Users\IUserAppService.cs" />
     <Compile Include="Roles\RoleAppService.cs" />

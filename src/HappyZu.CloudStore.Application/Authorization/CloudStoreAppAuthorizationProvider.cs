@@ -11,10 +11,13 @@ namespace HappyZu.CloudStore.Authorization
     {
         public override void SetPermissions(IPermissionDefinitionContext context)
         {
-            var administrator = context.CreatePermission("Administrator");
-            administrator.CreateChildPermission("Administrator.UserManager");
-            administrator.CreateChildPermission("Administrator.RoleManager");
-            administrator.CreateChildPermission("Administrator.UserRoleManager");
+            var administrator = context.CreatePermission(PermissionNames.Administrator);
+            administrator.CreateChildPermission(PermissionNames.Administrator_UserManager);
+            administrator.CreateChildPermission(PermissionNames.Administrator_RoleManager);
+            administrator.CreateChildPermission(PermissionNames.Administrator_UserRoleManager);
+
+            var agents = context.CreatePermission(PermissionNames.Agents);
         }
     }
+    
 }
