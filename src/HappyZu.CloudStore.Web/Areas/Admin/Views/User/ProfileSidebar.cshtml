@@ -1,0 +1,78 @@
+﻿@model HappyZu.CloudStore.Web.Areas.Admin.Models.ProfileSidebarViewModel
+<!-- PORTLET MAIN -->
+<div class="portlet light bordered profile-sidebar-portlet ">
+    <!-- SIDEBAR USERPIC -->
+    <div class="profile-userpic">
+        <img src="~/Areas/Admin/content/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+    </div>
+    <!-- END SIDEBAR USERPIC -->
+    <!-- SIDEBAR USER TITLE -->
+    <div class="profile-usertitle">
+        <div class="profile-usertitle-name"> @Model.User.Name </div>
+        <div class="profile-usertitle-job"> @Model.RoleName </div>
+    </div>
+    <!-- END SIDEBAR USER TITLE -->
+    <!-- SIDEBAR BUTTONS -->
+    @*<div class="profile-userbuttons">
+        <button type="button" class="btn btn-circle green btn-sm"> <i class="fa fa-heart"></i> 关注</button>
+        <button type="button" class="btn btn-circle red btn-sm"> <i class="fa fa-comments"></i> 留言</button>
+    </div>*@
+    <!-- END SIDEBAR BUTTONS -->
+    <!-- SIDEBAR MENU -->
+    <div class="profile-usermenu">
+        <ul class="nav">
+            <li @(Request.RawUrl==Url.Action("Profile")?"class=active":"")>
+                <a href="@Url.Action("Profile")">
+                    <i class="icon-home"></i> 用户资料
+                </a>
+            </li>
+            <li @(Request.RawUrl==Url.Action("AccountSetting") ?"class=active":"")>
+                <a href="@Url.Action("AccountSetting")">
+                    <i class="icon-settings"></i> 编辑用户资料
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- END MENU -->
+</div>
+<!-- END PORTLET MAIN -->
+<!-- PORTLET MAIN -->
+<div class="portlet light bordered">
+    <!-- STAT -->
+    <div class="row list-separated profile-stat">
+        <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="uppercase profile-stat-title"> 0 </div>
+            <div class="uppercase profile-stat-text"> 发布商品 </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="uppercase profile-stat-title"> 0 </div>
+            <div class="uppercase profile-stat-text"> 完成任务 </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="uppercase profile-stat-title"> 0 </div>
+            <div class="uppercase profile-stat-text"> 接待客户 </div>
+        </div>
+    </div>
+    <!-- END STAT -->
+    <div>
+        <h4 class="profile-desc-title">第三方登录</h4>
+        <span class="profile-desc-text"> 绑定第三方登录的状态 </span>
+        <div class="margin-top-20 profile-desc-link">
+            <a class="social-icon social-icon-circle social-icon-color wechat" data-original-title="微信" href="javascript:;"></a>
+            <a class="social-icon social-icon-circle oicq" data-original-title="QQ" href="javascript:;"></a>
+            <a class="social-icon social-icon-circle weibo" data-original-title="微博" href="javascript:;"></a>
+            @*<ul class="social-icons ">
+                    <li>
+                        <a class="social-icon-color wechat" data-original-title="微信" href="javascript:;"></a>
+                    </li>
+                    <li>
+                        <a class="oicq" data-original-title="QQ" href="javascript:;"></a>
+                    </li>
+                    <li>
+                        <a class="weibo" data-original-title="微博" href="javascript:;"></a>
+                    </li>
+                </ul>*@
+        </div>
+    </div>
+</div>
+<!-- END PORTLET MAIN -->

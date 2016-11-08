@@ -37,6 +37,8 @@ namespace HappyZu.CloudStore.Users
 
         Task<UserDto> GetUserByWechatOpenIdAndUnionIdAsync(string wechatOpenId, string unionId);
 
+        Task<UserDto> GetUserByIdAsync(long userId);
+
         Task<AbpLoginResult<Tenant, User>> UserLoginAsync(UserLoginInput input);
     }
 }

@@ -446,6 +446,7 @@
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.cookie.min.js" />
     <Content Include="config.json" />
     <Content Include="Areas\Admin\Controllers\FileManager\controller.ashx" />
+    <Content Include="Areas\Admin\Views\User\ProfileSidebar.cshtml" />
     <None Include="Themes\Default\Mobile\Views\Account\AboutUs.cshtml" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.form.min.js" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />
@@ -607,6 +608,7 @@
     <Compile Include="Areas\Admin\Models\GetTicketOrdersViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetUserListViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissionViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProfileSidebarViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RoleViewModel.cs" />
     <Compile Include="Areas\Admin\Models\SetRolePermissionsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TicketQuotesEditViewModel.cs" />

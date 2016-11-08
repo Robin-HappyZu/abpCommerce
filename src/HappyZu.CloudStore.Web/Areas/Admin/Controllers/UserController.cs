@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Abp.Runtime.Session;
 using Abp.Web.Models;
+using HappyZu.CloudStore.Roles;
 using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Users;
 using HappyZu.CloudStore.Users.Dto;
@@ -15,10 +17,14 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
     public class UserController : AdminControllerBase
     {
         private readonly IUserAppService _userAppService;
+        private readonly IRoleAppService _roleAppService;
+        private readonly UserManager _userManager;
 
-        public UserController(IUserAppService userAppService)
+        public UserController(IUserAppService userAppService, UserManager userManager, IRoleAppService roleAppService)
         {
             _userAppService = userAppService;
+            _userManager = userManager;
+            _roleAppService = roleAppService;
         }
 
         #region 用户资料
@@ -31,6 +37,20 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         public new ActionResult Profile()
         {
             return View();
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult ProfileSidebar()
+        {
+            var userId = AbpSession.GetUserId();
+            var user =  _userAppService.GetUserByIdAsync(userId).Result;
+            var userRole =_userManager.GetRolesAsync(userId).Result;
+            var roleName = string.Empty;
+            if (userRole!=null)
+            {
+                roleName = userRole.FirstOrDefault();
+            }
+            return PartialView(new ProfileSidebarViewModel{ User=user,RoleName= roleName });
         }
 
         /// <summary>

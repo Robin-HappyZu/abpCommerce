@@ -200,6 +200,13 @@ namespace HappyZu.CloudStore.Users
             return user.MapTo<UserDto>();
         }
 
+        public async Task<UserDto> GetUserByIdAsync(long userId)
+        {
+            var user =await _userRepository.GetAsync(userId);
+
+            return user?.MapTo<UserDto>();
+        }
+
         public async Task<AbpLoginResult<Tenant, User>> UserLoginAsync(UserLoginInput input)
         {
             var login = new UserLoginInfo(input.LoginProvider, input.ProviderKey);

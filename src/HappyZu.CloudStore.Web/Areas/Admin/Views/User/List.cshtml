@@ -171,15 +171,15 @@
                     },
                     {
                         render: function (data, type, row) {
-                            var html = moment(data).format('YYYY-MM-DD hh:mm:ss');
+                            var html = moment(data).format('YYYY-MM-DD HH:mm:ss');
                             return html;
                         },
                         "targets": 4
                     },
                     {
                         render: function (data, type, row) {
-                            var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("Edit", "User",new { area="Admin"},true)/' + row.UUID + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
-                            btns += '<a class="btn btn-sm btn-outline green" href="javascript:' + row.UUID + ';"><i class="fa fa-key"></i> 重置密码</a>';
+                            var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("Profile", "User",new { area="Admin"},true)/' + row.UUID + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
+                            btns += '<a class="btn btn-sm btn-outline green" href="@Url.Action("AccountSetting", "User",new { area="Admin"},true)#tab_1_3"><i class="fa fa-key"></i> 重置密码</a>';
                             if (row.IsActive) {
                                 btns += '<a class="btn btn-sm btn-outline yellow" href="javascript:' +
                                     row.UUID +
