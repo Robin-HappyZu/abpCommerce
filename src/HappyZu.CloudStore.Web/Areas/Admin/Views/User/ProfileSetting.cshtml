@@ -16,6 +16,10 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
+            <a href="@Url.Action("Profile",new {controller="User"})">用户资料</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
             <span>@ViewBag.Title</span>
         </li>
     </ul>
@@ -31,37 +35,7 @@
     <div class="col-md-12">
         <!-- BEGIN PROFILE SIDEBAR -->
         <div class="profile-sidebar">
-            <!-- PORTLET MAIN -->
-            <div class="portlet light bordered profile-sidebar-portlet ">
-                <!-- SIDEBAR USERPIC -->
-                <div class="profile-userpic">
-                    <img src="~/Areas/Admin/content/pages/img/avatars/avatar.jpg" class="img-responsive" alt="">
-                </div>
-                <!-- END SIDEBAR USERPIC -->
-                <!-- SIDEBAR USER TITLE -->
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name"> @Model.User.Name </div>
-                    <div class="profile-usertitle-job"> @Model.RoleName </div>
-                </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
-                @*<div class="profile-userbuttons">
-                <button type="button" class="btn btn-circle green btn-sm"> <i class="fa fa-heart"></i> 关注</button>
-                <button type="button" class="btn btn-circle red btn-sm"> <i class="fa fa-comments"></i> 留言</button>
-            </div>*@
-                <!-- END SIDEBAR BUTTONS -->
-                <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="@Url.Action("AccountSetting")">
-                                <i class="icon-settings"></i> 编辑用户资料
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- END MENU -->
-            </div>
+            @Html.Partial("ProfileSidebar", Model)
         </div>
         <!-- END BEGIN PROFILE SIDEBAR -->
         <!-- BEGIN PROFILE CONTENT -->
@@ -79,7 +53,13 @@
                                     <a href="#tab_1_1" data-toggle="tab">个人信息</a>
                                 </li>
                                 <li>
+                                    <a href="#tab_1_2" data-toggle="tab">头像</a>
+                                </li>
+                                <li>
                                     <a href="#tab_1_3" data-toggle="tab">修改密码</a>
+                                </li>
+                                <li>
+                                    <a href="#tab_1_4" data-toggle="tab">隐私设置</a>
                                 </li>
                             </ul>
                         </div>
@@ -111,29 +91,68 @@
                                     </form>
                                 </div>
                                 <!-- END PERSONAL INFO TAB -->
+                                <!-- CHANGE AVATAR TAB -->
+                                <div class="tab-pane" id="tab_1_2">
+                                    <p>
+                                        自定义你的头像
+                                    </p>
+                                    <form action="#" role="form">
+                                        <div class="form-group">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
+                                                    <img src="~/Areas/Admin/content/pages/img/avatars/avatar.jpg" alt="" />
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 200px;"> </div>
+                                                <div>
+                                                    <a href="javascript:;" class="btn green fileinput-exists"> 上传 </a>
+                                                    <span class="btn default btn-file">
+                                                        <span class="fileinput-new"> 选择照片 </span>
+                                                        <span class="fileinput-exists"> 更换 </span>
+                                                        <input type="file" name="...">
+                                                    </span>
+                                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 取消 </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- END CHANGE AVATAR TAB -->
                                 <!-- CHANGE PASSWORD TAB -->
                                 <div class="tab-pane" id="tab_1_3">
-                                    
-                                    @if (IsGranted(PermissionNames.Administrator_UserRestPassword))
-                                    {
-                                        //权限验证
-                                        <form action="#">
-                                            <div class="form-group">
-                                                <label class="control-label">确认密码</label>
-                                                <input type="password" class="form-control"/>
-                                            </div>
-                                            <div class="margin-top-10">
-                                                <a href="javascript:;" class="btn green"> 修改密码 </a>
-                                                <a href="javascript:;" class="btn default"> 取消 </a>
-                                            </div>
-                                        </form>
-                                    }
-                                    else
-                                    {
-                                        <div>您没有权限进行此操作</div>
-                                    }
+                                    <form action="#">
+                                        <div class="form-group">
+                                            <label class="control-label">旧密码</label>
+                                            <input type="password" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">新密码</label>
+                                            <input type="password" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">确认密码</label>
+                                            <input type="password" class="form-control" />
+                                        </div>
+                                        <div class="margin-top-10">
+                                            <a href="javascript:;" class="btn green"> 修改密码 </a>
+                                            <a href="javascript:;" class="btn default"> 取消 </a>
+                                        </div>
+                                    </form>
                                 </div>
                                 <!-- END CHANGE PASSWORD TAB -->
+                                <!-- PRIVACY SETTINGS TAB -->
+                                <div class="tab-pane" id="tab_1_4">
+                                    <form action="#">
+                                        <table class="table table-light table-hover">
+                                            
+                                        </table>
+                                        <!--end profile-settings-->
+                                        @*<div class="margin-top-10">
+                                            <a href="javascript:;" class="btn red"> Save Changes </a>
+                                            <a href="javascript:;" class="btn default"> Cancel </a>
+                                        </div>*@
+                                    </form>
+                                </div>
+                                <!-- END PRIVACY SETTINGS TAB -->
                             </div>
                         </div>
                     </div>

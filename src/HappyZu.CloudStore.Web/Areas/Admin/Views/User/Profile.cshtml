@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HappyZu.CloudStore.Web.Areas.Admin.Models.ProfileSidebarViewModel
+@{
     ViewBag.Title = "用户资料";
 }
 <!-- BEGIN PAGE BAR -->
@@ -9,7 +10,7 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="@Url.Action("Profile",new {controller="User"})">用户列表</a>
+            <a href="@Url.Action("List",new {controller="User"})">用户列表</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
@@ -29,7 +30,7 @@
     <div class="col-md-12">
         <!-- BEGIN PROFILE SIDEBAR -->
         <div class="profile-sidebar">
-            @Html.Action("ProfileSidebar","User")
+            @Html.Partial("ProfileSidebar", Model)
         </div>
         <!-- END BEGIN PROFILE SIDEBAR -->
         <!-- BEGIN PROFILE CONTENT -->

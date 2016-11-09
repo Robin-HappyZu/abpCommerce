@@ -326,6 +326,7 @@
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
     <Content Include="Areas\Admin\content\global\plugins\knockout-3.4.0.js" />
     <Content Include="Areas\Admin\content\layouts\layout\css\custom.css" />
+    <Content Include="Areas\Admin\content\pages\img\avatars\avatar.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -447,6 +448,7 @@
     <Content Include="config.json" />
     <Content Include="Areas\Admin\Controllers\FileManager\controller.ashx" />
     <Content Include="Areas\Admin\Views\User\ProfileSidebar.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ProfileSetting.cshtml" />
     <None Include="Themes\Default\Mobile\Views\Account\AboutUs.cshtml" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.form.min.js" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />

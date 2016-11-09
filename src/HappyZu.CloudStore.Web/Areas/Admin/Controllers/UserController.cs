@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Async;
+using System.Web.Routing;
 using Abp.Runtime.Session;
 using Abp.Web.Models;
 using HappyZu.CloudStore.Roles;
@@ -34,32 +36,69 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         /// 2016-05-25
         /// </summary>
         /// <returns></returns>
-        public new ActionResult Profile()
-        {
-            return View();
-        }
-
-        [ChildActionOnly]
-        public PartialViewResult ProfileSidebar()
+        public new async Task<ActionResult> Profile()
         {
             var userId = AbpSession.GetUserId();
-            var user =  _userAppService.GetUserByIdAsync(userId).Result;
-            var userRole =_userManager.GetRolesAsync(userId).Result;
+            var user = await _userAppService.GetUserByIdAsync(userId);
+            var userRole = await _userManager.GetRolesAsync(userId);
             var roleName = string.Empty;
-            if (userRole!=null)
+            if (userRole != null)
             {
                 roleName = userRole.FirstOrDefault();
             }
-            return PartialView(new ProfileSidebarViewModel{ User=user,RoleName= roleName });
+
+            return View(new ProfileSidebarViewModel {User=user,RoleName=roleName});
+        }
+
+
+        /// <summary>
+        /// 用户资料设置
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ActionResult> ProfileSetting()
+        {
+            var userId = AbpSession.GetUserId();
+            var user = await _userAppService.GetUserByIdAsync(userId);
+            var userRole = await _userManager.GetRolesAsync(userId);
+            var roleName = string.Empty;
+            if (userRole != null)
+            {
+                roleName = userRole.FirstOrDefault();
+            }
+
+            return View(new ProfileSidebarViewModel { User = user, RoleName = roleName });
         }
 
         /// <summary>
         /// 用户资料设置
         /// </summary>
         /// <returns></returns>
-        public ActionResult AccountSetting()
+        public async Task<ActionResult> AccountSetting(long id)
         {
-            return View();
+            var user = await _userAppService.GetUserByIdAsync(id);
+            var userRole = await _userManager.GetRolesAsync(id);
+            var roleName = string.Empty;
+            if (userRole != null)
+            {
+                roleName = userRole.FirstOrDefault();
+            }
+
+            return View(new ProfileSidebarViewModel { User = user, RoleName = roleName });
+        }
+
+        public async Task<JsonResult> SetUserInfo()
+        {
+            return Json(null);
+        }
+
+        public async Task<JsonResult> SetAvatar()
+        {
+            return Json(null);
+        }
+
+        public async Task<JsonResult> SetPassword()
+        {
+            return Json(null);
         }
         #endregion
 

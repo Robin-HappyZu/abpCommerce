@@ -3,7 +3,7 @@
 <div class="portlet light bordered profile-sidebar-portlet ">
     <!-- SIDEBAR USERPIC -->
     <div class="profile-userpic">
-        <img src="~/Areas/Admin/content/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+        <img src="~/Areas/Admin/content/pages/img/avatars/avatar.jpg" class="img-responsive" alt="">
     </div>
     <!-- END SIDEBAR USERPIC -->
     <!-- SIDEBAR USER TITLE -->
@@ -26,8 +26,8 @@
                     <i class="icon-home"></i> 用户资料
                 </a>
             </li>
-            <li @(Request.RawUrl==Url.Action("AccountSetting") ?"class=active":"")>
-                <a href="@Url.Action("AccountSetting")">
+            <li @(Request.RawUrl==Url.Action("ProfileSetting") ?"class=active":"")>
+                <a href="@Url.Action("ProfileSetting")">
                     <i class="icon-settings"></i> 编辑用户资料
                 </a>
             </li>

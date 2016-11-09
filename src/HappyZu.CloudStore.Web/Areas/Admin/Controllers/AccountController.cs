@@ -62,6 +62,14 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             _multiTenancyConfig = multiTenancyConfig;
         }
 
+        #region Lock
+
+        public ActionResult UserLock()
+        {
+            return View();
+        }
+        #endregion
+
         #region Login / Logout
         [Layout("Layout_Account")]
         public ActionResult Login(string returnUrl = "")
