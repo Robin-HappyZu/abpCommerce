@@ -8,6 +8,8 @@ using System.Web.Mvc.Async;
 using System.Web.Routing;
 using Abp.Runtime.Session;
 using Abp.Web.Models;
+using Abp.Web.Mvc.Authorization;
+using HappyZu.CloudStore.Authorization;
 using HappyZu.CloudStore.Roles;
 using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Users;
@@ -73,6 +75,9 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         /// 用户资料设置
         /// </summary>
         /// <returns></returns>
+        [AbpMvcAuthorize(
+            PermissionNames.Administrator_UserManager,
+            PermissionNames.Administrator_UserRestPassword)]
         public async Task<ActionResult> AccountSetting(long id)
         {
             var user = await _userAppService.GetUserByIdAsync(id);
@@ -86,19 +91,62 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             return View(new ProfileSidebarViewModel { User = user, RoleName = roleName });
         }
 
-        public async Task<JsonResult> SetUserInfo()
+        [AbpMvcAuthorize]
+        public async Task<JsonResult> SetUserInfo(SetUserInfoInput input)
         {
-            return Json(null);
+            input.UserId = AbpSession.GetUserId();
+            var result= await _userAppService.SetUserInfo(input);
+            return Json(new {status=result.Status});
         }
 
+        [AbpMvcAuthorize]
+        public async Task<JsonResult> SetPassword(SetPasswordInput input)
+        {
+            input.UserId = AbpSession.GetUserId();
+            var result = await _userAppService.SetPassword(input);
+            return Json(new { status = result.Status });
+        }
+
+        [AbpMvcAuthorize(PermissionNames.Administrator_UserManager)]
+        public async Task<JsonResult> SetAdminUserInfo(SetUserInfoInput input)
+        {
+            if (input.UserId <= 0)
+            {
+                return Json(new { status = false });
+            }
+            var result = await _userAppService.SetUserInfo(input);
+            return Json(new { status = result.Status });
+        }
+
+        [AbpMvcAuthorize(PermissionNames.Administrator_UserRestPassword)]
+        public async Task<JsonResult> SetAdminPassword(SetPasswordInput input)
+        {
+            if (input.UserId <= 0)
+            {
+                return Json(new { status = false });
+            }
+            var result = await _userAppService.SetPassword(input);
+            return Json(new { status = result.Status });
+        }
+
+        [AbpMvcAuthorize(PermissionNames.Administrator_UserManager)]
         public async Task<JsonResult> SetAvatar()
         {
             return Json(null);
         }
 
-        public async Task<JsonResult> SetPassword()
+        [AbpMvcAuthorize(PermissionNames.Administrator_UserRemove)]
+        public async Task<JsonResult> RemoveUser(long id)
         {
-            return Json(null);
+            var result = await _userAppService.RemoveUser(id);
+            return Json(new { status = result.Status });
+        }
+
+        [AbpMvcAuthorize(PermissionNames.Administrator_UserActive)]
+        public async Task<JsonResult> ActiveUser(long id)
+        {
+            var result = await _userAppService.ActiveUser(id);
+            return Json(new { status = result.Status });
         }
         #endregion
 

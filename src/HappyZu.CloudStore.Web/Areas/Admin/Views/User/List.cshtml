@@ -73,10 +73,10 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="text" name="username" placeholder="开户名" class="form-control form-filter input-sm">
+                                    <input type="text" name="username" placeholder="用户名" class="form-control form-filter input-sm">
                                 </td>
                                 <td>
-                                    <input type="text" name="nickname" placeholder="开户名" class="form-control form-filter input-sm">
+                                    <input type="text" name="nickname" placeholder="昵称" class="form-control form-filter input-sm">
                                 </td>
                                 <td></td>
                                 <td></td>
@@ -108,50 +108,50 @@
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script>
-        var TableDatatablesAjax = function () {
+        var TableDatatablesAjax = function() {
 
-            var initPickers = function () {
+            var initPickers = function() {
                 //init date pickers
                 $('.date-picker').datepicker({
                     rtl: App.isRTL(),
                     autoclose: true
                 });
             }
+            var grid = new Datatable();
 
-            var handleRecords = function () {
+            var handleRecords = function() {
 
-                var grid = new Datatable();
 
                 grid.init({
                     src: $("#datatable_ajax"),
-                    onSuccess: function (grid, response) {
+                    onSuccess: function(grid, response) {
                         // grid:        grid object
                         // response:    json object of server side ajax response
                         // execute some code after table records loaded
                     },
-                    onError: function (grid) {
+                    onError: function(grid) {
                         // execute some code on network or other general error
                     },
-                    onDataLoad: function (grid) {
+                    onDataLoad: function(grid) {
                         // execute some code on ajax data load
                     },
                     loadingMessage: '正在加载...',
-                    dataTable: { // here you can define a typical datatable settings from http://datatables.net/usage/options
+                    dataTable: {
+// here you can define a typical datatable settings from http://datatables.net/usage/options
 
                         // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
                         // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
                         // So when dropdowns used the scrollable div should be removed.
                         //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
-
                         "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
 
                         "lengthMenu": [
-                            [10, 20, 50, 100, 150, -1],
-                            [10, 20, 50, 100, 150, "All"] // change per page values here
+                            [2,10, 20, 50, 100, 150, -1],
+                            [2,10, 20, 50, 100, 150, "All"] // change per page values here
                         ],
                         "pageLength": 10, // default record count per page
                         "ajax": {
-                            "url": "@Url.Action("GetList", "User",new { area = "Admin" },true)" // ajax source
+                            "url": "@Url.Action("GetList", "User", new {area = "Admin"}, true)" // ajax source
                         },
                         "columns": [
                             { "data": "Id" },
@@ -161,51 +161,53 @@
                             { "data": "LastLoginTime" },
                             { "data": "IsActive" }
                         ],
-                        "columnDefs": [{
-                            orderable: false,//禁用排序
-                            targets: [0, 1, 2, 3, 4, 5]   //指定的列
-                        }, {
-                            render: function (data, type, row) {
-                                return '<input type="checkbox" name="id[]" value="' + data + '">';
-                            },
-                            "targets": 0
-                        },
-                        {
-                            render: function (data, type, row) {
-                                var html = moment(data).format('YYYY-MM-DD HH:mm:ss');
-                                return html;
-                            },
-                            "targets": 4
-                        },
-                        {
-                            render: function (data, type, row) {
-                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("AccountSetting", "User",new { area="Admin"},true)/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
-                                @if (IsGranted(PermissionNames.Administrator_UserRestPassword))
+                        "columnDefs": [
                             {
-                                <text>btns += '<a class="btn btn-sm btn-outline green" href="@Url.Action("AccountSetting", "User",new { area="Admin"},true)/' + row.Id + '?returnUrl=@(Request.RawUrl)#tab_1_3"><i class="fa fa-key"></i> 重置密码</a>';</text>
-                            }
-                                @if (IsGranted(PermissionNames.Administrator_UserActive)) {
-                                   <text>
-                                if (row.IsActive) {
-                                    btns += '<a class="btn btn-sm btn-outline yellow" href="javascript:' +
-                                        row.Id +
-                                        ';"><i class="fa fa-lock"></i> 禁用</a>';
-                                } else {
-                                    btns += '<a class="btn btn-sm btn-outline purple" href="javascript:' + row.Id + ';"><i class="fa fa-unlock"></i> 启用</a>';
-                                }
-                                    </text>
-                                }
-
-                                @if (IsGranted(PermissionNames.Administrator_UserRemove))
-                                {
-                                    <text>
-                                btns += '<a class="btn btn-sm btn-outline red" href="javascript:' + row.Id + ';"><i class="fa fa-trash-o"></i> 删除</a>';
-                                    </text>
-                                }
-                                return btns;
+                                orderable: false, //禁用排序
+                                targets: [0, 1, 2, 3, 4, 5] //指定的列
+                            }, {
+                                render: function(data, type, row) {
+                                    return '<input type="checkbox" name="id[]" value="' + data + '">';
+                                },
+                                "targets": 0
                             },
-                            "targets": 6
-                        }]//,
+                            {
+                                render: function(data, type, row) {
+                                    var html = moment(data).format('YYYY-MM-DD HH:mm:ss');
+                                    return html;
+                                },
+                                "targets": 4
+                            },
+                            {
+                                render: function(data, type, row) {
+                                    var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("AccountSetting", "User", new {area = "Admin"}, true)/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
+                                    @if (IsGranted(PermissionNames.Administrator_UserRestPassword))
+                                    {
+                                        <text>btns += '<a class="btn btn-sm btn-outline green" href="@Url.Action("AccountSetting", "User", new {area = "Admin"}, true)/' + row.Id + '?returnUrl=@(Request.RawUrl)#tab_1_3"><i class="fa fa-key"></i> 重置密码</a>';</text>
+                                    }
+                                    @if (IsGranted(PermissionNames.Administrator_UserActive))
+                                    {
+                                        <text>
+                                if (row.IsActive) {
+                                    btns += '<a class="btn btn-sm btn-outline yellow" href="javascript:ActiveUser(' +row.Id +
+                                        ');"><i class="fa fa-lock"></i> 禁用</a>';
+                                } else {
+                                    btns += '<a class="btn btn-sm btn-outline purple" href="javascript:ActiveUser(' + row.Id + ');"><i class="fa fa-unlock"></i> 启用</a>';
+                                }
+                                    </text>
+                                    }
+
+                                    @if (IsGranted(PermissionNames.Administrator_UserRemove))
+                                    {
+                                        <text>
+                                    btns += '<a class="btn btn-sm btn-outline red" href="javascript:RemoveUser(' + row.Id + ');"><i class="fa fa-trash-o"></i> 删除</a>';
+                                    </text>
+                                    }
+                                    return btns;
+                                },
+                                "targets": 6
+                            }
+                        ] //,
                         //"order": [
                         //    [6, "asc"]
                         //]// set first column as a default sort by asc
@@ -213,7 +215,7 @@
                 });
 
                 // handle group actionsubmit button click
-                grid.getTableWrapper().on('click', '.table-group-action-submit', function (e) {
+                grid.getTableWrapper().on('click', '.table-group-action-submit', function(e) {
                     e.preventDefault();
                     var action = $(".table-group-action-input", grid.getTableWrapper());
                     if (action.val() !== "" && grid.getSelectedRowsCount() > 0) {
@@ -244,24 +246,119 @@
                 //grid.setAjaxParam("customActionType", "group_action");
                 //grid.getDataTable().ajax.reload();
                 //grid.clearAjaxParams();
-            }
+            };
 
+            var reload = function() {
+                grid.getDataTable().ajax.reload();
+            }
             return {
 
                 //main function to initiate the module
-                init: function () {
+                init: function() {
 
                     initPickers();
                     handleRecords();
+                },
+                reload: function() {
+                    reload();
                 }
-
             };
 
         }();
 
-        jQuery(document).ready(function () {
+        jQuery(document).ready(function() {
             TableDatatablesAjax.init();
         });
+
+        var RemoveUser = function (id) {
+            if (!confirm('确定要删除吗？')) {
+                return false;
+            }
+                var url = '@Url.Action("RemoveUser", "User", new {area = "Admin"}, true)';
+                var params = {
+                    id: id
+                };
+                App.startPageLoading({ animate: true });
+                var $btn = $(this);
+                $btn.button("loading");
+                $.post(url, params, function(data) {
+                    var type = 'info';
+                    var message = '';
+                    var icon = 'info';
+                    if (data.success) {
+                        if (data.result.status) {
+                            message = '操作成功';
+                            TableDatatablesAjax.reload();
+                        } else {
+                            message = '操作失败';
+                            icon = 'warning';
+                            type = 'danger';
+                        }
+                    } else {
+                        type = 'danger';
+                        message = data.error.message;
+                        icon = 'warning';
+                    };
+                    App.alert({
+                        container: '',
+                        place: 'append', // append or prepent in container
+                        type: type, // alert's type
+                        message: message, // alert's message
+                        close: true, // make alert closable
+                        reset: true, // close all previouse alerts first
+                        focus: true, // auto scroll to the alert after shown
+                        icon: icon // put icon before the message
+                    });
+                    $btn.button('reset');
+                    App.stopPageLoading();
+                }, 'json');
+            return false;
+        }
+
+        var ActiveUser = function (id) {
+            if (!confirm('确定要禁用/启用吗？')) {
+                return false;
+            }
+            var url = '@Url.Action("ActiveUser", "User", new {area = "Admin"}, true)';
+            var params = {
+                id: id
+            };
+            App.startPageLoading({ animate: true });
+            var $btn = $(this);
+            $btn.button("loading");
+            $.post(url, params, function (data) {
+                var type = 'info';
+                var message = '';
+                var icon = 'info';
+                if (data.success) {
+                    if (data.result.status) {
+                        message = '操作成功';
+                        TableDatatablesAjax.reload();
+                    } else {
+                        message = '操作失败';
+                        icon = 'warning';
+                        type = 'danger';
+                    }
+                } else {
+                    type = 'danger';
+                    message = data.error.message;
+                    icon = 'warning';
+                };
+                App.alert({
+                    container: '',
+                    place: 'append', // append or prepent in container
+                    type: type, // alert's type
+                    message: message, // alert's message
+                    close: true, // make alert closable
+                    reset: true, // close all previouse alerts first
+                    focus: true, // auto scroll to the alert after shown
+                    icon: icon // put icon before the message
+                });
+                $btn.button('reset');
+                App.stopPageLoading();
+            }, 'json');
+            return false;
+        }
     </script>
     <!-- END PAGE LEVEL SCRIPTS -->
 }

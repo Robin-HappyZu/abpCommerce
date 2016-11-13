@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Security.Claims;
@@ -13,6 +14,7 @@ using Abp.Domain.Uow;
 using Abp.Linq.Extensions;
 using HappyZu.CloudStore.Authorization;
 using HappyZu.CloudStore.Authorization.Roles;
+using HappyZu.CloudStore.Common.Dto;
 using HappyZu.CloudStore.MultiTenancy;
 using HappyZu.CloudStore.Trip;
 using HappyZu.CloudStore.Users.Dto;
@@ -219,6 +221,91 @@ namespace HappyZu.CloudStore.Users
                 default:
                     throw new Exception("Login Failed");
             }
+        }
+
+        public async Task<ResultOutputDto> SetPassword(SetPasswordInput input)
+        {
+            try
+            {
+
+            var user = await _userRepository.GetAsync(input.UserId);
+
+            if (!string.IsNullOrWhiteSpace(input.OldPassword))
+            {
+                if (user==null)
+                {
+                    return ResultOutputDto.Failed;
+                }
+                var password = new PasswordHasher().VerifyHashedPassword(user.Password,input.OldPassword);
+                if (password==PasswordVerificationResult.Failed)
+                {
+                    return ResultOutputDto.Failed;
+                }
+            }
+
+            user.Password = new PasswordHasher().HashPassword(input.Password);
+
+            await _userRepository.UpdateAsync(user);
+
+            return ResultOutputDto.Successed;
+            }
+            catch (Exception ex)
+            {
+                return ResultOutputDto.Failed;
+            }
+        }
+
+        public async Task<ResultOutputDto> SetUserInfo(SetUserInfoInput input)
+        {
+            try
+            {
+                await _userRepository.UpdateAsync(input.UserId, action =>
+                {
+                    action.Surname = input.Surname;
+                    action.Name = input.Name;
+                    action.PhoneNumber = input.Mobile;
+                    action.EmailAddress = input.EmailAddress;
+                    return Task.FromResult(action);
+                });
+            }
+            catch (Exception)
+            {
+                return ResultOutputDto.Failed;
+            }
+
+            return ResultOutputDto.Successed;
+        }
+
+        public async Task<ResultOutputDto> RemoveUser(long id)
+        {
+            try
+            {
+                await _userRepository.DeleteAsync(id);
+            }
+            catch (Exception)
+            {
+
+                return ResultOutputDto.Failed;
+            }
+            return ResultOutputDto.Successed;
+        }
+
+        public async Task<ResultOutputDto> ActiveUser(long id)
+        {
+            try
+            {
+                await _userRepository.UpdateAsync(id, action =>
+                {
+                    action.IsActive = !action.IsActive;
+                    return Task.FromResult(action);
+                });
+            }
+            catch (Exception)
+            {
+                return ResultOutputDto.Failed;
+            }
+
+            return ResultOutputDto.Successed;
         }
     }
 }

@@ -4,6 +4,7 @@ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Authorization.Users;
 using HappyZu.CloudStore.Authorization.Roles;
+using HappyZu.CloudStore.Common.Dto;
 using HappyZu.CloudStore.MultiTenancy;
 using HappyZu.CloudStore.Users.Dto;
 
@@ -40,5 +41,13 @@ namespace HappyZu.CloudStore.Users
         Task<UserDto> GetUserByIdAsync(long userId);
 
         Task<AbpLoginResult<Tenant, User>> UserLoginAsync(UserLoginInput input);
+
+        Task<ResultOutputDto> SetPassword(SetPasswordInput input);
+
+        Task<ResultOutputDto> SetUserInfo(SetUserInfoInput input);
+
+        Task<ResultOutputDto> RemoveUser(long id);
+
+        Task<ResultOutputDto> ActiveUser(long id);
     }
 }
