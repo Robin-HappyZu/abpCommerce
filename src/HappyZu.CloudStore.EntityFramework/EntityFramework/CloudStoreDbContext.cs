@@ -6,6 +6,7 @@ using HappyZu.CloudStore.Authorization.Roles;
 using HappyZu.CloudStore.FAQ;
 using HappyZu.CloudStore.FileManager;
 using HappyZu.CloudStore.MultiTenancy;
+using HappyZu.CloudStore.StatisticalAnalysis;
 using HappyZu.CloudStore.Trip;
 using HappyZu.CloudStore.Users;
 
@@ -52,6 +53,18 @@ namespace HappyZu.CloudStore.EntityFramework
 
         #region UploadFile
         public virtual IDbSet<FileItem> FileItem { get; set; }
+        #endregion
+
+        #region Statistics
+        public virtual IDbSet<UserStatisticsByDay> UserStatisticsByDay { get; set; }
+        public virtual IDbSet<UserStatisticsByWeek> UserStatisticsByWeek { get; set; }
+        public virtual IDbSet<UserStatisticsByMonth> UserStatisticsByMonth { get; set; }
+        public virtual IDbSet<UserStatisticsByQuarter> UserStatisticsByQuarter { get; set; }
+
+        public virtual IDbSet<SalesStatisticsByDay> SalesStatisticsByDay { get; set; }
+        public virtual IDbSet<SalesStatisticsByWeek> SalesStatisticsByWeek { get; set; }
+        public virtual IDbSet<SalesStatisticsByMonth> SalesStatisticsByMonth { get; set; }
+        public virtual IDbSet<SalesStatisticsByQuarter> SalesStatisticsByQuarter { get; set; }
         #endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

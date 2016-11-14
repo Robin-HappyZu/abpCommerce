@@ -307,5 +307,24 @@ namespace HappyZu.CloudStore.Users
 
             return ResultOutputDto.Successed;
         }
+
+        public async Task<ResultOutputDto> SetUserRole(long id, params string[] roleName)
+        {
+            try
+            {
+                var user = await _userRepository.GetAsync(id);
+                var identity=await UserManager.SetRoles(user, roleName);
+                if (identity.Succeeded)
+                {
+                    return ResultOutputDto.Successed;
+                }
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+
+            return ResultOutputDto.Failed;
+        }
     }
 }

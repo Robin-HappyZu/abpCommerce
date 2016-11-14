@@ -147,6 +147,11 @@
     <Compile Include="Roles\Dto\RolePermissionOutputDto.cs" />
     <Compile Include="Roles\IRoleAppService.cs" />
     <Compile Include="Roles\Dto\UpdateRolePermissionsInput.cs" />
+    <Compile Include="StatisticalAnalysis\Events\StatisticsEventHandler.cs" />
+    <Compile Include="StatisticalAnalysis\Events\StatisticsSalesEventData.cs" />
+    <Compile Include="StatisticalAnalysis\Events\StatisticsUserEventData.cs" />
+    <Compile Include="StatisticalAnalysis\IStatisticsAppService.cs" />
+    <Compile Include="StatisticalAnalysis\StatisticsAppService.cs" />
     <Compile Include="Trip\AttributeAppService.cs" />
     <Compile Include="Trip\CustomizeTripAppService.cs" />
     <Compile Include="Trip\DestAppService.cs" />
@@ -253,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Linq\" />
+    <Folder Include="Users\Events\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

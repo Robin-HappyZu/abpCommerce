@@ -148,6 +148,14 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
             var result = await _userAppService.ActiveUser(id);
             return Json(new { status = result.Status });
         }
+
+        [AbpMvcAuthorize(PermissionNames.Administrator_UserRoleManager)]
+        [HttpPost]
+        public async Task<JsonResult> SetUserRole(long id, string roleName)
+        {
+            var result = await _userAppService.SetUserRole(id, roleName);
+            return Json(new { status = result.Status });
+        }
         #endregion
 
         #region 用户银行卡

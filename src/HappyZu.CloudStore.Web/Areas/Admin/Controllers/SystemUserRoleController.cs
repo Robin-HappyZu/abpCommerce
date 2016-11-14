@@ -103,6 +103,30 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
         }
         #endregion
 
+        #region 设置用户组
+
+        public async Task<ActionResult> SetUserRole(long id)
+        {
+            var roles = await _roleService.GetRolesAsync();
+            var roleList = roles.Items.Select(x => new RoleViewModel()
+            {
+                CreateUser = x.CreatorUser != null ? x.CreatorUser.Name : string.Empty,
+                LastModifyUser = x.LastModifierUser != null ? x.LastModifierUser.Name : string.Empty,
+                IsDefault = x.IsDefault,
+                IsStatic = x.IsStatic,
+                DisplayName = x.DisplayName,
+                Name = x.Name,
+                Id = x.Id
+            }).ToList();
+            var vm = new SetUserRoleViewModel
+            {
+                UserId = id,
+                Roles = roleList
+            };
+            return PartialView(vm);
+        }
+        #endregion
+
         #region 添加用户组
 
         public ActionResult RoleAdd(RoleViewModel vm)

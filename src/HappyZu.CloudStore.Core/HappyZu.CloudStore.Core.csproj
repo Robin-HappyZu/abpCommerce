@@ -115,6 +115,16 @@
     <Compile Include="Authorization\Roles\Role.cs" />
     <Compile Include="Authorization\Roles\RoleManager.cs" />
     <Compile Include="Authorization\Roles\RoleStore.cs" />
+    <Compile Include="StatisticalAnalysis\SalesStatisticsByDay.cs" />
+    <Compile Include="StatisticalAnalysis\SalesStatisticsByMonth.cs" />
+    <Compile Include="StatisticalAnalysis\SalesStatisticsByQuarter.cs" />
+    <Compile Include="StatisticalAnalysis\SalesStatisticsByWeek.cs" />
+    <Compile Include="StatisticalAnalysis\SalesStatisticsManager.cs" />
+    <Compile Include="StatisticalAnalysis\UserStatisticsByDay.cs" />
+    <Compile Include="StatisticalAnalysis\UserStatisticsByMonth.cs" />
+    <Compile Include="StatisticalAnalysis\UserStatisticsByQuarter.cs" />
+    <Compile Include="StatisticalAnalysis\UserStatisticsByWeek.cs" />
+    <Compile Include="StatisticalAnalysis\UserStatisticsManager.cs" />
     <Compile Include="Trip\ApplyStatus.cs" />
     <Compile Include="Trip\CustomizeTrip.cs" />
     <Compile Include="Trip\DestAttribute.cs" />

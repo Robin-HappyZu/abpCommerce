@@ -49,5 +49,7 @@ namespace HappyZu.CloudStore.Users
         Task<ResultOutputDto> RemoveUser(long id);
 
         Task<ResultOutputDto> ActiveUser(long id);
+
+        Task<ResultOutputDto> SetUserRole(long id, params string[] roleName);
     }
 }

@@ -1,0 +1,80 @@
+﻿@model HappyZu.CloudStore.Web.Areas.Admin.Models.SetUserRoleViewModel
+<div id="setuserrole-form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">设置用户组</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form form-horizontal">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">用户组</label>
+                    <div class="col-md-9">
+                        <select class="form-control" data-bind="value:MyRole">
+                            @foreach (var item in Model.Roles)
+                            {
+                                <option value="@item.Name">@item.DisplayName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-left choose-location"></div>
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">取消</button>
+        <button type="button" data-loading-text="保存中..." data-bind="click:SaveRole" class="btn green">保存</button>
+    </div>
+</div>
+<script>
+    var UserRoleViewModel=function() {
+        var $this=this;
+        this.MyRole = ko.observable('');
+
+        this.SaveRole=function(data,event) {
+            var url = '@Url.Action("SetUserRole","User",new {area="Admin"},true)';
+            var params = { id: '@Model.UserId', roleName: $this.MyRole() };
+            App.startPageLoading({ animate: true });
+            var $btn = $(event.target);
+            $btn.button("loading");
+            $.post(url, params, function(data) {
+                var type = 'info';
+                var message = '';
+                var icon = 'info';
+                if (data.success) {
+                    if (data.result.status) {
+                        message = '保存成功';
+                        if ($.isFunction(SetUserRoleSeccess)) {
+                            SetUserRoleSeccess($this.MyRole());
+                        }
+                    } else {
+                        message = '保存失败';
+                        icon = 'warning';
+                        type = 'danger';
+                    }
+                } else {
+                    type = 'danger';
+                    message = data.error.message;
+                    icon = 'warning';
+                };
+                App.alert({
+                    container: '',
+                    place: 'append', // append or prepent in container
+                    type: type, // alert's type
+                    message: message, // alert's message
+                    close: true, // make alert closable
+                    reset: true, // close all previouse alerts first
+                    focus: true, // auto scroll to the alert after shown
+                    icon: icon // put icon before the message
+                });
+
+                $btn.button('reset');
+                App.stopPageLoading();
+            }, 'json');
+        }
+    }
+    var uvm = new UserRoleViewModel();
+
+    ko.applyBindings(uvm, document.getElementById('setuserrole-form'));
+</script>

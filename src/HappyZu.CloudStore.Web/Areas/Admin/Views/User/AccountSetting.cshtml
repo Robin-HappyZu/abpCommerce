@@ -42,7 +42,7 @@
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"> @Model.User.Name </div>
-                    <div class="profile-usertitle-job"> @Model.RoleName  <a href="javascript:;"><span class="fa fa-edit"></span></a></div>
+                    <div class="profile-usertitle-job"> <span data-bind="text:RoleName"></span>  <a href="javascript:;" data-bind="click:SetUserRole"><span class="fa fa-edit"></span></a></div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
@@ -148,8 +148,11 @@
         <!-- END PROFILE CONTENT -->
     </div>
 </div>
+<div id="set-userrole" class="modal fade" tabindex="-1"></div>
 @section style_plugins{
     <link href="~/Areas/Admin/content/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" />
+<link href="~/Areas/Admin/content/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" />
 }
 @section styles{
     <link href="~/Areas/Admin/content/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
@@ -157,18 +160,35 @@
 @section script_plugins{
     <script src="~/Areas/Admin/content/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
     <script src="~/Areas/Admin/content/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+<script src="~/Areas/Admin/content/global/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
 }
 @section scripts{
     <script src="~/Areas/Admin/content/pages/scripts/profile.min.js" type="text/javascript"></script>
     <script>
+        $(function() {
+            $.fn.modal.defaults.spinner = $.fn.modalmanager.defaults.spinner =
+               '<div class="loading-spinner" style="width: 200px; margin-left: -100px;">' +
+               '<div class="progress progress-striped active">' +
+               '<div class="progress-bar" style="width: 100%;"></div>' +
+               '</div>' +
+               '</div>';
+        });
         var user = @Html.Raw(Model.User.ToJsonString());
+        var userRoleModal = $('#set-userrole');
 
+        var SetUserRoleSeccess=function(value) {
+            userRoleModal.modal('hide');
+            vm.RoleName(value);
+        }
         var ViewModel = function(u) {
             var $this = this;
             $this.Surname = ko.observable(u.Surname);
             $this.Name = ko.observable(u.Name);
             $this.Mobile = ko.observable(u.PhoneNumber);
             $this.EmailAddress = ko.observable(u.EmailAddress);
+
+            $this.RoleName = ko.observable('@Model.RoleName');
 
             $this.Password = ko.observable();
             $this.RePassword = ko.observable();
@@ -177,57 +197,71 @@
                 window.location = '@Request["ReturnUrl"]';
             }
 
+            //设置用户组
+            $this.SetUserRole=function() {
+                $('body').modalmanager('loading');
+
+                userRoleModal.load('@Url.Action("SetUserRole", "SystemUserRole", new {area = "Admin",Id=Model.User.Id}, true)',
+                    '',
+                    function() {
+                        userRoleModal.modal();
+                    });
+            }
+
             $this.SaveUserInfo = function(data, event) {
                 var url = '@Url.Action("SetAdminUserInfo", "User", new {area = "Admin"}, true)';
                 var params = {
-                    UserId:'@Model.User.Id',
+                    UserId: '@Model.User.Id',
                     Surname: $this.Surname(),
                     Name: $this.Name(),
                     Mobile: $this.Mobile(),
                     EmailAddress: $this.EmailAddress()
                 };
-                App.startPageLoading({animate: true});
-                var $btn=$(event.target);
+                App.startPageLoading({ animate: true });
+                var $btn = $(event.target);
                 $btn.button("loading");
-                $.post(url, params, function(data) {
-                    var type = 'info';
-                    var message = '';
-                    var icon = 'info';
-                    if (data.success) {
-                        if (data.result.status) {
-                            message = '保存成功';
+                $.post(url,
+                    params,
+                    function(data) {
+                        var type = 'info';
+                        var message = '';
+                        var icon = 'info';
+                        if (data.success) {
+                            if (data.result.status) {
+                                message = '保存成功';
+                            } else {
+                                message = '保存失败';
+                                icon = 'warning';
+                                type = 'danger';
+                            }
                         } else {
-                            message = '保存失败';
-                            icon = 'warning';
                             type = 'danger';
-                        }
-                    } else {
-                        type = 'danger';
-                        message = data.error.message;
-                        icon = 'warning';
-                    };
-                    App.alert({
-                        container: '',
-                        place: 'append', // append or prepent in container
-                        type: type,  // alert's type
-                        message: message,  // alert's message
-                        close: true, // make alert closable
-                        reset: true, // close all previouse alerts first
-                        focus: true, // auto scroll to the alert after shown
-                        icon: icon // put icon before the message
-                    });
-                    $btn.button('reset');
-                    App.stopPageLoading();
-                }, 'json');
+                            message = data.error.message;
+                            icon = 'warning';
+                        };
+                        App.alert({
+                            container: '',
+                            place: 'append', // append or prepent in container
+                            type: type, // alert's type
+                            message: message, // alert's message
+                            close: true, // make alert closable
+                            reset: true, // close all previouse alerts first
+                            focus: true, // auto scroll to the alert after shown
+                            icon: icon // put icon before the message
+                        });
+                        $btn.button('reset');
+                        App.stopPageLoading();
+                    },
+                    'json');
             }
 
             $this.SavePassword = function(data, event) {
-                if ($this.Password()!=$this.RePassword()) {
+                if ($this.Password() != $this.RePassword()) {
                     App.alert({
                         container: '',
                         place: 'append', // append or prepent in container
-                        type: 'danger',  // alert's type
-                        message: '两次输入的密码不同',  // alert's message
+                        type: 'danger', // alert's type
+                        message: '两次输入的密码不同', // alert's message
                         close: true, // make alert closable
                         reset: true, // close all previouse alerts first
                         focus: true, // auto scroll to the alert after shown
@@ -238,42 +272,45 @@
 
                 var url = '@Url.Action("SetAdminPassword", "User", new {area = "Admin"}, true)';
                 var params = {
-                    UserId:'@Model.User.Id',
+                    UserId: '@Model.User.Id',
                     Password: $this.Password()
                 };
-                App.startPageLoading({animate: true});
-                var $btn=$(event.target);
+                App.startPageLoading({ animate: true });
+                var $btn = $(event.target);
                 $btn.button("loading");
-                $.post(url, params, function(data) {
-                    var type = 'info';
-                    var message = '';
-                    var icon = 'info';
-                    if (data.success) {
-                        if (data.result.status) {
-                            message = '保存成功';
+                $.post(url,
+                    params,
+                    function(data) {
+                        var type = 'info';
+                        var message = '';
+                        var icon = 'info';
+                        if (data.success) {
+                            if (data.result.status) {
+                                message = '保存成功';
+                            } else {
+                                message = '保存失败';
+                                icon = 'warning';
+                                type = 'danger';
+                            }
                         } else {
-                            message = '保存失败';
-                            icon = 'warning';
                             type = 'danger';
-                        }
-                    } else {
-                        type = 'danger';
-                        message = data.error.message;
-                        icon = 'warning';
-                    };
-                    App.alert({
-                        container: '',
-                        place: 'append', // append or prepent in container
-                        type: type,  // alert's type
-                        message: message,  // alert's message
-                        close: true, // make alert closable
-                        reset: true, // close all previouse alerts first
-                        focus: true, // auto scroll to the alert after shown
-                        icon: icon // put icon before the message
-                    });
-                    $btn.button('reset');
-                    App.stopPageLoading();
-                }, 'json');
+                            message = data.error.message;
+                            icon = 'warning';
+                        };
+                        App.alert({
+                            container: '',
+                            place: 'append', // append or prepent in container
+                            type: type, // alert's type
+                            message: message, // alert's message
+                            close: true, // make alert closable
+                            reset: true, // close all previouse alerts first
+                            focus: true, // auto scroll to the alert after shown
+                            icon: icon // put icon before the message
+                        });
+                        $btn.button('reset');
+                        App.stopPageLoading();
+                    },
+                    'json');
             }
         }
 
