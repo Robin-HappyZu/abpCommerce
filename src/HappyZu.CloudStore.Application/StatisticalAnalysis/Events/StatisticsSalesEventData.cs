@@ -13,7 +13,7 @@ namespace HappyZu.CloudStore.StatisticalAnalysis.Events
 
         public decimal Total { get; set; }
 
-        public int AgentId { get; set; }
+        public long? AgentId { get; set; }
 
         public decimal PaidAmount { get; set; }
     }

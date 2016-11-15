@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Abp.Events.Bus;
 using HappyZu.CloudStore.Wechat.Dto;
 
-namespace HappyZu.CloudStore.Trip.Events
+namespace HappyZu.CloudStore.Trip.Dto
 {
-    public class OrderPaidEventData : EventData
+    public class OrderPaidInput
     {
         public WechatPayResult WechatPayResult { get; set; }
     }

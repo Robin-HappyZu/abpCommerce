@@ -24,32 +24,32 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile
 
         public override void RegisterAreaOrder(AreaRegistrationContext context)
         {
-            context.MapRoute(
-               "Mobile_default",
-               "{controller}/{action}/{id}",
-               new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-               new[] { "HappyZu.CloudStore.Web.Areas.Mobile.Controllers" }
-           );
-
-            //var domain = ConfigurationManager.AppSettings["Domain"] ?? "happizu.com";
-
-            //var values = new Dictionary<string, object>();
-            //var ns = new[] { "Happyzu.CloudStore.Web.Areas.Mobile.Controllers" };
-            //values.Add("UseNamespaceFallback", false);
-            //values.Add("Namespaces", ns);
-            //values.Add("area", "mobile");
-            //var dataTokens = new RouteValueDictionary(values);
-
-
-            //var route = new DomainRoute(
-            //    string.Concat("m.", domain),
+            // context.MapRoute(
+            //    "Mobile_default",
             //    "{controller}/{action}/{id}",
-            //    new { area = "mobile", controller = "Home", action = "Index", id = UrlParameter.Optional },
-            //    null,
-            //    dataTokens
-            //    );
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new[] { "HappyZu.CloudStore.Web.Areas.Mobile.Controllers" }
+            //);
 
-            //context.Routes.Add("MobileDomainRoute", route);
+            var domain = ConfigurationManager.AppSettings["Domain"] ?? "happizu.com";
+
+            var values = new Dictionary<string, object>();
+            var ns = new[] { "Happyzu.CloudStore.Web.Areas.Mobile.Controllers" };
+            values.Add("UseNamespaceFallback", false);
+            values.Add("Namespaces", ns);
+            values.Add("area", "mobile");
+            var dataTokens = new RouteValueDictionary(values);
+
+
+            var route = new DomainRoute(
+                string.Concat("m.", domain),
+                "{controller}/{action}/{id}",
+                new { area = "mobile", controller = "Home", action = "Index", id = UrlParameter.Optional },
+                null,
+                dataTokens
+                );
+
+            context.Routes.Add("MobileDomainRoute", route);
         }
     }
 }

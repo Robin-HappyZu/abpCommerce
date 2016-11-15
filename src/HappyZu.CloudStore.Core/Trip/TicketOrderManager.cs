@@ -48,6 +48,11 @@ namespace HappyZu.CloudStore.Trip
             return await _ticketOrderRepository.GetAsync(ticketOrderId);
         }
 
+        public async Task<TicketOrder> GetTicketOrderByOrderNoAsync(string orderNo)
+        {
+            return await _ticketOrderRepository.FirstOrDefaultAsync(q=>q.OrderNo==orderNo);
+        }
+
         public Task<int> GetTicketOrdersCountAsync(Func<IQueryable<TicketOrder>, IQueryable<TicketOrder>> query)
         {
             var count = query == null ? _ticketOrderRepository.Count() : _ticketOrderRepository.Query(query).Count();

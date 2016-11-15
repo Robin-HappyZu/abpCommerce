@@ -326,5 +326,24 @@ namespace HappyZu.CloudStore.Users
 
             return ResultOutputDto.Failed;
         }
+
+        public async Task<ResultOutputDto> BindingWechatOpenId(long id, string openId, string unionId)
+        {
+            try
+            {
+                await _userRepository.UpdateAsync(id, action =>
+                {
+                    action.WechatOpenID = openId;
+                    action.UnionID = unionId;
+
+                    return Task.FromResult(action);
+                });
+            }
+            catch (Exception ex)
+            {
+                return ResultOutputDto.Fail(500, ex.Message);
+            }
+            return ResultOutputDto.Failed;
+        }
     }
 }

@@ -3,11 +3,14 @@ using System.Configuration;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using HappyZu.CloudStore.Trip;
+using HappyZu.CloudStore.Trip.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Filters;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.WechatPay;
 using Senparc.Weixin.MP;
 using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.TenPayLibV3;
+using Abp.Extensions;
+using HappyZu.CloudStore.Wechat.Dto;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 {
@@ -133,8 +136,30 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             if (responseHandler.IsTenpaySign())
             {
                 res = "success";
+                var orderNo = tradeNo.Split('|')[1];
+                var input = new OrderPaidInput();
+                var wechatResult = new WechatPayResult()
+                {
+                    OrderNo= orderNo,
+                    IsSubscribe= responseHandler.GetParameter("is_subscribe")=="Y",
+                    OpenId=responseHandler.GetParameter("openid"),
+                    TransactionNo=responseHandler.GetParameter("transaction_id")
+                };
+
+                int amount;
+                int.TryParse(responseHandler.GetParameter("total_fee"),out amount);
+                int cashAmount;
+                int.TryParse(responseHandler.GetParameter("cash_fee"), out cashAmount);
+
+                DateTime paidTime;
+                DateTime.TryParseExact(responseHandler.GetParameter("time_end"), "yyyyMMddHHmmss",null, System.Globalization.DateTimeStyles.None ,out paidTime);
+                wechatResult.Amount = (decimal)(amount/100.00);
+                wechatResult.CashAmount = (decimal)(cashAmount / 100.00);
+                wechatResult.PaidTime = paidTime;
+
+                input.WechatPayResult = wechatResult;
                 // 发布付款成功事件
-                _paymentAppService.OrderPaidAsync(tradeNo, "test_no", 200);
+                _paymentAppService.OrderPaidAsync(input);
             }
             else
             {
@@ -145,6 +170,42 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
    <return_code><![CDATA[{0}]]></return_code>
    <return_msg><![CDATA[{1}]]></return_msg>
 </xml>", return_code, return_msg);
+
+            return Content(xml, "text/xml");
+        }
+
+        public ActionResult TestNotity()
+        {
+            var tradeNo = "ticket|46126551820935168|150015";
+            var orderNo = tradeNo.Split('|')[1];
+            var input = new OrderPaidInput();
+            var wechatResult = new WechatPayResult()
+            {
+                OrderNo = orderNo,
+                IsSubscribe = true,
+                OpenId = "otimDwqn4Unxcfb6lTd1P0hG1ffI",
+                TransactionNo = "4010132001201611159813214581"
+            };
+
+            int amount;
+            int.TryParse("1", out amount);
+            int cashAmount;
+            int.TryParse("1", out cashAmount);
+
+            DateTime paidTime;
+            DateTime.TryParseExact("20161115150221", "yyyyMMddHHmmss", null, System.Globalization.DateTimeStyles.None, out paidTime);
+            wechatResult.Amount = (decimal)(amount / 100.00);
+            wechatResult.CashAmount = (decimal)(cashAmount / 100.00);
+            wechatResult.PaidTime = paidTime;
+
+            input.WechatPayResult = wechatResult;
+            // 发布付款成功事件
+            _paymentAppService.OrderPaidAsync(input);
+
+            string xml = string.Format(@"<xml>
+   <return_code><![CDATA[{0}]]></return_code>
+   <return_msg><![CDATA[{1}]]></return_msg>
+</xml>", "SUCCESS", "支付成功");
 
             return Content(xml, "text/xml");
         }

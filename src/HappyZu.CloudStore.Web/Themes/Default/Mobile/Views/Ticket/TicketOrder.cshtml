@@ -559,7 +559,7 @@
                             if (data.result.entityId>0) {
                                 window
                                     .location =
-                                    '@Url.Action("ChoosePayment", "Ticket", new { area = "Mobile" }, true)/' +
+                                    '@Url.Action("ticket", "payment", new { area = "mobile" }, true)/' +
                                     data.result.entityId;
 
                                 return;

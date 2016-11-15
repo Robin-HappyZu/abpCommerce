@@ -9,6 +9,9 @@ using Abp.Domain.Uow;
 using Abp.Events.Bus;
 using Abp.Extensions;
 using Abp.Runtime.Caching;
+using Abp.Runtime.Session;
+using Abp.UI;
+using Abp.Web.Mvc.Authorization;
 using HappyZu.CloudStore.Users;
 using HappyZu.CloudStore.Users.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Filters;
@@ -90,9 +93,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
             var openId = result.openid;
             var unionId = result.unionid;
-
-            var cache = _cacheManager.GetCache("Wechat");
-
+            
             string appToken =await _wechatAppService.GetAccessTokenAsync();
 
             // 获取用户信息
@@ -172,6 +173,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         }
         #endregion
 
+        #region 微信事件推送
         [HttpGet]
         public Task<ActionResult> Service(string signature, string timestamp, string nonce, string echostr)
         {
@@ -210,5 +212,46 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
             }).ContinueWith<ActionResult>(task => task.Result);
         }
+
+        #endregion
+
+        #region 微信公众平台账号绑定
+        [AbpMvcAuthorize]
+        public async Task<ActionResult> Bindings(string code, string state)
+        {
+            var userId = AbpSession.GetUserId();
+            var userDto =await _userAppService.GetUserByIdAsync(userId);
+            if (userDto==null)
+            {
+                return HttpNotFound("登录用户数据错误");
+            }
+            if (!string.IsNullOrWhiteSpace(userDto.WechatOpenID))
+            {
+                throw new UserFriendlyException("用户已绑定微信");
+            }
+
+            // OAuth2 授权    
+            OAuthAccessTokenResult result = null;
+            //通过，用code换取OpenId
+            try
+            {
+                result = OAuthApi.GetAccessToken(appId, secret, code);
+            }
+            catch (Exception ex)
+            {
+                throw new UserFriendlyException(ex.Message);
+            }
+
+            if (result.errcode != ReturnCode.请求成功)
+            {
+                throw new UserFriendlyException(result.errmsg);
+            }
+
+            var openId = result.openid;
+            var unionId = result.unionid;
+            await _userAppService.BindingWechatOpenId(userId, openId, unionId);
+            return Redirect(state);
+        }
+        #endregion
     }
 }

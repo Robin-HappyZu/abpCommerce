@@ -29,13 +29,11 @@ namespace HappyZu.CloudStore.Trip
             return null;
         }
 
-        public async Task OrderPaidAsync(string tradeNo, string transactionNo, decimal amount)
+        public async Task OrderPaidAsync(OrderPaidInput input)
         {
             await EventBus.TriggerAsync(new OrderPaidEventData()
             {
-                TradeNo = tradeNo,
-                TransactionNo = transactionNo,
-                Amount = amount
+                WechatPayResult=input.WechatPayResult
             });
         }
     }

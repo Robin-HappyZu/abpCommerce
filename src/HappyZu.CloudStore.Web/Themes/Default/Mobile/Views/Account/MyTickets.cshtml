@@ -101,7 +101,7 @@
                     html = '<a href="javascript:;" class="button button-warning button-fill">取消</a>';
                     break;
                 case 1:
-                    html = '<div class="text-right"><a href="javascript:;" class="button button-success button-fill">立即支付</a><br/>';
+                    html = '<div class="text-right"><a href="@Url.Action("ticket", "payment", new { area = "mobile" }, true)/'+data.id+'" class="button button-success button-fill">立即支付</a><br/>';
                     html += '<a href="javascript:;" class="button button-warning button-fill">取消</a><div>';
                     break;
                 case 2:

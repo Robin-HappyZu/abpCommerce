@@ -186,6 +186,7 @@
     <Compile Include="Trip\Dto\GetPagedTicketOrdersInput.cs" />
     <Compile Include="Trip\Dto\GetPagedTicketQuotesInput.cs" />
     <Compile Include="Trip\Dto\GetPagedTicketsInput.cs" />
+    <Compile Include="Trip\Dto\OrderPaidInput.cs" />
     <Compile Include="Trip\Dto\QueryCustomizationsInput.cs" />
     <Compile Include="Trip\Dto\TicketAttributeDto.cs" />
     <Compile Include="Trip\Dto\TicketAttributeRecordDto.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Users\Dto\ProhibitPermissionInput.cs" />
     <Compile Include="Users\UserAppService.cs" />
     <Compile Include="Users\Dto\UserDto.cs" />
+    <Compile Include="Wechat\Dto\WechatPayResult.cs" />
     <Compile Include="Wechat\Events\SubscribeEventData.cs" />
     <Compile Include="Wechat\Events\SubscribeHandler.cs" />
     <Compile Include="Wechat\Events\UnsubscribeEventData.cs" />

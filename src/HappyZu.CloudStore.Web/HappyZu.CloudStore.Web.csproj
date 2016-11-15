@@ -438,6 +438,7 @@
     <Content Include="Areas\Admin\Views\Travel\Travelers.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\TravelOrders.cshtml" />
     <Content Include="Areas\Admin\Views\Travel\EditTravel.cshtml" />
+    <Content Include="MP_verify_CqC2NxpPwGb2xrL5.txt" />
     <Content Include="Themes\Default\Mobile\content\images\dz.jpg" />
     <Content Include="Themes\Default\Mobile\content\images\qrcode.jpg" />
     <Content Include="Themes\Default\Mobile\content\jquery.bootstrap-touchspin.min.js" />
@@ -719,7 +720,7 @@
     <Content Include="Themes\Default\Mobile\Views\Account\MyTicketDetail.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Customize\Index.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Customize\MyCustomize.cshtml" />
-    <Content Include="Themes\Default\Mobile\Views\Payment\Index.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Payment\Ticket.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
