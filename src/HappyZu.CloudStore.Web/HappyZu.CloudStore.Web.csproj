@@ -599,6 +599,7 @@
     <Compile Include="Areas\Admin\Controllers\Trip\TicketOrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\Trip\TravelController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DataTableJsonViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DataTableOptionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DestCityViewModel.cs" />

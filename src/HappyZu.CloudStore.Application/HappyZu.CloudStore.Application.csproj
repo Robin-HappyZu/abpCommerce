@@ -147,6 +147,10 @@
     <Compile Include="Roles\Dto\RolePermissionOutputDto.cs" />
     <Compile Include="Roles\IRoleAppService.cs" />
     <Compile Include="Roles\Dto\UpdateRolePermissionsInput.cs" />
+    <Compile Include="StatisticalAnalysis\Dto\QuerySalesStatisticsByMonthInput.cs" />
+    <Compile Include="StatisticalAnalysis\Dto\SalesStatisticsByDayDto.cs" />
+    <Compile Include="StatisticalAnalysis\Dto\SalesStatisticsByMonthDto.cs" />
+    <Compile Include="StatisticalAnalysis\Dto\UserStatisticsByDayDto.cs" />
     <Compile Include="StatisticalAnalysis\Events\StatisticsEventHandler.cs" />
     <Compile Include="StatisticalAnalysis\Events\StatisticsSalesEventData.cs" />
     <Compile Include="StatisticalAnalysis\Events\StatisticsUserEventData.cs" />
