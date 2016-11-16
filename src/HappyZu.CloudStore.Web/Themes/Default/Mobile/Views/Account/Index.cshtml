@@ -1,4 +1,5 @@
-﻿@model HappyZu.CloudStore.Users.User
+﻿@using HappyZu.CloudStore.Authorization
+@model HappyZu.CloudStore.Users.User
 
 <div class="content native-scroll">
     <div class="profile">
@@ -67,6 +68,17 @@
                     <div class="item-title">个人资料</div>
                 </div>
             </li>
+            @if (IsGranted(PermissionNames.Agents))
+            {
+                <li>
+                    <a href="@Url.Action("MyQrcode","Account",new {area="Mobile"},true)" class="item-content item-link">
+                        <div class="item-inner">
+                            <div class="item-title">销售二维码</div>
+                        </div>
+                    </a>
+                </li>
+            }
+
             @*<li class="item-content item-link">
                     <div class="item-inner">
                         <div class="item-title">我的积分</div>

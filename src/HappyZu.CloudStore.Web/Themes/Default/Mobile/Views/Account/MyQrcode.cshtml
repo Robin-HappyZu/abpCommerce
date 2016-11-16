@@ -1,0 +1,31 @@
+﻿
+<div class="content native-scroll">
+    <div class="content-block">
+        <div class="row">
+            <div class="col-100 text-center">
+                <div id="qrcode"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-100 text-center">
+                建议先要求客户关注 环球舱服务号
+            </div>
+        </div>
+        <div class="row margin-top-10">
+            <div class="col-10">&nbsp;</div>
+            <div class="col-80">
+                <a href="@Url.Action("Recommend", "Account", true)" class="button button-big button-fill button-success">
+                    立即关注 环球舱服务号
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Themes/Default/Mobile/content/jquery-qrcode.js"></script>
+    <script>
+        $(function() {
+            $('#qrcode').qrcode({ width: 256, height: 256, text: '@Url.Action("Index","Home",new {area="Mobile", agent = ViewBag.UserId },true)' });
+        })
+    </script>
+}

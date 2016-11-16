@@ -391,5 +391,30 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             return View(vm);
         }
         #endregion
+
+        #region 我的推广二维码
+        [AbpMvcAuthorize(PermissionNames.Agents)]
+        public ActionResult MyQrcode()
+        {
+            ViewBag.Title = "我的推广二维码";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "historyback",
+                        Icon = "icon icon-left",
+                        Url = "javascript:window.history.back();"
+                    }
+                }
+            };
+            ViewBag.UserId = AbpSession.GetUserId();
+            return View();
+        }
+        #endregion
     }
 }

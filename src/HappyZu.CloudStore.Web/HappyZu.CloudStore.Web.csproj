@@ -441,6 +441,7 @@
     <Content Include="MP_verify_CqC2NxpPwGb2xrL5.txt" />
     <Content Include="Themes\Default\Mobile\content\images\dz.jpg" />
     <Content Include="Themes\Default\Mobile\content\images\qrcode.jpg" />
+    <Content Include="Themes\Default\Mobile\content\jquery-qrcode.js" />
     <Content Include="Themes\Default\Mobile\content\jquery.bootstrap-touchspin.min.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\knockout-3.4.0.js" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.calendar.js" />
@@ -722,6 +723,7 @@
     <Content Include="Themes\Default\Mobile\Views\Customize\Index.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Customize\MyCustomize.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Payment\Ticket.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Account\MyQrcode.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

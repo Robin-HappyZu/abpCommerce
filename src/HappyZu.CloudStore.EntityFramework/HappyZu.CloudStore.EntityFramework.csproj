@@ -268,6 +268,10 @@
     <Compile Include="Migrations\201611140707062_Add_UserAndSales_Statistics.Designer.cs">
       <DependentUpon>201611140707062_Add_UserAndSales_Statistics.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611160736266_Add_TicketStatus.cs" />
+    <Compile Include="Migrations\201611160736266_Add_TicketStatus.Designer.cs">
+      <DependentUpon>201611160736266_Add_TicketStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="CloudStoreDataModule.cs" />
@@ -401,6 +405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611140707062_Add_UserAndSales_Statistics.resx">
       <DependentUpon>201611140707062_Add_UserAndSales_Statistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611160736266_Add_TicketStatus.resx">
+      <DependentUpon>201611160736266_Add_TicketStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

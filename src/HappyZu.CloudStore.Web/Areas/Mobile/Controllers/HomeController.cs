@@ -25,17 +25,12 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             _destAppService = destAppService;
             _userAppService = userAppService;
         }
-
-        // GET: Mobile/Home
-        public ActionResult Index()
+        public ActionResult Index(int? agent)
         {
-            //var openid = "oJBwJwX5yEpaOAAGb1z6fvlc42oQ";
-
-
-            //await EventBus.TriggerAsync(new SubscribeEventData
-            //{
-            //    OpenId = openid
-            //});
+            if (agent > 0)
+            {
+                Response.AppendCookie(new HttpCookie("agent", agent.ToString()));
+            }
             
 
             ViewBag.Title = "首页";

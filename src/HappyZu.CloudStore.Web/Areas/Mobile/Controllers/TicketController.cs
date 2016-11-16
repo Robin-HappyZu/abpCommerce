@@ -11,6 +11,7 @@ using HappyZu.CloudStore.Web.Areas.Mobile.Models.Dest;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models.Layout;
 using HappyZu.CloudStore.Web.Controllers;
 using Abp.Extensions;
+using Abp.Runtime.Session;
 using Abp.UI;
 using Abp.Web.Mvc.Authorization;
 using HappyZu.CloudStore.Web.Areas.Mobile.Models;
@@ -226,12 +227,14 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 Contact=vm.Contact,
                 Remark=vm.Remark
             };
-            if (agent != null)
+            var userId = AbpSession.GetUserId();
+            if (agent != null && agent.Value != userId.ToString())
             {
                 var agentid = 0;
                 if (int.TryParse(agent.Value, out agentid))
                 {
                     input.AgentId = agentid;
+                    Response.Cookies.Remove("agent");
                 }
             }
             var result = await _ticketAppService.AddTicketOrderAsync(input);
