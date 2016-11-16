@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Cryptography.X509Certificates;
 using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using HappyZu.CloudStore.Entities;
@@ -83,6 +84,11 @@ namespace HappyZu.CloudStore.Trip
         /// 订单状态
         /// </summary>
         public OrderStatus Status { get; set; }
+
+        /// <summary>
+        /// 出票状态
+        /// </summary>
+        public TicketStatus TicketStatus { get; set; }
 
         /// <summary>
         /// 已核销
