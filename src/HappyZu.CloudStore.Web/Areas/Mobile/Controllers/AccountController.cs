@@ -416,5 +416,35 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             return View();
         }
         #endregion
+
+        #region 代理商业绩
+        [AbpMvcAuthorize(PermissionNames.Agents)]
+        public ActionResult AgentOrder()
+        {
+            ViewBag.Title = "代理商业绩";
+            ViewBag.HeaderBar = new HeaderViewModel()
+            {
+                ShowTitle = true,
+                Title = ViewBag.Title,
+                ShowSearchBar = false,
+                LeftButtonItems = new[]
+                {
+                    new BarButtonItem()
+                    {
+                        Name = "historyback",
+                        Icon = "icon icon-left",
+                        Url = "javascript:window.history.back();"
+                    }
+                }
+            };
+            return View();
+        }
+
+        [AbpMvcAuthorize(PermissionNames.Agents)]
+        public JsonResult GetAgentOrders(int start, int length)
+        {
+            return Json(null);
+        }
+        #endregion
     }
 }

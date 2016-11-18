@@ -8,10 +8,10 @@ using Abp.AutoMapper;
 using Abp.Domain.Uow;
 using Abp.Events.Bus;
 using Abp.Extensions;
-using Abp.Runtime.Caching;
 using Abp.Runtime.Session;
 using Abp.UI;
 using Abp.Web.Mvc.Authorization;
+using HappyZu.CloudStore.IdGenerators;
 using HappyZu.CloudStore.Users;
 using HappyZu.CloudStore.Users.Dto;
 using HappyZu.CloudStore.Web.Areas.Mobile.Filters;
@@ -38,8 +38,8 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         private string domain = ConfigurationManager.AppSettings["Domain"];
 
         private readonly IUserAppService _userAppService;
-        private readonly ICacheManager _cacheManager;
         private readonly IWechatAppService _wechatAppService;
+        private readonly UserNameManager _userNameManager;
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -49,11 +49,11 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             }
         }
 
-        public WechatController(IUserAppService userAppService, ICacheManager cacheManager, IWechatAppService wechatAppService)
+        public WechatController(IUserAppService userAppService, IWechatAppService wechatAppService, UserNameManager userNameManager)
         {
             _userAppService = userAppService;
-            _cacheManager = cacheManager;
             _wechatAppService = wechatAppService;
+            _userNameManager = userNameManager;
         }
 
         #region 身份认证
@@ -122,10 +122,11 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             }
             else
             {
+                var userName = _userNameManager.CreateId().ToString();
                 var input = new CreateUserInput()
                 {
-                    UserName = nickName,
-                    EmailAddress = nickName + "@"+ domain,
+                    UserName = userName,
+                    EmailAddress = userName + "@"+ domain,
                     IsActive = true,
                     Name = nickName,
                     Surname = nickName,

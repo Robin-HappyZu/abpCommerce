@@ -7,6 +7,7 @@ using System.Web.Configuration;
 using Abp.Dependency;
 using Abp.Events.Bus.Handlers;
 using Abp.Extensions;
+using HappyZu.CloudStore.IdGenerators;
 using HappyZu.CloudStore.Users;
 using HappyZu.CloudStore.Users.Dto;
 using Senparc.Weixin.MP.CommonAPIs;
@@ -19,12 +20,14 @@ namespace HappyZu.CloudStore.Wechat.Events
 
         private readonly IUserAppService _userAppService;
         private readonly IWechatAppService _wechatAppService;
-        
+        private readonly UserNameManager _userNameManager;
 
-        public SubscribeHandler(IUserAppService userAppService, IWechatAppService wechatAppService)
+
+        public SubscribeHandler(IUserAppService userAppService, IWechatAppService wechatAppService, UserNameManager userNameManager)
         {
             _userAppService = userAppService;
             _wechatAppService = wechatAppService;
+            _userNameManager = userNameManager;
         }
 
         public async void HandleEvent(SubscribeEventData eventData)
@@ -43,7 +46,7 @@ namespace HappyZu.CloudStore.Wechat.Events
                 {
                     nickName = userInfo2.nickname;
                 }
-                var userName = Guid.NewGuid().ToString("N").Truncate(12);
+                var userName = _userNameManager.CreateId().ToString();
                 var input = new CreateUserInput()
                 {
                     UserName = userName,

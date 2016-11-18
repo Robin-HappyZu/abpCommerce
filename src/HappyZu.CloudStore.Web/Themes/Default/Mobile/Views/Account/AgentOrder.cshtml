@@ -1,0 +1,85 @@
+﻿<div class="content infinite-scroll infinite-scroll-bottom native-scroll">
+    <div class="list-block no-margin">
+        <ul data-bind="template: { name: 'ListItemTmpl',
+                                  foreach: items,
+                                  as: 'item' }"></ul>
+    </div>
+    <div class="infinite-scroll-preloader" data-bind="visible:loading">
+        <div class="preloader"></div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Themes/Default/Mobile/content/plugins/knockout-3.4.0.js"></script>
+    <script id="ListItemTmpl" type="text/html">
+        <li>
+            <a data-bind="attr:{href:'@Url.Action("Detail", "Faq", new {area = "Mobile"}, true)/'+item.id}" class="item-content item-link">
+                <div class="item-inner">
+                    <div class="item-title" data-bind="text:title"></div>
+                </div>
+            </a>
+        </li>
+    </script>
+    <script>
+
+        // 最多可加载的条目
+        var maxItems = 10000;
+        // 每次加载添加多少条目
+        var itemsPerLoad = 20;
+
+
+        var ViewModel = function() {
+            var _this = this;
+            this.loading = ko.observable(false);
+            this.items = ko.observableArray([]);
+
+            this.loadData = function(length, start) {
+                // 如果正在加载，则退出
+                if (_this.loading()) return;
+                // 设置flag
+                _this.loading(true);
+
+                var url = "@Url.Action("GetAgentOrders", "Account", new {area = "Mobile"}, true)";
+                var params = [];
+                params.push({ name: "start", value: start });
+                params.push({ name: "length", value: length });
+                $.post(url,
+                    params,
+                    function(data) {
+                        // 重置加载flag
+                        _this.loading(false);
+                        if (data.success) {
+                            maxItems = data.result.totalCount;
+                            for (var i = 0; i < data.result.items.length; i++) {
+                                var item = data.result.items[i];
+                                item.tags = ko.observableArray([]);
+                                _this.items.push(item);
+                            }
+                        } else {
+                            $.toast("加载失败,请检查网络...");
+                        }
+
+                        if (_this.items().length >= maxItems) {
+                            // 加载完毕，则注销无限加载事件，以防不必要的加载
+                            $.detachInfiniteScroll($('.infinite-scroll'));
+                        }
+
+                    },
+                    'json');
+            }
+        }
+        var vm = new ViewModel();
+
+        vm.loadData(itemsPerLoad, 0);
+
+        ko.applyBindings(vm);
+
+        $(document)
+            .on('infinite',
+                '.infinite-scroll-bottom',
+                function() {
+                    vm.loadData(itemsPerLoad, vm.items().length);
+                });
+
+
+    </script>
+}

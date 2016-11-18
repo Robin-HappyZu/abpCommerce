@@ -28,14 +28,12 @@ namespace HappyZu.CloudStore.Users
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
         private readonly LogInManager _logInManager;
-        private readonly UserNameManager _userNameManager;
 
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, LogInManager logInManager, UserNameManager userNameManager)   
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, LogInManager logInManager)   
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
             _logInManager = logInManager;
-            _userNameManager = userNameManager;
         }
 
         public async Task ProhibitPermission(ProhibitPermissionInput input)
@@ -349,9 +347,6 @@ namespace HappyZu.CloudStore.Users
             return ResultOutputDto.Failed;
         }
 
-        public Task<ResultOutputDto> CreateUserName()
-        {
-            return Task.FromResult(new ResultOutputDto(true,200,_userNameManager.CreateId().ToString(),0));
-        }
+       
     }
 }

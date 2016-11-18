@@ -724,6 +724,7 @@
     <Content Include="Themes\Default\Mobile\Views\Customize\MyCustomize.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Payment\Ticket.cshtml" />
     <Content Include="Themes\Default\Mobile\Views\Account\MyQrcode.cshtml" />
+    <Content Include="Themes\Default\Mobile\Views\Account\AgentOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

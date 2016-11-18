@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agents\Rebate.cs" />
     <Compile Include="Authorization\LoginManager.cs" />
     <Compile Include="CloudStoreConsts.cs" />
     <Compile Include="CloudStoreCoreModule.cs" />

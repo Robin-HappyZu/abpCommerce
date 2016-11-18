@@ -53,7 +53,6 @@ namespace HappyZu.CloudStore.Users
         Task<ResultOutputDto> SetUserRole(long id, params string[] roleName);
 
         Task<ResultOutputDto> BindingWechatOpenId(long id, string openId, string unionId);
-
-        Task<ResultOutputDto> CreateUserName();
+        
     }
 }
