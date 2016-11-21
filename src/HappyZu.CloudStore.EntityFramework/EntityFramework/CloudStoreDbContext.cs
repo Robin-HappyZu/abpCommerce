@@ -2,6 +2,7 @@
 using System.Data.Common;
 using System.Data.Entity;
 using Abp.Zero.EntityFramework;
+using HappyZu.CloudStore.Agents;
 using HappyZu.CloudStore.Authorization.Roles;
 using HappyZu.CloudStore.FAQ;
 using HappyZu.CloudStore.FileManager;
@@ -65,6 +66,10 @@ namespace HappyZu.CloudStore.EntityFramework
         public virtual IDbSet<SalesStatisticsByWeek> SalesStatisticsByWeek { get; set; }
         public virtual IDbSet<SalesStatisticsByMonth> SalesStatisticsByMonth { get; set; }
         public virtual IDbSet<SalesStatisticsByQuarter> SalesStatisticsByQuarter { get; set; }
+        #endregion
+
+        #region Agents
+        public virtual IDbSet<Rebate> Rebate { get; set; }
         #endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

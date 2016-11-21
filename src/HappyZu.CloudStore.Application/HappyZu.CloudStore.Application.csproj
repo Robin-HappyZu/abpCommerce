@@ -115,6 +115,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agents\Dto\CreateRecordInput.cs" />
+    <Compile Include="Agents\Dto\QueryRebatesInput.cs" />
+    <Compile Include="Agents\Dto\RebateDto.cs" />
+    <Compile Include="Agents\IRebateAppService.cs" />
+    <Compile Include="Agents\RebateAppService.cs" />
     <Compile Include="Authorization\CloudStoreAppAuthorizationProvider.cs" />
     <Compile Include="CloudStoreApplicationModule.cs" />
     <Compile Include="CloudStoreAppServiceBase.cs" />

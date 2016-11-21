@@ -34,6 +34,7 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         private readonly LogInManager _logInManager;
         private readonly UserManager _userManager;
         private readonly ITicketAppService _ticketAppService;
+        
 
 
         public AccountController(LogInManager logInManager, UserManager userManager, ITicketAppService ticketAppService)

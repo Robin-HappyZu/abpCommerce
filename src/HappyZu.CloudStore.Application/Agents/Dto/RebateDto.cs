@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Abp.Domain.Entities;
+using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
 
-namespace HappyZu.CloudStore.Agents
+namespace HappyZu.CloudStore.Agents.Dto
 {
-    [Table("Agents_Rebate")]
-    public class Rebate : Entity
+    [AutoMap(typeof(Rebate))]
+    public class RebateDto:EntityDto
     {
-        [Required]
         public long AgentId { get; set; }
 
-        [StringLength(50)]
         public string OrderType { get; set; }
-
-        [StringLength(63)]
+        
         public string OrderNo { get; set; }
 
         public string UserName { get; set; }
@@ -38,7 +34,7 @@ namespace HappyZu.CloudStore.Agents
         public decimal IncomeAmount { get; set; }
 
         public DateTime ExpectedRebateDate { get; set; }
-        
+
         public DateTime RebateDate { get; set; }
 
         public RebateStatus RebateStatus { get; set; }
