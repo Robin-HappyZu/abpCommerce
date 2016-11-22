@@ -41,7 +41,7 @@ namespace HappyZu.CloudStore.Agents.Events
             var user= await _userAppService.GetUserByIdAsync(order.CustomerId);
             var tickets= await _ticketAppService.GetTicketOrderItemsByTicketOrderIdAsync(order.Id);
 
-            var agentAmount = tickets.Where(x=>x.AgentPrice>0).Sum(x => (x.Price-x.AgentPrice)*x.Quantity);
+            var agentAmount = tickets.Where(x=>x.AgentPrice>0).Sum(x => (x.UnitPrice-x.AgentPrice)*x.Quantity);
 
             var input = new CreateRecordInput();
             var recordDto = new RebateDto
@@ -53,7 +53,8 @@ namespace HappyZu.CloudStore.Agents.Events
                 OrderType="Ticket",
                 PaidTime=DateTime.Now,
                 UserName=user.Name,
-                RebateAmount= agentAmount
+                RebateAmount= agentAmount,
+                RebateDate = DateTime.Now.AddMonths(1)
             };
             input.Rebate = recordDto;
 

@@ -51,7 +51,7 @@ namespace HappyZu.CloudStore.StatisticalAnalysis.Events
             var weekOfYear = (etime.DayOfYear +
                               (int) new DateTime(etime.Year, 1, 1).DayOfWeek)/7;
 
-            var firstDayOfWeek = etime.AddDays(-(int)etime.DayOfWeek);
+            var firstDayOfWeek = etime.AddDays(-(int)etime.DayOfWeek).Date;
 
             var week = await _salesStatisticsManager.GetByWeekAsync(weekOfYear, firstDayOfWeek);
             if (week == null)
@@ -145,7 +145,7 @@ namespace HappyZu.CloudStore.StatisticalAnalysis.Events
             var weekOfYear = (etime.DayOfYear +
                               (int)new DateTime(etime.Year, 1, 1).DayOfWeek) / 7;
 
-            var firstDayOfWeek = etime.AddDays(-(int)etime.DayOfWeek);
+            var firstDayOfWeek = etime.AddDays(-(int)etime.DayOfWeek).Date;
 
             var week = await _userStatisticsManager.GetByWeekAsync(weekOfYear, firstDayOfWeek);
             if (week == null)

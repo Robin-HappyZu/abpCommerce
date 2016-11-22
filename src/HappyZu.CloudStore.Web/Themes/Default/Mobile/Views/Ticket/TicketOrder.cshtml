@@ -554,7 +554,6 @@
                 $.post(url,
                     params,
                     function(data) {
-                        $.hidePreloader();
                         if (data.success) {
                             if (data.result.entityId>0) {
                                 window
@@ -564,8 +563,10 @@
 
                                 return;
                             }
+                            $.hidePreloader();
                             $.toast("订单生成错误,请稍后重试!");
                         } else {
+                            $.hidePreloader();
                             $.alert(data.error.message);
                         }
                     },

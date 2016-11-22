@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Configuration;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using HappyZu.CloudStore.Trip;
@@ -14,7 +16,7 @@ using HappyZu.CloudStore.Wechat.Dto;
 
 namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 {
-    public class WechatPayController : Controller
+    public class WechatPayController : MobileControllerBase
     {
         private readonly IPaymentAppService _paymentAppService;
         private static TenPayV3Info _tenPayV3Info;
@@ -173,10 +175,11 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
             return Content(xml, "text/xml");
         }
+        
 
         public ActionResult TestNotity()
         {
-            var tradeNo = "ticket|1002145688714223616|150015";
+            var tradeNo = "ticket|75633233240064|150015";
             var orderNo = tradeNo.Split('|')[1];
             var input = new OrderPaidInput();
             var wechatResult = new WechatPayResult()
@@ -188,12 +191,12 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
             };
 
             int amount;
-            int.TryParse("32000", out amount);
+            int.TryParse("10000", out amount);
             int cashAmount;
-            int.TryParse("32000", out cashAmount);
+            int.TryParse("10000", out cashAmount);
 
             DateTime paidTime;
-            DateTime.TryParseExact("20161122162421", "yyyyMMddHHmmss", null, System.Globalization.DateTimeStyles.None, out paidTime);
+            DateTime.TryParseExact("20161123015521", "yyyyMMddHHmmss", null, System.Globalization.DateTimeStyles.None, out paidTime);
             wechatResult.Amount = (decimal)(amount / 100.00);
             wechatResult.CashAmount = (decimal)(cashAmount / 100.00);
             wechatResult.PaidTime = paidTime;

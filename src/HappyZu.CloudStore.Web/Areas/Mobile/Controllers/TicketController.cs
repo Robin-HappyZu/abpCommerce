@@ -234,7 +234,14 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
                 if (int.TryParse(agent.Value, out agentid))
                 {
                     input.AgentId = agentid;
-                    Response.Cookies.Remove("agent");
+
+                    //删除cookie
+                    if (Request.Cookies["agent"] != null)
+                    {
+                        HttpCookie cookies = new HttpCookie("agent");
+                        cookies.Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies.Add(cookies);
+                    }
                 }
             }
             var result = await _ticketAppService.AddTicketOrderAsync(input);
