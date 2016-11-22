@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Abp.Dependency;
 using Abp.Events.Bus;
 using Abp.Events.Bus.Handlers;
+using HappyZu.CloudStore.Agents.Events;
 using HappyZu.CloudStore.Entities;
 using HappyZu.CloudStore.StatisticalAnalysis.Events;
 
@@ -65,7 +66,7 @@ namespace HappyZu.CloudStore.Trip.Events
             // 生成电子票据
             var count = await _eTicketManager.GetETicketsCountByTicketOrderIdAsync(order.Id);
             if (count != 0) return;
-
+            
             // 获取订单详情
             var items = await _ticketOrderManager.GetTicketOrderDetailsByTicketOrderIdAsync(order.Id);
             foreach (var item in items)
@@ -76,6 +77,18 @@ namespace HappyZu.CloudStore.Trip.Events
                 }
             }
 
+
+            if (order.AgentId > 0)
+            {
+                //通知创建回扣事件
+                await EventBus.TriggerAsync(new CreateRebateEventData()
+                {
+                    AgentId = order.AgentId??0,
+                    OrderType="Ticket",
+                    OrderId = order.Id
+                });
+            }
+
             //通知统计消息事件
             await EventBus.TriggerAsync(new StatisticsSalesEventData()
             {
@@ -84,6 +97,8 @@ namespace HappyZu.CloudStore.Trip.Events
                 PaidAmount=payResult.Amount,
                 AgentId=order.AgentId
             });
+
+
         }
     }
 }

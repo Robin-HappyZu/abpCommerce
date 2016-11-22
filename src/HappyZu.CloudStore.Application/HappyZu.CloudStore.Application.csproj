@@ -118,6 +118,8 @@
     <Compile Include="Agents\Dto\CreateRecordInput.cs" />
     <Compile Include="Agents\Dto\QueryRebatesInput.cs" />
     <Compile Include="Agents\Dto\RebateDto.cs" />
+    <Compile Include="Agents\Events\CreateRebateEventData.cs" />
+    <Compile Include="Agents\Events\CreateRebateEventHandler.cs" />
     <Compile Include="Agents\IRebateAppService.cs" />
     <Compile Include="Agents\RebateAppService.cs" />
     <Compile Include="Authorization\CloudStoreAppAuthorizationProvider.cs" />

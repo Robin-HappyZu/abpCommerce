@@ -43,6 +43,11 @@ namespace HappyZu.CloudStore.Trip
         public decimal UnitPrice { get; set; }
 
         /// <summary>
+        /// 代理商价格
+        /// </summary>
+        public decimal AgentPrice { get; set; }
+
+        /// <summary>
         /// 总价
         /// </summary>
         public decimal Price { get; set; }

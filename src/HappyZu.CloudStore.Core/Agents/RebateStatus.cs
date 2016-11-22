@@ -10,13 +10,14 @@ namespace HappyZu.CloudStore.Agents
     public enum RebateStatus
     {
         [Display(Name ="未返")]
+        None,
+        [Display(Name = "已申请")]
         Pending,
         [Display(Name = "全部已返")]
         AllPaid,
         [Display(Name = "部分已返")]
         PartPaid,
         [Display(Name = "退款不返")]
-        NoPaid,
-
+        NoPaid
     }
 }

@@ -10,6 +10,7 @@ using HappyZu.CloudStore.Common.Dto;
 
 namespace HappyZu.CloudStore.Agents
 {
+    //[RemoteService(false)]
     public interface IRebateAppService:IApplicationService
     {
         Task<RebateDto> GetByIdAsync(int id);

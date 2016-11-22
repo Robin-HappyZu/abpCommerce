@@ -12,6 +12,6 @@ namespace HappyZu.CloudStore.Agents.Dto
         public int MaxResultCount { get; set; }
         public int SkipCount { get; set; }
 
-        public int AgentId { get; set; }
+        public long AgentId { get; set; }
     }
 }

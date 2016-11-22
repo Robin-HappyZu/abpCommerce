@@ -176,24 +176,24 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
 
         public ActionResult TestNotity()
         {
-            var tradeNo = "ticket|46126551820935168|150015";
+            var tradeNo = "ticket|1002145688714223616|150015";
             var orderNo = tradeNo.Split('|')[1];
             var input = new OrderPaidInput();
             var wechatResult = new WechatPayResult()
             {
                 OrderNo = orderNo,
                 IsSubscribe = true,
-                OpenId = "otimDwqn4Unxcfb6lTd1P0hG1ffI",
-                TransactionNo = "4010132001201611159813214581"
+                OpenId = "oJBwJwXdiqvWzkQ3wverskTTOLvY",
+                TransactionNo = "4010132001201611229813214581"
             };
 
             int amount;
-            int.TryParse("1", out amount);
+            int.TryParse("32000", out amount);
             int cashAmount;
-            int.TryParse("1", out cashAmount);
+            int.TryParse("32000", out cashAmount);
 
             DateTime paidTime;
-            DateTime.TryParseExact("20161115150221", "yyyyMMddHHmmss", null, System.Globalization.DateTimeStyles.None, out paidTime);
+            DateTime.TryParseExact("20161122162421", "yyyyMMddHHmmss", null, System.Globalization.DateTimeStyles.None, out paidTime);
             wechatResult.Amount = (decimal)(amount / 100.00);
             wechatResult.CashAmount = (decimal)(cashAmount / 100.00);
             wechatResult.PaidTime = paidTime;

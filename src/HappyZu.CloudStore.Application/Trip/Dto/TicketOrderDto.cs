@@ -12,7 +12,7 @@ namespace HappyZu.CloudStore.Trip.Dto
         /// <summary>
         /// 客户ID
         /// </summary>
-        public int CustomerId { get; set; }
+        public long CustomerId { get; set; }
 
         /// <summary>
         /// 景点名称

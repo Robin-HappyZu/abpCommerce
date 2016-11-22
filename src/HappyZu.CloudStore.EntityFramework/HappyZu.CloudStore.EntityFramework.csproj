@@ -272,6 +272,14 @@
     <Compile Include="Migrations\201611160736266_Add_TicketStatus.Designer.cs">
       <DependentUpon>201611160736266_Add_TicketStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611220231319_Add_Agents_Rebate.cs" />
+    <Compile Include="Migrations\201611220231319_Add_Agents_Rebate.Designer.cs">
+      <DependentUpon>201611220231319_Add_Agents_Rebate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611220728246_Update_TicketOrderItem.cs" />
+    <Compile Include="Migrations\201611220728246_Update_TicketOrderItem.Designer.cs">
+      <DependentUpon>201611220728246_Update_TicketOrderItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="CloudStoreDataModule.cs" />
@@ -408,6 +416,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611160736266_Add_TicketStatus.resx">
       <DependentUpon>201611160736266_Add_TicketStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611220231319_Add_Agents_Rebate.resx">
+      <DependentUpon>201611220231319_Add_Agents_Rebate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611220728246_Update_TicketOrderItem.resx">
+      <DependentUpon>201611220728246_Update_TicketOrderItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

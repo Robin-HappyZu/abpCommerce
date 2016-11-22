@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using HappyZu.CloudStore.Agents.Dto;
@@ -55,7 +56,7 @@ namespace HappyZu.CloudStore.Agents
                 input.MaxResultCount = int.MaxValue;
             }
 
-            Func<IQueryable<Rebate>, IQueryable<Rebate>> query = q => q.Where(x => x.AgentId == input.AgentId);
+            Func<IQueryable<Rebate>, IQueryable<Rebate>> query = q => q.Where(x => x.AgentId == input.AgentId).OrderByDescending(x=>x.Id);
 
             var list = _rebateRepository.Query(query).PageBy(input).ToList();
 

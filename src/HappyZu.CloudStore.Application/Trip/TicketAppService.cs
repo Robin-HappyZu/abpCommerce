@@ -317,6 +317,7 @@ namespace HappyZu.CloudStore.Trip
                         TicketId = ticket.Id,
                         TicketName = ticket.Name,
                         Quantity = item.Quantity,
+                        AgentPrice=quote.Quote.AgentPrice,
                         UnitPrice = quote.Quote.Price,
                         Price = item.Quantity * quote.Quote.Price,
                         Date = quote.DateTime

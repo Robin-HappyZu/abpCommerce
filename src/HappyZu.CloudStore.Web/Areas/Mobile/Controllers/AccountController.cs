@@ -13,6 +13,7 @@ using Abp.Runtime.Session;
 using Abp.UI;
 using Abp.Web.Models;
 using Abp.Web.Mvc.Authorization;
+using HappyZu.CloudStore.Agents;
 using HappyZu.CloudStore.Authorization;
 using HappyZu.CloudStore.Entities;
 using HappyZu.CloudStore.MultiTenancy;
@@ -34,14 +35,15 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         private readonly LogInManager _logInManager;
         private readonly UserManager _userManager;
         private readonly ITicketAppService _ticketAppService;
-        
+        private readonly IRebateAppService _rebateAppService;
 
 
-        public AccountController(LogInManager logInManager, UserManager userManager, ITicketAppService ticketAppService)
+        public AccountController(LogInManager logInManager, UserManager userManager, ITicketAppService ticketAppService, IRebateAppService rebateAppService)
         {
             _logInManager = logInManager;
             _userManager = userManager;
             _ticketAppService = ticketAppService;
+            _rebateAppService = rebateAppService;
         }
 
         private IAuthenticationManager AuthenticationManager
@@ -442,9 +444,16 @@ namespace HappyZu.CloudStore.Web.Areas.Mobile.Controllers
         }
 
         [AbpMvcAuthorize(PermissionNames.Agents)]
-        public JsonResult GetAgentOrders(int start, int length)
+        public async Task<JsonResult> GetAgentOrders(int start, int length)
         {
-            return Json(null);
+            var userId = AbpSession.GetUserId();
+            var result = await _rebateAppService.QueryListAsync(new Agents.Dto.QueryRebatesInput
+            {
+                AgentId = userId,
+                SkipCount = start,
+                MaxResultCount = length
+            });
+            return Json(result);
         }
         #endregion
     }
