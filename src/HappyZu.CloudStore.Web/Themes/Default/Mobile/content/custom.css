@@ -1431,3 +1431,37 @@ input, button, select, textarea {
 .myticket-dest-info .dest-body .row{ padding: 5px 0;}
 
 .customize-banner img{ width:100%;}
+
+/*agent-order*/
+.agent-rebates {
+    padding:10px 0;
+}
+.agent-rebates ul{
+    margin:0;padding-left:0 !important;
+}
+.agent-rebates ul li {
+    margin: 0;padding:0;
+    font-size:12px;
+}
+
+.agent-rebates ul li.username{
+    font-size:14px;
+}
+.agent-rebates-status {
+    padding-right:15px;
+    font-size:12px;
+    text-align: center;
+}
+
+.text-muted{color:#999 !important}
+.text-muted:hover{color:#999 !important}
+.text-info{color:#69C !important}
+.text-info:hover{color:#69C !important}
+.text-primary{color:#09C !important}
+.text-primary:hover{color:#09C !important}
+.text-success{color:#090 !important}
+.text-success:hover{color:#090 !important}
+.text-warning{color:#F90 !important}
+.text-warning:hover{color:#F90 !important}
+.text-danger{color:#F00 !important}
+.text-danger:hover{color:#F00 !important}
