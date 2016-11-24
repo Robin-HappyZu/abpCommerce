@@ -13,5 +13,9 @@ namespace HappyZu.CloudStore.Agents.Dto
         public int SkipCount { get; set; }
 
         public long AgentId { get; set; }
+
+        public RebateStatus RebateStatus { get; set; }
+
+        public string UserName { get; set; }
     }
 }

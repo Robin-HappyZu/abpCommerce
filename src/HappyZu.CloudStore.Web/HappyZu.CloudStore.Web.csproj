@@ -452,6 +452,7 @@
     <Content Include="Areas\Admin\Views\User\ProfileSidebar.cshtml" />
     <Content Include="Areas\Admin\Views\User\ProfileSetting.cshtml" />
     <Content Include="Areas\Admin\Views\SystemUserRole\SetUserRole.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\AgentOrders.cshtml" />
     <None Include="Themes\Default\Mobile\Views\Account\AboutUs.cshtml" />
     <Content Include="Themes\Default\Mobile\content\plugins\zepto.form.min.js" />
     <Content Include="Themes\Default\Mobile\Views\Ticket\Index.cshtml" />
@@ -594,6 +595,7 @@
       <DependentUpon>controller.ashx</DependentUpon>
     </Compile>
     <Compile Include="Areas\Admin\Controllers\FileManager\UploadFileController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\Trip\DestinationController.cs" />
     <Compile Include="Areas\Admin\Controllers\FAQController.cs" />
     <Compile Include="Areas\Admin\Controllers\SystemUserRoleController.cs" />
@@ -608,6 +610,7 @@
     <Compile Include="Areas\Admin\Models\EditDestPictureViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditDestViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditTicketViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\GetAgentOrdersViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetDestsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetETicketsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\GetRolesViewModel.cs" />

@@ -274,34 +274,40 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="icon-handbag"></i>
-                        <span class="title">门票订单</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item  ">
-                            <a href="@Url.Action("Index", "TicketOrder", new { area = "Admin" }, true)" class="nav-link ">
-                                <i class="icon-basket-loaded"></i>
-                                <span class="title">订单管理</span>
-                                <span class="badge badge-danger">2</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="@Url.Action("ETicket", "TicketOrder", new { area = "Admin" }, true)" class="nav-link ">
-                                <i class="icon-magnifier"></i>
-                                <span class="title">电子票</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="@Url.Action("QueryOrder", new {controller = "Order"})" class="nav-link ">
-                                <i class="icon-magnifier"></i>
-                                <span class="title">退款处理</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-handbag"></i>
+                    <span class="title">门票订单</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="@Url.Action("Index", "TicketOrder", new {area = "Admin"}, true)" class="nav-link ">
+                            <i class="icon-basket-loaded"></i>
+                            <span class="title">订单管理</span>
+                            <span class="badge badge-danger">2</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="@Url.Action("ETicket", "TicketOrder", new {area = "Admin"}, true)" class="nav-link ">
+                            <i class="icon-magnifier"></i>
+                            <span class="title">电子票</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="@Url.Action("QueryOrder", new {controller = "Orders"})" class="nav-link ">
+                            <i class="icon-magnifier"></i>
+                            <span class="title">退款处理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("AgentOrders", "Orders", new {area = "Admin"}, true)" class="nav-link nav-toggle">
+                    <i class="icon-handbag"></i>
+                    <span class="title">代理商返利</span>
+                </a>
+            </li>
                 @*<li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-handbag"></i>

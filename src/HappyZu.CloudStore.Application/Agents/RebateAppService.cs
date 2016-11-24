@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services;
@@ -49,6 +51,35 @@ namespace HappyZu.CloudStore.Agents
             
         }
 
+        
+
+        //private static Func<IQueryable<Rebate>, IOrderedQueryable<Rebate>> GetIQueryble(string orderColumn, string orderType)
+        //{
+        //    Type typeQueryable = typeof(IQueryable<Rebate>);
+        //    ParameterExpression argQueryable = Expression.Parameter(typeQueryable, "p");
+        //    var outerExpression = Expression.Lambda(argQueryable, argQueryable);
+        //    string[] props = orderColumn.Split('.');
+        //    IQueryable<Rebate> query = new List<Rebate>().AsQueryable<Rebate>();
+        //    Type type = typeof(Rebate);
+        //    ParameterExpression arg = Expression.Parameter(type, "x");
+
+        //    Expression expr = arg;
+        //    foreach (string prop in props)
+        //    {
+        //        PropertyInfo pi = type.GetProperty(prop, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+        //        expr = Expression.Property(expr, pi);
+        //        type = pi.PropertyType;
+        //    }
+        //    LambdaExpression lambda = Expression.Lambda(expr, arg);
+        //    string methodName = orderType == "asc" ? "OrderBy" : "OrderByDescending";
+
+        //    MethodCallExpression resultExp =
+        //        Expression.Call(typeof(Queryable), methodName, new Type[] { typeof(Rebate), type }, outerExpression.Body, Expression.Quote(lambda));
+            
+        //    var finalLambda = Expression.Lambda(resultExp, argQueryable);
+        //    return (Func<IQueryable<Rebate>, IOrderedQueryable<Rebate>>)finalLambda.Compile();
+        //}
+
         public Task<IPagedResult<RebateDto>> QueryListAsync(QueryRebatesInput input)
         {
             if (input.MaxResultCount <= 0)
@@ -57,6 +88,10 @@ namespace HappyZu.CloudStore.Agents
             }
 
             Func<IQueryable<Rebate>, IQueryable<Rebate>> query = q => q.Where(x => x.AgentId == input.AgentId).OrderByDescending(x=>x.Id);
+
+
+            query += q => q.Where(x => x.UserName == input.UserName);
+            
 
             var list = _rebateRepository.Query(query).PageBy(input).ToList();
 
