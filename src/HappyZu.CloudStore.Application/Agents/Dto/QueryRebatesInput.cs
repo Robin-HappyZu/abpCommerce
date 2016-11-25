@@ -14,7 +14,7 @@ namespace HappyZu.CloudStore.Agents.Dto
 
         public long AgentId { get; set; }
 
-        public RebateStatus RebateStatus { get; set; }
+        public RebateStatus? RebateStatus { get; set; }
 
         public string UserName { get; set; }
     }
