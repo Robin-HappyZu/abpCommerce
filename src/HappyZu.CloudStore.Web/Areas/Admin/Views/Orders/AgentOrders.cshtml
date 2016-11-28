@@ -89,6 +89,7 @@
 </div>
 
 @section script_plugins{
+    <script src="~/Areas/Admin/content/global/plugins/moment.min.js"></script>
     <script src="~/Areas/Admin/content/global/scripts/datatable.js" type="text/javascript"></script>
     <script src="~/Areas/Admin/content/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
     <script src="~/Areas/Admin/content/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
@@ -143,22 +144,38 @@
                         ],
                         "pageLength": 10, // default record count per page
                         "ajax": {
-                            "url": "@Url.Action("GetDests", "Destination", new {area = "Admin"}, true)", // ajax source
+                            "url": "@Url.Action("GetAgentOrders", "Orders", new {area = "Admin"}, true)", // ajax source
                         },
                         "columns": [
                             { "data": "Id" },
-                            { "data": "Title" },
-                            { "data": "CityId" }
+                            { "data": "UserName" },
+                            { "data": "OrderNo" },
+                            { "data": "OrderType" },
+                            { "data": "PaidTime" },
+                            { "data": "OrderAmount" },
+                            { "data": "RebateAmount" },
+                            { "data": "ExpectedRebateDate" },
+                            { "data": "RebateStatus" }
                         ],
                         "columnDefs": [
                         {
                             orderable: false, //禁用排序
-                            targets: [0, 1, 2, 3] //指定的列
+                            targets: [0, 1, 2, 3,4,5,6,7,8,9] //指定的列
                         }, {
                             render: function(data, type, row) {
                                 return '<input type="checkbox" name="id[]" value="' + data + '">';
                             },
                             "targets": 0
+                        },  {
+                            render: function (data, type, row) {
+                                return moment(data).format('YYYY-MM-DD HH:mm:ss');
+                            },
+                            "targets": 4
+                        }, {
+                            render: function (data, type, row) {
+                                return moment(data).format('YYYY-MM-DD HH:mm:ss');
+                            },
+                            "targets": 7
                         },
                         {
                             render: function(data, type, row) {
@@ -166,7 +183,7 @@
                                 btns += '<a class="btn btn-sm btn-outline red" href="javascript:removeDest(' + row.Id + ');"><i class="fa fa-trash-o"></i> 删除</a>';
                                     return btns;
                                 },
-                                "targets": 3
+                                "targets": 9
                             }
                         ],
                         "order": [

@@ -20,6 +20,7 @@
     <text name="LogIn" value="登录" />
 
     <text name="LoginFailed" value="登录失败!" />
-    
+
+    <text name="None" value="未知" />
   </texts>
 </localizationDictionary>

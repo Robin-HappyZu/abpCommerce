@@ -11,7 +11,7 @@ using HappyZu.CloudStore.Web.Areas.Admin.Models;
 
 namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
 {
-    public class OrdersController : Controller
+    public class OrdersController : AdminControllerBase
     {
         private readonly IRebateAppService _rebateAppService;
 
@@ -55,7 +55,40 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                 customActionMessage = "",
                 customActionStatus = "OK"
             };
-            return Json(null);
+
+            try
+            {
+
+                vm.recordsFiltered = vm.recordsTotal = output.TotalCount;
+
+                vm.data = output.Items.Select(x => new
+                {
+                    AgentId = x.AgentId,
+                    ExpectedRebateDate = x.ExpectedRebateDate,
+                    Id = x.Id,
+                    IncomeAmount = x.IncomeAmount,
+                    OrderAmount = x.OrderAmount,
+                    OrderNo = x.OrderNo,
+                    OrderType = x.OrderType,
+                    PaidTime = x.PaidTime,
+                    RebateAmount = x.RebateAmount,
+                    RebateDate = x.RebateDate,
+                    RebateStatus = L(x.RebateStatus.ToString()),
+                    UserName = x.UserName
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                vm.customActionMessage = ex.Message;
+                vm.customActionStatus = "";
+            }
+
+            if (vm.data == null)
+            {
+                vm.data = new List<object>();
+            }
+
+            return Json(vm, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }
