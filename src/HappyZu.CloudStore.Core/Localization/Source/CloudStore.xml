@@ -53,5 +53,12 @@
     <text name="Yes" value="Yes" />
     <text name="No" value="No" />
     <text name="Optional" value="Optional" />
+
+
+    <text name="RebateStatus.None" value="None" />
+    <text name="RebateStatus.Pending" value="Pending" />
+    <text name="RebateStatus.AllPaid" value="AllPaid" />
+    <text name="RebateStatus.PartPaid" value="PartPaid" />
+    <text name="RebateStatus.NoPaid" value="NoPaid" />
   </texts>
 </localizationDictionary>

@@ -73,7 +73,7 @@ namespace HappyZu.CloudStore.Web.Areas.Admin.Controllers
                     PaidTime = x.PaidTime,
                     RebateAmount = x.RebateAmount,
                     RebateDate = x.RebateDate,
-                    RebateStatus = L(x.RebateStatus.ToString()),
+                    RebateStatus = L("RebateStatus." + x.RebateStatus.ToString()),
                     UserName = x.UserName
                 }).ToList();
             }

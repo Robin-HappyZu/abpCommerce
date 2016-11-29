@@ -21,6 +21,8 @@ namespace HappyZu.CloudStore.Web
 
             RegisterWeixinPay();
 
+            HibernatingRhinos.Profiler.Appender.EntityFramework.EntityFrameworkProfiler.Initialize();
+
             base.Application_Start(sender, e);
         }
 

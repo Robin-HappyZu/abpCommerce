@@ -21,6 +21,10 @@
 
     <text name="LoginFailed" value="登录失败!" />
 
-    <text name="None" value="未知" />
+    <text name="RebateStatus.None" value="未返" />
+    <text name="RebateStatus.Pending" value="已申请" />
+    <text name="RebateStatus.AllPaid" value="全部已返" />
+    <text name="RebateStatus.PartPaid" value="部分已返" />
+    <text name="RebateStatus.NoPaid" value="退款不返" />
   </texts>
 </localizationDictionary>

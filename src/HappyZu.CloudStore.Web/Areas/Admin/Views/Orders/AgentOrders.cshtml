@@ -178,9 +178,11 @@
                             "targets": 7
                         },
                         {
-                            render: function(data, type, row) {
-                                var btns = '<a class="btn btn-sm btn-outline blue" href="@Url.Action("DestEdit", new {controller = "Destination"})/' + row.Id + '?returnUrl=@(Request.RawUrl)"><i class="fa fa-edit"></i> 编辑</a> ';
-                                btns += '<a class="btn btn-sm btn-outline red" href="javascript:removeDest(' + row.Id + ');"><i class="fa fa-trash-o"></i> 删除</a>';
+                            render: function (data, type, row) {
+                                    var btns = '';
+                                    if (row.RebateStatus == '已申请') {
+                                        btns = '<a class="btn btn-sm btn-outline green" href="javascript:;"><i class="fa fa-rmb"></i> 确认返利</a> ';
+                                    }
                                     return btns;
                                 },
                                 "targets": 9

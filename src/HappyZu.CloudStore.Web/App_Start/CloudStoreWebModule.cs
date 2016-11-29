@@ -25,6 +25,13 @@ namespace HappyZu.CloudStore.Web
     {
         public override void PreInitialize()
         {
+#if DEBUG
+            //关闭审计日志
+            Configuration.Auditing.IsEnabled = false;
+            //关闭后台任务
+            Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
+#endif
+
             //Enable database based localization
             Configuration.Modules.Zero().LanguageManagement.EnableDbLocalization();
 
