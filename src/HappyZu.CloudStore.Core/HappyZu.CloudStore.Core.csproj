@@ -118,6 +118,7 @@
     <Compile Include="Authorization\Roles\Role.cs" />
     <Compile Include="Authorization\Roles\RoleManager.cs" />
     <Compile Include="Authorization\Roles\RoleStore.cs" />
+    <Compile Include="RepositoryExtensions.cs" />
     <Compile Include="StatisticalAnalysis\SalesStatisticsByDay.cs" />
     <Compile Include="StatisticalAnalysis\SalesStatisticsByMonth.cs" />
     <Compile Include="StatisticalAnalysis\SalesStatisticsByQuarter.cs" />
