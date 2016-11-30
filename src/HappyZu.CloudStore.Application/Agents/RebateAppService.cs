@@ -59,31 +59,21 @@ namespace HappyZu.CloudStore.Agents
             {
                 input.MaxResultCount = int.MaxValue;
             }
-            var predicates = new List<Expression<Func<Rebate, bool>>>();
-            var orderBys = new List<QueryableOrderBy>();
+            
 
-            if (input.AgentId>0)
-            {
-                predicates.Add(x => x.AgentId == input.AgentId);
-            }
+            var list = _rebateRepository.GetAll()
+                .WhereIf(input.RebateStatus != null, x => x.RebateStatus == input.RebateStatus)
+                .WhereIf(!string.IsNullOrWhiteSpace(input.UserName), x => x.UserName == input.UserName)
+                .WhereIf(input.AgentId > 0, x => x.AgentId == input.AgentId)
+                .OrderByDescending(x=>x.Id)
+                .PageBy(input).ToList();
 
-            if (!string.IsNullOrWhiteSpace(input.UserName))
-            {
-                predicates.Add(x => x.UserName == input.UserName);
-            }
-
-            if (input.RebateStatus!=null)
-            {
-                predicates.Add(x => x.RebateStatus == input.RebateStatus);
-            }
-
-            orderBys.Add(new QueryableOrderBy {OrderColumn = "Id", OrderType = OrderType.OrderByDescending});
-
-            var query = QueryPredicateHelper.GetOrderedQuery<Rebate>(orderBys.ToArray(),predicates.ToArray<Expression>());
-
-            var list = _rebateRepository.Query(query).PageBy(input).ToList();
-
-            var count = _rebateRepository.Query(query).Count();
+            var count = _rebateRepository.GetAll()
+                .WhereIf(input.RebateStatus != null, x => x.RebateStatus == input.RebateStatus)
+                .WhereIf(!string.IsNullOrWhiteSpace(input.UserName), x => x.UserName == input.UserName)
+                .WhereIf(input.AgentId > 0, x => x.AgentId == input.AgentId)
+                .OrderByDescending(x => x.Id)
+                .Count();
 
             IPagedResult<RebateDto> result = new PagedResultDto<RebateDto>
             {

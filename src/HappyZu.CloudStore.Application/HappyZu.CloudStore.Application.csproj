@@ -126,8 +126,6 @@
     <Compile Include="CloudStoreApplicationModule.cs" />
     <Compile Include="CloudStoreAppServiceBase.cs" />
     <Compile Include="Common\Dto\ResultOutputDto.cs" />
-    <Compile Include="Common\Linq\QueryableOrderBy.cs" />
-    <Compile Include="Common\Linq\QueryPredicateHelper.cs" />
     <Compile Include="FAQ\Dto\CreateDetailInput.cs" />
     <Compile Include="FAQ\Dto\CreateFAQCategoryInput.cs" />
     <Compile Include="FAQ\Dto\FAQCategoryDto.cs" />

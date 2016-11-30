@@ -180,7 +180,7 @@
                         {
                             render: function (data, type, row) {
                                     var btns = '';
-                                    if (row.RebateStatus == '已申请') {
+                                    if (row.RebateStatus === '已申请') {
                                         btns = '<a class="btn btn-sm btn-outline green" href="javascript:;"><i class="fa fa-rmb"></i> 确认返利</a> ';
                                     }
                                     return btns;
